@@ -36,6 +36,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    /*
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -56,10 +57,32 @@ module.exports = {
         ],
       },
     },
+    */
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 630,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          `gatsby-remark-prismjs`,
+        ],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: `gatsby-plugin-feed-mdx`,
       options: {
         query: `
           {
@@ -87,7 +110,7 @@ module.exports = {
               })
             },
             query: `{
-              allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+              allMdx(sort: {frontmatter: {date: DESC}}) {
                 nodes {
                   excerpt
                   html
