@@ -1,12 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "personal-site-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A Gatsby driven personal blog.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
+  "author": "J. Patrick Fulton <jpatrick.fulton@gmail.com>",
   "engines": {
     "node": ">=18.16.0"
   },
@@ -31,14 +28,10 @@
   "devDependencies": {
     "prettier": "^2.8.8"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/jpfulton/blog.git"
   },
   "scripts": {
     "build": "gatsby build",
