@@ -9,15 +9,15 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `J. Patrick Fulton - Blog`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `J. Patrick Fulton`,
+      summary: `who lives and works in Chicago occasionally playing pool.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `A personal blog on occasionally useful technical topics.`,
+    siteUrl: `https://blog.jpatrickfulton.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `jpatrickfulton`,
     },
   },
   plugins: [
@@ -102,7 +102,7 @@ module.exports = {
               }
             }`,
             output: "/rss.xml",
-            title: "Gatsby Starter Blog RSS Feed",
+            title: "J. Patrick Fulton Blog RSS Feed",
           },
         ],
       },
@@ -110,8 +110,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `Gatsby`,
+        name: `J. Patrick Fulton - Blog`,
+        short_name: `Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
@@ -119,6 +119,37 @@ module.exports = {
         // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-ZPJLJ17YW8", // Google Analytics / GA
+          //"AW-CONVERSION_ID", // Google Ads / Adwords / AW
+          //"DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
+        ],
+        // This object gets passed directly to the gtag config command
+        // This config will be shared across all trackingIds
+        gtagConfig: {
+          //optimize_id: "OPT_CONTAINER_ID",
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: false,
+          // Setting this parameter is also optional
+          respectDNT: true,
+          // Avoids sending pageview hits from custom paths
+          // exclude: ["/preview/**", "/do-not-track/me/too/"],
+          // Defaults to https://www.googletagmanager.com
+          // origin: "YOUR_SELF_HOSTED_ORIGIN",
+          // Delays processing pageview events on route update (in milliseconds)
+          delayOnRouteUpdate: 0,
+        },
       },
     },
   ],
