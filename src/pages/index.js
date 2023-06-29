@@ -46,6 +46,12 @@ export const pageQuery = graphql`
           excerpt
           fields {
             slug
+            timeToRead {
+              minutes
+              text
+              time
+              words
+            }
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")

@@ -1,3 +1,5 @@
+import readingTime from "reading-time";
+
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
@@ -61,11 +63,18 @@ export const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
+
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
       value,
     });
+
+    createNodeField({
+      name: "timeToRead",
+      node,
+      value: readingTime(node.body),
+    })
   }
 };

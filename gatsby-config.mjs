@@ -44,7 +44,13 @@ const config = {
             allMdx {
               nodes {
                 id
-                fields { slug }
+                fields { 
+                  slug
+                  timeToRead {
+                    text
+                    words
+                  } 
+                }
                 excerpt
                 body
                 frontmatter {
@@ -58,7 +64,7 @@ const config = {
         `,
         ref: "id",
         index: ["title", "body"],
-        store: ["id", "slug", "date", "title", "excerpt", "description"],
+        store: ["id", "slug", "date", "title", "excerpt", "description", "timeToReadText", "timeToReadWords"],
         normalizer: ({ data }) =>
           data.allMdx.nodes.map((node) => ({
             id: node.id,
@@ -68,6 +74,8 @@ const config = {
             title: node.frontmatter.title,
             description: node.frontmatter.description,
             date: node.frontmatter.date,
+            timeToReadText: node.fields.timeToRead.text,
+            timeToReadWords: node.fields.timeToRead.words,
           })),
       },
     },
