@@ -10,8 +10,6 @@
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "babel-plugin-styled-components": "^2.1.4",
-    "boolbase": "^1.0.0",
-    "camelcase": "^7.0.1",
     "gatsby": "^5.11.0",
     "gatsby-plugin-google-gtag": "^5.11.0",
     "gatsby-plugin-image": "^3.11.0",
