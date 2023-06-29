@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { useFlexSearch } from "react-use-flexsearch"
-import * as queryString from "query-string"
+import queryString from "query-string"
 
 import { rhythm } from "../utils/typography"
 

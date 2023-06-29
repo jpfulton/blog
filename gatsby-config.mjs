@@ -29,6 +29,48 @@ const config = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-root-import`,
     {
+      resolve: "gatsby-plugin-local-search",
+      options: {
+        name: "blog",
+        engine: "flexsearch",
+        engineOptions: {
+          encode: "icase",
+          tokenize: "forward",
+          async: false,
+        },
+        query: `
+          {
+            allMdx {
+              nodes {
+                id
+                fields { slug }
+                excerpt
+                rawBody
+                frontmatter {
+                  title
+                  description
+                  date(formatString: "MMMM DD, YYYY")
+                }
+              }
+            }
+          }
+        `,
+        ref: "id",
+        index: ["title", "rawBody"],
+        store: ["id", "slug", "date", "title", "excerpt", "description"],
+        normalizer: ({ data }) =>
+          data.allMdx.nodes.map(node => ({
+            id: node.id,
+            slug: node.fields.slug,
+            rawBody: node.rawBody,
+            excerpt: node.excerpt,
+            title: node.frontmatter.title,
+            description: node.frontmatter.description,
+            date: node.frontmatter.date,
+          })),
+      },
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
