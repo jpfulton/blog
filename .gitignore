@@ -129,5 +129,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# OS Caches
+.DS_Store
+Thumbs.db
+
 # Gatsby Outputs
 public/
