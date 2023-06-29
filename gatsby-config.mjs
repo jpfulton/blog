@@ -62,7 +62,7 @@ const config = {
           data.allMdx.nodes.map(node => ({
             id: node.id,
             slug: node.fields.slug,
-            rawBody: node.rawBody,
+            body: node.body,
             excerpt: node.excerpt,
             title: node.frontmatter.title,
             description: node.frontmatter.description,
