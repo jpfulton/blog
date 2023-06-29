@@ -32,7 +32,7 @@ function BlogPostTemplate({
           marginTop: rhythm(-1),
         }}
       >
-        {post.frontmatter.date}
+        {post.frontmatter.date} - {post.fields.timeToRead.text} ({post.fields.timeToRead.words} words)
       </p>
 
       {children}
@@ -89,6 +89,14 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+      }
+      fields {
+        timeToRead {
+          minutes
+          text
+          time
+          words
+        }
       }
     }
   }

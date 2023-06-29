@@ -44,11 +44,14 @@ const SearchBar = styled.div`
 const SearchedPosts = ({ results }) =>
   results.length > 0 ? (
     results.map((node) => {
+
       const date = node.date;
       const title = node.title || node.slug;
       const description = node.description;
       const excerpt = node.excerpt;
       const slug = node.slug;
+      const timeToReadText = node.timeToReadText;
+      const timeToReadWords = node.timeToReadWords;
 
       return (
         <div key={slug}>
@@ -61,7 +64,7 @@ const SearchedPosts = ({ results }) =>
               {title}
             </Link>
           </h3>
-          <small>{date}</small>
+          <small>{date} - {timeToReadText} ({timeToReadWords} words)</small>
           <p
             dangerouslySetInnerHTML={{
               __html: description || excerpt,
@@ -91,7 +94,7 @@ const AllPosts = ({ posts }) => (
               {title}
             </Link>
           </h3>
-          <small>{node.frontmatter.date}</small>
+          <small>{node.frontmatter.date} - {node.fields.timeToRead.text} ({node.fields.timeToRead.words} words)</small>
           <p
             dangerouslySetInnerHTML={{
               __html: node.frontmatter.description || node.excerpt,
