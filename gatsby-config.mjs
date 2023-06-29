@@ -4,12 +4,12 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
-import rehypeExternalLinks from "rehype-external-links"
+import rehypeExternalLinks from "rehype-external-links";
 
-import { dirname } from "path"
-import { fileURLToPath } from "url"
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config = {
   siteMetadata: {
@@ -61,7 +61,7 @@ const config = {
         index: ["title", "body"],
         store: ["id", "slug", "date", "title", "excerpt", "description"],
         normalizer: ({ data }) =>
-          data.allMdx.nodes.map(node => ({
+          data.allMdx.nodes.map((node) => ({
             id: node.id,
             slug: node.fields.slug,
             body: node.body,
@@ -102,7 +102,10 @@ const config = {
         mdxOptions: {
           remarkPlugins: [],
           rehypePlugins: [
-            [rehypeExternalLinks, { target: `_blank`, rel: [`nofollow`, `noopener`]}],
+            [
+              rehypeExternalLinks,
+              { target: `_blank`, rel: [`nofollow`, `noopener`] },
+            ],
           ],
         },
       },
@@ -173,6 +176,6 @@ const config = {
       },
     },
   ],
-}
+};
 
-export default config
+export default config;

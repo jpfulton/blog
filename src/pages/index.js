@@ -1,17 +1,17 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from "react";
+import { graphql } from "gatsby";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import SearchPosts from "../components/searchPosts"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import SearchPosts from "../components/searchPosts";
 
 class Blog extends React.Component {
   render() {
-    const { data, location } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMdx.edges
-    const localSearchBlog = data.localSearchBlog
+    const { data, location } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allMdx.edges;
+    const localSearchBlog = data.localSearchBlog;
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -23,11 +23,11 @@ class Blog extends React.Component {
           location={location}
         />
       </Layout>
-    )
+    );
   }
 }
 
-export default Blog
+export default Blog;
 
 export const pageQuery = graphql`
   query {
@@ -40,7 +40,7 @@ export const pageQuery = graphql`
       index
       store
     }
-    allMdx(sort: {frontmatter: {date: DESC}}) {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       edges {
         node {
           excerpt
@@ -56,4 +56,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

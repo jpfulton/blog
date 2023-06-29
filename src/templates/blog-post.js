@@ -1,16 +1,21 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import { Link, graphql } from "gatsby";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm, scale } from "../utils/typography";
 
-function BlogPostTemplate({ location, pageContext, data: { mdx, site }, children }) {
-  const post = mdx
-  const siteTitle = site.siteMetadata.title
-  const { previous, next } = pageContext
+function BlogPostTemplate({
+  location,
+  pageContext,
+  data: { mdx, site },
+  children,
+}) {
+  const post = mdx;
+  const siteTitle = site.siteMetadata.title;
+  const { previous, next } = pageContext;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -30,8 +35,8 @@ function BlogPostTemplate({ location, pageContext, data: { mdx, site }, children
         {post.frontmatter.date}
       </p>
 
-        {children}
-      
+      {children}
+
       <hr
         style={{
           marginBottom: rhythm(1),
@@ -40,34 +45,34 @@ function BlogPostTemplate({ location, pageContext, data: { mdx, site }, children
       <Bio />
 
       <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={`/blog${previous.fields.slug}`} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={`/blog${next.fields.slug}`} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+        style={{
+          display: `flex`,
+          flexWrap: `wrap`,
+          justifyContent: `space-between`,
+          listStyle: `none`,
+          padding: 0,
+        }}
+      >
+        <li>
+          {previous && (
+            <Link to={`/blog${previous.fields.slug}`} rel="prev">
+              ← {previous.frontmatter.title}
+            </Link>
+          )}
+        </li>
+        <li>
+          {next && (
+            <Link to={`/blog${next.fields.slug}`} rel="next">
+              {next.frontmatter.title} →
+            </Link>
+          )}
+        </li>
+      </ul>
     </Layout>
-  )
+  );
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -87,4 +92,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
