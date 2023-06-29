@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+import rehypeExternalLinks from "rehype-external-links"
+
 import { dirname } from "path"
 import { fileURLToPath } from "url"
 
@@ -74,29 +76,33 @@ const config = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 630,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
+        ],
         mdxOptions: {
-          remarkPlugins: [
-            {
-              resolve: `gatsby-remark-images`,
-              options: {
-                maxWidth: 630,
-              },
-            },
-            {
-              resolve: `gatsby-remark-responsive-iframe`,
-              options: {
-                wrapperStyle: `margin-bottom: 1.0725rem`,
-              },
-            },
-            {
-              resolve: `gatsby-remark-prismjs`,
-            },
-            {
-              resolve: `gatsby-remark-copy-linked-files`,
-            },
-            {
-              resolve: `gatsby-remark-smartypants`,
-            },
+          remarkPlugins: [],
+          rehypePlugins: [
+            [rehypeExternalLinks, { target: `_blank`, rel: [`nofollow`, `noopener`]}],
           ],
         },
       },
