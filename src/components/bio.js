@@ -14,10 +14,7 @@ const Bio = () => {
     query BioQuery {
       site {
         siteMetadata {
-          author {
-            name
-            summary
-          }
+          author
           social {
             twitter
           }
@@ -42,9 +39,9 @@ const Bio = () => {
         quality={95}
         alt="Profile picture"
       />
-      {author?.name && (
+      {author && (
         <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
+          Written by <strong>{author}</strong>.
           {` `}
           <a href={`https://twitter.com/${social?.twitter || ``}`}>
             You should follow them on Twitter
