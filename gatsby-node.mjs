@@ -49,7 +49,6 @@ export const createPages = ({ graphql, actions, reporter }) => {
       createPage({
         path: `blog${post.node.fields.slug}`,
         component: `${blogPost}?__contentFilePath=${post.node.internal.contentFilePath}`,
-        //component: blogPost,
         context: {
           id: post.node.id,
           slug: post.node.fields.slug,
@@ -74,22 +73,3 @@ export const onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
-
-/*
-export const onCreateWebpackConfig = ({
-  stage, getConfig, rules, loaders, actions
-}) => {
-  if (stage === "build-html" || stage === "develop-html") {
-    actions.setWebpackConfig({
-      module: {
-        rules: [
-          {
-            test: /boolbase/,
-            use: loaders.null(),
-          },
-        ],
-      },
-    });
-  }
- }
- */
