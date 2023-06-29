@@ -1,20 +1,19 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-// import { MDXRenderer } from "gatsby-plugin-mdx"
-// import { MDXProvider } from "@mdx-js/react"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+
 import { rhythm, scale } from "../utils/typography"
 
-function BlogPostTemplate({ pageContext, data: { mdx, site }, children }) {
+function BlogPostTemplate({ location, previous, next, data: { mdx, site }, children }) {
   const post = mdx
   const siteTitle = site.siteMetadata.title
-  const { previous, next } = pageContext
+  // const { previous, next } = pageContext
 
   return (
-    <Layout location={pageContext.location} title={siteTitle}>
+    <Layout location={location} title={siteTitle}>
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
