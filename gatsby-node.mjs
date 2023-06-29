@@ -52,8 +52,8 @@ export const createPages = ({ graphql, actions, reporter }) => {
         context: {
           id: post.node.id,
           slug: post.node.fields.slug,
-          previous,
-          next,
+          previous: previous,
+          next: next,
         },
       })
     })

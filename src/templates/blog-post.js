@@ -7,10 +7,10 @@ import Seo from "../components/seo"
 
 import { rhythm, scale } from "../utils/typography"
 
-function BlogPostTemplate({ location, previous, next, data: { mdx, site }, children }) {
+function BlogPostTemplate({ location, pageContext, data: { mdx, site }, children }) {
   const post = mdx
   const siteTitle = site.siteMetadata.title
-  // const { previous, next } = pageContext
+  const { previous, next } = pageContext
 
   return (
     <Layout location={location} title={siteTitle}>
