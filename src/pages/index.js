@@ -21,7 +21,6 @@ class Blog extends React.Component {
         <SearchPosts
           posts={posts}
           localSearchBlog={localSearchBlog}
-          navigate={navigate}
           location={location}
         />
       </Layout>
