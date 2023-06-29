@@ -45,7 +45,7 @@ const config = {
                 id
                 fields { slug }
                 excerpt
-                rawBody
+                body
                 frontmatter {
                   title
                   description
@@ -56,7 +56,7 @@ const config = {
           }
         `,
         ref: "id",
-        index: ["title", "rawBody"],
+        index: ["title", "body"],
         store: ["id", "slug", "date", "title", "excerpt", "description"],
         normalizer: ({ data }) =>
           data.allMdx.nodes.map(node => ({

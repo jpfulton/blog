@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+//import { navigate } from '@reach/router'
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { useFlexSearch } from "react-use-flexsearch"
@@ -110,7 +111,8 @@ const SearchPosts = ({ posts, localSearchBlog, location, navigate }) => {
   const results = useFlexSearch(
     query,
     localSearchBlog.index,
-    JSON.parse(localSearchBlog.store)
+    localSearchBlog.store
+    // JSON.parse(localSearchBlog.store)
   )
 
   return (
@@ -130,7 +132,7 @@ const SearchPosts = ({ posts, localSearchBlog, location, navigate }) => {
           value={query}
           onChange={e => {
             navigate(
-              e.target.value ? `/blog/?search=${e.target.value}` : "/blog/"
+              e.target.value ? `/?search=${e.target.value}` : "/"
             )
             setQuery(e.target.value)
           }}
