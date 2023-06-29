@@ -111,7 +111,6 @@ const SearchPosts = ({ posts, localSearchBlog, location }) => {
     query,
     localSearchBlog.index,
     localSearchBlog.store
-    // JSON.parse(localSearchBlog.store)
   );
 
   return (
