@@ -28,7 +28,6 @@ const config = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-offline`,
     `gatsby-plugin-root-import`,
     {
       resolve: "gatsby-plugin-local-search",
@@ -134,8 +133,8 @@ const config = {
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        display: `standalone`,
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -175,6 +174,7 @@ const config = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    `gatsby-plugin-offline`,
   ],
 };
 
