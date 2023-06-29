@@ -22,6 +22,16 @@ const config = {
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-sass",
+      options: {
+        useResolveUrlLoader: {
+          options: {
+            debug: true,
+          },
+        },
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,

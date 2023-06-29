@@ -1,7 +1,7 @@
 // normalize CSS across browsers
-import "./src/normalize.css";
+import "./src/styles/normalize.css";
 // custom CSS styles
-import "./src/style.css";
+import "./src/styles/global-style.scss";
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css";
