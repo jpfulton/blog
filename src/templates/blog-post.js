@@ -9,9 +9,9 @@ import Tags from "../components/tags";
 
 import { rhythm, scale } from "../utils/typography";
 
-import AdBlock from "../components/adBlock";
+import { InArticleAdBlock } from "../components/adBlocks";
 
-const shortcodes = { AdBlock };
+const shortcodes = { InArticleAdBlock };
 
 function BlogPostTemplate({
   location,

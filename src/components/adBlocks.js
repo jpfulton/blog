@@ -1,7 +1,7 @@
 import React from "react";
 import AdSense from "react-adsense";
 
-const AdBlock = () => (
+export const InArticleAdBlock = () => (
   <AdSense.Google
     client="ca-pub-2306983857488873"
     slot="4601936166"
@@ -10,5 +10,3 @@ const AdBlock = () => (
     format="fluid"
   />
 );
-
-export default AdBlock;
