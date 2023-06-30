@@ -27,6 +27,7 @@ function BlogPostTemplate({
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        keywords={post.frontmatter.keywords}
       />
       <h1>{post.frontmatter.title}</h1>
       <p
@@ -95,6 +96,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        keywords
       }
       fields {
         timeToRead {
