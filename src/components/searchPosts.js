@@ -64,7 +64,7 @@ const SearchedPosts = ({ results }) =>
           description={description}
           excerpt={excerpt}
           keywords={keywords}
-          />
+        />
       );
     })
   ) : (
@@ -87,7 +87,7 @@ const AllPosts = ({ posts }) => (
           description={node.frontmatter.description}
           excerpt={node.excerpt}
           keywords={node.frontmatter.keywords}
-          />
+        />
       );
     })}
   </div>
