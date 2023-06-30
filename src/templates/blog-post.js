@@ -5,6 +5,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import Tags from "../components/tags";
 
 import { rhythm, scale } from "../utils/typography";
 
@@ -49,7 +50,16 @@ function BlogPostTemplate({
           marginBottom: rhythm(1),
         }}
       />
+
       <Bio />
+
+      <hr
+        style={{
+          marginBottom: rhythm(1),
+        }}
+      />
+
+      <Tags tags={post.frontmatter.keywords}></Tags>
 
       <ul
         style={{
