@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link, navigate } from "gatsby";
+import { navigate } from "gatsby";
 import styled from "styled-components";
 import { useFlexSearch } from "react-use-flexsearch";
 import queryString from "query-string";
 
+import PostSummary from "./postSummary";
 import { rhythm } from "../utils/typography";
 
 const SearchBar = styled.div`
@@ -51,27 +52,19 @@ const SearchedPosts = ({ results }) =>
       const slug = node.slug;
       const timeToReadText = node.timeToReadText;
       const timeToReadWords = node.timeToReadWords;
+      const keywords = node.keywords;
 
       return (
-        <div key={slug}>
-          <h3
-            style={{
-              marginBottom: rhythm(1 / 4),
-            }}
-          >
-            <Link style={{ boxShadow: `none` }} to={`/blog${slug}`}>
-              {title}
-            </Link>
-          </h3>
-          <small>
-            {date} - {timeToReadText} ({timeToReadWords} words)
-          </small>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: description || excerpt,
-            }}
+        <PostSummary
+          slug={slug}
+          title={title}
+          date={date}
+          timeToReadText={timeToReadText}
+          timeToReadWords={timeToReadWords}
+          description={description}
+          excerpt={excerpt}
+          keywords={keywords}
           />
-        </div>
       );
     })
   ) : (
@@ -85,26 +78,16 @@ const AllPosts = ({ posts }) => (
     {posts.map(({ node }) => {
       const title = node.frontmatter.title || node.fields.slug;
       return (
-        <div key={node.fields.slug}>
-          <h3
-            style={{
-              marginBottom: rhythm(1 / 4),
-            }}
-          >
-            <Link style={{ boxShadow: `none` }} to={`/blog${node.fields.slug}`}>
-              {title}
-            </Link>
-          </h3>
-          <small>
-            {node.frontmatter.date} - {node.fields.timeToRead.text} (
-            {node.fields.timeToRead.words} words)
-          </small>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: node.frontmatter.description || node.excerpt,
-            }}
+        <PostSummary
+          slug={node.fields.slug}
+          title={title}
+          date={node.frontmatter.date}
+          timeToReadText={node.fields.timeToRead.text}
+          timeToReadWords={node.fields.timeToRead.words}
+          description={node.frontmatter.description}
+          excerpt={node.excerpt}
+          keywords={node.frontmatter.keywords}
           />
-        </div>
       );
     })}
   </div>

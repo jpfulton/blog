@@ -67,13 +67,14 @@ const config = {
                   title
                   description
                   date(formatString: "MMMM DD, YYYY")
+                  keywords
                 }
               }
             }
           }
         `,
         ref: "id",
-        index: ["title", "body"],
+        index: ["title", "body", "keywords"],
         store: [
           "id",
           "slug",
@@ -83,6 +84,7 @@ const config = {
           "description",
           "timeToReadText",
           "timeToReadWords",
+          "keywords",
         ],
         normalizer: ({ data }) =>
           data.allMdx.nodes.map((node) => ({
@@ -95,6 +97,7 @@ const config = {
             date: node.frontmatter.date,
             timeToReadText: node.fields.timeToRead.text,
             timeToReadWords: node.fields.timeToRead.words,
+            keywords: node.frontmatter.keywords,
           })),
       },
     },
