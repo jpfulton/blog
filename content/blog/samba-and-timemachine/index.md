@@ -46,8 +46,6 @@ force directory mode = 0775
 The complete example configuration file can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/samba/smb.conf).
 
-<InArticleAdBlock></InArticleAdBlock>
-
 ## macOS Settings
 
 ![Time Machine Settings Screenshot](./timemaching-settings.png)
