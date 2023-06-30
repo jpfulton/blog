@@ -74,7 +74,16 @@ const config = {
         `,
         ref: "id",
         index: ["title", "body"],
-        store: ["id", "slug", "date", "title", "excerpt", "description", "timeToReadText", "timeToReadWords"],
+        store: [
+          "id",
+          "slug",
+          "date",
+          "title",
+          "excerpt",
+          "description",
+          "timeToReadText",
+          "timeToReadWords",
+        ],
         normalizer: ({ data }) =>
           data.allMdx.nodes.map((node) => ({
             id: node.id,
