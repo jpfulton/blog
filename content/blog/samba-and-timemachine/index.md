@@ -2,6 +2,7 @@
 title: Samba and macOS Time Machine
 date: 2023-06-23
 description: "Here is a temporary article description."
+keywords: ["Ubuntu", "macOS", "samba", "time machine"]
 ---
 
 ## Samba Configuration
