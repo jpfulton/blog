@@ -15,7 +15,7 @@ function PostSummary({
   keywords,
 }) {
   return (
-    <div key={slug}>
+    <div key={slug} class="post-summary">
       <h3
         style={{
           marginBottom: rhythm(1 / 4),
