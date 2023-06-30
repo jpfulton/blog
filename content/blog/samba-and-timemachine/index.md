@@ -1,6 +1,6 @@
 ---
 title: Samba and macOS Time Machine
-date: "2023-06-23T22:12:03.284Z"
+date: 2023-06-23
 description: "Here is a temporary article description."
 ---
 
