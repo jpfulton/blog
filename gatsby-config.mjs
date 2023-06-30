@@ -13,7 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config = {
   siteMetadata: {
-    title: `jpatrickfulton.dev - Blog`,
+    title: `jpatrickfulton.dev`,
     author: `J. Patrick Fulton`,
     description: `A personal blog on occasionally useful technical topics.`,
     siteUrl: `https://www.jpatrickfulton.dev/`,
