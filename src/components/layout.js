@@ -25,16 +25,15 @@ const Layout = ({ location, title, children }) => {
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <header className="global-header">{header}</header>
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()} J. Patrick Fulton
-      </footer>
+      <footer>© {new Date().getFullYear()} J. Patrick Fulton</footer>
 
       <CookieConsent
         disableStyles={true}
         buttonText="Accept"
         buttonClasses="cookie-consent-button"
         containerClasses="cookie-consent-container"
-        contentClasses="cookie-consent-content">
+        contentClasses="cookie-consent-content"
+      >
         This website uses cookies to enhance the user experience.
       </CookieConsent>
 
@@ -43,8 +42,8 @@ const Layout = ({ location, title, children }) => {
         strategy={ScriptStrategy.offMainThread}
         crossOrigin="anonymous"
         async={true}
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2306983857488873">
-      </Script>
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2306983857488873"
+      ></Script>
     </div>
   );
 };

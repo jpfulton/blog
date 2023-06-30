@@ -1,0 +1,12 @@
+.tags-container {
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: bold;
+
+    .tag {
+        background-color: gray;
+        border-radius: 10px;
+        padding: 6px;
+        margin-right: 6px;
+    }
+}

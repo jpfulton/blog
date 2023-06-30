@@ -1,16 +1,17 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { MDXProvider } from "@mdx-js/react"
+import { MDXProvider } from "@mdx-js/react";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import Tags from "../components/tags";
 
 import { rhythm, scale } from "../utils/typography";
 
-import AdBlock from "../components/adBlock";
+import { InArticleAdBlock } from "../components/adBlocks";
 
-const shortcodes = { AdBlock }
+const shortcodes = { InArticleAdBlock };
 
 function BlogPostTemplate({
   location,
@@ -27,6 +28,7 @@ function BlogPostTemplate({
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        keywords={post.frontmatter.keywords}
       />
       <h1>{post.frontmatter.title}</h1>
       <p
@@ -37,7 +39,8 @@ function BlogPostTemplate({
           marginTop: rhythm(-1),
         }}
       >
-        {post.frontmatter.date} - {post.fields.timeToRead.text} ({post.fields.timeToRead.words} words)
+        {post.frontmatter.date} - {post.fields.timeToRead.text} (
+        {post.fields.timeToRead.words} words)
       </p>
 
       <MDXProvider components={shortcodes}>{children}</MDXProvider>
@@ -47,7 +50,16 @@ function BlogPostTemplate({
           marginBottom: rhythm(1),
         }}
       />
+
       <Bio />
+
+      <hr
+        style={{
+          marginBottom: rhythm(1),
+        }}
+      />
+
+      <Tags tags={post.frontmatter.keywords}></Tags>
 
       <ul
         style={{
@@ -94,6 +106,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        keywords
       }
       fields {
         timeToRead {

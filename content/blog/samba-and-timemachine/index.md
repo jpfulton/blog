@@ -1,7 +1,8 @@
 ---
 title: Samba and macOS Time Machine
-date: "2023-06-23T22:12:03.284Z"
+date: 2023-06-23
 description: "Here is a temporary article description."
+keywords: ["Ubuntu", "macOS", "samba", "time machine"]
 ---
 
 ## Samba Configuration
@@ -45,7 +46,7 @@ force directory mode = 0775
 The complete example configuration file can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/samba/smb.conf).
 
-<AdBlock></AdBlock>
+<InArticleAdBlock></InArticleAdBlock>
 
 ## macOS Settings
 

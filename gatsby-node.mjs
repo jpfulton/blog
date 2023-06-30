@@ -63,7 +63,6 @@ export const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
@@ -75,6 +74,6 @@ export const onCreateNode = ({ node, actions, getNode }) => {
       name: "timeToRead",
       node,
       value: readingTime(node.body),
-    })
+    });
   }
 };
