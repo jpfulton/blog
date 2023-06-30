@@ -1,11 +1,16 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
+import { MDXProvider } from "@mdx-js/react"
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 
 import { rhythm, scale } from "../utils/typography";
+
+import AdBlock from "../components/adBlock";
+
+const shortcodes = { AdBlock }
 
 function BlogPostTemplate({
   location,
@@ -35,7 +40,7 @@ function BlogPostTemplate({
         {post.frontmatter.date} - {post.fields.timeToRead.text} ({post.fields.timeToRead.words} words)
       </p>
 
-      {children}
+      <MDXProvider components={shortcodes}>{children}</MDXProvider>
 
       <hr
         style={{
