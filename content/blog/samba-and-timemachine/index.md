@@ -9,7 +9,7 @@ keywords: ["Ubuntu", "macOS", "samba", "time machine"]
 
 `/etc/samba/smb.conf`.
 
-```sh
+```sh{numberLines: true}
 ### Time Machine Compatability ###
 min protocol = SMB2
 vfs objects = fruit streams_xattr
@@ -22,13 +22,13 @@ fruit:delete_empty_adfiles = yes
 server min protocol = SMB2
 ```
 
-```sh
+```sh{numberLines: true}
 ### WINS Support ###
 wins support = yes
 dns proxy = yes
 ```
 
-```sh
+```sh{numberLines: true}
 [backupshare]
 comment = Apple Backup Shared Folder by Samba Server on Ubuntu
 path = /mnt/samba/AppleBackups

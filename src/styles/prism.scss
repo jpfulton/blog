@@ -1,0 +1,20 @@
+.gatsby-highlight {
+
+    pre[class*="language-"].line-numbers.line-numbers { // note use of specificity trick
+        padding: 0;
+        padding-left: 2em;
+        overflow: initial;
+
+        code {
+            padding-left: 1em;
+        }
+
+        .line-numbers-rows {
+            top: -1px;
+            border: 1px solid lightgray;
+            background-color: white;
+            padding-left: 0.3em;
+            min-width: 2em;
+        }
+    }
+}
