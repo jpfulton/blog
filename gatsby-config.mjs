@@ -4,9 +4,8 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+import remarkToc from "remark-toc";
 import rehypeExternalLinks from "rehype-external-links";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -121,6 +120,9 @@ const config = {
             },
           },
           {
+            resolve: `gatsby-remark-autolink-headers`
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               prompt: {
@@ -138,14 +140,14 @@ const config = {
           },
         ],
         mdxOptions: {
-          remarkPlugins: [],
+          remarkPlugins: [
+            remarkToc
+          ],
           rehypePlugins: [
             [
               rehypeExternalLinks,
               { target: `_blank`, rel: [`nofollow`, `noopener`] },
             ],
-            rehypeSlug,
-            rehypeAutolinkHeadings,
           ],
         },
       },

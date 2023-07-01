@@ -34,6 +34,8 @@ Thankfully, one of the supported protocols is a
 share per the support
 [article](https://support.apple.com/en-us/HT202784) on backup disks.
 
+## Table of Contents
+
 ## Samba Installation and Configuration
 
 Linux supports the SMB protocol through a service called
