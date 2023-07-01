@@ -131,4 +131,18 @@ The complete example configuration file can be found
 
 ## macOS Settings
 
+In macOS, choose the Apple menu  > System Settings, click General in the sidebar,
+then click Time Machine on the right. Once on the settings pane, click the add button
+to open a dialog to select the network share configured in Samba.
+
 ![Time Machine Settings Screenshot](./timemachine-settings.png)
+
+After setting up the disk, you may use the time machine icon at the top of the
+screen to observe the progress of the backup, directly access the settings or
+browse the backup contents.
+
+![Time Machine Icon Screenshot](./timemachine-icon-screenshot.png)
+
+Browsing the backup offers a powerful feature where through a Finder
+window the user may observe folders and files accross the lifetime of the
+backup set.
