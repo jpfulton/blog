@@ -2,6 +2,7 @@
 import "./src/styles/normalize.css";
 // custom CSS styles
 import "./src/styles/global-style.scss";
+import "./src/styles/bio.scss";
 import "./src/styles/blog.scss";
 import "./src/styles/cookie-consent.scss";
 import "./src/styles/post-summary.scss";
