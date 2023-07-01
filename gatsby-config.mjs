@@ -120,6 +120,13 @@ const config = {
           },
           {
             resolve: `gatsby-remark-prismjs`,
+            options: {
+              prompt: {
+                user: "jpfulton",
+                host: "localhost",
+                global: true,
+              },
+            },
           },
           {
             resolve: `gatsby-remark-copy-linked-files`,

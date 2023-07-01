@@ -1,0 +1,12 @@
+ol, ul {
+    list-style-position: inside;
+    margin-bottom: var(--spacing-4);
+
+    li {
+        margin-bottom: var(--spacing-0);
+    }
+}
+
+p {
+    margin-bottom: var(--spacing-4);
+}
