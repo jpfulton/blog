@@ -5,6 +5,8 @@
  */
 
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -142,6 +144,8 @@ const config = {
               rehypeExternalLinks,
               { target: `_blank`, rel: [`nofollow`, `noopener`] },
             ],
+            rehypeSlug,
+            rehypeAutolinkHeadings,
           ],
         },
       },
