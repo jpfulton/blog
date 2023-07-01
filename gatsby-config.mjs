@@ -4,6 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+import remarkToc from "remark-toc";
 import rehypeExternalLinks from "rehype-external-links";
 
 import { dirname } from "path";
@@ -13,7 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config = {
   siteMetadata: {
-    title: `jpatrickfulton.dev - Blog`,
+    title: `jpatrickfulton.dev`,
     author: `J. Patrick Fulton`,
     description: `A personal blog on occasionally useful technical topics.`,
     siteUrl: `https://www.jpatrickfulton.dev/`,
@@ -119,7 +120,17 @@ const config = {
             },
           },
           {
+            resolve: `gatsby-remark-autolink-headers`
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
+            options: {
+              prompt: {
+                user: "jpfulton",
+                host: "localhost",
+                global: true,
+              },
+            },
           },
           {
             resolve: `gatsby-remark-copy-linked-files`,
@@ -129,7 +140,9 @@ const config = {
           },
         ],
         mdxOptions: {
-          remarkPlugins: [],
+          remarkPlugins: [
+            remarkToc
+          ],
           rehypePlugins: [
             [
               rehypeExternalLinks,

@@ -2,11 +2,15 @@
     color: white;
     font-family: var(--font-heading);
     font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
 
     .tag {
         background-color: gray;
         border-radius: 10px;
         padding: 6px;
+        margin-bottom: 4px;
         margin-right: 6px;
+        white-space: nowrap;
     }
 }

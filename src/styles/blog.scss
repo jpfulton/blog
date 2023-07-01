@@ -1,0 +1,42 @@
+ol, ul {
+    list-style-position: inside;
+    margin-bottom: var(--spacing-4);
+
+    li {
+        margin-bottom: var(--spacing-0);
+    }
+}
+
+p {
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+#table-of-contents {
+    & + ol, & + ul {
+        list-style-position: inside;
+        margin-bottom: var(--spacing-0);
+
+        li {
+            p {
+                display: inline;
+                margin-bottom: var(--spacing-0);
+            }
+
+            ul, ol {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    a {
+        box-shadow: none;
+    }
+}

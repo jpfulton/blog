@@ -5,13 +5,12 @@ import { useFlexSearch } from "react-use-flexsearch";
 import queryString from "query-string";
 
 import PostSummary from "./postSummary";
-import { rhythm } from "../utils/typography";
 
 const SearchBar = styled.div`
   display: flex;
   border: 1px solid #dfe1e5;
   border-radius: 10px;
-  margin: 0 auto ${rhythm(1)};
+  margin: 0 auto;
   width: 100%;
   height: 3rem;
   background: #fdfdfd;
@@ -74,7 +73,7 @@ const SearchedPosts = ({ results }) =>
   );
 
 const AllPosts = ({ posts }) => (
-  <div style={{ margin: "20px 0 40px" }}>
+  <div style={{ margin: "20px 0 20px" }}>
     {posts.map(({ node }) => {
       const title = node.frontmatter.title || node.fields.slug;
       return (
