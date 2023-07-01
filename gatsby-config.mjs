@@ -123,6 +123,9 @@ const config = {
             resolve: `gatsby-remark-autolink-headers`
           },
           {
+            resolve: `gatsby-remark-code-titles`
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               prompt: {

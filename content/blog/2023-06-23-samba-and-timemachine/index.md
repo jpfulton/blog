@@ -77,7 +77,7 @@ The following section needs to be added to the `[global]` section of
 the configuration file. It establishes the file system extensions
 and protocol versions necessary to support macOS.
 
-```sh{numberLines: true}
+```sh:title=smb.conf {numberLines: true}
 ### Time Machine Compatibility ###
 min protocol = SMB2
 vfs objects = fruit streams_xattr
@@ -93,7 +93,7 @@ server min protocol = SMB2
 Add the following to the end of the file to create a dedicated
 share for time machine backups:
 
-```sh{numberLines: true}
+```sh:title=smb.conf {numberLines: true}
 [backupshare]
 comment = Apple Backup Shared Folder by Samba Server on Ubuntu
 path = /mnt/samba/AppleBackups
@@ -118,7 +118,7 @@ NetBIOS broadcast are not routable. To allow routed segments (e.g VPN clients) t
 discover shares, use a [WINS](https://en.wikipedia.org/wiki/Windows_Internet_Name_Service)
 configuration. Add the following lines to the `[global]` section of the `smb.conf`:
 
-```sh{numberLines: true}
+```sh:title=smb.conf {numberLines: true}
 ### WINS Support ###
 wins support = yes
 dns proxy = yes
