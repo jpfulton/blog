@@ -131,4 +131,4 @@ The complete example configuration file can be found
 
 ## macOS Settings
 
-![Time Machine Settings Screenshot](./timemaching-settings.png)
+![Time Machine Settings Screenshot](./timemachine-settings.png)
