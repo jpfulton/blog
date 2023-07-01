@@ -34,6 +34,18 @@
             background-color: white;
             padding-left: 0.3em;
             min-width: 2em;
+            height: calc(100% + 2px);
+            overflow: hidden;
+        }
+
+        .gatsby-highlight-code-line {
+            background-color: #358ccb30;
+            display: block;
+            margin-right: -1em;
+            margin-left: -1em;
+            padding-right: 1em;
+            padding-left: 0.75em;
+            border-left: 0.25em solid #2f9c0a;
         }
     }
 }
