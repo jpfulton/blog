@@ -20,6 +20,7 @@ const config = {
     siteUrl: `https://www.jpatrickfulton.dev/`,
     social: {
       twitter: `jpatrickfulton`,
+      github: `jpfulton`,
     },
   },
   plugins: [
