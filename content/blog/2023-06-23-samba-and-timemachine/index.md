@@ -65,10 +65,18 @@ sudo apt install samba
 
 ### Samba Configuration
 
-`/etc/samba/smb.conf`.
+The Samba configuration exists at `/etc/samba/smb.conf`.
+
+```shell
+sudo vim /etc/samba/smb.conf
+```
+
+The following section needs to be added to the `[global]` section of
+the configuration file. It establishes the file system extensions
+and protocol versions necessary to support macOS.
 
 ```sh{numberLines: true}
-### Time Machine Compatability ###
+### Time Machine Compatibility ###
 min protocol = SMB2
 vfs objects = fruit streams_xattr
 fruit:metadata = stream
@@ -80,11 +88,8 @@ fruit:delete_empty_adfiles = yes
 server min protocol = SMB2
 ```
 
-```sh{numberLines: true}
-### WINS Support ###
-wins support = yes
-dns proxy = yes
-```
+Add the following to the end of the file to create a dedicated
+share for time machine backups:
 
 ```sh{numberLines: true}
 [backupshare]
@@ -100,6 +105,24 @@ force create mode = 0664
 directory mask = 0775
 force directory mode = 0775
 ```
+
+### WINS Support
+
+By default, Samba relies upon [NetBIOS](https://en.wikipedia.org/wiki/NetBIOS_over_TCP/IP)
+broadcasts within a subnet to declare availablity of shares to a small group of
+network nodes. This works well for most home networks. However, if your home network
+involves multiple subnets or routed segments shares will not be visible to all clients.
+NetBIOS broadcast are not routable. To allow routed segments (e.g VPN clients) to
+discover shares, use a [WINS](https://en.wikipedia.org/wiki/Windows_Internet_Name_Service)
+configuration. Add the following lines to the `[global]` section of the `smb.conf`:
+
+```sh{numberLines: true}
+### WINS Support ###
+wins support = yes
+dns proxy = yes
+```
+
+### Complete Configuration
 
 The complete example configuration file can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/samba/smb.conf).
