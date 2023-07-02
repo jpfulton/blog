@@ -21,7 +21,9 @@ function BlogPostTemplate({
 }) {
   const post = mdx;
   const siteTitle = site.siteMetadata.title;
-  const featuredImageSrc = post.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images.fallback.src;
+  const featuredImageSrc =
+    post.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images
+      .fallback.src;
   const { previous, next } = pageContext;
 
   return (

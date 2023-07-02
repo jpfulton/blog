@@ -31,7 +31,8 @@ function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
 
   const imagePath = constructUrl(
     site.siteMetadata.siteUrl,
-    featuredImageSrc ?? ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
+    featuredImageSrc ??
+      ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
   );
 
   return (
@@ -113,7 +114,7 @@ Seo.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
-  featuredImgSrc: PropTypes.string
+  featuredImgSrc: PropTypes.string,
 };
 
 function constructUrl(baseUrl, path) {

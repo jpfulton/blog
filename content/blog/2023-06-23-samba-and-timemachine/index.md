@@ -14,10 +14,10 @@ became time for it to have a new life: as a Linux machine.
 
 The system specs were impressive for the era in which it was purchased:
 
-* Intel i5-4570 (4 core) @ 3.600GHz
-* NVIDIA GeForce GT 755M Mac Edit
-* 16 GB RAM
-* 1 TB Hard Drive
+- Intel i5-4570 (4 core) @ 3.600GHz
+- NVIDIA GeForce GT 755M Mac Edit
+- 16 GB RAM
+- 1 TB Hard Drive
 
 Great utility could still be derived from this system using a different operating
 system so I installed a recent version of
@@ -50,10 +50,10 @@ Start by updating the apt registry:
 ```shell{outputLines: 2-10}
 sudo apt update
 Hit:1 http://us.archive.ubuntu.com/ubuntu jammy InRelease
-Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]      
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
 Get:3 http://us.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
 ...
-Fetched 4,279 kB in 1s (3,882 kB/s)                                  
+Fetched 4,279 kB in 1s (3,882 kB/s)
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
