@@ -120,10 +120,10 @@ const config = {
             },
           },
           {
-            resolve: `gatsby-remark-autolink-headers`
+            resolve: `gatsby-remark-autolink-headers`,
           },
           {
-            resolve: `gatsby-remark-code-titles`
+            resolve: `gatsby-remark-code-titles`,
           },
           {
             resolve: `gatsby-remark-prismjs`,
@@ -143,9 +143,7 @@ const config = {
           },
         ],
         mdxOptions: {
-          remarkPlugins: [
-            remarkToc
-          ],
+          remarkPlugins: [remarkToc],
           rehypePlugins: [
             [
               rehypeExternalLinks,

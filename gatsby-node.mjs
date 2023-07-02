@@ -78,11 +78,8 @@ export const onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-export const createSchemaCustomization = ({
-  actions
-}) => {
-
-  const { createTypes } = actions
+export const createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
 
   createTypes(`
     type Mdx implements Node {
@@ -93,6 +90,5 @@ export const createSchemaCustomization = ({
       featuredImage: File @fileByRelativePath
     }
 
-  `)
-}
-
+  `);
+};

@@ -21,7 +21,9 @@ function BlogPostTemplate({
 }) {
   const post = mdx;
   const siteTitle = site.siteMetadata.title;
-  const featuredImageSrc = post.frontmatter.featuredImage.childImageSharp.fixed.src;
+  const featuredImageSrc =
+    post.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images
+      .fallback.src;
   const { previous, next } = pageContext;
 
   return (
@@ -111,9 +113,7 @@ export const pageQuery = graphql`
         keywords
         featuredImage {
           childImageSharp {
-            fixed(height: 630, width: 1200) {
-              src
-            }
+            gatsbyImageData(layout: FIXED, height: 630, width: 1200)
           }
         }
       }
