@@ -21,6 +21,7 @@ function BlogPostTemplate({
 }) {
   const post = mdx;
   const siteTitle = site.siteMetadata.title;
+  const featuredImageSrc = post.frontmatter.featuredImage.childImageSharp.fixed.src;
   const { previous, next } = pageContext;
 
   return (
@@ -29,6 +30,7 @@ function BlogPostTemplate({
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
         keywords={post.frontmatter.keywords}
+        featuredImageSrc={featuredImageSrc}
       />
       <h1>{post.frontmatter.title}</h1>
       <p
@@ -107,6 +109,13 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         keywords
+        featuredImage {
+          childImageSharp {
+            fixed(height: 630, width: 1200) {
+              src
+            }
+          }
+        }
       }
       fields {
         timeToRead {

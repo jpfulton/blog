@@ -77,3 +77,22 @@ export const onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
+
+export const createSchemaCustomization = ({
+  actions
+}) => {
+
+  const { createTypes } = actions
+
+  createTypes(`
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter
+    }
+
+    type MdxFrontmatter @infer {
+      featuredImage: File @fileByRelativePath
+    }
+
+  `)
+}
+

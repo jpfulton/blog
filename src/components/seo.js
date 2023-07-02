@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function Seo({ description, lang, meta, keywords, title }) {
-  const { site } = useStaticQuery(
+function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
+  const { site, ogDefaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -12,6 +12,17 @@ function Seo({ description, lang, meta, keywords, title }) {
             title
             description
             author
+            siteUrl
+            social {
+              twitter
+            }
+          }
+        }
+        ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+          childImageSharp {
+            fixed(height: 630, width: 1200) {
+              src
+            }
           }
         }
       }
@@ -19,6 +30,11 @@ function Seo({ description, lang, meta, keywords, title }) {
   );
 
   const metaDescription = description || site.siteMetadata.description;
+
+  const imagePath = constructUrl(
+    site.siteMetadata.siteUrl,
+    featuredImageSrc ?? ogDefaultImage.childImageSharp.fixed.src
+  );
 
   return (
     <Helmet
@@ -45,12 +61,24 @@ function Seo({ description, lang, meta, keywords, title }) {
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: imagePath,
+        },
+        {
+          property: `twitter:image`,
+          content: imagePath,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site.siteMetadata.social.twitter,
+        },
+        {
+          name: `twitter:site`,
+          content: site.siteMetadata.social.twitter,
         },
         {
           name: `twitter:title`,
@@ -87,6 +115,12 @@ Seo.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
+  featuredImgSrc: PropTypes.string
 };
+
+function constructUrl(baseUrl, path) {
+  if (baseUrl === "" || path === "") return "";
+  return `${baseUrl}${path}`;
+}
 
 export default Seo;
