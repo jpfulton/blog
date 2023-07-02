@@ -12,6 +12,10 @@ p {
     margin-bottom: var(--spacing-4);
 }
 
+blockquote {
+    margin-left: 0;
+}
+
 #table-of-contents {
     & + ol, & + ul {
         list-style-position: inside;
