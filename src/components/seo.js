@@ -20,9 +20,7 @@ function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
         }
         ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
           childImageSharp {
-            fixed(height: 630, width: 1200) {
-              src
-            }
+            gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }
         }
       }
@@ -33,7 +31,7 @@ function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
 
   const imagePath = constructUrl(
     site.siteMetadata.siteUrl,
-    featuredImageSrc ?? ogDefaultImage.childImageSharp.fixed.src
+    featuredImageSrc ?? ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
   );
 
   return (
