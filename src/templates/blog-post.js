@@ -22,7 +22,7 @@ function BlogPostTemplate({
   const post = mdx;
   const siteTitle = site.siteMetadata.title;
   const featuredImageSrc =
-    post.frontmatter.featuredImage.childImageSharp.gatsbyImageData.images
+    post.frontmatter.featuredImage?.childImageSharp.gatsbyImageData.images
       .fallback.src;
   const { previous, next } = pageContext;
 
@@ -66,6 +66,7 @@ function BlogPostTemplate({
       <Tags tags={post.frontmatter.keywords}></Tags>
 
       <ul
+        class="prev-and-next"
         style={{
           display: `flex`,
           flexWrap: `wrap`,
@@ -89,6 +90,9 @@ function BlogPostTemplate({
           )}
         </li>
       </ul>
+      <Link className="footer-link-home" to="/">
+        ← {siteTitle}
+      </Link>
     </Layout>
   );
 }

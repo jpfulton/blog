@@ -12,6 +12,10 @@ p {
     margin-bottom: var(--spacing-4);
 }
 
+blockquote {
+    margin-left: 0;
+}
+
 #table-of-contents {
     & + ol, & + ul {
         list-style-position: inside;
@@ -39,4 +43,14 @@ h6 {
     a {
         box-shadow: none;
     }
+}
+
+.prev-and-next {
+    margin-top: var(--spacing-6);
+}
+
+.footer-link-home {
+    font-family: var(--font-heading);
+    font-weight: bold;
+    box-shadow: none;
 }
