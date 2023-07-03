@@ -1,5 +1,4 @@
 {
-    "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": ["source.fixAll", "source.organizeImports", "source.sortMembers"],
     "editor.defaultFormatter": "esbenp.prettier-vscode"
