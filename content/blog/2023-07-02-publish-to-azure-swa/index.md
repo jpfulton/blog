@@ -1,7 +1,7 @@
 ---
 title: Publishing a Gatsby Blog to Azure SWA
 date: 2023-07-02
-description: "A guide to publishing a Gatsby website to Azure Static Web Apps."
+description: "A guide to publishing a modern Gatsby website to Azure Static Web Apps."
 keywords: ["gatsbyjs", "azure", "blog", "static web app", "github actions"]
 ---
 
@@ -12,6 +12,16 @@ using
 is fairly straight forward. The Azure product team made things easy on us.
 
 ## Table of Contents
+
+## Prerequisits
+
+This article makes a few assumptions as prerequisits to following this guide.
+
+- An [Azure](https://azure.microsoft.com/en-us) account and subscription are 
+  already in place
+- A [GitHub](https://github.com/) account already exists
+- A repository exists with a [Gatsby](https://www.gatsbyjs.com/) website that 
+  builds and is ready to deploy is already in place
 
 ## Azure Configuration
 
@@ -139,3 +149,14 @@ the build process sucessfully.
     "node": ">=18.16.0"
 },
 ```
+
+Once these changes are in place, deployments should run smoothly.
+
+![GitHub Complete Deployment](./github-complete-deployment.png)
+
+## Conclusion
+
+With just a handful of tweaks, a modern Gatsby website can be deployed
+to Azure Static Web Apps in a matter of minutes. Builds and deployments
+through GitHub Actions are quick and hosting through Azure can be either
+low cost or free.
