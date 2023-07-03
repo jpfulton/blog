@@ -1,7 +1,7 @@
 ---
 title: Building this Blog with Gatsby, React and Markdown
 date: 2023-07-01
-keywords: ["gatsbyjs", "react", "markdown", "javascript", "blogging"]
+keywords: ["gatsbyjs", "react", "markdown", "javascript", "blog"]
 featuredImage: ./gatsby.jpg
 ---
 
