@@ -11,16 +11,19 @@ using
 [GitHub Actions](https://github.com/features/actions)
 is fairly straight forward. The Azure product team made things easy on us.
 
+The evolving **GitHub repository** storing this blog and its implementation can be
+found [here](https://github.com/jpfulton/blog).
+
 ## Table of Contents
 
 ## Prerequisites
 
 This article makes a few assumptions as prerequisites to following this guide.
 
-- An [Azure](https://azure.microsoft.com/en-us) account and subscription are 
+- An [Azure](https://azure.microsoft.com/en-us) account and subscription are
   already in place
 - A [GitHub](https://github.com/) account already exists
-- A repository exists with a [Gatsby](https://www.gatsbyjs.com/) website that 
+- A repository exists with a [Gatsby](https://www.gatsbyjs.com/) website that
   builds and is ready to deploy is already in place
 
 ## Azure Configuration
