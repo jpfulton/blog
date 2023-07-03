@@ -13,9 +13,9 @@ is fairly straight forward. The Azure product team made things easy on us.
 
 ## Table of Contents
 
-## Prerequisits
+## Prerequisites
 
-This article makes a few assumptions as prerequisits to following this guide.
+This article makes a few assumptions as prerequisites to following this guide.
 
 - An [Azure](https://azure.microsoft.com/en-us) account and subscription are 
   already in place
