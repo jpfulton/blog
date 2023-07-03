@@ -4,6 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
 import rehypeExternalLinks from "rehype-external-links";
 
@@ -143,7 +144,7 @@ const config = {
           },
         ],
         mdxOptions: {
-          remarkPlugins: [remarkToc],
+          remarkPlugins: [remarkGfm, remarkToc],
           rehypePlugins: [
             [
               rehypeExternalLinks,
