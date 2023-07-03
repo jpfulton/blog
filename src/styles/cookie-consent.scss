@@ -2,7 +2,7 @@
   background-color: darkgrey;
   color: white;
 
-  font-family: var(--fonts-header);
+  font-family: var(--font-heading);
 
   align-items: baseline;
   display: flex;
@@ -22,6 +22,8 @@
   .cookie-consent-button {
     background-color: black;
     color: white;
+
+    font-weight: bold;
 
     border: 0px;
     border-radius: 4px;
