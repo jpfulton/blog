@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "davidanson.vscode-markdownlint",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "zainchen.json",
+    ]
+}
