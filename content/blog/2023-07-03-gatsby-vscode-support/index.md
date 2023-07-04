@@ -1,5 +1,5 @@
 ---
-title: Visual Studio Code Support for a Gatsby Project
+title: Visual Studio Code Support and Debugging for a Gatsby Project
 date: 2023-07-03
 description: ""
 keywords: ["gatsbyjs", "Visual Studio Code", "debugging", "blog"]
@@ -266,4 +266,38 @@ import "./src/styles/prism.scss";
 import "./src/styles/tags.scss";
 ```
 
-## Debugging Gatsby
+## Debugging Gatsby with VS Code
+
+With the VS Code support files in place, **most** elements of the Gatsby build
+process and develop mode runs can be debugged with standard features in the IDE.
+From the `Run and Debug` tab, Gatsby can be launched in either develop or build
+mode and breakpoints set. This works for nearly all cases.
+
+![Visual Studio Code Debugging](vscode-debugger.png)
+
+## Outstanding Debugging Issues
+
+```javascript:title=gatsby-node.mjs {4,13}{numberLines:true}
+export const createPages = ({ graphql, actions, reporter }) => {
+  const { createPage } = actions;
+
+  const blogPost = path.resolve(`./src/templates/blog-post.js`);
+  ...
+  posts.forEach((post, index) => {
+      const previous =
+        index === posts.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
+
+      createPage({
+        path: `blog${post.node.fields.slug}`,
+        component: `${blogPost}?__contentFilePath=${post.node.internal.contentFilePath}`,
+        context: {
+          id: post.node.id,
+          slug: post.node.fields.slug,
+          previous: previous,
+          next: next,
+        },
+      });
+    });
+  ...
+```
