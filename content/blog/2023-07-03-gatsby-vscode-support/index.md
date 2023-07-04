@@ -224,4 +224,44 @@ the linter extension to ignore that rule.
 }
 ```
 
+### Using the VS Code Prettier Extension
+
+Per the `settings.json` file, the Prettier extension is set as the default code
+formatter for the project. On file save, it is configured to work its magic:
+correcting quality problems, reformatting tabs, _organizing imports_ and sorting
+members. In combination with the `format` script in the `package.json` file,
+this makes things fairly easy to maintain nice code quality for the project.
+
+I am a big fan of the **import organization** feature. However, use _caution_
+with it on certain files. For example, in the `gatsby-browser.js` file, unlike
+most sets of import statements, **order matters here**. If you are not paying
+attention, the Prettier plugin can reoder your CSS and SASS imports in way
+creates unexpected styling behaviors.
+
+**Pro Tip:** Prettier will alphabetize and organize import statements **within** groups. The
+behavior can be controlled by separating groups of import statements with
+either new lines or comments.
+
+```javascript:title=gatsby-browser.js {numberLines: true}
+// normalize CSS across browsers
+import "./src/styles/normalize.css";
+
+// global styles
+import "./src/styles/global-style.scss";
+
+// prismjs highlighting theme for code blocks
+import "prismjs/themes/prism-coy.css";
+// prismjs highlighting plugins for code blocks
+import "prismjs/plugins/command-line/prism-command-line.css";
+import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+
+// custom component and page level styles
+import "./src/styles/bio.scss";
+import "./src/styles/blog.scss";
+import "./src/styles/cookie-consent.scss";
+import "./src/styles/post-summary.scss";
+import "./src/styles/prism.scss";
+import "./src/styles/tags.scss";
+```
+
 ## Debugging Gatsby
