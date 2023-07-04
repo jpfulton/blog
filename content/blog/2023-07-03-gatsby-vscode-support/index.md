@@ -20,7 +20,7 @@ of choice. It is light weight, cross platform and has an exceptional
 
 When I started working on this blog and implemented it in [Gatsby](https://www.gatsbyjs.com/),
 it was important to develop good support in the project for VS Code and to
-be able to effectively debug issues as they arose using that tool.
+be able to effectively debug issues as they arose and edit content using that tool.
 
 ![Visual Studio Code Screenshot](./vscode-screenshot.png)
 
@@ -53,7 +53,7 @@ a build or develop command.
 
 There are some notable elements in this file. Firstly, through environment
 variables, the normal multithreading of Gatsby is limited to make debugging
-easier. Secondly, `--nolazy` is passed the Node runtime ease breakpoint
+easier. Secondly, `--nolazy` is passed to the Node runtime ease breakpoint
 setting per the VS Code
 [documentation](https://code.visualstudio.com/docs/nodejs/nodejs-debugging).
 
