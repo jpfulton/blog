@@ -31,35 +31,15 @@ found [here](https://github.com/jpfulton/blog).
 
 ## The .vscode Folder
 
-[folder](https://github.com/jpfulton/blog/tree/main/.vscode)
+The `.vscode` directory is generally found at the root of a
+[mulit-repo pattern](https://kinsta.com/blog/monorepo-vs-multi-repo/). In a
+[mono-repo pattern](https://en.wikipedia.org/wiki/Monorepo), it can be found
+or extended in the root folder for each subproject. Details on the files
+commonly found there are documented in this
+[article](https://code.visualstudio.com/docs/getstarted/settings).
 
-### The tasks.json File
-
-```json:title=tasks.json {numberLines: true}
-{
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "type": "npm",
-        "script": "clean",
-        "isBackground": true,
-        "problemMatcher": {
-          "owner": "typescript",
-          "pattern": "$tsc",
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": {
-              "regexp": "(.*?)"
-            },
-            "endsPattern": {
-              "regexp": "Successfully deleted directories"
-            }
-          }
-        }
-      },
-    ],
-}
-```
+In the **GitHub repository** storing this blog implementation, the directory can
+be found [here](https://github.com/jpfulton/blog/tree/main/.vscode).
 
 ### The launch.json File
 
@@ -99,6 +79,34 @@ found [here](https://github.com/jpfulton/blog).
 }
 ```
 
+### The tasks.json File
+
+```json:title=tasks.json {numberLines: true}
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "npm",
+        "script": "clean",
+        "isBackground": true,
+        "problemMatcher": {
+          "owner": "typescript",
+          "pattern": "$tsc",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": {
+              "regexp": "(.*?)"
+            },
+            "endsPattern": {
+              "regexp": "Successfully deleted directories"
+            }
+          }
+        }
+      },
+    ],
+}
+```
+
 ### The settings.json File
 
 ```json:title=settings.json {numberLines: true}
@@ -119,7 +127,17 @@ found [here](https://github.com/jpfulton/blog).
 The `extensions.json` file includes a series of recommended VS Code extensions
 for the project.
 
+- [Markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [GitHub Actions](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions)
+- [GitHub Pull Requests and Issues](https://marketplace.visualstudio.com/items?itemName=github.vscode-pull-request-github)
+- [JSON](https://marketplace.visualstudio.com/items?itemName=ZainChen.json)
+
 ### The extensions.json File
+
+To make things super easy, the `extensions.json` file in the `.vscode` directory
+includes the keys for each extension and integrates with the IDE to make the suggestions
+upon opening the repository.
 
 ```json:title=extensions.json {numberLines: true}
 {
@@ -132,6 +150,8 @@ for the project.
     ]
 }
 ```
+
+![Visual Studio Code Extensions Screenshot](./vscode-extensions-screenshot.png)
 
 ### Using the VS Code Markdownlint Extension
 
