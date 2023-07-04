@@ -48,12 +48,18 @@ The `launch.json` file controls the Run and
 
 Gatsby offers a [guide](https://www.gatsbyjs.com/docs/debugging-the-build-process/)
 to debugging in VS Code. I adapted its suggestions with some modification here.
-For example, I utilize a pre-launch task to ensure a clean prior to running either
+For example, I utilize a prelaunch task to ensure a clean prior to running either
 a build or develop command.
 
 There are some notable elements in this file. Firstly, through environment
 variables, the normal multithreading of Gatsby is limited to make debugging
-easier.
+easier. Secondly, `--nolazy` is passed the Node runtime ease breakpoint
+setting per the VS Code
+[documentation](https://code.visualstudio.com/docs/nodejs/nodejs-debugging).
+
+> For performance reasons Node.js parses the functions inside JavaScript files
+> lazily on first access. As a consequence, breakpoints don't work in source code
+> areas that haven't been seen (parsed) by Node.js.
 
 ```json:title=launch.json {16,30}{numberLines: true}
 {
@@ -93,6 +99,17 @@ easier.
 
 ### The tasks.json File
 
+The `tasks.json` [file](https://code.visualstudio.com/docs/editor/tasks) controls
+integration with external tools.
+
+> These tools are mostly run from the command line and automate jobs inside
+> and outside the inner software development loop (edit, compile, test, and debug).
+> Given their importance in the development life cycle, it is helpful to be able
+> to run tools and analyze their results from within VS Code.
+
+Here I integrated the clean script from `package.json` as a task so that it could
+be used as a prelaunch task in `launch.json` as highlighted above.
+
 ```json:title=tasks.json {numberLines: true}
 {
     "version": "2.0.0",
@@ -121,9 +138,16 @@ easier.
 
 ### The settings.json File
 
+The `settings.json` file defines project level
+[settings](https://code.visualstudio.com/docs/getstarted/settings) that
+apply specifically to the open workspace.
+
+Here I have specified `prettier` as the default code formatter and provided
+several editor settings that apply to it.
+
 ```json:title=settings.json {numberLines: true}
 {
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": [
     "source.fixAll",
