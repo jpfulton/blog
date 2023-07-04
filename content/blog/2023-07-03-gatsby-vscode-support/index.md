@@ -233,14 +233,16 @@ members. In combination with the `format` script in the `package.json` file,
 this makes things fairly easy to maintain nice code quality for the project.
 
 I am a big fan of the **import organization** feature. However, use _caution_
-with it on certain files. For example, in the `gatsby-browser.js` file, unlike
-most sets of import statements, **order matters here**. If you are not paying
-attention, the Prettier plugin can reoder your CSS and SASS imports in way
-creates unexpected styling behaviors.
+with it on certain files. For example, in the `gatsby-browser.js`
+[file](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/),
+unlike most sets of import statements, **order matters here**. If you are not paying
+attention, the Prettier plugin can reoder your
+[CSS and SASS](https://www.gatsbyjs.com/docs/how-to/styling/built-in-css/)
+imports in way creates unexpected styling behaviors.
 
-**Pro Tip:** Prettier will alphabetize and organize import statements **within** groups. The
-behavior can be controlled by separating groups of import statements with
-either new lines or comments.
+**Pro Tip:** Prettier will alphabetize and organize import statements **within**
+groups. The behavior can be controlled by separating groups of import statements
+with either new lines or comments.
 
 ```javascript:title=gatsby-browser.js {numberLines: true}
 // normalize CSS across browsers
