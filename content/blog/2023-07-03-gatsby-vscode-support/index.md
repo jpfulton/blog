@@ -43,7 +43,19 @@ be found [here](https://github.com/jpfulton/blog/tree/main/.vscode).
 
 ### The launch.json File
 
-```json:title=launch.json {numberLines: true}
+The `launch.json` file controls the Run and
+[Debug](https://code.visualstudio.com/docs/editor/debugging) functions in VS Code.
+
+Gatsby offers a [guide](https://www.gatsbyjs.com/docs/debugging-the-build-process/)
+to debugging in VS Code. I adapted its suggestions with some modification here.
+For example, I utilize a pre-launch task to ensure a clean prior to running either
+a build or develop command.
+
+There are some notable elements in this file. Firstly, through environment
+variables, the normal multithreading of Gatsby is limited to make debugging
+easier.
+
+```json:title=launch.json {16,30}{numberLines: true}
 {
   "version": "0.2.0",
   "configurations": [
