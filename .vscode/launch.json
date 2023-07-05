@@ -12,7 +12,8 @@
         "GATSBY_CPU_COUNT": "1"
       },
       "runtimeArgs": ["--nolazy"],
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "preLaunchTask": "npm: clean"
     },
     {
       "name": "Gatsby build",
@@ -25,7 +26,8 @@
         "GATSBY_CPU_COUNT": "1"
       },
       "runtimeArgs": ["--nolazy"],
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "preLaunchTask": "npm: clean"
     }
   ]
 }

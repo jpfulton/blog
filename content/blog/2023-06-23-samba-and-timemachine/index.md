@@ -3,6 +3,7 @@ title: Samba and macOS Time Machine
 date: 2023-06-23
 description: "A guide for setting up Ubuntu linux to support macOS time machine backups using Samba."
 keywords: ["Ubuntu", "linux", "macOS", "samba", "time machine", "backup"]
+featuredImage: ./time-machine.png
 ---
 
 Apple hardware often outlives the lifespan of the operating system software that
@@ -13,10 +14,10 @@ became time for it to have a new life: as a Linux machine.
 
 The system specs were impressive for the era in which it was purchased:
 
-* Intel i5-4570 (4 core) @ 3.600GHz
-* NVIDIA GeForce GT 755M Mac Edit
-* 16 GB RAM
-* 1 TB Hard Drive
+- Intel i5-4570 (4 core) @ 3.600GHz
+- NVIDIA GeForce GT 755M Mac Edit
+- 16 GB RAM
+- 1 TB Hard Drive
 
 Great utility could still be derived from this system using a different operating
 system so I installed a recent version of
@@ -49,10 +50,10 @@ Start by updating the apt registry:
 ```shell{outputLines: 2-10}
 sudo apt update
 Hit:1 http://us.archive.ubuntu.com/ubuntu jammy InRelease
-Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]      
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
 Get:3 http://us.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
 ...
-Fetched 4,279 kB in 1s (3,882 kB/s)                                  
+Fetched 4,279 kB in 1s (3,882 kB/s)
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -77,7 +78,7 @@ The following section needs to be added to the `[global]` section of
 the configuration file. It establishes the file system extensions
 and protocol versions necessary to support macOS.
 
-```sh{numberLines: true}
+```sh:title=smb.conf {numberLines: true}
 ### Time Machine Compatibility ###
 min protocol = SMB2
 vfs objects = fruit streams_xattr
@@ -93,7 +94,7 @@ server min protocol = SMB2
 Add the following to the end of the file to create a dedicated
 share for time machine backups:
 
-```sh{numberLines: true}
+```sh:title=smb.conf {numberLines: true}
 [backupshare]
 comment = Apple Backup Shared Folder by Samba Server on Ubuntu
 path = /mnt/samba/AppleBackups
@@ -118,7 +119,7 @@ NetBIOS broadcast are not routable. To allow routed segments (e.g VPN clients) t
 discover shares, use a [WINS](https://en.wikipedia.org/wiki/Windows_Internet_Name_Service)
 configuration. Add the following lines to the `[global]` section of the `smb.conf`:
 
-```sh{numberLines: true}
+```sh:title=smb.conf {numberLines: true}
 ### WINS Support ###
 wins support = yes
 dns proxy = yes
@@ -146,3 +147,5 @@ browse the backup contents.
 Browsing the backup offers a powerful feature where through a Finder
 window the user may observe folders and files accross the lifetime of the
 backup set.
+
+![Browsing Time Machine Screenshot](./time-machine.png)

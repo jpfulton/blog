@@ -1,5 +1,5 @@
-import * as React from "react";
 import { Link, Script, ScriptStrategy } from "gatsby";
+import * as React from "react";
 import CookieConsent from "react-cookie-consent";
 
 const Layout = ({ location, title, children }) => {
@@ -16,7 +16,7 @@ const Layout = ({ location, title, children }) => {
   } else {
     header = (
       <Link className="header-link-home" to="/">
-        {title}
+        ← {title}
       </Link>
     );
   }
@@ -38,7 +38,7 @@ const Layout = ({ location, title, children }) => {
       </CookieConsent>
       <Script
         id="google-adsense"
-        strategy={ScriptStrategy.offMainThread}
+        strategy={ScriptStrategy.postHydrate}
         crossOrigin="anonymous"
         async={true}
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2306983857488873"

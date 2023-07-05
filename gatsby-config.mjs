@@ -4,8 +4,9 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
-import remarkToc from "remark-toc";
 import rehypeExternalLinks from "rehype-external-links";
+import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -111,7 +112,7 @@ const config = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 630,
+              maxWidth: 896,
             },
           },
           {
@@ -121,7 +122,10 @@ const config = {
             },
           },
           {
-            resolve: `gatsby-remark-autolink-headers`
+            resolve: `gatsby-remark-autolink-headers`,
+          },
+          {
+            resolve: `gatsby-remark-code-titles`,
           },
           {
             resolve: `gatsby-remark-prismjs`,
@@ -141,9 +145,7 @@ const config = {
           },
         ],
         mdxOptions: {
-          remarkPlugins: [
-            remarkToc
-          ],
+          remarkPlugins: [remarkGfm, remarkToc],
           rehypePlugins: [
             [
               rehypeExternalLinks,
@@ -171,7 +173,7 @@ const config = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `J. Patrick Fulton - Blog`,
-        short_name: `Blog`,
+        short_name: `JPF.dev Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
