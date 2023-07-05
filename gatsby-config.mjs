@@ -225,7 +225,7 @@ const config = {
     },
     `gatsby-plugin-offline`,
     {
-      resolve: `gatsby-plugin-feed-mdx`,
+      resolve: `@jpfulton/gatsby-plugin-feed-mdx`,
       options: {
         query: `
           {
