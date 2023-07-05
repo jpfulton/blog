@@ -3,7 +3,6 @@ title: Visual Studio Code Support and Debugging for a Gatsby Project
 date: 2023-07-03
 description: "Despite being a long-term and professional user of the full version of Visual Studio, Visual Studio Code quickly became my IDE of choice. It is light weight, cross platform and has an exceptional extension ecosystem. When I started working on this blog and implemented it in Gatsby, it was important to develop good support in the project for VS Code and to be able to effectively debug issues as they arose and edit content using that tool."
 keywords: ["gatsbyjs", "Visual Studio Code", "debugging", "blog"]
-featuredImage: ./vscode-screenshot.png
 ---
 
 Despite being a long-term and professional user of the full version of
