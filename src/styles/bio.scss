@@ -1,4 +1,18 @@
 .bio,
-.global-wrapper[data-is-root-path=true] .bio {
-    margin-bottom: var(--spacing-8);
+.global-wrapper[data-is-root-path="true"] .bio {
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-8);
+
+  .bio-social {
+    margin-left: auto;
+    margin-top: 0.6em;
+
+    a {
+      box-shadow: none;
+
+      svg {
+        fill: var(--color-primary);
+      }
+    }
+  }
 }
