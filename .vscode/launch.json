@@ -13,7 +13,7 @@
       },
       "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal",
-      "preLaunchTask": "npm: clean",
+      "preLaunchTask": "npm: clean"
     },
     {
       "name": "Gatsby build",
@@ -27,7 +27,7 @@
       },
       "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal",
-      "preLaunchTask": "npm: clean",
+      "preLaunchTask": "npm: clean"
     }
   ]
 }

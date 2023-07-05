@@ -47,7 +47,7 @@ packages were released in the [last several weeks](https://www.npmjs.com/package
 As a result, I reaped a number of benefits. However, several of the Gatsby starter
 templates and a few plugins had a few issues that needed to be worked through.
 
-```sh:title=package.json {3,25,27,29,33}{numberLines: true}
+```json:title=package.json {3,25,27,29,33}{numberLines: true}
 "dependencies": {
     ...
     "gatsby": "^5.11.0",
@@ -111,7 +111,7 @@ However, once you are up and running with fully initialized
 repository it is possible to use a specific version controlled by your
 `package.json` in your `devDependencies` section.
 
-```sh:title=package.json {2}{numberLines: true}
+```json:title=package.json {2}{numberLines: true}
 "devDependencies": {
     "gatsby-cli": "^5.11.0",
     "gatsby-plugin-root-import": "^2.0.9",
@@ -172,7 +172,7 @@ your own custom implementation, there are a series of key commands needed to run
 the development environment, build system and source code prettier. I have these
 pulled together in `package.json` to be run with `yarn`.
 
-```sh:title=package.json {numberLines: true}
+```json:title=package.json {numberLines: true}
 "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
