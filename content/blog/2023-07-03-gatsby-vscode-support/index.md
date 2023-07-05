@@ -1,7 +1,7 @@
 ---
 title: Visual Studio Code Support and Debugging for a Gatsby Project
 date: 2023-07-03
-description: ""
+description: "Despite being a long-term and professional user of the full version of Visual Studio, Visual Studio Code quickly became my IDE of choice. It is light weight, cross platform and has an exceptional extension ecosystem. When I started working on this blog and implemented it in Gatsby, it was important to develop good support in the project for VS Code and to be able to effectively debug issues as they arose and edit content using that tool."
 keywords: ["gatsbyjs", "Visual Studio Code", "debugging", "blog"]
 featuredImage: ./vscode-screenshot.png
 ---
@@ -276,6 +276,17 @@ mode and breakpoints set. This works for nearly all cases.
 ![Visual Studio Code Debugging](vscode-debugger.png)
 
 ## Outstanding Debugging Issues
+
+The main debugging issue that I have uncovered working with this setup on
+the project is the inability to set breakpoints in templates loaded by
+the createPages method in the
+[Gatsby Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages)
+using the
+[createPage action](https://www.gatsbyjs.com/docs/reference/config-files/actions/#createPage).
+These templates are loaded dymically at runtime from a path. As such, the debugger
+has no access to them and debugging must be performed from the Gatsby error messages.
+I have yet to find a workaround which would very much come in handy when building new
+features.
 
 ```javascript:title=gatsby-node.mjs {4,13}{numberLines:true}
 export const createPages = ({ graphql, actions, reporter }) => {
