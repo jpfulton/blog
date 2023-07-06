@@ -1,7 +1,7 @@
 ---
-title: Custom 404 in a Azure Static Web App
+title: Custom 404 Response in a Azure Static Web App
 date: 2023-07-05
-description: "Azure Static Web App containers are configured with a JSON file at the root of their deployment called staticwebapp.config.json. Most Gatsby starters already come equiped with a custom 404 page for use internally when a bad route is requested on the client side. This article focuses or reusing that page’s output for server-side 404 responses in an Azure Static Web App."
+description: "Azure Static Web App containers are configured with a JSON file at the root of their deployment called staticwebapp.config.json. Most Gatsby starters already come equiped with a custom 404 page for use internally when a bad route is requested on the client side. This article focuses on reusing that page’s output for server-side 404 responses in an Azure Static Web App."
 keywords: ["gatsbyjs", "azure", "static web app", "404", "blog"]
 ---
 
@@ -9,7 +9,7 @@ keywords: ["gatsbyjs", "azure", "static web app", "404", "blog"]
 containers are configured with a JSON file at the root of their deployment called
 `staticwebapp.config.json`. Most [Gatsby](https://www.gatsbyjs.com/) starters
 already come equiped with a custom 404 page for use internally when a bad route
-is requested on the client side. This article focuses or reusing that page's
+is requested on the client side. This article focuses on reusing that page's
 output for server-side 404 responses in an Azure Static Web App.
 
 The evolving **GitHub repository** storing this blog and its implementation can be
