@@ -1,6 +1,6 @@
-import React from "react";
-import { Link, graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
+import { Link, graphql } from "gatsby";
+import React from "react";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
@@ -117,7 +117,7 @@ export const pageQuery = graphql`
         keywords
         featuredImage {
           childImageSharp {
-            gatsbyImageData(layout: FIXED, height: 630, width: 1200)
+            gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }
         }
       }
