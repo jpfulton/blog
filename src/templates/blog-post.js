@@ -10,8 +10,12 @@ import Tags from "../components/tags";
 import { rhythm, scale } from "../utils/typography";
 
 import { InArticleAdBlock } from "../components/adBlocks";
+import { OutboundLink } from "../components/outboundLink";
 
-const shortcodes = { InArticleAdBlock };
+const shortcodes = { InArticleAdBlock, Link }; // short cuts to components to be used in mdx templates
+const overrides = { a: OutboundLink }; // overrides of tags to replacement components to be used in mdx templates
+
+const components = { ...overrides, ...shortcodes }; // components passed to the MDXRenderer
 
 function BlogPostTemplate({
   location,
@@ -47,7 +51,7 @@ function BlogPostTemplate({
         {post.fields.timeToRead.words} words)
       </p>
 
-      <MDXProvider components={shortcodes}>{children}</MDXProvider>
+      <MDXProvider components={components}>{children}</MDXProvider>
 
       <hr
         style={{
