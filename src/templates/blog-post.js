@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby";
 import React from "react";
 
 import Bio from "../components/bio";
+import GoogleStructuredArticleData from "../components/googleStructureArticleData";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import Tags from "../components/tags";
@@ -102,6 +103,10 @@ function BlogPostTemplate({
 }
 
 export default BlogPostTemplate;
+
+export const Head = ({ data: { mdx } }) => {
+  return <GoogleStructuredArticleData post={mdx} />;
+};
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

@@ -18,6 +18,7 @@ const config = {
     title: `jpatrickfulton.dev`,
     author: `J. Patrick Fulton`,
     description: `A personal blog on occasionally useful technical topics.`,
+    image: `/icon.png`,
     siteUrl: `https://www.jpatrickfulton.dev/`,
     social: {
       twitter: `jpatrickfulton`,
@@ -180,7 +181,7 @@ const config = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         theme_color: `#ffffff`,
         display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        icon: `static/icon.png`, // This path is relative to the root of the site.
         icon_options: {
           purpose: `any maskable`,
         },
