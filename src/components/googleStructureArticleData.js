@@ -9,6 +9,9 @@ const useSiteMetadata = () => {
           author
           image
           siteUrl
+          social {
+            github
+          }
         }
       }
       ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
@@ -43,6 +46,7 @@ export const GoogleStructuredArticleData = ({ post }) => {
       {
         "@type": "Person",
         name: site.siteMetadata.author,
+        url: `https://github.com/${site.siteMetadata.social.github}`,
       },
     ],
     image: imageUrl ?? fallbackImageUrl,
