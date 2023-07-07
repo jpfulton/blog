@@ -6,9 +6,6 @@ const useSiteMetadata = () => {
     query {
       site {
         siteMetadata {
-          author
-          title
-          description
           image
           siteUrl
         }
@@ -19,7 +16,7 @@ const useSiteMetadata = () => {
   return data.site.siteMetadata;
 };
 
-export const GoogleStructuredOrgData = ({ post }) => {
+export const GoogleStructuredOrgData = () => {
   const { image, siteUrl } = useSiteMetadata();
 
   const logoUrl = `${siteUrl}${image}`;
