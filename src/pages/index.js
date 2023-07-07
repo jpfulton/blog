@@ -1,10 +1,11 @@
-import React from "react";
 import { graphql } from "gatsby";
+import React from "react";
 
 import Bio from "../components/bio";
+import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
-import Seo from "../components/seo";
 import SearchPosts from "../components/searchPosts";
+import Seo from "../components/seo";
 
 class Blog extends React.Component {
   render() {
@@ -64,3 +65,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const Head = () => <GoogleStructuredOrgData />;

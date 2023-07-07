@@ -18,6 +18,7 @@ const config = {
     title: `jpatrickfulton.dev`,
     author: `J. Patrick Fulton`,
     description: `A personal blog on occasionally useful technical topics.`,
+    image: `/icon.png`,
     siteUrl: `https://www.jpatrickfulton.dev/`,
     social: {
       twitter: `jpatrickfulton`,
