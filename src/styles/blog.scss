@@ -57,6 +57,12 @@ h6 {
   }
 }
 
+.related-posts {
+  a {
+    box-shadow: none;
+  }
+}
+
 .footer-link-home {
   font-family: var(--font-heading);
   font-weight: bold;
