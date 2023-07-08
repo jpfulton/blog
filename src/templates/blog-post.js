@@ -74,7 +74,10 @@ function BlogPostTemplate({
 
       <Tags tags={post.frontmatter.keywords}></Tags>
 
-      <RelatedPosts relatedPosts={relatedPosts}></RelatedPosts>
+      <RelatedPosts
+        rootSlug={pageContext.slug}
+        relatedPosts={relatedPosts}
+      ></RelatedPosts>
 
       <ul
         class="prev-and-next"
