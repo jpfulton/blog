@@ -23,6 +23,7 @@ export const createPages = ({ graphql, actions, reporter }) => {
               }
               frontmatter {
                 title
+                keywords
               }
               internal {
                 contentFilePath
@@ -51,6 +52,7 @@ export const createPages = ({ graphql, actions, reporter }) => {
         context: {
           id: post.node.id,
           slug: post.node.fields.slug,
+          keywords: post.node.frontmatter.keywords,
           previous: previous,
           next: next,
         },

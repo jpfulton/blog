@@ -5,6 +5,7 @@ import React from "react";
 import Bio from "../components/bio";
 import GoogleStructuredArticleData from "../components/googleStructureArticleData";
 import Layout from "../components/layout";
+import RelatedPosts from "../components/relatedPosts";
 import Seo from "../components/seo";
 import Tags from "../components/tags";
 
@@ -21,14 +22,17 @@ const components = { ...overrides, ...shortcodes }; // components passed to the 
 function BlogPostTemplate({
   location,
   pageContext,
-  data: { mdx, site },
+  data: { mdx, site, allMdx },
   children,
 }) {
   const post = mdx;
+  const relatedPosts = allMdx.edges;
+
   const siteTitle = site.siteMetadata.title;
   const featuredImageSrc =
     post.frontmatter.featuredImage?.childImageSharp.gatsbyImageData.images
       .fallback.src;
+
   const { previous, next } = pageContext;
 
   return (
@@ -70,6 +74,11 @@ function BlogPostTemplate({
 
       <Tags tags={post.frontmatter.keywords}></Tags>
 
+      <RelatedPosts
+        rootSlug={pageContext.slug}
+        relatedPosts={relatedPosts}
+      ></RelatedPosts>
+
       <ul
         class="prev-and-next"
         style={{
@@ -109,7 +118,7 @@ export const Head = ({ data: { mdx } }) => {
 };
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($slug: String!, $keywords: [String]!) {
     site {
       siteMetadata {
         title
@@ -136,6 +145,23 @@ export const pageQuery = graphql`
           text
           time
           words
+        }
+      }
+    }
+    allMdx(
+      filter: { frontmatter: { keywords: { in: $keywords } } }
+      sort: [{ frontmatter: { date: ASC } }, { frontmatter: { title: ASC } }]
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+          }
+          fields {
+            slug
+          }
         }
       }
     }
