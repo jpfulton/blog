@@ -21,7 +21,8 @@ The **unresolved**
 [issue](https://github.com/dotnet/vscode-csharp/issues/4903) is documented on GitHub
 and the
 [solution](https://github.com/dotnet/vscode-csharp/issues/4903#issuecomment-993015843)
-can be found there.
+can be found there. This post pulls together a digest of the solution and the related
+links found in that thread.
 
 ## Table of Contents
 
