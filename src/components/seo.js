@@ -4,7 +4,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
-  const { site, ogDefaultImage } = useStaticQuery(
+  const { site, openGraphDefaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -18,7 +18,9 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
             }
           }
         }
-        ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+        openGraphDefaultImage: file(
+          relativePath: { eq: "open-graph/code.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }
@@ -32,7 +34,7 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
   const imagePath = constructUrl(
     site.siteMetadata.siteUrl,
     openGraphImageSrc ??
-      ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
+      openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
   );
 
   return (

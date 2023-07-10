@@ -334,7 +334,7 @@ site metadata. Those queries can then be copied into pages and components for us
 in the renderer.
 
 ```javascript:title=seo.js {lineNumbers: true}
-const { site, ogDefaultImage } = useStaticQuery(
+const { site, openGraphDefaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -348,7 +348,7 @@ const { site, ogDefaultImage } = useStaticQuery(
             }
           }
         }
-        ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+        openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }

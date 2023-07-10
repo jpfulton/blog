@@ -14,7 +14,7 @@ const useSiteMetadata = () => {
           }
         }
       }
-      ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+      openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
         childImageSharp {
           gatsbyImageData(layout: FIXED, height: 580, width: 1200)
         }
@@ -26,13 +26,13 @@ const useSiteMetadata = () => {
 };
 
 export const GoogleStructuredArticleData = ({ post }) => {
-  const { site, ogDefaultImage } = useSiteMetadata();
+  const { site, openGraphDefaultImage } = useSiteMetadata();
 
   const date = post.frontmatter.date;
   const headline = post.frontmatter.title;
   const description = post.frontmatter.description ?? post.excerpt;
 
-  const fallbackImageUrl = `${site.siteMetadata.siteUrl}${ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
+  const fallbackImageUrl = `${site.siteMetadata.siteUrl}${openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
   const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
