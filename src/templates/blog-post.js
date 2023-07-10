@@ -29,8 +29,8 @@ function BlogPostTemplate({
   const relatedPosts = allMdx.edges;
 
   const siteTitle = site.siteMetadata.title;
-  const featuredImageSrc =
-    post.frontmatter.featuredImage?.childImageSharp.gatsbyImageData.images
+  const openGraphImageSrc =
+    post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images
       .fallback.src;
 
   const { previous, next } = pageContext;
@@ -41,7 +41,7 @@ function BlogPostTemplate({
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
         keywords={post.frontmatter.keywords}
-        featuredImageSrc={featuredImageSrc}
+        openGraphImageSrc={openGraphImageSrc}
       />
       <h1>{post.frontmatter.title}</h1>
       <p
@@ -133,7 +133,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         keywords
-        featuredImage {
+        openGraphImage {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }

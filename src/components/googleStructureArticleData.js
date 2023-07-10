@@ -33,7 +33,7 @@ export const GoogleStructuredArticleData = ({ post }) => {
   const description = post.frontmatter.description ?? post.excerpt;
 
   const fallbackImageUrl = `${site.siteMetadata.siteUrl}${ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
-  const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.featuredImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
+  const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
 
