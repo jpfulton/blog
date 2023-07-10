@@ -3,7 +3,7 @@ title: Samba and macOS Time Machine
 date: 2023-06-23
 description: "A guide for setting up Ubuntu linux to support macOS time machine backups using Samba."
 keywords: ["Ubuntu", "linux", "macOS", "samba", "time machine", "backup"]
-featuredImage: ./time-machine.png
+openGraphImage: ./time-machine.png
 ---
 
 Apple hardware often outlives the lifespan of the operating system software that

@@ -89,7 +89,7 @@ export const createSchemaCustomization = ({ actions }) => {
     }
 
     type MdxFrontmatter @infer {
-      featuredImage: File @fileByRelativePath
+      openGraphImage: File @fileByRelativePath
     }
 
   `);

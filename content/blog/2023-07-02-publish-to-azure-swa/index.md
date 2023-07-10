@@ -3,7 +3,7 @@ title: Publishing a Gatsby Blog to Azure SWA
 date: 2023-07-02
 description: "A guide to publishing a modern Gatsby website to Azure Static Web Apps."
 keywords: ["gatsbyjs", "azure", "blog", "static web app", "github actions"]
-featuredImage: ../../../src/images/open-graph/gatsby-and-azure.png
+openGraphImage: ../../../src/images/open-graph/gatsby-and-azure.png
 ---
 
 Publishing a [Gatsby](https://www.gatsbyjs.com/) website to

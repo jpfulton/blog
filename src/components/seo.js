@@ -1,10 +1,10 @@
-import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
+import React from "react";
 import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
 
-function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
-  const { site, ogDefaultImage } = useStaticQuery(
+function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
+  const { site, openGraphDefaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -18,7 +18,9 @@ function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
             }
           }
         }
-        ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+        openGraphDefaultImage: file(
+          relativePath: { eq: "open-graph/code.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }
@@ -31,8 +33,8 @@ function Seo({ description, lang, meta, keywords, title, featuredImageSrc }) {
 
   const imagePath = constructUrl(
     site.siteMetadata.siteUrl,
-    featuredImageSrc ??
-      ogDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
+    openGraphImageSrc ??
+      openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
   );
 
   return (

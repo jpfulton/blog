@@ -3,7 +3,7 @@ title: Building this Blog with Gatsby, React and Markdown
 date: 2023-07-01
 description: "A discussion of how this blog was built using Gatsby and React."
 keywords: ["gatsbyjs", "react", "markdown", "javascript", "blog"]
-featuredImage: ../../../src/images/open-graph/gatsby.png
+openGraphImage: ../../../src/images/open-graph/gatsby.png
 ---
 
 I ran across [GatsbyJS](https://www.gatsbyjs.com/) in a
@@ -334,7 +334,7 @@ site metadata. Those queries can then be copied into pages and components for us
 in the renderer.
 
 ```javascript:title=seo.js {lineNumbers: true}
-const { site, ogDefaultImage } = useStaticQuery(
+const { site, openGraphDefaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -348,7 +348,7 @@ const { site, ogDefaultImage } = useStaticQuery(
             }
           }
         }
-        ogDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+        openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }
