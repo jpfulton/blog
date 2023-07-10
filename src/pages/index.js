@@ -59,6 +59,11 @@ export const pageQuery = graphql`
             title
             description
             keywords
+            openGraphImage {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
           }
         }
       }

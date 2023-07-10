@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import { navigate } from "gatsby";
-import styled from "styled-components";
-import { useFlexSearch } from "react-use-flexsearch";
 import queryString from "query-string";
+import React, { useState } from "react";
+import { useFlexSearch } from "react-use-flexsearch";
+import styled from "styled-components";
 
 import PostSummary from "./postSummary";
 
@@ -52,6 +52,7 @@ const SearchedPosts = ({ results }) =>
       const timeToReadText = node.timeToReadText;
       const timeToReadWords = node.timeToReadWords;
       const keywords = node.keywords;
+      const image = node.image;
 
       return (
         <PostSummary
@@ -63,6 +64,7 @@ const SearchedPosts = ({ results }) =>
           description={description}
           excerpt={excerpt}
           keywords={keywords}
+          primaryImage={image}
         />
       );
     })
@@ -76,6 +78,9 @@ const AllPosts = ({ posts }) => (
   <div style={{ margin: "20px 0 20px" }}>
     {posts.map(({ node }) => {
       const title = node.frontmatter.title || node.fields.slug;
+      const image =
+        node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData;
+
       return (
         <PostSummary
           slug={node.fields.slug}
@@ -86,6 +91,7 @@ const AllPosts = ({ posts }) => (
           description={node.frontmatter.description}
           excerpt={node.excerpt}
           keywords={node.frontmatter.keywords}
+          primaryImage={image}
         />
       );
     })}
