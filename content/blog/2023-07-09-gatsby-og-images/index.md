@@ -4,6 +4,7 @@ date: 2023-07-09
 description: "The Open Graph Protocol specifies a series of tags that may be included in the header of an HTML document to describe its content. Among them are the og:image tag which is used to render images associated with a page in iMessage link previews, Twitter cards and previews on other platforms. Most Gatsby starters include several of these SEO tags but omit preview image support. This article describes an implementation to add them to a Gatsby website or blog."
 keywords: ["gatsbyjs", "open graph", "markdown", "blog", "seo"]
 openGraphImage: ../../../src/images/open-graph/gatsby.png
+primaryImage: ./imessage-link-preview.png
 ---
 
 The [Open Graph Protocol](https://ogp.me) specifies a series of tags that

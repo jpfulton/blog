@@ -77,6 +77,11 @@ const config = {
                       gatsbyImageData(layout: FIXED, width: 150)
                     }
                   }
+                  primaryImage {
+                    childImageSharp {
+                      gatsbyImageData(layout: FIXED, width: 150)
+                    }
+                  }
                 }
               }
             }
@@ -109,6 +114,7 @@ const config = {
             timeToReadWords: node.fields.timeToRead.words,
             keywords: node.frontmatter.keywords,
             image:
+              node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
               node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData,
           })),
       },

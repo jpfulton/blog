@@ -64,6 +64,11 @@ export const pageQuery = graphql`
                 gatsbyImageData(layout: FIXED, width: 150)
               }
             }
+            primaryImage {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
           }
         }
       }
