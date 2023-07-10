@@ -74,13 +74,14 @@ const SearchedPosts = ({ results }) =>
     </p>
   );
 
-const AllPosts = ({ posts }) => (
+const AllPosts = ({ posts, openGraphDefaultImage }) => (
   <div style={{ margin: "20px 0 20px" }}>
     {posts.map(({ node }) => {
       const title = node.frontmatter.title || node.fields.slug;
       const image =
         node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
-        node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData;
+        node.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData ||
+        openGraphDefaultImage.childImageSharp.gatsbyImageData;
 
       return (
         <PostSummary
@@ -99,7 +100,12 @@ const AllPosts = ({ posts }) => (
   </div>
 );
 
-const SearchPosts = ({ posts, localSearchBlog, location }) => {
+const SearchPosts = ({
+  posts,
+  localSearchBlog,
+  location,
+  openGraphDefaultImage,
+}) => {
   const { search } = queryString.parse(location.search);
   const [query, setQuery] = useState(search || "");
 
@@ -130,7 +136,11 @@ const SearchPosts = ({ posts, localSearchBlog, location }) => {
           }}
         />
       </SearchBar>
-      {query ? <SearchedPosts results={results} /> : <AllPosts posts={posts} />}
+      {query ? (
+        <SearchedPosts results={results} />
+      ) : (
+        <AllPosts posts={posts} openGraphDefaultImage={openGraphDefaultImage} />
+      )}
     </>
   );
 };

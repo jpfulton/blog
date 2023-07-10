@@ -13,6 +13,7 @@ class Blog extends React.Component {
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMdx.edges;
     const localSearchBlog = data.localSearchBlog;
+    const openGraphDefaultImage = data.openGraphDefaultImage;
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -22,6 +23,7 @@ class Blog extends React.Component {
           posts={posts}
           localSearchBlog={localSearchBlog}
           location={location}
+          openGraphDefaultImage={openGraphDefaultImage}
         />
       </Layout>
     );
@@ -35,6 +37,11 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FIXED, width: 150)
       }
     }
     localSearchBlog {
