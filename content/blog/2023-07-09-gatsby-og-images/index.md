@@ -1,7 +1,7 @@
 ---
 title: Adding Open Graph Images to a Gatsby Site
 date: 2023-07-09
-description: "The Open Graph Protocol specifies a series of tags that may be included in the header of an HTML document to describe its content. Among them are the og:image tag which is used to render images associated with a page in iMessage link previews, Twitter cards and previews on other platforms. Most Gatsby starters include several of these SEO tags but omit preview image support. This article describes an implementation to add them."
+description: "The Open Graph Protocol specifies a series of tags that may be included in the header of an HTML document to describe its content. Among them are the og:image tag which is used to render images associated with a page in iMessage link previews, Twitter cards and previews on other platforms. Most Gatsby starters include several of these SEO tags but omit preview image support. This article describes an implementation to add them to a Gatsby website or blog."
 keywords: ["gatsbyjs", "open graph", "markdown", "blog", "seo"]
 openGraphImage: ../../../src/images/open-graph/gatsby.png
 ---
@@ -14,7 +14,7 @@ with a page in
 [Twitter cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started)
 and previews on other platforms. Most [Gatsby](https://www.gatsbyjs.com/) starters
 include several of these SEO tags but omit preview image support. This article
-describes an implementation to add them.
+describes an implementation to add them to Gatsby website or blog.
 
 ![iMessage Link Preview Screenshot](./imessage-link-preview.png)
 
@@ -40,9 +40,9 @@ of link previews.
 **Note:** The current implementation of this blog still uses the
 `react-helmet` component. However,
 the [Gatsby HEAD API](https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/)
-exists in modern Gatsby versions and replaces that functionality. It is likely
+was introduced in modern Gatsby versions and replaces that functionality. It is likely
 that in a future pull request, I will modernize the implementation to use that
-API and eliminate another warning when running in `gatsby develop` mode.
+API and eliminate a warning on the topic when running in `gatsby develop` mode.
 
 ```html {22-29}{numberLines: true}
 <head>
@@ -112,7 +112,7 @@ and [gatsby-plugin-sharp](https://github.com/gatsbyjs/gatsby/tree/master/package
 plugins.
 
 The new node is based on a `file` query for an image (`code.png`) which was placed
-in the `/src/images/open-graph/` folder of the site. My intention is to store images
+in the `/src/images/open-graph/` folder of the site. My intention was to store images
 in this folder that might be reused as open graph images accross multiple pages.
 In this case, the `code.png` image is intended to be the default fallback image
 for pages that have not declared an override image. The `height` and `width` parameters
@@ -124,7 +124,7 @@ The existence of the node will cause the plugins to process the image and then a
 data to the GraphQL site metadata that may be used in the component JavaScript as
 seen in the next section.
 
-```javascript:title=seo.js {15-21}{numberLines: true}
+```jsx:title=seo.js {15-21}{numberLines: true}
 const { site, openGraphDefaultImage } = useStaticQuery(
   graphql`
     query {
@@ -167,7 +167,7 @@ to be used my most previewers (e.g. iMessage) and _cannot_ be relative links. Th
 GraphQL to create the fully qualified URL and handles several error conditions that
 might arise from missing data.
 
-```javascript:title=seo.js {3-7,18-25,33-36}{numberLines: true}
+```jsx:title=seo.js {3-7,18-25,33-36}{numberLines: true}
 function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
   ...
   const imagePath = constructUrl(
