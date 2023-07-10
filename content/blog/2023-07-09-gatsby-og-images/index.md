@@ -265,7 +265,52 @@ export const createSchemaCustomization = ({ actions }) => {
 
 ### Modifying the blog-post.js Template
 
+The `src/templates/blog-post.js` file is the template used by the
+Gatsby Node API [createPages hook](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages)
+to render each MDX file into a blog page. It is composed of a number of components.
+Among them is the `seo.js` component modified in previous steps. Additionally,
+the template hosts a dynamic `pageQuery` to pull data from GraphQL to render
+the post.
+
 #### Alter the Dynamic GraphQL Page Query
+
+With the GraphQL schema customizations made above in place, the `pageQuery`
+can be altered to use the new frontmatter field: `openGraphImage`. Again,
+the
+[gatsby-plugin-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-image#readme)
+and [gatsby-plugin-sharp](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sharp)
+plugins are used to process the image and add new data to the query result
+about the processed image for use in the template.
+
+```javascript:title=blog-post.js {17-21}{numberLines:true}
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String!, $keywords: [String]!) {
+    site {
+      siteMetadata {
+        title
+        author
+      }
+    }
+    mdx(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 160)
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+        description
+        keywords
+        openGraphImage {
+          childImageSharp {
+            gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+          }
+        }
+      }
+      ...
+    }
+    ...
+  }
+`;
+```
 
 #### Alter the Template to Support Overrides
 
