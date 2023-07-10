@@ -23,6 +23,52 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Table of Contents
 
+## Key Package Versions in the Current Implementation
+
+This site implementation uses fairly current versions of
+Gatsby, its plugins and React at the time of this writing. The relevant
+versions are highlighted below and are taken from `package.json`.
+
+```json:title=package.json {3,5,8,12,27,33}{numberLines: true}
+"dependencies": {
+    ...
+    "gatsby": "^5.11.0",
+    "gatsby-plugin-google-gtag": "^5.11.0",
+    "gatsby-plugin-image": "^3.11.0",
+    "gatsby-plugin-local-search": "^2.0.1",
+    "gatsby-plugin-manifest": "^5.11.0",
+    "gatsby-plugin-mdx": "^5.11.0",
+    "gatsby-plugin-offline": "^6.11.0",
+    "gatsby-plugin-react-helmet": "^6.11.0",
+    "gatsby-plugin-sass": "^6.11.0",
+    "gatsby-plugin-sharp": "^5.11.0",
+    "gatsby-plugin-sitemap": "^6.11.0",
+    "gatsby-plugin-styled-components": "^6.11.0",
+    "gatsby-plugin-typography": "^5.11.0",
+    "gatsby-remark-autolink-headers": "^6.11.0",
+    "gatsby-remark-code-titles": "^1.1.0",
+    "gatsby-remark-copy-linked-files": "^6.11.0",
+    "gatsby-remark-images": "^7.11.0",
+    "gatsby-remark-prismjs": "^7.11.0",
+    "gatsby-remark-responsive-iframe": "^6.11.1",
+    "gatsby-remark-smartypants": "^6.11.0",
+    "gatsby-source-filesystem": "^5.11.0",
+    "gatsby-transformer-sharp": "^5.11.0",
+    "prismjs": "^1.29.0",
+    ...
+    "react": "^18.2.0",
+    ...
+    "react-dom": "^18.2.0",
+    ...
+},
+"devDependencies": {
+    "gatsby-cli": "^5.11.0",
+    "gatsby-plugin-root-import": "^2.0.9",
+    "prettier": "^2.8.8",
+    "resolve-url-loader": "^5.0.0"
+},
+```
+
 ## The Desired HEAD Tag Contents
 
 Taken from the generated output
