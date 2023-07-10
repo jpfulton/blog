@@ -314,6 +314,43 @@ export const pageQuery = graphql`
 
 #### Alter the Template to Support Overrides
 
+In a final step, we utilize the new data available from the GraphQL
+dynamic page query to access the relative link to the processed
+open graph image and pass it to the `seo.js` component.
+
+```jsx:title=blog-post.js {10-12,21}{numberLines: true}
+function BlogPostTemplate({
+  location,
+  pageContext,
+  data: { mdx, site, allMdx },
+  children,
+}) {
+  const post = mdx;
+  ...
+
+  const openGraphImageSrc =
+    post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images
+      .fallback.src;
+  ...
+
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+        keywords={post.frontmatter.keywords}
+        openGraphImageSrc={openGraphImageSrc}
+      />
+      ...
+    </Layout>
+  );
+}
+```
+
+At this point in the implementation, each MDX file may optionally specify
+an override to the default open graph image for the site by modifying its
+frontmatter configuration.
+
 ## Appendix: Key Commits
 
 - [92132ab](https://github.com/jpfulton/blog/commit/92132abaebc6b27e2ae1f5ff339c59e6a46953e2)
