@@ -98,7 +98,31 @@ API and eliminate another warning when running in `gatsby develop` mode.
 
 ## Add a Default Open Graph Image
 
+My objective was to ensure that _all pages_ in the site have an open graph image
+associated with them which may be overriden at the page level. To accomplish this,
+the first step was to modify the `seo.js` component.
+
 ### Modify the SEO.js Component's GraphQL Static Query
+
+This component already used a static query to pull elements of data needed for
+the other SEO header tags from GraphQL. I modified the static query to include
+a new node: `openGraphDefaultImage` that leveraged the
+[gatsby-plugin-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-image#readme)
+and [gatsby-plugin-sharp](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sharp)
+plugins.
+
+The new node is based on a `file` query for an image (`code.png`) which was placed
+in the `/src/images/open-graph/` folder of the site. My intention is to store images
+in this folder that might be reused as open graph images accross multiple pages.
+In this case, the `code.png` image is intended to be the default fallback image
+for pages that have not declared an override image. The `height` and `width` parameters
+here are of special importance. The specified height and width are the target dimensions
+of the image that will be transformed by the sharp plugin and match the recommended
+size of images used for these SEO tags.
+
+The existence of the node will cause the plugins to process the image and then add
+data to the GraphQL site metadata that may be used in the component JavaScript as
+seen in the next section.
 
 ```javascript:title=seo.js {15-21}{numberLines: true}
 const { site, openGraphDefaultImage } = useStaticQuery(
@@ -127,7 +151,21 @@ const { site, openGraphDefaultImage } = useStaticQuery(
 );
 ```
 
-### Implement the Image Tags within SEO.js
+### Implement the Open Graph Image Tags within SEO.js
+
+Once the static GraphQL queries has been modified, the rest of the component
+can be altered to support the use case.
+
+On line 1, a new parameter to the component has been added to supply an
+optional override image to replace the default image. Lines 5-6 show the
+override logic. Two new meta tags are then added to the `meta` array in the
+embedded `Helmet` component.
+
+**Note:** The URLs pointing to images in the Open Graph tags must be _fully qualified_
+to be used my most previewers (e.g. iMessage) and _cannot_ be relative links. The
+`constructUrl` function concatenates the base site url to the paths queried from
+GraphQL to create the fully qualified URL and handles several error conditions that
+might arise from missing data.
 
 ```javascript:title=seo.js {3-7,18-25,33-36}{numberLines: true}
 function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
@@ -170,7 +208,38 @@ function constructUrl(baseUrl, path) {
 export default Seo;
 ```
 
-## Extending the GraphQL Frontmatter Definition
+With these steps complete, the component is prepared to accept override images
+and a default image is in place.
+
+## Allow Page-level Overrides to the Default Image
+
+Each post in this blog implementation is generated from an MDX (markdown including
+React components) file, the objective is to allow each file to optionally
+provide a element in its frontmatter to specify a custom open graph image
+for the post.
+
+### Example MDX Frontmatter Configuration
+
+Line 6 shows this example markdown frontmatter section setting a open graph image
+for this post. Omission of the `openGraphImage` declaration would cause the
+default image to be included in the post's meta tags.
+
+```markdown {6}{numberLines: true}
+---
+title: "Fixing C# Debugging in Visual Studio Code on macOS"
+date: 2023-07-08
+description: "Quite painfully, the VS Code ms-dotnettools.csharp extension debugger binaries do not work out-of-the-box on modern macOS versions (v12+). This article outlines the steps that are necessary to get those debugger binaries working macOS Monterey and beyond."
+keywords: ["Visual Studio Code", "csharp", "macOS", "debugging"]
+openGraphImage: ../../../src/images/open-graph/vscode.png
+---
+```
+
+### Extending the GraphQL Frontmatter Definition
+
+The [Gatsby Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createSchemaCustomization)
+provides a hook for customizing the GraphQL schema. In this step, it is used to
+customize the frontmatter type definitions. This schema customization is **required**
+to support the GraphQL query expansions made in later steps.
 
 **Note:** This `gatsby-node.js` file was converted in an earlier series of commits
 to [ES module syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
@@ -194,7 +263,13 @@ export const createSchemaCustomization = ({ actions }) => {
 };
 ```
 
-## Key Commits
+### Modifying the blog-post.js Template
+
+#### Alter the Dynamic GraphQL Page Query
+
+#### Alter the Template to Support Overrides
+
+## Appendix: Key Commits
 
 - [92132ab](https://github.com/jpfulton/blog/commit/92132abaebc6b27e2ae1f5ff339c59e6a46953e2)
 - [b57fcaa](https://github.com/jpfulton/blog/commit/b57fcaa246375feb4167c57d6094a54292e9ab71)
