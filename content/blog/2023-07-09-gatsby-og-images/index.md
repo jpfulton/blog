@@ -1,10 +1,20 @@
 ---
 title: Adding Open Graph Images to a Gatsby Site
 date: 2023-07-09
-description: ""
+description: "The Open Graph Protocol specifies a series of tags that may be included in the header of an HTML document to describe its content. Among them are the og:image tag which is used to render images associated with a page in iMessage link previews, Twitter cards and previews on other platforms. Most Gatsby starters include several of these SEO tags but omit preview image support. This article describes an implementation to add them."
 keywords: ["gatsbyjs", "open graph", "markdown", "blog", "seo"]
 openGraphImage: ../../../src/images/open-graph/gatsby.png
 ---
+
+The [Open Graph Protocol](https://ogp.me) specifies a series of tags that
+may be included in the header of an `HTML` document to describe its content.
+Among them are the `og:image` tag which is used to render images associated
+with a page in
+[iMessage link previews](https://developer.apple.com/library/archive/technotes/tn2444/_index.html),
+[Twitter cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started)
+and previews on other platforms. Most [Gatsby](https://www.gatsbyjs.com/) starters
+include several of these SEO tags but omit preview image support. This article
+describes an implementation to add them.
 
 ![iMessage Link Preview Screenshot](./imessage-link-preview.png)
 
@@ -15,7 +25,24 @@ found [here](https://github.com/jpfulton/blog).
 
 ## The Desired HEAD Tag Contents
 
-<Link to="/blog/2023-07-08-fix-csharp-macos-debugging/">a previous post</Link>
+Taken from the generated output
+of <Link to="/blog/2023-07-08-fix-csharp-macos-debugging/">a previous post</Link>,
+the following `HTML` from the `HEAD` tag represents the desired content. The
+highlighted lines are the target of this post's exercise. The majority of the
+other open graph and general purpose `META` tags were already in place from the
+starter version of the `seo.js` component.
+
+The missing elements, not included in the starters, were the `og:image` and
+`twitter:image` meta tags. These elements drive the preview image used on
+link previews in iMessage, Twitter Cards and other platform representations
+of link previews.
+
+**Note:** The current implementation of this blog still uses the
+`react-helmet` component. However,
+the [Gatsby HEAD API](https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/)
+exists in modern Gatsby versions and replaces that functionality. It is likely
+that in a future pull request, I will modernize the implementation to use that
+API and eliminate another warning when running in `gatsby develop` mode.
 
 ```html {22-29}{numberLines: true}
 <head>
@@ -67,6 +94,80 @@ found [here](https://github.com/jpfulton/blog).
   />
   ...
 </head>
+```
+
+## Add a Default Open Graph Image
+
+### Modify the SEO.js Component's GraphQL Static Query
+
+```javascript:title=seo.js {15-21}{numberLines: true}
+const { site, openGraphDefaultImage } = useStaticQuery(
+  graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          siteUrl
+          social {
+            twitter
+          }
+        }
+      }
+      openGraphDefaultImage: file(
+        relativePath: { eq: "open-graph/code.png" }
+      ) {
+        childImageSharp {
+          gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+        }
+      }
+    }
+  `
+);
+```
+
+### Implement the Image Tags within SEO.js
+
+```javascript:title=seo.js {3-7,18-25,33-36}{numberLines: true}
+function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
+  ...
+  const imagePath = constructUrl(
+    site.siteMetadata.siteUrl,
+    openGraphImageSrc ??
+      openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
+  );
+  ...
+  return (
+      <Helmet
+        htmlAttributes={{
+          lang,
+        }}
+        title={title}
+        titleTemplate={`%s | ${site.siteMetadata.title}`}
+        meta={[
+          ...
+          {
+            property: `og:image`,
+            content: imagePath,
+          },
+          {
+            property: `twitter:image`,
+            content: imagePath,
+          },
+          ...
+        ]}
+        ...
+        />
+    );
+}
+
+function constructUrl(baseUrl, path) {
+  if (baseUrl === "" || path === "") return "";
+  return `${baseUrl}${path}`;
+}
+
+export default Seo;
 ```
 
 ## Extending the GraphQL Frontmatter Definition
