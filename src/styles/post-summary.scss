@@ -21,3 +21,13 @@
     }
   }
 }
+
+@media (max-width: 42rem) {
+  .post-summary {
+    .flex {
+      .image-container {
+        display: none;
+      }
+    }
+  }
+}
