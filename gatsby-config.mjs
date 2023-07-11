@@ -250,7 +250,7 @@ const config = {
       resolve: `gatsby-plugin-offline`,
       options: {
         workboxConfig: {
-          globPatterns: ["**/icon-path*"],
+          globPatterns: ["**/icons*"],
         },
       },
     },
