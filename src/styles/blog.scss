@@ -58,8 +58,79 @@ h6 {
 }
 
 .related-posts {
+  display: flex;
+  align-items: center;
+  min-width: 100%;
+
   a {
     box-shadow: none;
+  }
+
+  .next-button,
+  .prev-button {
+    font-weight: bold;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.3);
+    padding: 2px 6px;
+    border: 0;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .related-posts-flex {
+    display: flex;
+    overflow: hidden;
+    padding: 5px 8px;
+    align-items: stretch;
+    margin-left: -2em;
+    margin-right: -2em;
+
+    .post-card {
+      border: 1px solid whitesmoke;
+      border-radius: 4px;
+      padding: 1em;
+      margin: 0 0.5em;
+      box-shadow: 5px 5px 5px whitesmoke;
+      min-height: 100%;
+
+      .post-image-container {
+        display: flex;
+        align-items: center;
+        min-height: 100px;
+
+        .gatsby-image-wrapper {
+          margin: auto;
+        }
+      }
+
+      .post-date {
+        font-weight: bold;
+        font-family: var(--font-heading);
+        font-size: var(--fontSize-0);
+      }
+    }
+  }
+}
+
+@media (max-width: 42rem) {
+  .related-posts {
+    overflow: scroll;
+
+    .next-button,
+    .prev-button {
+      display: none;
+    }
+
+    .related-posts-flex {
+      overflow: visible;
+      padding: 5px 0;
+      margin-left: 0;
+      margin-right: 0;
+
+      .post-card:first-of-type {
+        margin-left: 0;
+      }
+    }
   }
 }
 

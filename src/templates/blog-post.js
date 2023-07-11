@@ -22,7 +22,7 @@ const components = { ...overrides, ...shortcodes }; // components passed to the 
 function BlogPostTemplate({
   location,
   pageContext,
-  data: { mdx, site, allMdx },
+  data: { openGraphDefaultImage, mdx, site, allMdx },
   children,
 }) {
   const post = mdx;
@@ -75,6 +75,7 @@ function BlogPostTemplate({
       <Tags tags={post.frontmatter.keywords}></Tags>
 
       <RelatedPosts
+        openGraphDefaultImage={openGraphDefaultImage}
         rootSlug={pageContext.slug}
         relatedPosts={relatedPosts}
       ></RelatedPosts>
@@ -125,6 +126,11 @@ export const pageQuery = graphql`
         author
       }
     }
+    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FIXED, width: 150)
+      }
+    }
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
@@ -158,6 +164,16 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date(formatString: "MMMM DD, YYYY")
+            openGraphImage {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
+            primaryImage {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
           }
           fields {
             slug
