@@ -201,7 +201,7 @@ const config = {
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         theme_color: `#ffffff`,
-        display: `standalone`,
+        display: `minimal-ui`,
         icon: `static/icon.png`, // This path is relative to the root of the site.
         icon_options: {
           purpose: `any maskable`,
@@ -245,7 +245,14 @@ const config = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ["**/icon-path*"],
+        },
+      },
+    },
     {
       resolve: `@jpfulton/gatsby-plugin-feed-mdx`,
       options: {
