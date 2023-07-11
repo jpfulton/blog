@@ -84,6 +84,7 @@ h6 {
     align-items: stretch;
     margin-left: -2em;
     margin-right: -2em;
+    min-width: 100%;
 
     .post-card {
       border: 1px solid whitesmoke;
@@ -91,7 +92,7 @@ h6 {
       padding: 1em;
       margin: 0 0.5em;
       box-shadow: 5px 5px 5px whitesmoke;
-      min-height: 100%;
+      max-width: 200px;
 
       .post-image-container {
         display: flex;
