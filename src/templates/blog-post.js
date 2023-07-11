@@ -1,8 +1,8 @@
-import { MDXProvider } from "@mdx-js/react";
 import { Link, graphql } from "gatsby";
 import React from "react";
 
 import Bio from "../components/bio";
+import CustomMDXProvider from "../components/customMDXProvider";
 import GoogleStructuredArticleData from "../components/googleStructureArticleData";
 import Layout from "../components/layout";
 import RelatedPosts from "../components/relatedPosts";
@@ -10,14 +10,6 @@ import Seo from "../components/seo";
 import Tags from "../components/tags";
 
 import { rhythm, scale } from "../utils/typography";
-
-import { InArticleAdBlock } from "../components/adBlocks";
-import { OutboundLink } from "../components/outboundLink";
-
-const shortcodes = { InArticleAdBlock, Link }; // short cuts to components to be used in mdx templates
-const overrides = { a: OutboundLink }; // overrides of tags to replacement components to be used in mdx templates
-
-const components = { ...overrides, ...shortcodes }; // components passed to the MDXRenderer
 
 function BlogPostTemplate({
   location,
@@ -57,7 +49,7 @@ function BlogPostTemplate({
           {post.fields.timeToRead.words} words)
         </p>
 
-        <MDXProvider components={components}>{children}</MDXProvider>
+        <CustomMDXProvider>{children}</CustomMDXProvider>
 
         <hr
           style={{
