@@ -201,11 +201,12 @@ const config = {
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         theme_color: `#ffffff`,
-        display: `standalone`,
+        display: `minimal-ui`,
         icon: `static/icon.png`, // This path is relative to the root of the site.
         icon_options: {
           purpose: `any maskable`,
         },
+        cache_busting_mode: "none",
       },
     },
     {
@@ -245,7 +246,14 @@ const config = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ["**/icons*"],
+        },
+      },
+    },
     {
       resolve: `@jpfulton/gatsby-plugin-feed-mdx`,
       options: {
@@ -273,7 +281,6 @@ const config = {
                     site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
                   guid:
                     site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.body }],
                 });
               });
             },
@@ -285,7 +292,6 @@ const config = {
                   edges {
                     node {
                       excerpt
-                      body
                       fields { slug }
                       frontmatter {
                         title

@@ -83,4 +83,14 @@ export const pageQuery = graphql`
   }
 `;
 
-export const Head = () => <GoogleStructuredOrgData />;
+export const Head = () => (
+  <>
+    <GoogleStructuredOrgData />
+    <link
+      rel="alternate"
+      title="jpatrickfulton.dev"
+      type="application/rss+xml"
+      href="/rss.xml"
+    />
+  </>
+);
