@@ -206,6 +206,7 @@ const config = {
         icon_options: {
           purpose: `any maskable`,
         },
+        cache_busting_mode: "none",
       },
     },
     {
