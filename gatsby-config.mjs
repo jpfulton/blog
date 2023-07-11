@@ -55,6 +55,11 @@ const config = {
         },
         query: `
           {
+            openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
             allMdx {
               nodes {
                 id
@@ -72,6 +77,16 @@ const config = {
                   description
                   date(formatString: "MMMM DD, YYYY")
                   keywords
+                  openGraphImage {
+                    childImageSharp {
+                      gatsbyImageData(layout: FIXED, width: 150)
+                    }
+                  }
+                  primaryImage {
+                    childImageSharp {
+                      gatsbyImageData(layout: FIXED, width: 150)
+                    }
+                  }
                 }
               }
             }
@@ -89,6 +104,7 @@ const config = {
           "timeToReadText",
           "timeToReadWords",
           "keywords",
+          "image",
         ],
         normalizer: ({ data }) =>
           data.allMdx.nodes.map((node) => ({
@@ -102,6 +118,11 @@ const config = {
             timeToReadText: node.fields.timeToRead.text,
             timeToReadWords: node.fields.timeToRead.words,
             keywords: node.frontmatter.keywords,
+            image:
+              node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
+              node.frontmatter.openGraphImage?.childImageSharp
+                .gatsbyImageData ||
+              data.openGraphDefaultImage.childImageSharp.gatsbyImageData,
           })),
       },
     },

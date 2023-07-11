@@ -1,6 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import PropTypes from "prop-types";
+import React from "react";
 import Tags from "../components/tags";
 import { rhythm } from "../utils/typography";
 
@@ -13,6 +14,7 @@ function PostSummary({
   description,
   excerpt,
   keywords,
+  primaryImage,
 }) {
   return (
     <div key={slug} class="post-summary">
@@ -28,11 +30,18 @@ function PostSummary({
       <small>
         {date} - {timeToReadText} ({timeToReadWords} words)
       </small>
-      <p
-        dangerouslySetInnerHTML={{
-          __html: description || excerpt,
-        }}
-      />
+      <div class="flex">
+        <div>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: description || excerpt,
+            }}
+          />
+        </div>
+        <div class="image-container">
+          <GatsbyImage image={primaryImage} alt="Post Image" />
+        </div>
+      </div>
       <Tags tags={keywords} />
     </div>
   );
@@ -58,6 +67,7 @@ PostSummary.propTypes = {
   description: PropTypes.string,
   excerpt: PropTypes.string,
   keywords: PropTypes.arrayOf(PropTypes.string),
+  primaryImageSrc: PropTypes.object.isRequired,
 };
 
 export default PostSummary;

@@ -1,9 +1,33 @@
 .post-summary {
-    h3 {
-        color: var(--color-primary);
-    }
+  min-width: 100%;
+
+  h3 {
+    color: var(--color-primary);
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+    margin-top: var(--spacing-1);
+    margin-bottom: var(--spacing-4);
+    min-width: 100%;
 
     p {
-        margin-bottom: var(--spacing-4);
+      margin-right: 2em;
     }
+
+    .image-container {
+      margin-left: auto;
+    }
+  }
+}
+
+@media (max-width: 42rem) {
+  .post-summary {
+    .flex {
+      .image-container {
+        display: none;
+      }
+    }
+  }
 }

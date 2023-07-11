@@ -1,7 +1,7 @@
 ---
 title: Building this Blog with Gatsby, React and Markdown
 date: 2023-07-01
-description: "A discussion of how this blog was built using Gatsby and React."
+description: "I ran across GatsbyJS in a video on Azure Static Web Apps which I have been using for a variety of projects and quickly became impressed with the framework and the open source ecosystem around it. After a few test runs, I selected it as the engine for this blog."
 keywords: ["gatsbyjs", "react", "markdown", "javascript", "blog"]
 openGraphImage: ../../../src/images/open-graph/gatsby.png
 ---
