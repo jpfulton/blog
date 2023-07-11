@@ -273,7 +273,6 @@ const config = {
                     site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
                   guid:
                     site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.body }],
                 });
               });
             },
@@ -285,7 +284,6 @@ const config = {
                   edges {
                     node {
                       excerpt
-                      body
                       fields { slug }
                       frontmatter {
                         title
