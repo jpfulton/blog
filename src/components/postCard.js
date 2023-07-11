@@ -5,7 +5,7 @@ import React from "react";
 
 function PostCard({ title, slug, date, image }) {
   return (
-    <div class="post-card">
+    <article class="post-card">
       <div class="post-image-container">
         <GatsbyImage image={image}></GatsbyImage>
       </div>
@@ -13,7 +13,7 @@ function PostCard({ title, slug, date, image }) {
       <div class="post-title">
         <Link to={`/blog${slug}`}>{title}</Link>
       </div>
-    </div>
+    </article>
   );
 }
 

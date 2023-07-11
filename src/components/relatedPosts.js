@@ -25,7 +25,7 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
   };
 
   return (
-    <div>
+    <nav>
       <h6>Related Posts</h6>
       <div class="related-posts">
         <button class="prev-button" onClick={scrollLeft}>
@@ -60,7 +60,7 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
           &gt;
         </button>
       </div>
-    </div>
+    </nav>
   );
 }
 

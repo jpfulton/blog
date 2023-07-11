@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import PostSummary from "./postSummary";
 
-const SearchBar = styled.div`
+const SearchBar = styled.nav`
   display: flex;
   border: 1px solid #dfe1e5;
   border-radius: 10px;
@@ -75,7 +75,7 @@ const SearchedPosts = ({ results }) =>
   );
 
 const AllPosts = ({ posts, openGraphDefaultImage }) => (
-  <div style={{ margin: "20px 0 20px" }}>
+  <section style={{ margin: "20px 0 20px" }}>
     {posts.map(({ node }) => {
       const title = node.frontmatter.title || node.fields.slug;
       const image =
@@ -97,7 +97,7 @@ const AllPosts = ({ posts, openGraphDefaultImage }) => (
         />
       );
     })}
-  </div>
+  </section>
 );
 
 const SearchPosts = ({

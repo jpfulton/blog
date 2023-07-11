@@ -43,36 +43,38 @@ function BlogPostTemplate({
         keywords={post.frontmatter.keywords}
         openGraphImageSrc={openGraphImageSrc}
       />
-      <h1>{post.frontmatter.title}</h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: `block`,
-          marginBottom: rhythm(1),
-          marginTop: rhythm(-1),
-        }}
-      >
-        {post.frontmatter.date} - {post.fields.timeToRead.text} (
-        {post.fields.timeToRead.words} words)
-      </p>
+      <article>
+        <h1>{post.frontmatter.title}</h1>
+        <p
+          style={{
+            ...scale(-1 / 5),
+            display: `block`,
+            marginBottom: rhythm(1),
+            marginTop: rhythm(-1),
+          }}
+        >
+          {post.frontmatter.date} - {post.fields.timeToRead.text} (
+          {post.fields.timeToRead.words} words)
+        </p>
 
-      <MDXProvider components={components}>{children}</MDXProvider>
+        <MDXProvider components={components}>{children}</MDXProvider>
 
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
 
-      <Bio />
+        <Bio />
 
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
 
-      <Tags tags={post.frontmatter.keywords}></Tags>
+        <Tags tags={post.frontmatter.keywords}></Tags>
+      </article>
 
       <RelatedPosts
         openGraphDefaultImage={openGraphDefaultImage}
@@ -80,34 +82,36 @@ function BlogPostTemplate({
         relatedPosts={relatedPosts}
       ></RelatedPosts>
 
-      <ul
-        class="prev-and-next"
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `space-between`,
-          listStyle: `none`,
-          padding: 0,
-        }}
-      >
-        <li>
-          {previous && (
-            <Link to={`/blog${previous.fields.slug}`} rel="prev">
-              ← {previous.frontmatter.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-            <Link to={`/blog${next.fields.slug}`} rel="next">
-              {next.frontmatter.title} →
-            </Link>
-          )}
-        </li>
-      </ul>
-      <Link className="footer-link-home" to="/">
-        ← {siteTitle}
-      </Link>
+      <nav>
+        <ul
+          class="prev-and-next"
+          style={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `space-between`,
+            listStyle: `none`,
+            padding: 0,
+          }}
+        >
+          <li>
+            {previous && (
+              <Link to={`/blog${previous.fields.slug}`} rel="prev">
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={`/blog${next.fields.slug}`} rel="next">
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+        <Link className="footer-link-home" to="/">
+          ← {siteTitle}
+        </Link>
+      </nav>
     </Layout>
   );
 }
