@@ -4,6 +4,7 @@ date: 2023-07-08
 description: "Quite painfully, the VS Code ms-dotnettools.csharp extension debugger binaries do not work out-of-the-box on modern macOS versions (v12+). This article outlines the steps that are necessary to get those debugger binaries working macOS Monterey and beyond."
 keywords: ["Visual Studio Code", "csharp", "macOS", "debugging"]
 openGraphImage: ../../../src/images/open-graph/vscode.png
+primaryImage: ./keychain-access.png
 ---
 
 Quite painfully, the VS Code `ms-dotnettools.csharp`
