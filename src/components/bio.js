@@ -30,7 +30,7 @@ const Bio = () => {
   const social = data.site.siteMetadata?.social;
 
   return (
-    <div className="bio">
+    <section className="bio">
       <StaticImage
         className="bio-avatar"
         layout="fixed"
@@ -65,7 +65,7 @@ const Bio = () => {
           </OutboundLink>
         </p>
       )}
-    </div>
+    </section>
   );
 };
 

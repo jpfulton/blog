@@ -17,7 +17,7 @@ function PostSummary({
   primaryImage,
 }) {
   return (
-    <div key={slug} class="post-summary">
+    <article key={slug} class="post-summary">
       <h3
         style={{
           marginBottom: rhythm(1 / 4),
@@ -43,7 +43,7 @@ function PostSummary({
         </div>
       </div>
       <Tags tags={keywords} />
-    </div>
+    </article>
   );
 }
 

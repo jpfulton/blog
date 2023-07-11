@@ -22,7 +22,7 @@ const components = { ...overrides, ...shortcodes }; // components passed to the 
 function BlogPostTemplate({
   location,
   pageContext,
-  data: { mdx, site, allMdx },
+  data: { openGraphDefaultImage, mdx, site, allMdx },
   children,
 }) {
   const post = mdx;
@@ -43,70 +43,75 @@ function BlogPostTemplate({
         keywords={post.frontmatter.keywords}
         openGraphImageSrc={openGraphImageSrc}
       />
-      <h1>{post.frontmatter.title}</h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: `block`,
-          marginBottom: rhythm(1),
-          marginTop: rhythm(-1),
-        }}
-      >
-        {post.frontmatter.date} - {post.fields.timeToRead.text} (
-        {post.fields.timeToRead.words} words)
-      </p>
+      <article>
+        <h1>{post.frontmatter.title}</h1>
+        <p
+          style={{
+            ...scale(-1 / 5),
+            display: `block`,
+            marginBottom: rhythm(1),
+            marginTop: rhythm(-1),
+          }}
+        >
+          {post.frontmatter.date} - {post.fields.timeToRead.text} (
+          {post.fields.timeToRead.words} words)
+        </p>
 
-      <MDXProvider components={components}>{children}</MDXProvider>
+        <MDXProvider components={components}>{children}</MDXProvider>
 
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
 
-      <Bio />
+        <Bio />
 
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
 
-      <Tags tags={post.frontmatter.keywords}></Tags>
+        <Tags tags={post.frontmatter.keywords}></Tags>
+      </article>
 
       <RelatedPosts
+        openGraphDefaultImage={openGraphDefaultImage}
         rootSlug={pageContext.slug}
         relatedPosts={relatedPosts}
       ></RelatedPosts>
 
-      <ul
-        class="prev-and-next"
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `space-between`,
-          listStyle: `none`,
-          padding: 0,
-        }}
-      >
-        <li>
-          {previous && (
-            <Link to={`/blog${previous.fields.slug}`} rel="prev">
-              ← {previous.frontmatter.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-            <Link to={`/blog${next.fields.slug}`} rel="next">
-              {next.frontmatter.title} →
-            </Link>
-          )}
-        </li>
-      </ul>
-      <Link className="footer-link-home" to="/">
-        ← {siteTitle}
-      </Link>
+      <nav>
+        <ul
+          class="prev-and-next"
+          style={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `space-between`,
+            listStyle: `none`,
+            padding: 0,
+          }}
+        >
+          <li>
+            {previous && (
+              <Link to={`/blog${previous.fields.slug}`} rel="prev">
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={`/blog${next.fields.slug}`} rel="next">
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+        <Link className="footer-link-home" to="/">
+          ← {siteTitle}
+        </Link>
+      </nav>
     </Layout>
   );
 }
@@ -123,6 +128,11 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+      }
+    }
+    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FIXED, width: 150)
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
@@ -150,7 +160,7 @@ export const pageQuery = graphql`
     }
     allMdx(
       filter: { frontmatter: { keywords: { in: $keywords } } }
-      sort: [{ frontmatter: { date: ASC } }, { frontmatter: { title: ASC } }]
+      sort: [{ frontmatter: { date: DESC } }, { frontmatter: { title: ASC } }]
     ) {
       edges {
         node {
@@ -158,6 +168,16 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date(formatString: "MMMM DD, YYYY")
+            openGraphImage {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
+            primaryImage {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED, width: 150)
+              }
+            }
           }
           fields {
             slug
