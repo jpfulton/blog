@@ -156,7 +156,7 @@ export const pageQuery = graphql`
     }
     allMdx(
       filter: { frontmatter: { keywords: { in: $keywords } } }
-      sort: [{ frontmatter: { date: ASC } }, { frontmatter: { title: ASC } }]
+      sort: [{ frontmatter: { date: DESC } }, { frontmatter: { title: ASC } }]
     ) {
       edges {
         node {
