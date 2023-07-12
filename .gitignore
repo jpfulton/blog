@@ -136,6 +136,6 @@ Thumbs.db
 # Gatsby Outputs
 public/
 
-# Scipt working directory and credentials
-scripts/credentials.json
-scripts/tmp/
+# GitHub scripts working directory and credentials
+.github/scripts/credentials.json
+.github/scripts/tmp/
