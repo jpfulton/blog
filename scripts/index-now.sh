@@ -16,10 +16,11 @@ do
 done
 
 EASYINDEX_CLI_VERSION="1.0.6";
-if [ $OPERATING_SYSTEM == "macos" ]
+if [[ $OPERATING_SYSTEM == "macos" ]]
   then
     EASYINDEX_CLI_OS="darwin_amd64";
   else
+    OPERATING_SYSTEM="linux";
     EASYINDEX_CLI_OS="linux_amd64";
 fi
 EASYINDEX_CLI_URL="https://github.com/usk81/easyindex-cli/releases/download/v${EASYINDEX_CLI_VERSION}/easyindex-cli_${EASYINDEX_CLI_VERSION}_${EASYINDEX_CLI_OS}.tar.gz";
@@ -30,7 +31,7 @@ echo "Using easyindex_cli URL: $EASYINDEX_CLI_URL";
 if [ ! -d $TMP_DIR ]
   then
     echo "Creating temporary working directory.";
-    mkdir $TMP_DIR;
+    sudo mkdir $TMP_DIR;
 fi
 
 cd $TMP_DIR;
