@@ -135,3 +135,6 @@ Thumbs.db
 
 # Gatsby Outputs
 public/
+
+# Scipt working directory
+scripts/tmp/
