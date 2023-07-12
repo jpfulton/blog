@@ -52,9 +52,9 @@ if [ -f $LOCAL_CREDENTIALS_FILE ]
     echo "No local service account credentials file found...";
     echo "Ensure the GOOGLE_CREDENTIALS_JSON environment variable is set.";
 
-    if [ -z $GOOGLE_CREDENTIALS_JSON ]
+    if [ -z "${GOOGLE_CREDENTIALS_JSON}" ]
       then
-        echo "GOOGLE_CREDENTIALS_JSON is not set. Exiting.";
+        echo "GOOGLE_CREDENTIALS_JSON is not set or is empty. Exiting.";
         exit 1;
     fi
 
