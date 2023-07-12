@@ -73,7 +73,7 @@ touch $URL_FILE;
 echo "\"notification_type\",\"url\"" >> $URL_FILE;
 echo "\"URL_UPDATED\",\"${BASE_URL}/\"" >> $URL_FILE;
 
-BLOG_DIR=../../content/blog/;
+BLOG_DIR=../../../content/blog/;
 BLOGS=($(ls $BLOG_DIR));
 for BLOG in "${BLOGS[@]}"
 do

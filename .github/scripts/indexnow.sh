@@ -33,7 +33,7 @@ echo "  \"urlList\": [" >> $JSON_FILE;
 
 echo "    \"${BASE_URL}/\"," >> $JSON_FILE;
 
-BLOG_DIR=../../content/blog/;
+BLOG_DIR=../../../content/blog/;
 BLOGS=($(ls $BLOG_DIR));
 for BLOG in "${BLOGS[@]}"
 do
