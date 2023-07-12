@@ -101,6 +101,7 @@ jobs:
         if: github.event_name == 'push'
         working-directory: "scripts"
         run: index-now.sh
+        shell: bash
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
