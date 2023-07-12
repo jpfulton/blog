@@ -100,8 +100,16 @@ jobs:
       - name: Update Bing via IndexNow
         if: github.event_name == 'push'
         working-directory: "scripts"
-        run: sudo ./indexnow.sh
         shell: bash
+        run: sudo ./indexnow.sh
+
+      - name: Update Google via Indexing API
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        if: github.event_name == 'push'
+        working-directory: "scripts"
+        shell: bash
+        run: sudo ./easyindex.sh
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
