@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Using evironment variables:";
+printenv
+
 LOCAL_CREDENTIALS_FILE=../credentials.json
 CREDENTIALS_FILE=credentials.json
 
@@ -50,7 +53,7 @@ if [ -f $LOCAL_CREDENTIALS_FILE ]
     cp $LOCAL_CREDENTIALS_FILE $CREDENTIALS_FILE;
   else
     echo "No local service account credentials file found...";
-    echo "Ensure the GOOGLE_CREDENTIALS_JSON environment variable is set.";
+    echo "Using the GOOGLE_CREDENTIALS_JSON environment variable...";
 
     if [ -z "${GOOGLE_CREDENTIALS_JSON}" ]
       then
