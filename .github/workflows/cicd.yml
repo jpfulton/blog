@@ -97,10 +97,10 @@ jobs:
           output_location: "public" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
-      - name: Update Bing Index
+      - name: Update Bing via IndexNow
         if: github.event_name == 'push'
         working-directory: "scripts"
-        run: sudo ./index-now.sh
+        run: sudo ./indexnow.sh
         shell: bash
 
   close_pull_request_job:
