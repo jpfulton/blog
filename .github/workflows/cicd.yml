@@ -100,7 +100,7 @@ jobs:
       - name: Update Bing Index
         if: github.event_name == 'push'
         working-directory: "scripts"
-        run: ./index-now.sh
+        run: sudo ./index-now.sh
         shell: bash
 
   close_pull_request_job:

@@ -31,7 +31,7 @@ echo "Using easyindex_cli URL: $EASYINDEX_CLI_URL";
 if [ ! -d $TMP_DIR ]
   then
     echo "Creating temporary working directory.";
-    sudo mkdir $TMP_DIR;
+    mkdir $TMP_DIR;
 fi
 
 cd $TMP_DIR;
