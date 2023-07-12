@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Using evironment variables:";
-printenv
-
 LOCAL_CREDENTIALS_FILE=../credentials.json
 CREDENTIALS_FILE=credentials.json
 
