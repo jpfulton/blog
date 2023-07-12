@@ -1,5 +1,3 @@
-#!/bin/bash
-
 BASE_URL="https://www.jpatrickfulton.dev"
 BING_API_KEY="8846484b349642449a66629f496422f8"
 BING_URL_TO_KEY_FILE="${BASE_URL}/${BING_API_KEY}.txt"
