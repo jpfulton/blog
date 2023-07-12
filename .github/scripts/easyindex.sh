@@ -50,7 +50,7 @@ if [ ! -f $EASYINDEX_CLI ]
     echo "Using easyindex_cli URL: $EASYINDEX_CLI_URL";
 
     echo "Fetching easyindex_cli binary.";
-    curl -L $EASYINDEX_CLI_URL | tar xz;
+    curl -s -L $EASYINDEX_CLI_URL | tar xz;
 fi
 
 # Look for a local credentials file
