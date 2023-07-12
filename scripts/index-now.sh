@@ -51,14 +51,14 @@ if [ -f $URL_FILE ]
 fi
 
 touch $URL_FILE;
-echo "url" >> $URL_FILE;
-echo "${BASE_URL}/" >> $URL_FILE;
+echo "notification_type,url" >> $URL_FILE;
+echo "URL_UPDATED,${BASE_URL}/" >> $URL_FILE;
 
 BLOG_DIR=../../content/blog/;
 BLOGS=($(ls $BLOG_DIR));
 for BLOG in "${BLOGS[@]}"
 do
-  echo "${BASE_URL}/blog/${BLOG}/" >> $URL_FILE;
+  echo "URL_UPDATED,${BASE_URL}/blog/${BLOG}/" >> $URL_FILE;
 done
 
 echo "URL File contents:";
@@ -67,10 +67,13 @@ cat $URL_FILE;
 echo "---";
 echo "Updating Bing through IndexNow...";
 $EASYINDEX_CLI indexnow \
+  -d \
+  -i \
   -H $BASE_URL \
   -k $BING_API_KEY \
   -f $BING_URL_TO_KEY_FILE \
   -e $BING_URL \
-  --csv $URL_FILE;
+  -c $URL_FILE;
 
+echo;
 echo "Done.";
