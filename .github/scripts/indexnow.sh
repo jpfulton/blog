@@ -6,8 +6,11 @@ BING_API_KEY="8846484b349642449a66629f496422f8"
 BING_URL_TO_KEY_FILE="${BASE_URL}/${BING_API_KEY}.txt"
 BING_URL="https://www.bing.com"
 
+BLOG_DIR=../../../content/blog/;
 WORKING_DIR=$( pwd; );
 TMP_DIR=$WORKING_DIR"/tmp";
+
+JSON_FILE=body.json;
 
 if [ ! -d $TMP_DIR ]
   then
@@ -18,7 +21,6 @@ fi
 cd $TMP_DIR;
 
 echo "Building POST body from repository structure.";
-JSON_FILE=body.json;
 if [ -f $JSON_FILE ]
   then
     rm $JSON_FILE;
@@ -33,7 +35,6 @@ echo "  \"urlList\": [" >> $JSON_FILE;
 
 echo "    \"${BASE_URL}/\"," >> $JSON_FILE;
 
-BLOG_DIR=../../../content/blog/;
 BLOGS=($(ls $BLOG_DIR));
 for BLOG in "${BLOGS[@]}"
 do
