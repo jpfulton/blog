@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 BASE_URL="https://www.jpatrickfulton.dev"
 BING_API_KEY="8846484b349642449a66629f496422f8"
