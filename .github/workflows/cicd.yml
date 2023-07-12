@@ -101,7 +101,7 @@ jobs:
 
       - name: Update Bing via IndexNow
         if: github.event_name == 'push'
-        working-directory: "scripts"
+        working-directory: ".github/scripts"
         shell: bash
         run: sudo ./indexnow.sh
 
@@ -109,7 +109,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
         if: github.event_name == 'push'
-        working-directory: "scripts"
+        working-directory: ".github/scripts"
         shell: bash
         run: sudo --preserve-env ./easyindex.sh
 
