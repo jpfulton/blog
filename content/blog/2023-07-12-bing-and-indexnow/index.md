@@ -6,6 +6,15 @@ keywords: ["gatsbyjs", "bing", "indexnow", "github actions", "seo"]
 openGraphImage: ./bing.png
 ---
 
+[Microsoft Bing](https://www.bing.com)
+[IndexNow](https://www.indexnow.org/)
+
+> Without IndexNow, it can take days to weeks for search engines to discover
+> that the content has changed, as search engines don’t crawl every URL often.
+> With IndexNow, search engines know immediately the "URLs that have changed,
+> helping them prioritize crawl for these URLs and thereby limiting organic
+> crawling to discover new content."
+
 The evolving **GitHub repository** storing this blog and its implementation can be
 found [here](https://github.com/jpfulton/blog).
 
@@ -13,7 +22,12 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Getting Started with Bing Webmaster Tools
 
+[Bing Webmaster Tools](https://www.bing.com/webmasters/)
+[Microsoft Edge](https://www.microsoft.com/en-us/edge)
+
 ## Creating and Hosting the API Key
+
+[here](https://www.bing.com/indexnow)
 
 ## Structure of the IndexNow Request
 
@@ -112,12 +126,36 @@ echo "---";
 echo "Done.";
 ```
 
-## The GitHub Actions Workflow
+[location](https://github.com/jpfulton/blog/blob/main/.github/scripts/indexnow.sh).
 
-```yaml {numberLines: true}
+## The GitHub Actions Workflow Step
+
+In the continuous integration workflow for this site, I added a step
+to the primary job following the step that builds and deploys the
+generated output of site to [Azure](https://azure.microsoft.com). The step is
+configured to _only_ run for pushes to the default branch to ensure that it
+only executes following production releases.
+
+By default, GitHub Actions workflows run in a fairly restrictive user context.
+The script above performs a number of operations that require elevated
+permissions to perform in that space like creating a working directory
+and files within it. As a result, the script must run in `sudo` mode to
+work correctly. Per the
+[GitHub Actions Documentation](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#administrative-privileges),
+a passwordless sudo mode is available in the workflow context which makes
+executing the script fairly painless.
+
+> The Linux and macOS virtual machines both run using passwordless sudo.
+> When you need to execute commands or install tools that require more privileges
+> than the current user, you can use sudo without needing to provide a password.
+
+```yaml {5}{numberLines: true}
 - name: Update Bing via IndexNow
   if: github.event_name == 'push'
   working-directory: ".github/scripts"
   shell: bash
   run: sudo ./indexnow.sh
 ```
+
+The complete current version of this workflow can be found at this
+[location](https://github.com/jpfulton/blog/blob/main/.github/workflows/cicd.yml).
