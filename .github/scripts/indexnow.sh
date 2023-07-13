@@ -62,6 +62,7 @@ echo;
 curl ${BING_URL}/IndexNow \
   -H "Content-Type: application/json; charset=utf-8" \
   -d "$(cat $JSON_FILE)" \
+  -s \
   -i;
 
 echo "---";
