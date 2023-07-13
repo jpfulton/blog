@@ -19,7 +19,7 @@ when crawling on updated content when most content on the web changes
 infrequently. Users of search engines receive search results with content
 that is both updated and more relevant. Site owners avoid the cost of frequent
 crawling of their sites and benefit from their most recent content being
-presented to users faster.
+presented to users in a more timely way.
 
 To support this model, most engines now offer a
 custom API for site owners to programmatically push notifications of content
@@ -72,8 +72,8 @@ for verifying site ownership are also available.
 
 ## Creating and Hosting the API Key
 
-The first step in using the IndexNow API is to generate and then host in a
-[text file](https://github.com/jpfulton/blog/blob/main/static/8846484b349642449a66629f496422f8.txt)
+The first step in using the IndexNow API is to generate, and then host in a
+[text file](https://github.com/jpfulton/blog/blob/main/static/8846484b349642449a66629f496422f8.txt),
 an API key to prove ownership of a given site. The file should be named after the
 key with the extension `.txt` and contain a single line with the key as its
 contents. While they key may be generated in a number of ways, it must be at least
@@ -81,7 +81,8 @@ eight characters long. The Bing engine provides a
 [useful generator](https://www.bing.com/indexnow) with a mechanism to download the
 host file.
 
-In a Gatsby site, the key file may be placed in the `/static` folder and will
+In a [Gatsby](https://www.gatsbyjs.com/) site, the key file may be placed
+in the `/static` folder and will
 be added to the root of the generated site during a production build.
 
 ## Structure of an IndexNow Request
@@ -115,7 +116,8 @@ Host: www.bing.com
 
 ## Building and Submitting the Request via a Bash Shell Script
 
-The URL structure of a generated Gatsby site can be derived from the structure of
+The URL structure of a generated [Gatsby](https://www.gatsbyjs.com/) site can be
+derived from the structure of
 the code that builds it. Therefore, a script that uses the structure of
 the repository as its source material can be created that builds the URLs
 of the pages that were generated is easy to create. Additionally, the
