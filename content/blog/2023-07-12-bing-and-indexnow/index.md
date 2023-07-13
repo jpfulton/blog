@@ -1,19 +1,54 @@
 ---
 title: Live Update Bing through IndexNow in GitHub Actions
 date: 2023-07-12
-description: ""
+description: "This article covers an integration with IndexNow through GitHub Actions using a shell script to update the Microsoft Bing search engine with updated URLs in this blog implementation upon each deployment of the site."
 keywords: ["gatsbyjs", "bing", "indexnow", "github actions", "seo"]
 openGraphImage: ./bing.png
 ---
 
-[Microsoft Bing](https://www.bing.com)
-[IndexNow](https://www.indexnow.org/)
+Search engines operate on huge datasets and the cost of crawling is
+significant especially when content is changing infrequently. Organic
+discovery of new content through crawling is therefore slow. Pages
+and sitemaps are revisited infrequently leading to a lag between the
+posting of new content and its inclusion in search engine indices.
+
+All parties involved in the search engine experience benefit from a better
+model for updating search engine indices. Pushing notifications of content
+change in real time to search engines allows them to optimize their effort
+when crawling on updated content when most content on the web changes
+infrequently. Users of search engines receive search results with content
+that is both updated and more relevant. Site owners avoid the cost of frequent
+crawling of their sites and benefit from their most recent content being
+presented to users faster.
+
+To support this model, most engines now offer a
+custom API for site owners to programmatically push notifications of content
+updates, deleted URLs and new URLs that should be prioritized for crawls
+and subsequent indexing. For example, Google offers the
+[Indexing API](https://developers.google.com/search/apis/indexing-api/v3/quickstart)
+and Microsoft offers the
+[Submission API](https://www.bing.com/webmasters/url-submission-api#APIs).
+The challenge with the vendor specific API model is that each engine's API implementation
+differs as does its authentication and authorization mechanism. This forces
+developers to create code for each engine.
+
+[IndexNow](https://www.indexnow.org/) seeks to resolve the vendor specific
+notification API challenge by offering a unified interface and common site
+ownership verification mechanism. This allows developers to write a single
+set of code to update multiple engines. The project is currently backed by
+[Microsoft Bing](https://www.bing.com).
 
 > Without IndexNow, it can take days to weeks for search engines to discover
 > that the content has changed, as search engines don’t crawl every URL often.
 > With IndexNow, search engines know immediately the "URLs that have changed,
 > helping them prioritize crawl for these URLs and thereby limiting organic
 > crawling to discover new content."
+
+This article covers an integration with [IndexNow](https://www.indexnow.org/)
+through [GitHub Actions](https://github.com/features/actions)
+using a shell script to update the
+[Microsoft Bing](https://www.bing.com) search engine with updated
+URLs in this blog implementation upon each deployment of the site.
 
 The evolving **GitHub repository** storing this blog and its implementation can be
 found [here](https://github.com/jpfulton/blog).
