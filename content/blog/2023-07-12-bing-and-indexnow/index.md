@@ -20,16 +20,36 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Table of Contents
 
-## Getting Started with Bing Webmaster Tools
+## Getting Started with Bing and Bing Webmaster Tools
 
-[Bing Webmaster Tools](https://www.bing.com/webmasters/)
-[Microsoft Edge](https://www.microsoft.com/en-us/edge)
+[Bing Webmaster Tools](https://www.bing.com/webmasters/) is the portal
+for establishing site ownership with Bing and managing URL submission,
+tracking search performance and managing search engine optimization.
+I observed a number of quirks when running the webmaster tools portal in
+both Chrome and Safari. Those quirks can be avoided by utilizing
+[Microsoft Edge](https://www.microsoft.com/en-us/edge/) when running the
+portal.
+
+If you are already a verified owner of one or more sites with Google, it is possible
+to import your properties and verified ownership direct into Bing via an exchange
+with [Google Search Console](https://search.google.com/search-console/). Other methods
+for verifying site ownership are also available.
 
 ## Creating and Hosting the API Key
 
-[here](https://www.bing.com/indexnow)
+The first step in using the IndexNow API is to generate and then host in a
+[text file](https://github.com/jpfulton/blog/blob/main/static/8846484b349642449a66629f496422f8.txt)
+an API key to prove ownership of a given site. The file should be named after the
+key with the extension `.txt` and contain a single line with the key as its
+contents. While they key may be generated in a number of ways, it must be at least
+eight characters long. The Bing engine provides a
+[useful generator](https://www.bing.com/indexnow) with a mechanism to download the
+host file.
 
-## Structure of the IndexNow Request
+In a Gatsby site, the key file may be placed in the `/static` folder and will
+be added to the root of the generated site during a production build.
+
+## Structure of an IndexNow Request
 
 The body of an IndexNow request is simple JSON object. It contains only four
 properties: the host, api key, hosted key file location and a list of URLs.
