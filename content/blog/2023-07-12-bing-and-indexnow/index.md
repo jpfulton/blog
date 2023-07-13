@@ -31,6 +31,12 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Structure of the IndexNow Request
 
+The body of an IndexNow request is simple JSON object. It contains only four
+properties: the host, api key, hosted key file location and a list of URLs.
+In the case of Bing, it may be submitted using an HTTP `POST` to
+`https://www.bing.com/indexnow`. It is important to set the `Content-Type` header
+to `application/json; charset=utf-8` for the request to be accepted by the API.
+
 ```json
 POST /IndexNow HTTP/1.1
 Content-Type: application/json; charset=utf-8
