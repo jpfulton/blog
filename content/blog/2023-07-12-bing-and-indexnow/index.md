@@ -54,6 +54,15 @@ Host: www.bing.com
 
 ## Building and Submitting the Request via a Bash Shell Script
 
+The URL structure of a generated Gatsby site can be derived from the structure of
+the code that builds it. Therefore, a script that uses the structure of
+the repository as its source material can be created that builds the URLs
+of the pages that were generated is easy to create. Additionally, the
+JSON structure of an IndexNow request body is straight forward so creating
+it in a shell script is possible with a series of `echo` commands directed
+to a local working file. Once the temporary working file containing the JSON
+request is created, `curl` can be used to submit the request to the IndexNow API.
+
 ```sh:title=indexnow.sh {numberLines:true}
 #!/usr/bin/env bash
 
@@ -126,6 +135,7 @@ echo "---";
 echo "Done.";
 ```
 
+The complete current version of this script is available at this
 [location](https://github.com/jpfulton/blog/blob/main/.github/scripts/indexnow.sh).
 
 ## The GitHub Actions Workflow Step
