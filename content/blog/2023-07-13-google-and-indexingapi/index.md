@@ -32,7 +32,7 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Table of Contents
 
-## Prerequisites for the Indexing API
+## Prerequisites for the Google Indexing API
 
 Prior to using the Google Indexing API, a number of steps need to be
 performed to enable authorization to the API and establish ownership for
@@ -63,7 +63,8 @@ create a new service account per the
 
 ![Google Cloud Console Screenshot](./google-cloud-console-service-accounts.png)
 
-Once the service account has been created. Select the menu beside the account and
+Once the service account has been created, select the higlighted menu beside
+the account and
 choose **Manage Keys**. On the next screen, choose **Add Key** and select the
 **JSON** option. The key file will be downloaded. Store this file _securely_
 as it contains a private key. You will need the contents of the file in later
@@ -96,7 +97,7 @@ project is a command line wrapper around a
 The utility accepts a CSV file composed of URLs to pass to the API. Additionally,
 it performs a
 [validation step](https://github.com/usk81/easyindex/blob/main/google/publish.go#L135)
-to ensure the URLs are indexable. The library crawls each supplied URL to ensure
+to ensure the URLs are indexable. The library accesses each supplied URL to ensure
 it returns an HTTP `200` response. Responses in the `300` range, which indicate a
 redirect, are omitted from submission.
 
@@ -122,11 +123,11 @@ above which you stored in a _secure_ place.
 
 ### Add the easyindex.sh Shell Script
 
-The script below performs a series of steps on the runner:
+The script below performs a series of steps on the GitHub Actions runner:
 
-- Download the `easyindex-cli` binary to the runner via `curl`
-- Build an input CSV file containing site URLs
-- Execute the `easyindex-cli` to submit those URLs to the Google Indexing API
+- Downloads the `easyindex-cli` binary to the runner via `curl`
+- Builds an input CSV file containing site URLs
+- Executes the `easyindex-cli` to submit those URLs to the Google Indexing API
 
 In this implementation, it is stored in the `/.github/scripts/` folder.
 
@@ -139,7 +140,8 @@ which leverages the `goreleaser/goreleaser-action` Github Action.
 As a native macOS user on an Intel CPU, I added a section of the script
 that allows a flag to be passed to cause the script to download the macOS
 native version of the binary for local testing purposes: `./easyindex.sh -o macos`.
-On the GitHub runner, this flag is omitted and the script defaults to the Linux binary.
+On the GitHub Actions runner, this flag is omitted and the script defaults to
+the Linux binary.
 
 The URL structure of a generated [Gatsby](https://www.gatsbyjs.com/) site can be
 derived from the structure of
@@ -292,6 +294,8 @@ variable for use within. To ensure that environment variable is available
 to the script, this flag is used. The configuration of sudo in the Github
 runners environment allows the use of this flag.
 
+> **-E, --preserve-env**
+>
 > Indicates to the security policy that the user wishes to preserve their
 > existing environment variables. The security policy may return an error
 > if the user does not have permission to preserve the environment.
