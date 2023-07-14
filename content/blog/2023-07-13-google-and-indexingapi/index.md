@@ -34,13 +34,55 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Prerequisites for the Indexing API
 
-### Establishing Ownership in the Google Search Console
+Prior to using the Google Indexing API, a number of steps need to be
+performed to enable authorization to the API and establish ownership for
+the site you are submitting URLs on behalf of. Google provides a useful
+[guide](https://developers.google.com/search/apis/indexing-api/v3/prereqs)
+to these steps which was slightly out of date at the time of this writing.
+
+### Establishing Site Ownership in the Google Search Console
+
+Before starting, you will need to establish ownership of your site
+through the
+[Google Search Console](https://search.google.com/search-console/).
+A number of mechanisms for this step are possible. As a user of
+[Google Domains](https://domains.google/), I was able to add a property and establish
+ownership of my site through the use of an affiliated product.
 
 ### Creating a Google Cloud Project
 
+The first step in establishing access to the Indexing API is to create a project
+in the [Google Cloud Console](https://console.cloud.google.com/start/api?id=indexing.googleapis.com&credential=client_key).
+Once a project has been created, you may create a service account.
+
 ### Creating a Service Account with a JSON Key
 
+On the [Service Accounts page](https://console.cloud.google.com/iam-admin/serviceaccounts),
+create a new service account per the
+[guide](https://developers.google.com/search/apis/indexing-api/v3/prereqs).
+
+![Google Cloud Console Screenshot](./google-cloud-console-service-accounts.png)
+
+Once the service account has been created. Select the menu beside the account and
+choose **Manage Keys**. On the next screen, choose **Add Key** and select the
+**JSON** option. The key file will be downloaded. Store this file _securely_
+as it contains a private key. You will need the contents of the file in later
+steps when running the `easyindex-cli` utility and when creating a GitHub
+repository secret.
+
 ### Adding the Service Account as a Site Owner
+
+Copy the email address of the service account you just created. It will be in
+the format of `my-service-account@project-name.google.com.iam.gserviceaccount.com`.
+Navigate to the
+[verification portal](https://www.google.com/webmasters/verification/home) and
+select the property for which you have already verified ownership.
+
+![Google Search Console Owners Screenshot](./google-search-console-owners.png)
+
+Select **Add User** and enter the email of the service account. Select **Owner**
+under the permissions drop down and complete the dialog. The API will now be ready to
+use in the following steps.
 
 ## The easyindex-cli Tool
 
