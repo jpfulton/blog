@@ -87,7 +87,7 @@ be added to the root of the generated site during a production build.
 
 ## Structure of an IndexNow Request
 
-The body of an IndexNow request is simple JSON object. It contains only four
+The body of an IndexNow request is a simple JSON object. It contains only four
 properties: the host, api key, hosted key file location and a list of URLs.
 In the case of Bing, it may be submitted using an HTTP `POST` to
 `https://www.bing.com/indexnow`. It is important to set the `Content-Type` header
