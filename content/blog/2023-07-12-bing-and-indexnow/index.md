@@ -3,7 +3,7 @@ title: Live Update Bing through IndexNow in GitHub Actions
 date: 2023-07-12
 description: "This article covers an integration with IndexNow through GitHub Actions using a shell script to update the Microsoft Bing search engine with updated URLs in this blog implementation upon each deployment of the site."
 keywords: ["gatsbyjs", "bing", "indexnow", "github actions", "seo"]
-openGraphImage: ./bing.png
+openGraphImage: ../../../src/images/open-graph/bing.png
 ---
 
 Search engines operate on huge datasets and the cost of crawling is
