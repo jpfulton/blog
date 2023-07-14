@@ -1,11 +1,13 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 function Tags({ tags }) {
   return (
     <div class="tags-container">
       {tags.map((tag) => (
-        <span class="tag">{tag}</span>
+        <>
+          <span class="tag">{tag}</span>&nbsp;
+        </>
       ))}
     </div>
   );

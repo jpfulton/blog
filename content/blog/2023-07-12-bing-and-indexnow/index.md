@@ -3,7 +3,7 @@ title: Live Update Bing through IndexNow in GitHub Actions
 date: 2023-07-12
 description: "This article covers an integration with IndexNow through GitHub Actions using a shell script to update the Microsoft Bing search engine with updated URLs in this blog implementation upon each deployment of the site."
 keywords: ["gatsbyjs", "bing", "indexnow", "github actions", "seo"]
-openGraphImage: ./bing.png
+openGraphImage: ../../../src/images/open-graph/bing.png
 ---
 
 Search engines operate on huge datasets and the cost of crawling is
@@ -53,6 +53,34 @@ URLs in this blog implementation upon each deployment of the site.
 The evolving **GitHub repository** storing this blog and its implementation can be
 found [here](https://github.com/jpfulton/blog).
 
+<h2 style={{color: 'red'}}>--Update: July 14, 2023--</h2>
+
+After creating and then posting on the implementation used in this article, I
+ran a series of tests having noticed that the URLs I was submitting through
+the Microsoft Bing IndexNow API endpoint were not appearing within the Microsoft
+Webmaster Tools portal on the URL Submission screen. Additionally, I noted that
+my quota for submissions was not being decremented on the same screen despite
+the endpoint returning HTTP `200` status responses indicating success.
+
+I concluded that **the Microsoft Bing IndexNow endpoint is currently not working**
+as of the time of this writing. As soon as the support feature in the webmaster
+tools returns to a working state, I will raise a support issue with the Bing
+team. In the meantime, I recommend using vendor specific APIs to submit
+updated URLs for a site.
+
+Refer to the following posts for alternate implementations using vendor specific
+APIs to accomplish the same URL submission goals as desribed in this article
+_without_ using IndexNow:
+
+<Link to="/blog/2023-07-13-google-and-indexingapi/">
+  Live Update Google through the Indexing API in GitHub Actions
+</Link>
+<Link to="/blog/2023-07-14-bing-and-submissionapi/">
+  Live Update Bing through the Submission API in GitHub Actions
+</Link>
+
+<h2 style={{color: 'red'}}>--End Update--</h2>
+
 ## Table of Contents
 
 ## Getting Started with Bing and Bing Webmaster Tools
@@ -87,7 +115,7 @@ be added to the root of the generated site during a production build.
 
 ## Structure of an IndexNow Request
 
-The body of an IndexNow request is simple JSON object. It contains only four
+The body of an IndexNow request is a simple JSON object. It contains only four
 properties: the host, api key, hosted key file location and a list of URLs.
 In the case of Bing, it may be submitted using an HTTP `POST` to
 `https://www.bing.com/indexnow`. It is important to set the `Content-Type` header
