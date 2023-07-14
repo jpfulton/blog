@@ -44,6 +44,23 @@ found [here](https://github.com/jpfulton/blog).
 
 ## The easyindex-cli Tool
 
+Authored in [Go](https://go.dev/)
+by [Yusuke Komatsu](https://github.com/usk81), the `easyindex-cli` utility
+provides a command line interface for interacting with the Google Indexing API.
+The [easyindex-cli](https://github.com/usk81/easyindex-cli/)
+project is a command line wrapper around a
+[library](https://github.com/usk81/easyindex/) written by the same author.
+
+The utility accepts a CSV file composed of URLs to pass to the API. Additionally,
+it performs a
+[validation step](https://github.com/usk81/easyindex/blob/main/google/publish.go#L135)
+to ensure the URLs are indexable. The library crawls each supplied URL to ensure
+it returns an HTTP `200` response. Responses in the `300` range, which indicate a
+redirect, are omitted from submission.
+
+Both the command line utility and the supporting library are available on
+GitHub under the [MIT license](https://opensource.org/license/mit/).
+
 ## The GitHub Actions Workflow
 
 A few steps are necessary to modify the GitHub workflow and prepare
