@@ -137,5 +137,6 @@ Thumbs.db
 public/
 
 # GitHub scripts working directory and credentials
+.github/scripts/bing-api-key.txt
 .github/scripts/credentials.json
 .github/scripts/tmp/
