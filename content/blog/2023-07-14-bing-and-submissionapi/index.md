@@ -26,6 +26,10 @@ found [here](https://github.com/jpfulton/blog).
 
 ## Prerequisites for the Bing Submission API
 
+Prior to using the Bing Submission API, a number of steps need to be
+performed to enable access to the API and establish ownership for
+the site you are submitting URLs on behalf of.
+
 ### Establishing Ownership with the Bing Webmaster Tools
 
 [Bing Webmaster Tools](https://www.bing.com/webmasters/) is the portal
@@ -42,6 +46,12 @@ with [Google Search Console](https://search.google.com/search-console/). Other m
 for verifying site ownership are also available.
 
 ### Generating an API Key
+
+Within the [Bing Webmaster Tools](https://www.bing.com/webmasters/) portal,
+click on the settings icon in the upper right corner of the navigation header.
+Then select **API access** > **API Key** to generate or access an existing
+key for use with the Bing APIs. Store this value in a _secure_ place for use
+in later steps.
 
 ![Bing API Access Menu Screenshot](./bing-api-access-menu.png)
 
@@ -78,7 +88,18 @@ Host: ssl.bing.com
 
 ## The GitHub Actions Workflow
 
+A few steps are necessary to modify the GitHub workflow and prepare
+the repository for a workflow step that uses a shell script to call
+the Bing Submission API with URLs from the updated and recently released
+site.
+
 ### Save the API Key as a Repository Secret
+
+Navigate to your GitHub repository, and select
+**Settings** > **Secrets and Variables** > **Actions** > **New Repository Secret**.
+On the next screen create a new secret with the name `BING_API_KEY`
+and paste in the contents of your API key from the steps
+above which you stored in a _secure_ place.
 
 ![GitHub Secrets Screenshot](./github-secrets.png)
 
@@ -231,5 +252,74 @@ The complete current version of this workflow can be found at this
 [location](https://github.com/jpfulton/blog/blob/main/.github/workflows/cicd.yml).
 
 ## Proving it Works
+
+Trigger a GitHub Actions workflow run with a push into the default branch.
+In your repository, select the **Actions** tab, identify the workflow run
+that was triggered, click on the **Build and Deploy** job, scroll to and
+expand the output of the **Update Bing via Submission API** step and observe
+the output. Its output will be similar to a local execution of the
+`bing-url-submission-api.sh` script.
+
+![GitHub Actions Output Screenshot](./github-actions-output.png)
+
+The output of the command is listed below. We are looking for an HTTP `200`
+status code to be returned from the API to indicate sucess of the operation
+and a result body to be printed from curl that includes `d: null` per the
+[API documentation](https://learn.microsoft.com/en-us/dotnet/api/microsoft.bing.webmaster.api.interfaces.iwebmasterapi.submiturlbatch?view=bing-webmaster-dotnet#Microsoft_Bing_Webmaster_Api_Interfaces_IWebmasterApi_SubmitUrlBatch_System_String_System_Collections_Generic_List_System_String__).
+Both the lines showing these results are highlighted in the output listing below.
+In the event that something has gone wrong (e.g. an incorrect API key), the output
+body will include an error message and the status code will reflect an error state.
+
+```sh {25,40}{numberLines: true}
+Creating temporary working directory.
+Building POST body from repository structure.
+JSON POST body contents:
+***
+  "siteUrl": "https://www.jpatrickfulton.dev",
+  "urlList": [
+    "https://www.jpatrickfulton.dev/",
+    "https://www.jpatrickfulton.dev/blog/2023-06-23-samba-and-timemachine/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-01-build-gatsby-blog/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-02-publish-to-azure-swa/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-03-gatsby-vscode-support/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-05-swa-custom-404s/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-08-fix-csharp-macos-debugging/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-09-gatsby-og-images/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-12-bing-and-indexnow/",
+    "https://www.jpatrickfulton.dev/blog/2023-07-13-google-and-indexingapi/",
+    ]
+***
+
+No local API key file found...
+Using the BING_API_KEY environment variable...
+---
+Updating Bing through POST to Submission API...
+
+HTTP/2 200
+cache-control: private
+content-length: 10
+content-type: application/json; charset=utf-8
+x-aspnet-version: 4.0.30319
+x-powered-by: ASP.NET
+x-cache: CONFIG_NOCACHE
+accept-ch: Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version
+x-msedge-ref: Ref A: C718053753E740419333BAB03965822B Ref B: BN3EDGE0719 Ref C: 2023-07-14T19:31:38Z
+set-cookie: _EDGE_S=F=1&SID=0E9E7BC8F5BF680638B06886F4BC69DD; path=/; httponly; domain=bing.com
+set-cookie: _EDGE_V=1; path=/; httponly; expires=Wed, 07-Aug-2024 19:31:38 GMT; domain=bing.com
+set-cookie: MUID=30B8B972B6976EEB2215AA3CB7946F35; samesite=none; path=/; secure; expires=Wed, 07-Aug-2024 19:31:38 GMT; domain=bing.com
+set-cookie: MUIDB=30B8B972B6976EEB2215AA3CB7946F35; path=/; httponly; expires=Wed, 07-Aug-2024 19:31:38 GMT
+date: Fri, 14 Jul 2023 19:31:37 GMT
+
+***"d":null***
+---
+Done.
+```
+
+Return to the [Bing Webmaster Tools](https://www.bing.com/webmasters/) portal,
+following a local run of the script or a GitHub Actions workflow execution.
+Navigate to the **URL Submission** tab on the left hand navigation menu. After
+a few minutes, you should observe the URLs that you submitted within the screen
+and an adjustment to your remaining quota for the period noted at the bottom of
+the page.
 
 ![Bing Url Submissions Screenshot](bing-url-submissions.png)
