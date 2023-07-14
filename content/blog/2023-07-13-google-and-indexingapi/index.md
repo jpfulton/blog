@@ -46,7 +46,12 @@ found [here](https://github.com/jpfulton/blog).
 
 ## The GitHub Actions Workflow
 
-### Saving the JSON Key as a Repository Secret
+A few steps are necessary to modify the GitHub workflow and prepare
+the repository for a workflow step that uses `easyindex-cli` to call
+the Google Indexing API with URLs from the updated and recently released
+site.
+
+### Save the JSON Key as a Repository Secret
 
 Navigate to your GitHub repository, and select
 **Settings** > **Secrets and Variables** > **Actions** > **New Repository Secret**.
@@ -56,13 +61,15 @@ above which you stored in a _secure_ place.
 
 ![GitHub Secrets Screenshot](./github-secrets.png)
 
-### The easyindex.sh Shell Script
+### Add the easyindex.sh Shell Script
 
 The script below performs a series of steps on the runner:
 
 - Download the `easyindex-cli` binary to the runner via `curl`
 - Build an input CSV file containing site URLs
 - Execute the `easyindex-cli` to submit those URLs to the Google Indexing API
+
+In this implementation, it is stored in the `/.github/scripts/` folder.
 
 Without arguments passed to the script, the Linux native binary will be downloaded.
 The `easyindex-cli` tool is compiled for several platforms in each
@@ -202,7 +209,7 @@ echo "Done.";
 The complete current version of this script is available at this
 [location](https://github.com/jpfulton/blog/blob/main/.github/scripts/easyindex.sh).
 
-### Adding the Workflow Step
+### Add the Workflow Step
 
 In the continuous integration workflow for this site, I added a step
 to the primary job following the step that builds and deploys the
