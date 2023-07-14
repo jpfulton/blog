@@ -48,6 +48,14 @@ found [here](https://github.com/jpfulton/blog).
 
 ### Saving the JSON Key as a Repository Secret
 
+Navigate to your GitHub repository, and select
+**Settings** > **Secrets and Variables** > **Actions** > **New Repository Secret**.
+On the next screen create a new secret with the name `GOOGLE_CREDENTIALS_JSON`
+and paste in the contents of your service acccount JSON key from the steps
+above which you stored in a _secure_ place.
+
+![GitHub Secrets Screenshot](./github-secrets.png)
+
 ### The easyindex.sh Shell Script
 
 The script below performs a series of steps on the runner:
