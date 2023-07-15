@@ -18,7 +18,7 @@ function PostSummary({
 }) {
   return (
     <article key={slug} class="post-summary">
-      <h3
+      <h2
         style={{
           marginBottom: rhythm(1 / 4),
         }}
@@ -26,7 +26,7 @@ function PostSummary({
         <Link style={{ boxShadow: `none` }} to={`/blog${slug}`}>
           {title}
         </Link>
-      </h3>
+      </h2>
       <small>
         {date} - {timeToReadText} ({timeToReadWords} words)
       </small>
