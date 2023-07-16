@@ -1,12 +1,29 @@
 ---
 title: Taming Complex GitHub Actions Workflows with Reusable Workflows
 date: 2023-07-15
-description: ""
+description: "This article covers the refactoring of a complex workflow implemented in
+GitHub Actions from a single YAML file with many repeated similar blocks of code
+into a modular design using multiple reusable workflows and a top-level caller."
 keywords: ["github actions", "reusable workflows", "yaml", "devops"]
 openGraphImage: ../../../src/images/open-graph/github.png
 ---
 
+GitHub Actions workflows are implemented in YAML which is format absent of
+functions making it hard to utilize the DRY principle when creating
+complex workflow configurations. Even in small enterpise examples it is easy
+for a workflow to get out of hand with repeated similar blocks of code, a lack of
+modularity and lengthy workflow definition files. While YAML itself does not
+provide an easy solution to this problem, GitHub Actions includes a feature
+that allows complex workflows to be decomposed into reusable and parameterized
+modules: resuable workflows.
+
+This article covers the refactoring of a complex workflow implemented in
+GitHub Actions from a single YAML file with many repeated similar blocks of code
+into a modular design using multiple reusable workflows and a top-level caller.
+
 [syntax reference](https://learnxinyminutes.com/docs/yaml/)
+
+[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
 ![GitHub Actions Workflow Screenshot](./github-workflow.png)
 
