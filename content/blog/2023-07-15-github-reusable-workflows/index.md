@@ -34,8 +34,8 @@ becoming difficult to maintain. The scope of what the workflow needed to
 accomplish was not even particularly large for a real-world piece of enterprise
 software. It included:
 
-- 493 lines
-- 12 configuration variables
+- 493 lines in a single workflow file
+- 12 environment configuration variables
 - 4 repository secrets
 - 8 jobs
 - 47 total steps
@@ -62,13 +62,6 @@ when working on workflows. It offers a number of features that come in handy:
 - Integrated documentation
 - Validation and code completion
 - Parsing parameters, inputs, and outputs for referenced actions and reusable workflows
-
-## YAML Limitations
-
-[YAML](https://yaml.org) is a superset of [JSON](https://www.json.org/json-en.html)
-that uses indentation for scope.
-
-[syntax reference](https://learnxinyminutes.com/docs/yaml/)
 
 ## Workflow Configuration Patterns
 
@@ -172,9 +165,12 @@ jobs:
 
 ## Applying Reusable Workflows
 
-[GitHub documentation](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
+Reusable workflows in GitHub Actions allow the developer to create modular
+and parameterized units of work. A monolithic single workflow file can be
+subdivied into multiple reusable workflows each of which can be passed inputs
+to control their flow and configuration.
 
-### Example Reusable Workflow
+### Creating a Reusable Workflow
 
 Reusable workflows must be created in the `.github/workflows/` folder. Notably,
 the use of subdirectories under that folder is not supported. A reusable workflow
@@ -243,7 +239,7 @@ jobs:
 The complete version of this reusable workflow is available
 [here](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/api-cd-job.yml).
 
-### Example Caller Workflow
+### Creating a Caller Workflow
 
 In a caller workflow that invokes a separate reusable workflow, the caller
 defines a job and adds a `uses` key to it. Beneath the `uses` key, the caller
@@ -266,7 +262,7 @@ syntax: `uses: {owner}/{repo}/.github/workflows/{filename}@{ref}`. The
 The documentation encourages users of reusable workflows in separate
 repositories or from third parties to refer to the
 [security hardening document](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions)
-as the risks associated with compromising workflow are _**significant**_.
+as the risks associated with a compromised workflow are _**significant**_.
 
 In this example, you can see the pattern referenced in earlier sections of this
 article to utilize output variables from a previously executed job to configure
@@ -296,9 +292,22 @@ The complete version of this caller workflow is available
 
 ### A Complete View of the Refactoring Results
 
-`.github/workflows/`
+By spliting the original workflow file into a caller and then a series of
+reusable workflows, the main file was made significantly more maintainable,
+readable and modular. The environment variables were converted to job output
+variables using the pattern discussed above and configuration for the workflow
+remains in-file as a result. The output of the final refactoring can be found
+in this
+[folder](https://github.com/jpfulton/ng-resume/tree/main/.github/workflows).
 
-[folder](https://github.com/jpfulton/ng-resume/tree/main/.github/workflows)
+- 1 top-level caller workflow (174 lines)
+- 5 reusable workflows leveraged by the caller
+- 12 configuration variables converted to job output variables
+- 4 repository secrets
+- 9 jobs (including the new variable output job)
+- 48 total steps
+
+![Folder Structure Screenshot](./directory-structure.png)
 
 | File                                                                                                               | Description                                                                   |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
