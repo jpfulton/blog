@@ -174,7 +174,45 @@ jobs:
 
 [GitHub documentation](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
 
-### Example Resuable Workflow
+### Example Reusable Workflow
+
+Reusable workflows must be created in the `.github/workflows/` folder. Notably,
+the use of subdirectories under that folder is not supported. A reusable workflow
+is structured in the same fashion as a traditional workflow including an `on` block
+and a `jobs` block including at least one job.
+
+What differentiates a resuable workflow is the trigger included in the `on` block.
+To create a resuable workflow, the `on` block must include a `workflow_call` trigger.
+This section, optionally composed of `inputs` and `secrets` that can be passed
+to the worflow by its callers, marks the workflow in GitHub as callable be other
+workflows.
+
+Input variables are declared in the `inputs` block. Each input variable may be marked
+as required and declares an associated type. Only `boolean`, `number` and `string`
+types may be used. **Sequence types are not currently supported.** At the start of
+workflow execution, the parser examines the required inputs and should one be
+missed by a caller or of an incorrect type, the workflow will generate errors before
+even hitting the runner. Input variables may be referenced later in the resuable
+workflow file using the following syntax and the inputs context:
+`${{ inputs.dotnet-version }}`.
+
+Secrets may also either be passed or **inherited**.
+
+> If the secrets are inherited by using `secrets: inherit` in the calling
+> workflow, you can reference them even if they are not explicitly defined
+> in the on key.
+
+The advantage to explicit
+passing of secrets, as shown in this example, is that caller may elect to choose
+which secret value to pass to the reusable workflow. In the complete example
+used here, there are two Azure Servive Principal secrets within the caller:
+one for the production environment and one for the preview environment. The caller
+then selects the correct secret to explicitly pass to the reusable workflow based
+thereby abstracting logic about which secret to use into the caller workflow.
+
+In either case, once secrets have been passed to the underlying resuable workflow,
+they may be accessed for use with the following syntax:
+`${{ secrets.azure-sp-credentials }}`.
 
 ```yaml {3,4,9,13}{numberLines: true}
 name: Reusable API CD Workflow
@@ -202,10 +240,37 @@ jobs:
       ...
 ```
 
-A complete version of this reusable workflow is available
+The complete version of this reusable workflow is available
 [here](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/api-cd-job.yml).
 
 ### Example Caller Workflow
+
+In a caller workflow that invokes a separate reusable workflow, the caller
+defines a job and adds a `uses` key to it. Beneath the `uses` key, the caller
+passes input variables in a `with` block followed by any necessary secrets
+in a `secrets` block.
+
+In this case, the resuable workflow exists in the same repository as the caller
+and the desired case is to use a version of that reusable workflow that exists
+on the same branch as the caller. This is accomplished with the following
+syntax: `uses: ./.github/workflows/api-cd-job.yml`.
+
+However, reusable workflows can be accessed from other sources from a `uses`
+clause as well. Per the [documentation](https://docs.github.com/en/actions/using-workflows/reusing-workflows#calling-a-reusable-workflow),
+reusable workflows from other repositories may be used with the following
+syntax: `uses: {owner}/{repo}/.github/workflows/{filename}@{ref}`. The
+`{ref}` may be a commit SHA, a release tag, or a branch name.
+
+> Using the commit SHA is the safest for stability and security.
+
+The documentation encourages users of reusable workflows in separate
+repositories or from third parties to refer to the
+[security hardening document](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions)
+as the risks associated with compromising workflow are _**significant**_.
+
+In this example, you can see the pattern referenced in earlier sections of this
+article to utilize output variables from a previously executed job to configure
+the inputs to the reusable workflow.
 
 ```yaml {3,8,9,15}{numberLines: true}
 preview_api_cd_job:
@@ -226,7 +291,7 @@ preview_api_cd_job:
     azure-sp-credentials: ${{ secrets.PREVIEW_AZURE_SP_CREDENTIALS }}
 ```
 
-A complete version of this caller workflow is available
+The complete version of this caller workflow is available
 [here](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/ci-and-cd-workflow.yml).
 
 ### A Complete View of the Refactoring Results
