@@ -26,7 +26,7 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
 
   return (
     <nav>
-      <h6>Related Posts</h6>
+      <div class="related-posts-title">Related Posts</div>
       <div class="related-posts">
         <button class="prev-button" onClick={scrollLeft}>
           &lt;

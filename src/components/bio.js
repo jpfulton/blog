@@ -52,6 +52,7 @@ const Bio = () => {
             href="https://github.com/jpfulton"
             target="_blank"
             rel="noreferrer noopener"
+            aria-label="GitHub Profile"
           >
             <svg
               height="32"
