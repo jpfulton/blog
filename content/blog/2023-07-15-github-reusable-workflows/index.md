@@ -42,6 +42,21 @@ software. It included:
 
 ![GitHub Actions Workflow Screenshot](./github-workflow.png)
 
+The objective of this workflow is to deploy an
+[Azure Static Web App](https://azure.microsoft.com/en-us/products/app-service/static)
+containing an
+[Angular](https://angular.io/) application and linked
+[Azure Functions App](https://azure.microsoft.com/en-us/products/functions/)
+implementing its backend API.
+It works with two separate environments: production and preview.
+When a `push` is made to the default branch, the production environment should be
+built and deployed. When a pull request into the default branch is created or updated,
+the preview environment should be built and deployed. Several other jobs including
+unit testing for the frontend application,
+[CodeQL](https://codeql.github.com/)
+analysis for the code base and
+a series of end-to-end deployemnt sanity tests are also included in the workflow.
+
 For reference, the original workflow file
 can be found in its state prior to refactoring at this
 [location](https://github.com/jpfulton/ng-resume/blob/f914a2063b1146d44cf6f3654d327ae9ca3c186e/.github/workflows/ci-and-cd.yml).
@@ -51,7 +66,7 @@ in this
 
 ## Table of Contents
 
-## The GitHub Actions VS Code Extension
+## Use the GitHub Actions VS Code Extension
 
 The
 [GitHub Actions Extension](https://marketplace.visualstudio.com/items?itemName=github.vscode-github-actions)
@@ -71,7 +86,7 @@ at the top of the workflow as environment variables. These environment
 variables are then referenced throughout the rest of the workflow as needed.
 
 However, when decomposing a large workflow into small units using the
-reusable workflow feature, another pattern but similar pattern is needed.
+reusable workflow feature, another similar pattern is needed.
 Reusable workflows have a series of
 [limitations](https://docs.github.com/en/actions/using-workflows/reusing-workflows#limitations).
 Among those limitations is the note that environment variables are not
@@ -121,7 +136,7 @@ environmental configuration variables **does not work** in a workflow that is
 decomposed into multiple reusable workflows. However, environment variables may still
 prove useful _within_ a workflow file or _within_ a self contained job or step.
 
-An alternate pattern is required in a reusable workflow pattern. The `env` context
+**An alternate pattern is required in a reusable workflow pattern.** The `env` context
 is not available. However, several other
 [contexts](https://docs.github.com/en/actions/learn-github-actions/contexts#needs-context)
 are available including the `jobs` and `needs` contexts.
@@ -131,7 +146,7 @@ are available including the `jobs` and `needs` contexts.
 
 The solution is to define a job in the calling workflow that declares a series
 of `outputs` that contain the configuration data. Subsequent jobs that require
-the variables may declare a dependency on that job using a `needs` clause.
+these variables may declare a dependency on that job using a `needs` clause.
 For example, a subsequent job in the workflow may declare `needs: [export_vars]`
 and then access the values of the configuration variables using
 the following syntax: `${{ needs.export_vars.outputs.app-working-dir }}`.
@@ -166,9 +181,10 @@ jobs:
 ## Applying Reusable Workflows
 
 Reusable workflows in GitHub Actions allow the developer to create modular
-and parameterized units of work. A monolithic single workflow file can be
-subdivied into multiple reusable workflows each of which can be passed inputs
-to control their flow and configuration.
+and parameterized units of work to decompose a complex workflow. This overcomes
+the absence of functions in the YAML specification. A monolithic single workflow
+file can be subdivied into multiple reusable workflows each of which can be
+passed inputs to control their flow and configuration.
 
 ### Creating a Reusable Workflow
 
@@ -180,15 +196,15 @@ and a `jobs` block including at least one job.
 What differentiates a resuable workflow is the trigger included in the `on` block.
 To create a resuable workflow, the `on` block must include a `workflow_call` trigger.
 This section, optionally composed of `inputs` and `secrets` that can be passed
-to the worflow by its callers, marks the workflow in GitHub as callable be other
+to the worflow by its callers, marks the workflow in GitHub as callable by other
 workflows.
 
 Input variables are declared in the `inputs` block. Each input variable may be marked
 as required and declares an associated type. Only `boolean`, `number` and `string`
 types may be used. **Sequence types are not currently supported.** At the start of
 workflow execution, the parser examines the required inputs and should one be
-missed by a caller or of an incorrect type, the workflow will generate errors before
-even hitting the runner. Input variables may be referenced later in the resuable
+missed by a caller or is of an incorrect type, the workflow will generate errors
+before hitting the runner. Input variables may be referenced later in the resuable
 workflow file using the following syntax and the inputs context:
 `${{ inputs.dotnet-version }}`.
 
@@ -201,10 +217,10 @@ Secrets may also either be passed or **inherited**.
 The advantage to explicit
 passing of secrets, as shown in this example, is that caller may elect to choose
 which secret value to pass to the reusable workflow. In the complete example
-used here, there are two Azure Servive Principal secrets within the caller:
+used here, there are two Azure Service Principal secrets within the caller:
 one for the production environment and one for the preview environment. The caller
-then selects the correct secret to explicitly pass to the reusable workflow based
-thereby abstracting logic about which secret to use into the caller workflow.
+then selects the correct secret to explicitly pass to the reusable workflow
+thereby abstracting logic about which secret to use into the calling workflow.
 
 In either case, once secrets have been passed to the underlying resuable workflow,
 they may be accessed for use with the following syntax:
@@ -246,20 +262,20 @@ defines a job and adds a `uses` key to it. Beneath the `uses` key, the caller
 passes input variables in a `with` block followed by any necessary secrets
 in a `secrets` block.
 
-In this case, the resuable workflow exists in the same repository as the caller
-and the desired case is to use a version of that reusable workflow that exists
-on the same branch as the caller. This is accomplished with the following
+In this example, the resuable workflow exists in the same repository as the caller
+and the desired outcome is to use a version of that reusable workflow that exists
+on the same branch and commit as the caller. This is accomplished with the following
 syntax: `uses: ./.github/workflows/api-cd-job.yml`.
 
-However, reusable workflows can be accessed from other sources from a `uses`
-clause as well. Per the [documentation](https://docs.github.com/en/actions/using-workflows/reusing-workflows#calling-a-reusable-workflow),
+However, reusable workflows can also be accessed from other sources from a `uses`
+clause. Per the [documentation](https://docs.github.com/en/actions/using-workflows/reusing-workflows#calling-a-reusable-workflow),
 reusable workflows from other repositories may be used with the following
 syntax: `uses: {owner}/{repo}/.github/workflows/{filename}@{ref}`. The
 `{ref}` may be a commit SHA, a release tag, or a branch name.
 
 > Using the commit SHA is the safest for stability and security.
 
-The documentation encourages users of reusable workflows in separate
+The documentation encourages consumers of reusable workflows in separate
 repositories or from third parties to refer to the
 [security hardening document](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions)
 as the risks associated with a compromised workflow are _**significant**_.
@@ -299,6 +315,7 @@ variables using the pattern discussed above and configuration for the workflow
 remains in-file as a result. The output of the final refactoring can be found
 in this
 [folder](https://github.com/jpfulton/ng-resume/tree/main/.github/workflows).
+Following the refactoring, it now includes:
 
 - 1 top-level caller workflow (174 lines)
 - 5 reusable workflows leveraged by the caller
