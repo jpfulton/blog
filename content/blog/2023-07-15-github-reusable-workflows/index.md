@@ -72,14 +72,35 @@ that uses indentation for scope.
 
 ## Workflow Configuration Patterns
 
+Even simple workflow files require configuration. Common practice is
+to include a series of variables containing these configuration values
+at the top of the workflow as environment variables. These environment
+variables are then referenced throughout the rest of the workflow as needed.
+
+However, when decomposing a large workflow into small units using the
+reusable workflow feature, another pattern but similar pattern is needed.
+Reusable workflows have a series of
+[limitations](https://docs.github.com/en/actions/using-workflows/reusing-workflows#limitations).
+Among those limitations is the note that environment variables are not
+passed from the calling workflow to the reusable workflow. Additionally,
+the `env`
+[context](https://docs.github.com/en/actions/learn-github-actions/contexts)
+is not avaiable in the `with` block of the caller.
+
+> Any environment variables set in an env context defined at the workflow level
+> in the caller workflow are not propagated to the called workflow.
+
+As a result, another pattern is required: the use of ouput variables from
+a previously executed job.
+
 ### Configuration through Environment Variables
 
 ```yaml
 env:
   APP_WORKING_DIR: "ng-resume-app"
-  APP_LOCATION: "/ng-resume-app/dist/ng-resume/browser" # location of the client application build artifacts
+  APP_LOCATION: "/ng-resume-app/dist/ng-resume/browser"
   API_LOCATION: ""
-  OUTPUT_LOCATION: "" # an empty value here causes the APP_LOCATION location to be pushed to Azure
+  OUTPUT_LOCATION: ""
   AZURE_FUNCTIONAPP_NAME: personal-site-api
   PREVIEW_AZURE_FUNCTIONAPP_NAME: personal-site-api-preview
   AZURE_FUNCTIONAPP_PACKAGE_PATH: "ng-resume-api"
@@ -101,9 +122,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       app-working-dir: "ng-resume-app"
-      app-location: "/ng-resume-app/dist/ng-resume/browser" # location of the client application build artifacts
+      app-location: "/ng-resume-app/dist/ng-resume/browser"
       api-location: ""
-      output-location: "" # an empty value here causes the app-location location to be pushed to Azure
+      output-location: ""
       azure-functionapp-name: "personal-site-api"
       preview-azure-functionapp-name: "personal-site-api-preview"
       azure-functionapp-package-path: "ng-resume-api"
@@ -179,7 +200,7 @@ preview_api_cd_job:
 A complete version of this caller workflow is available
 [here](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/ci-and-cd-workflow.yml).
 
-### A Complete View of the Refactor
+### A Complete View of the Refactoring Results
 
 `.github/workflows/`
 
