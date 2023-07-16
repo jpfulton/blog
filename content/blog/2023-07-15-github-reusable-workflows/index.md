@@ -3,34 +3,50 @@ title: Taming Complex GitHub Actions Workflows with Reusable Workflows
 date: 2023-07-15
 description: "This article covers the refactoring of a complex workflow implemented in
 GitHub Actions from a single YAML file with many repeated similar blocks of code
-into a modular design using multiple reusable workflows and a top-level caller."
+into a modular design using multiple reusable workflows and a single top-level caller."
 keywords: ["github actions", "reusable workflows", "yaml", "devops"]
 openGraphImage: ../../../src/images/open-graph/github.png
 ---
 
-GitHub Actions workflows are implemented in YAML which is format absent of
-functions making it hard to utilize the DRY principle when creating
-complex workflow configurations. Even in small enterpise examples it is easy
-for a workflow to get out of hand with repeated similar blocks of code, a lack of
-modularity and lengthy workflow definition files. While YAML itself does not
+[GitHub Actions](https://github.com/features/actions)
+workflows are implemented in
+[YAML](https://yaml.org)
+which is format absent of functions making it hard to utilize the
+[DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+when creating complex workflow configurations. Even in small enterpise examples,
+it is easy for a workflow definition to get out of hand with repeating similar
+blocks of code, a lack of modularity and lengthy workflow definition files.
+While YAML itself does not
 provide an easy solution to this problem, GitHub Actions includes a feature
 that allows complex workflows to be decomposed into reusable and parameterized
-modules: resuable workflows.
+modules:
+[resuable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
 
 This article covers the refactoring of a complex workflow implemented in
 GitHub Actions from a single YAML file with many repeated similar blocks of code
-into a modular design using multiple reusable workflows and a top-level caller.
+into a modular design using multiple reusable workflows and a single
+top-level caller.
 
-[syntax reference](https://learnxinyminutes.com/docs/yaml/)
+The
+[original workflow definition](https://github.com/jpfulton/ng-resume/blob/f914a2063b1146d44cf6f3654d327ae9ca3c186e/.github/workflows/ci-and-cd.yml)
+grew organically over time, developed a number of problems and was quickly
+becoming difficult to maintain. The scope of what the workflow needed to
+accomplish was not even particularly large for a real-world piece of enterprise
+software. It included:
 
-[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+- 493 lines
+- 12 configuration variables
+- 4 repository secrets
+- 8 jobs
+- 47 total steps
 
 ![GitHub Actions Workflow Screenshot](./github-workflow.png)
 
-For reference, the
-[original workflow file](https://github.com/jpfulton/ng-resume/blob/f914a2063b1146d44cf6f3654d327ae9ca3c186e/.github/workflows/ci-and-cd.yml)
-can be found in its state prior to refactoring at the previous link. The resulting
-series of files that were the output of the refactoring can be found in this
+For reference, the original workflow file
+can be found in its state prior to refactoring at this
+[location](https://github.com/jpfulton/ng-resume/blob/f914a2063b1146d44cf6f3654d327ae9ca3c186e/.github/workflows/ci-and-cd.yml).
+The resulting series of files that were the output of the refactoring can be found
+in this
 [commit](https://github.com/jpfulton/ng-resume/commit/897c77ecb25fe313b35d4f5a3d8b9da60c276d9b).
 
 ## Table of Contents
@@ -51,6 +67,8 @@ when working on workflows. It offers a number of features that come in handy:
 
 [YAML](https://yaml.org) is a superset of [JSON](https://www.json.org/json-en.html)
 that uses indentation for scope.
+
+[syntax reference](https://learnxinyminutes.com/docs/yaml/)
 
 ## Workflow Configuration Patterns
 
