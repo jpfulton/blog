@@ -29,3 +29,53 @@ when working on workflows. It offers a number of features that come in handy:
 - Parsing parameters, inputs, and outputs for referenced actions and reusable workflows
 
 ## YAML
+
+## Workflow Configuration Patterns
+
+### Configuration through Environment Variables
+
+```yaml
+env:
+  APP_WORKING_DIR: "ng-resume-app"
+  APP_LOCATION: "/ng-resume-app/dist/ng-resume/browser" # location of the client application build artifacts
+  API_LOCATION: ""
+  OUTPUT_LOCATION: "" # an empty value here causes the APP_LOCATION location to be pushed to Azure
+  AZURE_FUNCTIONAPP_NAME: personal-site-api
+  PREVIEW_AZURE_FUNCTIONAPP_NAME: personal-site-api-preview
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: "ng-resume-api"
+  DOTNET_VERSION: "7.0.x"
+  RESOURCE_GROUP: personal-site
+  SLOT_NAME: staging
+  BASE_URL: "https://www.jpatrickfulton.com"
+  PREVIEW_BASE_URL: "https://preview.jpatrickfulton.com"
+```
+
+`${{ env.APP_WORKING_DIR }}`
+
+### Configuration through Job Output Variables
+
+```yaml
+jobs:
+  export_vars:
+    name: Export Variables to Output
+    runs-on: ubuntu-latest
+    outputs:
+      app-working-dir: "ng-resume-app"
+      app-location: "/ng-resume-app/dist/ng-resume/browser" # location of the client application build artifacts
+      api-location: ""
+      output-location: "" # an empty value here causes the app-location location to be pushed to Azure
+      azure-functionapp-name: "personal-site-api"
+      preview-azure-functionapp-name: "personal-site-api-preview"
+      azure-functionapp-package-path: "ng-resume-api"
+      dotnet-version: "7.0.x"
+      resource-group: "personal-site"
+      slot-name: "staging"
+      base-url: "https://www.jpatrickfulton.com"
+      preview-base-url: "https://preview.jpatrickfulton.com"
+    steps:
+      - run: echo "Exporting variables to outputs."
+```
+
+`needs: [export_vars]`
+
+`${{ needs.export_vars.outputs.app-working-dir }}`
