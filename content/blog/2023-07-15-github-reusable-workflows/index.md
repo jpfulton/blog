@@ -95,25 +95,58 @@ a previously executed job.
 
 ### Configuration through Environment Variables
 
+Environment variables may be set at the workflow, job and step levels
+using the `env` context. In a single file workflow pattern, it is common
+to set environment variables used throughout the workflow for configuration
+at the top of the workflow file. These variables are then accessed when needed
+using the `${{ env.APP_WORKING_DIR }}` syntax.
+
+The
+[original workflow definition](https://github.com/jpfulton/ng-resume/blob/f914a2063b1146d44cf6f3654d327ae9ca3c186e/.github/workflows/ci-and-cd.yml)
+used in this project followed this pattern prior to the refactoring.
+
 ```yaml
 env:
   APP_WORKING_DIR: "ng-resume-app"
   APP_LOCATION: "/ng-resume-app/dist/ng-resume/browser"
   API_LOCATION: ""
   OUTPUT_LOCATION: ""
-  AZURE_FUNCTIONAPP_NAME: personal-site-api
-  PREVIEW_AZURE_FUNCTIONAPP_NAME: personal-site-api-preview
+  AZURE_FUNCTIONAPP_NAME: "personal-site-api"
+  PREVIEW_AZURE_FUNCTIONAPP_NAME: "personal-site-api-preview"
   AZURE_FUNCTIONAPP_PACKAGE_PATH: "ng-resume-api"
   DOTNET_VERSION: "7.0.x"
-  RESOURCE_GROUP: personal-site
-  SLOT_NAME: staging
+  RESOURCE_GROUP: "personal-site"
+  SLOT_NAME: "staging"
   BASE_URL: "https://www.jpatrickfulton.com"
   PREVIEW_BASE_URL: "https://preview.jpatrickfulton.com"
 ```
 
-`${{ env.APP_WORKING_DIR }}`
-
 ### Configuration through Job Output Variables
+
+Due to the limitations discussed above, the standard pattern of workflow-level
+environmental configuration variables **does not work** in a workflow that is
+decomposed into multiple reusable workflows. However, environment variables may still
+prove useful _within_ a workflow file or _within_ a self contained job or step.
+
+An alternate pattern is required in a reusable workflow pattern. The `env` context
+is not available. However, several other
+[contexts](https://docs.github.com/en/actions/learn-github-actions/contexts#needs-context)
+are available including the `jobs` and `needs` contexts.
+
+> The `needs` context contains outputs from all jobs that are defined as
+> a direct dependency of the current job.
+
+The solution is to define a job in the calling workflow that declares a series
+of `outputs` that contain the configuration data. Subsequent jobs that require
+the variables may declare a dependency on that job using a `needs` clause.
+For example, a subsequent job in the workflow may declare `needs: [export_vars]`
+and then access the values of the configuration variables using
+the following syntax: `${{ needs.export_vars.outputs.app-working-dir }}`.
+
+The
+[updated calling workflow](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/ci-and-cd-workflow.yml)
+uses this pattern to pass configuration data to jobs and steps in the
+reusable workflows that were split from the original workflow.
 
 ```yaml
 jobs:
@@ -136,10 +169,6 @@ jobs:
     steps:
       - run: echo "Exporting variables to outputs."
 ```
-
-`needs: [export_vars]`
-
-`${{ needs.export_vars.outputs.app-working-dir }}`
 
 ## Applying Reusable Workflows
 
