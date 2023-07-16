@@ -6,6 +6,8 @@ keywords: ["github actions", "reusable workflows", "yaml", "devops"]
 openGraphImage: ../../../src/images/open-graph/github.png
 ---
 
+[syntax reference](https://learnxinyminutes.com/docs/yaml/)
+
 ![GitHub Actions Workflow Screenshot](./github-workflow.png)
 
 For reference, the
@@ -28,7 +30,10 @@ when working on workflows. It offers a number of features that come in handy:
 - Validation and code completion
 - Parsing parameters, inputs, and outputs for referenced actions and reusable workflows
 
-## YAML
+## YAML Limitations
+
+[YAML](https://yaml.org) is a superset of [JSON](https://www.json.org/json-en.html)
+that uses indentation for scope.
 
 ## Workflow Configuration Patterns
 
@@ -79,3 +84,77 @@ jobs:
 `needs: [export_vars]`
 
 `${{ needs.export_vars.outputs.app-working-dir }}`
+
+## Applying Reusable Workflows
+
+[GitHub documentation](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
+
+### Example Resuable Workflow
+
+```yaml {3,4,9,13}{numberLines: true}
+name: Reusable API CD Workflow
+on:
+  workflow_call:
+    inputs:
+      dotnet-version:
+        required: true
+        type: string
+      ...
+    secrets:
+      azure-sp-credentials:
+        required: true
+
+jobs:
+  api_cd_job:
+    name: API CD Job
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: windows-latest
+    steps:
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@v3
+      ...
+```
+
+A complete version of this reusable workflow is available
+[here](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/api-cd-job.yml).
+
+### Example Caller Workflow
+
+```yaml {3,8,9,15}{numberLines: true}
+preview_api_cd_job:
+  name: (Preview)
+  needs: [export_vars, analyze, frontend_ci_job]
+  if: (github.event_name == 'pull_request' && github.event.action != 'closed')
+  permissions:
+    contents: read
+    pull-requests: write
+  uses: ./.github/workflows/api-cd-job.yml
+  with:
+    dotnet-version: ${{ needs.export_vars.outputs.dotnet-version }}
+    function-app-name: ${{ needs.export_vars.outputs.preview-azure-functionapp-name }}
+    function-app-package-path: ${{ needs.export_vars.outputs.azure-functionapp-package-path }}
+    resource-group: ${{ needs.export_vars.outputs.resource-group }}
+    slot-name: ${{ needs.export_vars.outputs.slot-name }}
+  secrets:
+    azure-sp-credentials: ${{ secrets.PREVIEW_AZURE_SP_CREDENTIALS }}
+```
+
+A complete version of this caller workflow is available
+[here](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/ci-and-cd-workflow.yml).
+
+### A Complete View of the Refactor
+
+`.github/workflows/`
+
+[folder](https://github.com/jpfulton/ng-resume/tree/main/.github/workflows)
+
+| File                                                                                                               | Description                                                                   |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| [analyze-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/analyze-job.yml)               | A resuable workflow containing a CodeQL analysis job.                         |
+| [api-cd-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/api-cd-job.yml)                 | A resuable workflow containing a CD job for function APIs.                    |
+| [ci-and-cd-workflow.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/ci-and-cd-workflow.yml) | The top-level caller workflow for the complete CI/CD process for the project. |
+| [e2e-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/e2e-job.yml)                       | A reusable wokflow containing an E2E testing job.                             |
+| [frontend-cd-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/frontend-cd-job.yml)       | A reusable workflow containing a CD job for the frontend application.         |
+| [frontend-ci-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/frontend-ci-job.yml)       | A resuable workflow containing a CI job for the frontend application.         |
