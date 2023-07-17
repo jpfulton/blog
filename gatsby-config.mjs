@@ -41,7 +41,33 @@ const config = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            nodes {
+              path
+              pageContext
+            }
+          }
+        }
+        `,
+        serialize: ({ path, pageContext }) => {
+          return {
+            url: path,
+            lastmod: pageContext?.lastMod,
+          };
+        },
+      },
+    },
+    `gatsby-plugin-git-lastmod`,
     `gatsby-plugin-root-import`,
     {
       resolve: "gatsby-plugin-local-search",
