@@ -11,9 +11,9 @@ openGraphImage: ../../../src/images/open-graph/github.png
 [GitHub Actions](https://github.com/features/actions)
 workflows are implemented in
 [YAML](https://yaml.org)
-which is format absent of functions making it hard to utilize the
+which is a format absent of functions making it hard to utilize the
 [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
-when creating complex workflow configurations. Even in small enterpise examples,
+when creating complex workflow configurations. Even in small enterprise examples,
 it is easy for a workflow definition to get out of hand with repeating similar
 blocks of code, a lack of modularity and lengthy workflow definition files.
 While YAML itself does not
@@ -55,7 +55,7 @@ the preview environment should be built and deployed. Several other jobs includi
 unit testing for the frontend application,
 [CodeQL](https://codeql.github.com/)
 analysis for the code base and
-a series of end-to-end deployemnt sanity tests are also included in the workflow.
+a series of end-to-end deployment sanity tests are also included in the workflow.
 
 For reference, the original workflow file
 can be found in its state prior to refactoring at this
