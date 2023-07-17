@@ -6,6 +6,9 @@ keywords: ["gatsbyjs", "blog", "seo", "sitemap", "git"]
 openGraphImage: ../../../src/images/open-graph/gatsby.png
 ---
 
+The evolving **GitHub repository** storing this blog and its implementation can be
+found [here](https://github.com/jpfulton/blog).
+
 ## Table of Contents
 
 ## The Desired Sitemap Output
@@ -32,6 +35,9 @@ openGraphImage: ../../../src/images/open-graph/gatsby.png
 ```
 
 ## The Plugins
+
+- [gatsby-plugin-sitemap](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sitemap)
+- [gatsby-plugin-git-lastmod](https://github.com/vondenstein/gatsby-plugin-git-lastmod/tree/main)
 
 ## Configuring the Plugins
 
