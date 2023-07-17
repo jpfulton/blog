@@ -128,4 +128,8 @@ Sitemap: https://www.jpatrickfulton.dev/sitemap-index.xml
 
 ### Submitting to Google
 
+![Google Search Console Screenshot](./google-sitemap-submission.png)
+
 ### Submitting to Bing
+
+![Bing Webmaster Tools Screenshot](./bing-sitemap-submission.png)
