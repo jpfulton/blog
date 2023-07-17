@@ -20,7 +20,7 @@ While YAML itself does not
 provide an easy solution to this problem, GitHub Actions includes a feature
 that allows complex workflows to be decomposed into reusable and parameterized
 modules:
-[resuable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
+[reusable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
 
 This article covers the refactoring of a complex workflow implemented in
 GitHub Actions from a single YAML file with many repeated similar blocks of code
@@ -93,7 +93,7 @@ Among those limitations is the note that environment variables are not
 passed from the calling workflow to the reusable workflow. Additionally,
 the `env`
 [context](https://docs.github.com/en/actions/learn-github-actions/contexts)
-is not avaiable in the `with` block of the caller.
+is not available in the `with` block of the caller.
 
 > Any environment variables set in an env context defined at the workflow level
 > in the caller workflow are not propagated to the called workflow.
@@ -193,8 +193,8 @@ the use of subdirectories under that folder is not supported. A reusable workflo
 is structured in the same fashion as a traditional workflow including an `on` block
 and a `jobs` block including at least one job.
 
-What differentiates a resuable workflow is the trigger included in the `on` block.
-To create a resuable workflow, the `on` block must include a `workflow_call` trigger.
+What differentiates a reusable workflow is the trigger included in the `on` block.
+To create a reusable workflow, the `on` block must include a `workflow_call` trigger.
 This section, optionally composed of `inputs` and `secrets` that can be passed
 to the workflow by its callers, marks the workflow in GitHub as callable by other
 workflows.
@@ -204,7 +204,7 @@ as required and declares an associated type. Only `boolean`, `number` and `strin
 types may be used. **Sequence types are not currently supported.** At the start of
 workflow execution, the parser examines the required inputs and should one be
 missed by a caller or of an incorrect type, the workflow will generate errors
-before hitting the runner. Input variables may be referenced later in the resuable
+before hitting the runner. Input variables may be referenced later in the reusable
 workflow file using the following syntax and the inputs context:
 `${{ inputs.dotnet-version }}`.
 
@@ -222,7 +222,7 @@ one for the production environment and one for the preview environment. The call
 then selects the correct secret to explicitly pass to the reusable workflow
 thereby abstracting logic about which secret to use into the calling workflow.
 
-In either case, once secrets have been passed to the underlying resuable workflow,
+In either case, once secrets have been passed to the underlying reusable workflow,
 they may be accessed for use with the following syntax:
 `${{ secrets.azure-sp-credentials }}`.
 
@@ -262,7 +262,7 @@ defines a job and adds a `uses` key to it. Beneath the `uses` key, the caller
 passes input variables in a `with` block followed by any necessary secrets
 in a `secrets` block.
 
-In this example, the resuable workflow exists in the same repository as the caller
+In this example, the reusable workflow exists in the same repository as the caller
 and the desired outcome is to use a version of that reusable workflow that exists
 on the same branch and commit as the caller. This is accomplished with the following
 syntax: `uses: ./.github/workflows/api-cd-job.yml`.
@@ -308,7 +308,7 @@ The complete version of this caller workflow is available
 
 ### A Complete View of the Refactoring Results
 
-By spliting the original workflow file into a caller and then a series of
+By splitting the original workflow file into a caller and then a series of
 reusable workflows, the main file was made significantly more maintainable,
 readable and modular. The environment variables were converted to job output
 variables using the pattern discussed above and configuration for the workflow
@@ -328,9 +328,9 @@ Following the refactoring, it now includes:
 
 | File                                                                                                               | Description                                                                   |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [analyze-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/analyze-job.yml)               | A resuable workflow containing a CodeQL analysis job.                         |
-| [api-cd-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/api-cd-job.yml)                 | A resuable workflow containing a CD job for function APIs.                    |
+| [analyze-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/analyze-job.yml)               | A reusable workflow containing a CodeQL analysis job.                         |
+| [api-cd-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/api-cd-job.yml)                 | A reusable workflow containing a CD job for function APIs.                    |
 | [ci-and-cd-workflow.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/ci-and-cd-workflow.yml) | The top-level caller workflow for the complete CI/CD process for the project. |
-| [e2e-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/e2e-job.yml)                       | A reusable wokflow containing an E2E testing job.                             |
+| [e2e-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/e2e-job.yml)                       | A reusable workflow containing an E2E testing job.                            |
 | [frontend-cd-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/frontend-cd-job.yml)       | A reusable workflow containing a CD job for the frontend application.         |
-| [frontend-ci-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/frontend-ci-job.yml)       | A resuable workflow containing a CI job for the frontend application.         |
+| [frontend-ci-job.yml](https://github.com/jpfulton/ng-resume/blob/main/.github/workflows/frontend-ci-job.yml)       | A reusable workflow containing a CI job for the frontend application.         |

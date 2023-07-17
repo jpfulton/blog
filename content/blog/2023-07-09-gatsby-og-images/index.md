@@ -146,7 +146,7 @@ API and eliminate a warning on the topic when running in `gatsby develop` mode.
 ## Add a Default Open Graph Image
 
 My objective was to ensure that _all pages_ in the site have an open graph image
-associated with them which may be overriden at the page level. To accomplish this,
+associated with them which may be overridden at the page level. To accomplish this,
 the first step was to modify the `seo.js` component.
 
 ### Modify the SEO.js Component's GraphQL Static Query
@@ -160,7 +160,7 @@ plugins.
 
 The new node is based on a `file` query for an image (`code.png`) which was placed
 in the `/src/images/open-graph/` folder of the site. My intention was to store images
-in this folder that might be reused as open graph images accross multiple pages.
+in this folder that might be reused as open graph images across multiple pages.
 In this case, the `code.png` image is intended to be the default fallback image
 for pages that have not declared an override image. The `height` and `width` parameters
 here are of special importance. The specified height and width are the target dimensions
@@ -290,7 +290,7 @@ to support the GraphQL query expansions made in later steps.
 
 **Note:** This `gatsby-node.js` file was converted in an earlier series of commits
 to [ES module syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
-for better compatability with the
+for better compatibility with the
 [MDX plugin](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-mdx)
 in Gatsby v5+. The extension of the file was changed to `.mjs` as a result.
 
@@ -403,14 +403,14 @@ frontmatter configuration.
 The following are the commits made for this implementation in reverse chronological
 order. The bulk of the work was done in
 [04da7d5](https://github.com/jpfulton/blog/commit/04da7d59b384781a1b2f3390d8bb50e2778e5fe7)
-and the rest were either supporting changes or refactorings.
+and the rest were either supporting changes or refactoring.
 
 - [92132ab](https://github.com/jpfulton/blog/commit/92132abaebc6b27e2ae1f5ff339c59e6a46953e2)
   **- Rename ogDefaultImage to openGraphDefaultImage.**
 - [b57fcaa](https://github.com/jpfulton/blog/commit/b57fcaa246375feb4167c57d6094a54292e9ab71)
   **- Rename featuredImage to openGraphImage.**
 - [bb13f79](https://github.com/jpfulton/blog/commit/bb13f798740d6f46430d97f0e5a4cafcee52d20d)
-  **- Moderize image generation API.**
+  **- Modernize image generation API.**
 - [48c080d](https://github.com/jpfulton/blog/commit/48c080dc66db86b277bf72231da90ff0bf01c5a3)
   **- Use image local to blog folder for featured image.**
 - [04da7d5](https://github.com/jpfulton/blog/commit/04da7d59b384781a1b2f3390d8bb50e2778e5fe7)

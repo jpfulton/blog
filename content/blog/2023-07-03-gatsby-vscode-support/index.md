@@ -35,7 +35,7 @@ found [here](https://github.com/jpfulton/blog).
 The `.vscode` directory is generally found at the root of a
 [mulit-repo pattern](https://kinsta.com/blog/monorepo-vs-multi-repo/). In a
 [mono-repo pattern](https://en.wikipedia.org/wiki/Monorepo), it can be found
-or extended in the root folder for each subproject. Details on the files
+or extended in the root folder for each sub-project. Details on the files
 commonly found there are documented in this
 [article](https://code.visualstudio.com/docs/getstarted/settings).
 
@@ -197,7 +197,7 @@ When building this implementation, I went to a great deal of trouble to use the
 to make authoring content in markdown with extensions for
 [React](https://react.dev/) components
 a first class citizen in the project. My extension of choice for markdown editing
-and linting in VS Code is `davidanson.vscode-markdownlint`. However, I was unnable
+and linting in VS Code is `davidanson.vscode-markdownlint`. However, I was unable
 to find settings for it that would extend its use to `.mdx` files. Technically, the
 markdown that powers this blog is MDX though leaving the files with a `.md` file
 extension allows that VS Code plugin to do its magic. As a result, I simply modified
@@ -237,7 +237,7 @@ I am a big fan of the **import organization** feature. However, use _caution_
 with it on certain files. For example, in the `gatsby-browser.js`
 [file](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/),
 unlike most sets of import statements, **order matters here**. If you are not paying
-attention, the Prettier plugin can reoder your
+attention, the Prettier plugin can reorder your
 [CSS and SASS](https://www.gatsbyjs.com/docs/how-to/styling/built-in-css/)
 imports in way creates unexpected styling behaviors.
 
@@ -284,7 +284,7 @@ the createPages method in the
 [Gatsby Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages)
 using the
 [createPage action](https://www.gatsbyjs.com/docs/reference/config-files/actions/#createPage).
-These templates are loaded dymically at runtime from a path. As such, the debugger
+These templates are loaded dynamically at runtime from a path. As such, the debugger
 has no access to them and debugging must be performed from the Gatsby error messages.
 I have yet to find a workaround which would very much come in handy when building new
 features.

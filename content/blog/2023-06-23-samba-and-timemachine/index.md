@@ -112,10 +112,10 @@ force directory mode = 0775
 ### WINS Support
 
 By default, Samba relies upon [NetBIOS](https://en.wikipedia.org/wiki/NetBIOS_over_TCP/IP)
-broadcasts within a subnet to declare availablity of shares to a small group of
+broadcasts within a subnet to declare availability of shares to a small group of
 network nodes. This works well for most home networks. However, if your home network
 involves multiple subnets or routed segments shares will not be visible to all clients.
-NetBIOS broadcast are not routable. To allow routed segments (e.g VPN clients) to
+NetBIOS broadcast are not route-able. To allow routed segments (e.g VPN clients) to
 discover shares, use a [WINS](https://en.wikipedia.org/wiki/Windows_Internet_Name_Service)
 configuration. Add the following lines to the `[global]` section of the `smb.conf`:
 
@@ -145,7 +145,7 @@ browse the backup contents.
 ![Time Machine Icon Screenshot](./timemachine-icon-screenshot.png)
 
 Browsing the backup offers a powerful feature where through a Finder
-window the user may observe folders and files accross the lifetime of the
+window the user may observe folders and files across the lifetime of the
 backup set.
 
 ![Browsing Time Machine Screenshot](./time-machine.png)

@@ -150,7 +150,7 @@ info No lockfile found.
 ...
 [4/4] 🔨  Building fresh packages...
 success Saved lockfile.
-info Initialising git in example
+info Initializing git in example
 ...
 Your new Gatsby site has been successfully bootstrapped. Start developing it by
 running:
@@ -280,7 +280,7 @@ yarn format
 
 Gatsby is built upon [React](https://react.dev/) components,
 [GraphQL](https://graphql.org/) and a plugin system. I was looking for
-an engine that was built upon familar technologies and this selection
+an engine that was built upon familiar technologies and this selection
 fit the bill. Building using these selections makes things feel friendly and
 fast.
 
@@ -309,7 +309,7 @@ function Video({ video }) {
 
 ### GraphQL
 
-[GraphQL](https://graphql.org/), in Gatbsy, is a mechanism to describe the site
+[GraphQL](https://graphql.org/), in Gatsby, is a mechanism to describe the site
 and provide queries against that data. Generally, pages and components declare
 a query to gather the data they require to render. Then they bind the results
 of those queries to inputs to the React components.
@@ -372,7 +372,7 @@ A guide to authoring your own plugins is available
 
 ## Appendix: Plugins in Use
 
-I selected a variety of key plugins that worked with the current verion
+I selected a variety of key plugins that worked with the current version
 of Gatsby.
 
 | Plugin                          | GitHub Repository                                                                                                                                                                                |

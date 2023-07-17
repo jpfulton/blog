@@ -40,7 +40,7 @@ Click the "Create" button to begin the resource creation wizard.
 ![Azure Step Two](./azure-step-2.png)
 
 Complete the elements shown on the "Basics" tab by selecting values appropriate
-to your deployement.
+to your deployment.
 
 - Choose an existing subscription
 - Either select an existing resource group or create a new one to host the resource
@@ -57,7 +57,7 @@ Scroll down to configure deployment options. Use the GitHub option in the
 - Select an organization to which you belong
 - Choose the repository containing your Gatsby website source code
 - Under "Build Details", select "Gatsby" from the "Build Presets" dropdown
-  to prepopulate the remaining options
+  to pre-populate the remaining options
 
 ![Azure Step Four](./azure-step-4.png)
 
@@ -75,7 +75,7 @@ to build and deploy your website to Azure.
 
 The generated workflow has two jobs configured within that support builds
 and deployments for both your production and preview environments. The first
-job (`build_and_deploy_job`) is responsible for building and deployemnt. The
+job (`build_and_deploy_job`) is responsible for building and deployment. The
 second (`close_pull_request_job`) is responsible for cleaning up preview environments
 upon the closure of PRs. Merges or pushes into the default branch trigger deployments
 to the production environment. Pull requests and additions to pull requests
@@ -127,7 +127,7 @@ to alter its value in GitHub as well.
 ## Project package.json Configuration
 
 The [GitHub Action](https://github.com/Azure/static-web-apps-deploy) that was
-utilitzed in the workflow file placed in the `.github` folder uses
+utilized in the workflow file placed in the `.github` folder uses
 [Microsoft Oryx](https://github.com/microsoft/Oryx) to build the repository.
 At the time of this writing, [NodeJS](https://nodejs.org/en) v18+ was
 not natively installed on its image. While Node v16 appears to be pre-installed,
@@ -146,7 +146,7 @@ v18.16.0
 
 Add or modify the following sections in `package.json` to provide Oryx
 with the information it needs to recognize the node version and complete
-the build process sucessfully.
+the build process successfully.
 
 ```javascript:title=package.json {2}{numberLines:true}
 "engines": {

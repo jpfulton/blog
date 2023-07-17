@@ -164,7 +164,7 @@ done
 
 echo "    ]" >> $JSON_FILE;
 echo "}" >> $JSON_FILE;
-# JSON body constrction complete
+# JSON body construction complete
 
 echo "JSON POST body contents:";
 cat $JSON_FILE;
@@ -263,7 +263,7 @@ the output. Its output will be similar to a local execution of the
 ![GitHub Actions Output Screenshot](./github-actions-output.png)
 
 The output of the command is listed below. We are looking for an HTTP `200`
-status code to be returned from the API to indicate sucess of the operation
+status code to be returned from the API to indicate success of the operation
 and a result body to be printed from curl that includes `d: null` per the
 [API documentation](https://learn.microsoft.com/en-us/dotnet/api/microsoft.bing.webmaster.api.interfaces.iwebmasterapi.submiturlbatch?view=bing-webmaster-dotnet#Microsoft_Bing_Webmaster_Api_Interfaces_IWebmasterApi_SubmitUrlBatch_System_String_System_Collections_Generic_List_System_String__).
 Both the lines showing these results are highlighted in the output listing below.

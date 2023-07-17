@@ -63,7 +63,7 @@ create a new service account per the
 
 ![Google Cloud Console Screenshot](./google-cloud-console-service-accounts.png)
 
-Once the service account has been created, select the higlighted menu beside
+Once the service account has been created, select the highlighted menu beside
 the account and
 choose **Manage Keys**. On the next screen, choose **Add Key** and select the
 **JSON** option. The key file will be downloaded. Store this file _securely_
@@ -116,7 +116,7 @@ site.
 Navigate to your GitHub repository, and select
 **Settings** > **Secrets and Variables** > **Actions** > **New Repository Secret**.
 On the next screen create a new secret with the name `GOOGLE_CREDENTIALS_JSON`
-and paste in the contents of your service acccount JSON key from the steps
+and paste in the contents of your service account JSON key from the steps
 above which you stored in a _secure_ place.
 
 ![GitHub Secrets Screenshot](./github-secrets.png)

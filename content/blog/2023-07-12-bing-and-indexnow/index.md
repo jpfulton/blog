@@ -69,7 +69,7 @@ team. In the meantime, I recommend using vendor specific APIs to submit
 updated URLs for a site.
 
 Refer to the following posts for alternate implementations using vendor specific
-APIs to accomplish the same URL submission goals as desribed in this article
+APIs to accomplish the same URL submission goals as described in this article
 _without_ using IndexNow:
 
 <Link to="/blog/2023-07-13-google-and-indexingapi/">
@@ -205,7 +205,7 @@ done
 
 echo "    ]" >> $JSON_FILE;
 echo "}" >> $JSON_FILE;
-# JSON body constrction complete
+# JSON body construction complete
 
 echo "JSON POST body contents:";
 cat $JSON_FILE;
