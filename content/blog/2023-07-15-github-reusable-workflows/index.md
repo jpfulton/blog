@@ -98,7 +98,7 @@ is not avaiable in the `with` block of the caller.
 > Any environment variables set in an env context defined at the workflow level
 > in the caller workflow are not propagated to the called workflow.
 
-As a result, another pattern is required: the use of ouput variables from
+As a result, another pattern is required: the use of output variables from
 a previously executed job.
 
 ### Configuration through Environment Variables
@@ -183,7 +183,7 @@ jobs:
 Reusable workflows in GitHub Actions allow the developer to create modular
 and parameterized units of work to decompose a complex workflow. This overcomes
 the absence of functions in the YAML specification. A monolithic single workflow
-file can be subdivied into multiple reusable workflows each of which can be
+file can be subdivided into multiple reusable workflows each of which can be
 passed inputs to control their flow and configuration.
 
 ### Creating a Reusable Workflow
@@ -196,14 +196,14 @@ and a `jobs` block including at least one job.
 What differentiates a resuable workflow is the trigger included in the `on` block.
 To create a resuable workflow, the `on` block must include a `workflow_call` trigger.
 This section, optionally composed of `inputs` and `secrets` that can be passed
-to the worflow by its callers, marks the workflow in GitHub as callable by other
+to the workflow by its callers, marks the workflow in GitHub as callable by other
 workflows.
 
 Input variables are declared in the `inputs` block. Each input variable may be marked
 as required and declares an associated type. Only `boolean`, `number` and `string`
 types may be used. **Sequence types are not currently supported.** At the start of
 workflow execution, the parser examines the required inputs and should one be
-missed by a caller or is of an incorrect type, the workflow will generate errors
+missed by a caller or of an incorrect type, the workflow will generate errors
 before hitting the runner. Input variables may be referenced later in the resuable
 workflow file using the following syntax and the inputs context:
 `${{ inputs.dotnet-version }}`.
