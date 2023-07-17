@@ -124,12 +124,12 @@ Disallow: /rss.xml
 Sitemap: https://www.jpatrickfulton.dev/sitemap-index.xml
 ```
 
-## Submitting the Sitemap
+## Submitting Sitemaps
 
-### Submitting to Google
+### Submitting a Sitemap to Google
 
 ![Google Search Console Screenshot](./google-sitemap-submission.png)
 
-### Submitting to Bing
+### Submitting a Sitemap to Bing
 
 ![Bing Webmaster Tools Screenshot](./bing-sitemap-submission.png)
