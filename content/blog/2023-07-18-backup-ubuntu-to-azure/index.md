@@ -28,6 +28,8 @@ keywords: ["Ubuntu", "linux", "backup", "azure"]
 
 ## Configure the Virtual Machine
 
+### Access the Virtual Machine via SSH
+
 ### Update All Packages
 
 ```bash
@@ -110,6 +112,10 @@ Restart with `sudo shutdown -r` to prove fstab changes, won't boot if you failed
 
 ### Install Samba
 
+```bash
+sudo apt install samba
+```
+
 #### Create Dedicated Samba User and Group
 
 ```bash
@@ -132,4 +138,106 @@ drwxr-xr-x 20 root    root      4096 Jul 18 03:51 ..
 drwxr-xr-x  2 smbuser smbgroup  4096 Jul 18 04:26 applebackups
 drwxr-xr-x  3 smbuser smbgroup  4096 Jul 18 04:45 linuxbackups
 drwx------  2 root    root     16384 Jul 18 03:38 lost+found
+```
+
+#### Create Samba Users
+
+#### Edit /etc/samba/smb.conf to Configure Samba
+
+```bash
+sudo vim /etc/samba/smb.conf
+```
+
+#### Restart the Samba Service
+
+```bash
+sudo systemctl restart samba
+```
+
+## Monitor Disk Usage
+
+### Monitor from a Command
+
+```bash {outputLines:2-10}
+df -H
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        32G  2.5G   29G   8% /
+tmpfs           2.1G     0  2.1G   0% /dev/shm
+tmpfs           811M  4.7M  806M   1% /run
+tmpfs           5.3M     0  5.3M   0% /run/lock
+/dev/sdb15      110M  6.4M  104M   6% /boot/efi
+/dev/sda1       540G  111G  402G  22% /backup
+/dev/sdc1       8.4G   29k  8.0G   1% /mnt
+tmpfs           406M  4.1k  406M   1% /run/user/1000
+```
+
+### Setup Monitoring and System Status using the MOTD
+
+`/etc/update-motd.d/`
+
+```bash
+sudo apt install neofetch
+sudo apt install inxi
+```
+
+```bash
+sudo vim /etc/update-motd.d/01-custom
+```
+
+```sh:title=/etc/update-motd.d/01-custom
+#!/bin/sh
+echo
+echo "General System Information:"
+echo
+/usr/bin/neofetch --disable title --color_blocks off
+
+echo
+echo "System Disk Usage:"
+/usr/bin/inxi -D -p
+```
+
+```bash
+sudo chmod a+x /etc/update-motd.d/01-custom
+```
+
+Logout and log back in.
+
+```txt
+Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-1041-azure x86_64)
+
+General System Information:
+
+            .-/+oossssoo+/-.
+        `:+ssssssssssssssssss+:`           OS: Ubuntu 22.04.2 LTS x86_64
+      -+ssssssssssssssssssyyssss+-         Host: Virtual Machine Hyper-V UEFI R
+    .ossssssssssssssssssdMMMNysssso.       Kernel: 5.15.0-1041-azure
+   /ssssssssssshdmmNNmmyNMMMMhssssss/      Uptime: 13 hours, 50 mins
+  +ssssssssshmydMMMMMMMNddddyssssssss+     Packages: 793 (dpkg), 4 (snap)
+ /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    Shell: bash 5.1.16
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Resolution: 1024x768
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   Terminal: run-parts
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   CPU: Intel Xeon E5-2673 v3 (2) @ 2.3
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Memory: 425MiB / 3863MiB
++sssshhhyNMMNyssssssssssssyNMMMysssssss+
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.
+ /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/
+  +sssssssssdmydMMMMMMMMddddyssssssss+
+   /ssssssssssshdmNNNNmyNMMMMhssssss/
+    .ossssssssssssssssssdMMMNysssso.
+      -+sssssssssssssssssyyyssss+-
+        `:+ssssssssssssssssss+:`
+            .-/+oossssoo+/-.
+
+
+System Disk Usage:
+Drives:
+  Local Storage: total: 550 GiB used: 109.32 GiB (19.9%)
+  ID-1: /dev/sda model: Virtual Disk size: 512 GiB
+  ID-2: /dev/sdb model: Virtual Disk size: 30 GiB
+  ID-3: /dev/sdc model: Virtual Disk size: 8 GiB
+Partition:
+  ID-1: / size: 28.89 GiB used: 2.62 GiB (9.1%) fs: ext4 dev: /dev/sdb1
+  ID-2: /backup size: 502.89 GiB used: 106.7 GiB (21.2%) fs: ext4 dev: /dev/sda1
+  ID-3: /boot/efi size: 104.4 MiB used: 6 MiB (5.8%) fs: vfat dev: /dev/sdb15
+  ID-4: /mnt size: 7.77 GiB used: 28 KiB (0.0%) fs: ext4 dev: /dev/sdc1
 ```
