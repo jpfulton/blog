@@ -30,15 +30,15 @@ keywords: ["Ubuntu", "linux", "backup", "azure"]
 
 ### Update All Packages
 
-`sudo apt update`
-
-`sudo apt list --upgradeable`
-
-`sudo apt upgrade`
+```bash
+sudo apt update
+sudo apt list --upgradeable
+sudo apt upgrade
+```
 
 ### Mount and Format the Data Disk
 
-```bash
+```bash {2}{numberLines: true}{outputLines: 2-8}
 ls -la /dev/sd*
 brw-rw---- 1 root disk 8,  0 Jul 18 03:06 /dev/sda
 brw-rw---- 1 root disk 8, 16 Jul 18 03:06 /dev/sdb
@@ -49,7 +49,7 @@ brw-rw---- 1 root disk 8, 32 Jul 18 03:06 /dev/sdc
 brw-rw---- 1 root disk 8, 33 Jul 18 03:06 /dev/sdc1
 ```
 
-```bash
+```bash {6}{numberLines: true}{outputLines: 2-13}
 lsblk
 NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 loop0     7:0    0  63.4M  1 loop /snap/core20/1950
@@ -79,7 +79,7 @@ sudo fdisk /dev/sda
 
 `sudo mount -t ext4 -o rw /dev/sda1 /backup`
 
-```bash
+```bash {6-7}{numberLines: true}{outputLines: 2-14}
 lsblk
 NAME    MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 loop0     7:0    0  63.4M  1 loop /snap/core20/1950
@@ -98,7 +98,7 @@ sr0      11:0    1   628K  0 rom
 
 Edit `/etc/fstab` with `sudo vim /etc/fstab`
 
-```sh
+```sh:title=/etc/fstab {5}{numberLines: true}
 # CLOUD_IMG: This file was created/modified by the Cloud Image build process
 UUID=1c12acfb-8f0c-440f-b6b7-6c22c1f36e1e /  ext4 discard,errors=remount-ro 0 1
 UUID=B6C3-B75F /boot/efi vfat umask=0077 0 1
@@ -112,13 +112,14 @@ Restart with `sudo shutdown -r` to prove fstab changes, won't boot if you failed
 
 #### Create Dedicated Samba User and Group
 
-`sudo addgroup smbgroup`
-
-`sudo adduser --system --no-create-home smbuser smbgroup`
+```bash
+sudo addgroup smbgroup
+sudo adduser --system --no-create-home smbuser smbgroup
+```
 
 #### Create Share Folders and Change Ownership
 
-```bash
+```bash {outputLines: 7-12}
 cd /backup
 sudo mkdir applebackups
 sudo mkdir linuxbackups
