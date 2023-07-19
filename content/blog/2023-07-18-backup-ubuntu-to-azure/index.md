@@ -30,9 +30,59 @@ keywords: ["Ubuntu", "linux", "backup", "azure"]
 
 ## Create a Virtual Machine
 
-## Configure the Virtual Machine
+### Configure the Virtual Machine
 
 ### Access the Virtual Machine via SSH
+
+#### Use the Downloaded Private Key
+
+#### Use Azure AD Authentication for SSH
+
+[documentation](https://learn.microsoft.com/en-us/azure/active-directory/devices/howto-vm-sign-in-azure-ad-linux#configure-role-assignments-for-the-vm)
+
+```bash {outputLines: 4-37}
+az login
+az extension add --name ssh
+az extension show --name ssh
+{
+  "extensionType": "whl",
+  "metadata": {
+    "author": "Microsoft Corporation",
+    "author_email": "azpycli@microsoft.com",
+    "azext.isPreview": false,
+    "azext.minCliCoreVersion": "2.45.0",
+    "classifiers": [
+      "Development Status :: 4 - Beta",
+      "Intended Audience :: Developers",
+      "Intended Audience :: System Administrators",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.6",
+      "Programming Language :: Python :: 3.7",
+      "Programming Language :: Python :: 3.8",
+      "License :: OSI Approved :: MIT License"
+    ],
+    "description": "SSH into Azure VMs using RBAC and AAD OpenSSH Certificates.  The client generates (or uses existing) OpenSSH keys that are then signed by AAD into OpenSSH certificates for access to Azure VMs with the AAD Extension installed.\n",
+    "filename": "/Users/josephpfulton/.azure/cliextensions/ssh/ssh-2.0.0.dist-info",
+    "home_page": "https://github.com/Azure/azure-cli-extensions/tree/main/src/ssh",
+    "license": "MIT",
+    "metadata_version": "2.0",
+    "name": "ssh",
+    "requires_dist": [
+      "oschmod (==0.3.12)"
+    ],
+    "summary": "SSH into Azure VMs using RBAC and AAD OpenSSH Certificates",
+    "version": "2.0.0"
+  },
+  "name": "ssh",
+  "path": "/Users/josephpfulton/.azure/cliextensions/ssh",
+  "version": "2.0.0"
+}
+```
+
+```bash
+az ssh vm --ip 10.10.0.4
+```
 
 ### Update All Packages
 
@@ -114,6 +164,50 @@ UUID=B6C3-B75F /boot/efi vfat umask=0077 0 1
 
 Restart with `sudo shutdown -r` to prove fstab changes, won't boot if you failed.
 
+### Encrypt the Disks
+
+[documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disk-encryption-linux?tabs=azcliazure%2Cenableadecli%2Cefacli%2Cadedatacli)
+
+[encrypt at host documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-enable-host-based-encryption-portal?tabs=azure-powershell)
+
+```bash {outputLines: 3-11}
+az login
+az feature register --name EncryptionAtHost  --namespace Microsoft.Compute
+Once the feature 'EncryptionAtHost' is registered, invoking 'az provider register -n Microsoft.Compute' is required to get the change propagated
+{
+  "id": "/subscriptions/4913be3f-a345-4652-9bba-767418dd25e3/providers/Microsoft.Features/providers/Microsoft.Compute/features/EncryptionAtHost",
+  "name": "Microsoft.Compute/EncryptionAtHost",
+  "properties": {
+    "state": "Registering"
+  },
+  "type": "Microsoft.Features/providers/features"
+}
+```
+
+Wait a few minutes or more until the output shows `Registered`.
+
+```bash {outputLines: 2-9}
+az feature show --name EncryptionAtHost --namespace Microsoft.Compute
+{
+  "id": "/subscriptions/4913be3f-a345-4652-9bba-767418dd25e3/providers/Microsoft.Features/providers/Microsoft.Compute/features/EncryptionAtHost",
+  "name": "Microsoft.Compute/EncryptionAtHost",
+  "properties": {
+    "state": "Registered"
+  },
+  "type": "Microsoft.Features/providers/features"
+}
+```
+
+To propagate the change per output of earlier command.
+
+```bash
+az provider register -n Microsoft.Compute
+```
+
+Stop the virtual machine. Then Disks > Additional Settings > Encryption at host: Yes, Save.
+
+Start the VM. Log in.
+
 ### Install Samba
 
 ```bash
@@ -144,7 +238,17 @@ drwxr-xr-x  3 smbuser smbgroup  4096 Jul 18 04:45 linuxbackups
 drwx------  2 root    root     16384 Jul 18 03:38 lost+found
 ```
 
-#### Create Samba Users
+#### Create Samba Users for Share Access
+
+```bash
+sudo adduser --no-create-home --shell /sbin/nologin applebackup
+sudo smbpasswd -a applebackup
+```
+
+```bash
+sudo adduser --no-create-home --shell /sbin/nologin linuxbackup
+sudo smbpasswd -a linuxbackup
+```
 
 #### Edit /etc/samba/smb.conf to Configure Samba
 
