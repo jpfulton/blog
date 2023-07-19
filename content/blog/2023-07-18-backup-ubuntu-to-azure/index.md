@@ -315,10 +315,34 @@ sudo sysctl -p /etc/sysctl.conf
 
 ### Configure the Server
 
+#### Create the OpenVPN Server Configuration File
+
+#### Start the OpenVPN Service
+
 ```bash
 sudo systemctl start openvpn@homeserver
 sudo systemctl status openvpn@homeserver
 ```
+
+#### Create a DNS Entry for the Server Public IP
+
+#### Configure the Local Server Firewall
+
+```bash {outputLines: 3-9}
+sudo ufw allow proto udp from 0.0.0.0/0 to any port 1194
+sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
+[ 2] 22/tcp                     ALLOW IN    172.16.0.0/24
+[ 3] 1194/udp                   ALLOW IN    Anywhere
+```
+
+#### Configure the Server Public IP Network Security Group
+
+### Configure the Client
 
 ### Create the Client Configuration File
 
