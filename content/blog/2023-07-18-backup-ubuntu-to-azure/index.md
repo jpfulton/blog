@@ -2,7 +2,7 @@
 title: Backup an Ubuntu Desktop to Azure
 date: 2023-07-18
 description: ""
-keywords: ["Ubuntu", "linux", "backup", "azure"]
+keywords: ["Ubuntu", "linux", "backup", "azure", "IaaS", "virtual machine"]
 # openGraphImage: ./time-machine.png
 ---
 
@@ -442,6 +442,39 @@ Status: active
 [ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
 [ 2] 22/tcp                     ALLOW IN    172.16.0.0/24
 [ 3] 1194/udp                   ALLOW IN    Anywhere
+```
+
+```bash {outputLines: 3-10}
+sudo ufw route allow in on tun0 out on eth0
+sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
+[ 2] 22/tcp                     ALLOW IN    172.16.0.0/24
+[ 3] 1194/udp                   ALLOW IN    Anywhere
+[ 4] Anywhere on eth0           ALLOW FWD   Anywhere on tun0
+```
+
+`/etc/ufw/before.rules` Add to top of file
+
+```sh
+# NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+
+# Forward traffic through eth0 - Change to match you out-interface
+-A POSTROUTING -s 10.10.8.0/24 -o eth0 -j MASQUERADE
+
+# don't delete the 'COMMIT' line or these nat table rules won't
+# be processed
+COMMIT
+# End NAT table rules
+```
+
+```bash
+sudo ufw disable && sudo ufw enable
 ```
 
 #### Configure the Server Public IP Network Security Group
