@@ -12,6 +12,10 @@ keywords: ["Ubuntu", "linux", "backup", "azure"]
 
 ## Create a Virtual Network
 
+## Create and Link a Private DNS Zone
+
+`168.63.129.16` Azure DNS Server
+
 ## Create a NAT Gateway
 
 ## Create a VPN Gateway
@@ -241,3 +245,87 @@ Partition:
   ID-3: /boot/efi size: 104.4 MiB used: 6 MiB (5.8%) fs: vfat dev: /dev/sdb15
   ID-4: /mnt size: 7.77 GiB used: 28 KiB (0.0%) fs: ext4 dev: /dev/sdc1
 ```
+
+## Replace Azure Network Gateway with a Linux OpenVPN Server
+
+### Update all Packages
+
+```bash
+sudo apt update
+sudo apt list --upgradeable
+sudo apt upgrade
+```
+
+### Set up Local Firewall
+
+```bash {outputLines: 2-3, 5-6, 8-12}
+sudo ufw allow proto tcp from 10.10.0.0/16 to any port 22
+port 22
+Rules updated
+sudo ufw enable
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
+```
+
+### Set up OpenVPN Server
+
+[documentation](https://ubuntu.com/server/docs/service-openvpn)
+
+```bash
+sudo apt install openvpn easy-rsa
+```
+
+### Generate Certificates and Keys
+
+```bash
+sudo -s
+cd /etc/openvpn/easy-rsa
+./easyrsa init-pki
+./easyrsa build-ca
+./easyrsa gen-req ubuntu-vpn-server nopass
+./easyrsa gen-dh
+./easyrsa sign-req server ubuntu-vpn-server
+cp pki/dh.pem pki/ca.crt pki/issued/ubuntu-vpn-server.crt pki/private/ubuntu-vpn-server.key /etc/openvpn/
+
+./easyrsa gen-req home-client nopass
+./easyrsa sign-req client home-client
+exit
+```
+
+```bash
+cd /etc/openvpn
+sudo openvpn --genkey secret ta.key
+```
+
+Edit `/etc/sysctl.conf`` and uncomment the following line to enable IP forwarding.
+
+`#net.ipv4.ip_forward=1`
+
+Then reload sysctl.
+
+```bash
+sudo sysctl -p /etc/sysctl.conf
+```
+
+### Configure the Server
+
+```bash
+sudo systemctl start openvpn@homeserver
+sudo systemctl status openvpn@homeserver
+```
+
+### Create the Client Configuration File
+
+`/etc/openvpn/ca.crt`
+
+`/etc/openvpn/ta.key`
+
+`/etc/openvpn/easy-rsa/pki/issued/home-client.crt`
+
+`/etc/openvpn/easy-rsa/pki/private/home-client.key`
