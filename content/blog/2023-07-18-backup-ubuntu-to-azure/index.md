@@ -3,7 +3,7 @@ title: Backup an Ubuntu Desktop to Azure
 date: 2023-07-18
 description: ""
 keywords: ["Ubuntu", "linux", "backup", "azure", "IaaS", "virtual machine"]
-# openGraphImage: ./time-machine.png
+openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
 ## Table of Contents
