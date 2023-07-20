@@ -20,6 +20,8 @@ openGraphImage: ../../../src/images/open-graph/azure.png
 
 ## Create a Resource Group
 
+![Create Resource Group Screenshot](./resource-group/azure-create-resource-group.png)
+
 ## Create a Virtual Network
 
 ## Create and Link a Private DNS Zone
