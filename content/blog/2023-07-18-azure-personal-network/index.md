@@ -16,6 +16,14 @@ keywords:
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
+- Overview and Objectives
+- Virtual Networking and VPN Gateway
+- Virtual Machine for Samba
+- Replace Azure VPN Gateway with an OpenVPN Server
+- Setup Firewalla OpenVPN Server Connection
+- Right-size the Virtual Machines
+- Resize the Managed Backup Data Disk
+
 ## Table of Contents
 
 ## Create a Resource Group
