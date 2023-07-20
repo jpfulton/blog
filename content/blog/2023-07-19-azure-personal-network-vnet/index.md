@@ -6,13 +6,9 @@ keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
-- Overview and Objectives
-- Virtual Networking and VPN Gateway
-- Virtual Machine for Samba
-- Replace Azure VPN Gateway with an OpenVPN Server
-- Setup Firewalla OpenVPN Server Connection
-- Right-size the Virtual Machines
-- Resize the Managed Backup Data Disk
+import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
+
+<SeriesLinks />
 
 ## Table of Contents
 
