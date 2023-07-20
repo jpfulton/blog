@@ -15,7 +15,7 @@ openGraphImage: ../../../src/images/open-graph/gatsby.png
 offers a
 [sitemap plugin](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sitemap)
 to generate sitemap XML documents for the sites
-it generates. However, in its default configuration needs customization to be
+it generates. However, in its default configuration, it needs customization to be
 useful to most search engines. Luckily, it is possible to change the default
 configuration and supplement its logic with both other plugins and custom logic.
 In this post, I cover how to leverage Git commits to update the sitemap and
@@ -89,7 +89,7 @@ plugin and a plugin from the community `gatsby-plugin-git-lastmod`.
 
 The `gatsby-plugin-git-lastmod` may be used without additional configuration values.
 It is `MDX` compatible and will introduce a new node to the `pageContext` object
-to carry the last timestamp of a Git modification to the source file generating
+to carry the last timestamp of the Git modification to the source file generating
 a page or blog post using its [gatsby-node.js](https://github.com/vondenstein/gatsby-plugin-git-lastmod/blob/main/src/gatsby-node.js#L33)
 file.
 
@@ -196,12 +196,15 @@ export const onCreatePage = async ({ page, actions }) => {
 };
 ```
 
+The complete version of this file for this site implementation can be found
+[here](https://github.com/jpfulton/blog/blob/main/gatsby-node.mjs).
+
 ## Updating Robots.txt
 
 In a final step, to ease the crawling of the site by search engines,
 the `robots.txt` file may be modified to include a fully qualified URL
 to the sitemap output. This file will be hosted on the root of the site
-and is placed in the `/static/` folder in the source tree as a result.
+and is placed in the `/static/` folder in the source tree.
 
 ```txt:title=robots.txt {5}{numberLines: true}
 User-agent: *
