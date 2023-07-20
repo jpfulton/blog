@@ -42,6 +42,12 @@ openGraphImage: ../../../src/images/open-graph/azure.png
 
 ## Create a NAT Gateway
 
+![Create a NAT Gateway](./nat-gateway/azure-create-nat-gateway.png)
+
+![Create a NAT Gateway 2](./nat-gateway/azure-create-nat-gateway-2.png)
+
+![Create a NAT Gateway 3](./nat-gateway/azure-create-nat-gateway-3.png)
+
 ## Create a VPN Gateway
 
 [documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
