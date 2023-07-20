@@ -95,9 +95,31 @@ maintained automatically when new resources are added to the virtual network.
 
 ## Create a NAT Gateway
 
+Most of the resources that will be created in this project will not have
+associated public IP addresses to utilize when communicating with the internet.
+As a result, we need a NAT (network address translation) gateway for the network
+to facilitate outbound connectivity.
+
+> Azure NAT Gateway is a fully managed and highly resilient Network Address
+> Translation (NAT) service. You can use Azure NAT Gateway to let all instances
+> in a private subnet connect outbound to the internet while remaining fully private.
+> Unsolicited inbound connections from the internet aren't permitted through a
+> NAT gateway. Only packets arriving as response packets to an outbound connection
+> can pass through a NAT gateway.
+
+To begin start
+on the resource group created above and select **Create**. Search for
+**nat gateway** in the market place and begin the configuration process.
+
 ![Create a NAT Gateway](./nat-gateway/azure-create-nat-gateway.png)
 
+The NAT gateway will require a public IP to be associated with it. Allow
+a new one to be created and select **Next**.
+
 ![Create a NAT Gateway 2](./nat-gateway/azure-create-nat-gateway-2.png)
+
+Associate the NAT gateway with the virtual network and subnet created
+above. Select **Review + create** to begin the deployment.
 
 ![Create a NAT Gateway 3](./nat-gateway/azure-create-nat-gateway-3.png)
 
