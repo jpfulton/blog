@@ -1,5 +1,5 @@
 ---
-title: Backup an Ubuntu Desktop to Azure
+title: Extend a Personal Network to Azure
 date: 2023-07-18
 description: ""
 keywords:
@@ -20,13 +20,25 @@ openGraphImage: ../../../src/images/open-graph/azure.png
 
 ## Create a Resource Group
 
-![Create Resource Group Screenshot](./resource-group/azure-create-resource-group.png)
+![Create Resource Group Screenshot](./resource-group/azure-create-resource-group-2.png)
 
 ## Create a Virtual Network
 
+![Create a Virtual Network Screenshot](./vnet/azure-create-virtual-network.png)
+
+![Create a Virtual Network Screenshot 2](./vnet/azure-create-virtual-network-2.png)
+
+![Create a Virtual Network Screenshot 3](./vnet/azure-create-virtual-network-3.png)
+
 ## Create and Link a Private DNS Zone
 
-`168.63.129.16` Azure DNS Server
+![Create a Private DNS Zone](./private-dns-zone/azure-create-private-dns-zone.png)
+
+![Create a Private DNS Zone 2](./private-dns-zone/azure-create-private-dns-zone-2.png)
+
+![Private DNS Zone Screenshot](./private-dns-zone/azure-private-dns-zone.png)
+
+![Link Zone to Virtual Network](./private-dns-zone/azure-private-dns-zone-add-vnet-link.png)
 
 ## Create a NAT Gateway
 
