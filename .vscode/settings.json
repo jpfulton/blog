@@ -7,5 +7,5 @@
     "source.sortMembers"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["frontmatter", "passwordless"]
+  "cSpell.words": ["Firewalla", "frontmatter", "passwordless"]
 }
