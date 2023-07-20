@@ -24,8 +24,10 @@ sudo apt upgrade
 
 ### Set up Local Firewall
 
+[doc on disabling ipv6 rules](https://tecadmin.net/setup-ufw-for-firewall-on-ubuntu-and-debian/#:~:text=Enable%2FDisable%20IPv6,yes”%20or%20“no”.&text=After%20making%20changes%20disable%20and%20enable%20the%20firewall%20to%20apply%20changes.)
+
 ```bash {outputLines: 2-3, 5-6, 8-12}
-sudo ufw allow proto tcp from 10.10.0.0/16 to any port 22
+sudo ufw allow ssh
 port 22
 Rules updated
 sudo ufw enable
@@ -36,8 +38,11 @@ Status: active
 
      To                         Action      From
      --                         ------      ----
-[ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
+[ 1] 22/tcp                     ALLOW IN    Anywhere
 ```
+
+Note that the Azure NSG will prevent access to SSH from the public IP.
+This is useful for quickly enabling external access if needed in a pinch.
 
 ### Set up OpenVPN Server
 
@@ -94,29 +99,27 @@ sudo systemctl status openvpn@homeserver
 
 #### Configure the Local Server Firewall
 
-```bash {outputLines: 3-9}
+```bash {outputLines: 3-8}
 sudo ufw allow proto udp from 0.0.0.0/0 to any port 1194
 sudo ufw status numbered
 Status: active
 
      To                         Action      From
      --                         ------      ----
-[ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
-[ 2] 22/tcp                     ALLOW IN    172.16.0.0/24
-[ 3] 1194/udp                   ALLOW IN    Anywhere
+[ 1] 22/tcp                     ALLOW IN    Anywhere
+[ 2] 1194/udp                   ALLOW IN    Anywhere
 ```
 
-```bash {outputLines: 3-10}
+```bash {outputLines: 3-9}
 sudo ufw route allow in on tun0 out on eth0
 sudo ufw status numbered
 Status: active
 
      To                         Action      From
      --                         ------      ----
-[ 1] 22/tcp                     ALLOW IN    10.10.0.0/16
-[ 2] 22/tcp                     ALLOW IN    172.16.0.0/24
-[ 3] 1194/udp                   ALLOW IN    Anywhere
-[ 4] Anywhere on eth0           ALLOW FWD   Anywhere on tun0
+[ 1] 22/tcp                     ALLOW IN    Anywhere
+[ 2] 1194/udp                   ALLOW IN    Anywhere
+[ 3] Anywhere on eth0           ALLOW FWD   Anywhere on tun0
 ```
 
 `/etc/ufw/before.rules` Add to top of file
@@ -126,7 +129,7 @@ Status: active
 *nat
 :POSTROUTING ACCEPT [0:0]
 
-# Forward traffic through eth0 - Change to match you out-interface
+# Forward traffic through eth0 - Change to match your out-interface
 -A POSTROUTING -s 10.10.8.0/24 -o eth0 -j MASQUERADE
 
 # don't delete the 'COMMIT' line or these nat table rules won't
@@ -152,3 +155,9 @@ sudo ufw disable && sudo ufw enable
 `/etc/openvpn/easy-rsa/pki/issued/home-client.crt`
 
 `/etc/openvpn/easy-rsa/pki/private/home-client.key`
+
+### Copy the Client Configuration File to Local
+
+```bash
+scp -i ~/.ssh/ubuntu-vpn-server_key.pem jpfulton@ubuntu-vpn-server.private.jpatrickfulton.com:/home/jpfulton/azure-personal-network.ovpn .
+```
