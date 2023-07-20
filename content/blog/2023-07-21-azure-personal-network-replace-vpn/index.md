@@ -95,6 +95,10 @@ sudo systemctl start openvpn@homeserver
 sudo systemctl status openvpn@homeserver
 ```
 
+```bash
+sudo journalctl -u openvpn@homeserver -xe
+```
+
 #### Create a DNS Entry for the Server Public IP
 
 #### Configure the Local Server Firewall
@@ -130,7 +134,7 @@ Status: active
 :POSTROUTING ACCEPT [0:0]
 
 # Forward traffic through eth0 - Change to match your out-interface
--A POSTROUTING -s 10.10.8.0/24 -o eth0 -j MASQUERADE
+-A POSTROUTING -s 10.10.10.0/24 -o eth0 -j MASQUERADE
 
 # don't delete the 'COMMIT' line or these nat table rules won't
 # be processed
@@ -161,3 +165,17 @@ sudo ufw disable && sudo ufw enable
 ```bash
 scp -i ~/.ssh/ubuntu-vpn-server_key.pem jpfulton@ubuntu-vpn-server.private.jpatrickfulton.com:/home/jpfulton/azure-personal-network.ovpn .
 ```
+
+## Tear Down the Azure Virtual Network Gateway
+
+### Remove the Virtual Network Gateway Resource
+
+![Remove Network Gateway](./remove-vpn-gateway/delete-vpn-gateway.png)
+
+### Remove the Public IP
+
+![Remove Public IP](./remove-vpn-gateway/delete-public-ip.png)
+
+### Remove the Gateway Subnet from the Virtual Network
+
+![Remove Gateway Subnet](./remove-vpn-gateway/delete-gateway-subnet.png)
