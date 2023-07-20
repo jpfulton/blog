@@ -1,4 +1,4 @@
-import { Link, Script, ScriptStrategy } from "gatsby";
+import { Link } from "gatsby";
 import * as React from "react";
 import CookieConsent from "react-cookie-consent";
 
@@ -36,13 +36,6 @@ const Layout = ({ location, title, children }) => {
       >
         This website uses cookies to enhance the user experience.
       </CookieConsent>
-      <Script
-        id="google-adsense"
-        strategy={ScriptStrategy.postHydrate}
-        crossOrigin="anonymous"
-        async={true}
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2306983857488873"
-      ></Script>
     </div>
   );
 };
