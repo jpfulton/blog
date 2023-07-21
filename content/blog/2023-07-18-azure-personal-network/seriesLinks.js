@@ -30,7 +30,11 @@ const SeriesLinks = () => (
     </li>
     <li>Setup Firewalla OpenVPN Server Connection</li>
     <li>Right-size the Virtual Machines</li>
-    <li>Resize the Managed Backup Data Disk</li>
+    <li>
+      <Link to="/blog/2023-07-23-azure-personal-network-resize-disk/">
+        Resize the Managed Backup Data Disk
+      </Link>
+    </li>
   </ol>
 );
 
