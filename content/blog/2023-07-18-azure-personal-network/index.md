@@ -16,7 +16,7 @@ openGraphImage: ../../../src/images/open-graph/azure.png
 
 In a world of cloud computing and remote work, hybrid workflows and bridges
 between on-premise networks and cloud-based virtual networks are becoming
-more and more common.
+more common.
 
 This series of posts examines the creation of a hybrid workflow between an
 on-premise network and cloud hosted virtual network connected by virtual
@@ -25,7 +25,9 @@ costs while maintaining performance and security. While the example is based
 on bridging a home network with cloud resources, an adaptation of the example
 can easily be applied to small business networks and applications.
 
-[Microsoft Azure](https://azure.microsoft.com/en-us)
+Using [Microsoft Azure](https://azure.microsoft.com/en-us) as a cloud provider,
+
+[Firewalla](https://firewalla.com)
 
 import SeriesLinks from "./seriesLinks.js"
 
