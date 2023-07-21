@@ -1,8 +1,8 @@
 ---
-title: "Extend a Personal Network to Azure: Virtual Networking"
+title: "Extend a Personal Network to Azure: Virtual Network"
 date: 2023-07-19
 description: ""
-keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
+keywords: ["azure", "IaaS", "virtual machine", "virtual network", "vpn"]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
@@ -122,11 +122,3 @@ Associate the NAT gateway with the virtual network and subnet created
 above. Select **Review + create** to begin the deployment.
 
 ![Create a NAT Gateway 3](./nat-gateway/azure-create-nat-gateway-3.png)
-
-## Create a VPN Gateway
-
-[documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
-
-[generate certs documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site-linux)
-
-[create client configs documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-cert-linux)
