@@ -78,6 +78,27 @@ sudo apt list --upgradeable
 sudo apt upgrade
 ```
 
+### Set Up the Local Firewall
+
+Edit `/etc/default/ufw` to turn of IPV6.
+
+```bash {outputLines: 4-6, 9-14}
+sudo ufw allow ssh
+sudo ufw allow samba
+sudo ufw show added
+Added user rules (see 'ufw status' for running firewall):
+ufw allow 22/tcp
+ufw allow Samba
+sudo ufw enable
+sudo ufw status numbered
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    Anywhere
+[ 2] Samba                      ALLOW IN    Anywhere
+```
+
 ### Mount and Format the Data Disk
 
 ```bash {2}{numberLines: true}{outputLines: 2-8}
