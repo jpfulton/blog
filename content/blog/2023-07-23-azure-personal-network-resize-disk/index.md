@@ -98,7 +98,7 @@ sudo umount /dev/sda1
 
 ### Use fdisk
 
-```bash
+```bash {outputLines: 2-43}
 sudo fdisk /dev/sda
 Welcome to fdisk (util-linux 2.37.2).
 Changes will remain in memory only, until you decide to write them.
@@ -150,7 +150,7 @@ Syncing disks.
 
 Do not remove the signature.
 
-```bash
+```bash {outputLines: 2-8, 10-12}
 sudo e2fsck -f /dev/sda1
 e2fsck 1.46.5 (30-Dec-2021)
 Pass 1: Checking inodes, blocks, and sizes
@@ -167,7 +167,7 @@ The filesystem on /dev/sda1 is now 268435200 (4k) blocks long.
 
 ### Remount the Partition
 
-```bash
+```bash {outputLines: 3-8, 10-18}
 sudo mount /dev/sda1 /backup
 ls -la /backup/
 total 32
@@ -201,5 +201,7 @@ sudo systemctl status smbd
 sudo reboot
 ```
 
-Check the mounts. Validate that /dev/sdX devices have not renumbered.
+Log in. Check the mounts. Validate that /dev/sdX devices have not reordered.
 Fix /etc/fstab and reboot as necessary.
+
+## Remove the Disk Snapshot
