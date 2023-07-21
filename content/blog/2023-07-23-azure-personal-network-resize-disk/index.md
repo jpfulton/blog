@@ -40,6 +40,8 @@ lrwxrwxrwx 1 root root  13 Jul 19 15:58 lun0-part1 -> ../../../sda1
 
 ## Create a Snapshot
 
+![Create a Snapshot](./resize-disk/create-snapshot.png)
+
 ## Expand the Disk without Downtime
 
 > You can expand your managed disks without deallocating your VM.
@@ -47,6 +49,10 @@ lrwxrwxrwx 1 root root  13 Jul 19 15:58 lun0-part1 -> ../../../sda1
 > expand a data disk without deallocating your VM.
 
 Only supported for data disks. Check for other criteria in the documentation.
+
+![Data Disk Screenshot](./resize-disk/data-disk.png)
+
+![Resize the Data Disk](./resize-disk/data-disk-change-size.png)
 
 ## Detect the Disk Size Change
 
@@ -205,3 +211,5 @@ Log in. Check the mounts. Validate that /dev/sdX devices have not reordered.
 Fix /etc/fstab and reboot as necessary.
 
 ## Remove the Disk Snapshot
+
+![Snapshot Screenshot](./resize-disk/disk-snapshot.png)
