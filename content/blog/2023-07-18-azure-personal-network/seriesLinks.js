@@ -28,7 +28,11 @@ const SeriesLinks = () => (
         Replace Azure Network Gateway with an OpenVPN Server
       </Link>
     </li>
-    <li>Setup Firewalla OpenVPN Server Connection</li>
+    <li>
+      <Link to="/blog/2023-07-21-azure-personal-network-vpn-firewalla/">
+        Setup Firewalla OpenVPN Server Connection
+      </Link>
+    </li>
     <li>
       <Link to="/blog/2023-07-22-azure-personal-network-resize-vms/">
         Right-size the Virtual Machines
