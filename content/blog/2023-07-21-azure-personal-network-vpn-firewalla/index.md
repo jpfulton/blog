@@ -11,3 +11,9 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 <SeriesLinks />
 
 ## Table of Contents
+
+## Copy the Client Configuration to a Local Mac
+
+## Airdrop the Configuration to an iPhone
+
+[Airdrop guide](https://support.apple.com/guide/mac-help/airdrop-mac-send-files-devices-mh35868/)
