@@ -16,11 +16,27 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ### Create the Spot Virtual Machine
 
-### Perform Base Initialization
+![Create Spot VM Instance](./spot-instance/create-spot-vm.png)
+
+### Perform Base Image Initialization
+
+- Update all base packages
+- Perform base local firewall configuration
+- Install MOTD modifications
+- Prepare graceful shutdowns in the event of an eviction (manual steps covered below)
+
+A complete script for performing these steps is available
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/init-azure-ubutu-vm.sh).
 
 ### Spot Eviction Readiness
 
+`169.254.169.254`
+
+[Scheduled Event API documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events)
+
 #### The Eviction Query Script
+
+`/usr/local/sbin`
 
 ```sh
 #!/usr/bin/env bash
@@ -46,6 +62,8 @@ A current version of this complete script can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/usr/local/sbin/query-for-preempt-event.sh).
 
 #### The Eviction Query Crontab Configuration
+
+`/etc/cron.d/preempt-query`
 
 ```sh
 # /etc/cron.d/preempt-query: crontab entries for the vm preempt event query script
