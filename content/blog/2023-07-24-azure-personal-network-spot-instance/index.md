@@ -66,7 +66,7 @@ workload, we will query every 10 seconds in the final configuration.
 #### The Eviction Query Script
 
 The core logic of the eviction event polling and graceful shutdown mechanism
-is `bash` script that utilizes `curl` to query the endpoint. The JSON results
+is a `bash` script that utilizes `curl` to query the endpoint. The JSON results
 of the query are piped into `grep` to look for instances of the `Preempt` event.
 If a preempt event is discovered, a notice is passed to system users and a
 operating system shutdown is started.
@@ -99,7 +99,17 @@ A current version of this complete script can be found
 
 #### The Eviction Query Crontab Configuration
 
-`/etc/cron.d/preempt-query`
+With the logic of the script in place, the next step is schedule its execution.
+This is accomplished by placing a `crontab` snippet into the `/etc/cron.d/` directory.
+
+Cron does not allow for scheduling below the minute level. In order to achieve execution
+of the script every 10 seconds, a little trickery using the `sleep` command can be
+performed. All six jobs are kicked off simultaneously with varying levels of sleep
+in front of script execution.
+
+To support logging to `syslogd`, both the `stdout` and `stderr` outputs of the script
+are directed to the `logger` command with a tag of `preempt-script`. Outputs from
+the script will be available in `/var/log/syslog`.
 
 ```sh
 # /etc/cron.d/preempt-query: crontab entries for the vm preempt event query script
