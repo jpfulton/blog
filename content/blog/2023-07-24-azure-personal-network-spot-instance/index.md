@@ -112,7 +112,11 @@ sudo systemctl status smbd
 
 ## Create a convenient CNAME on the private DNS Zone
 
+![Create CNAME Record](./spot-instance/add-cname-to-private-zone.png)
+
 ## Reconfigure Apple Clients
+
+![macOS Connect to Share](./spot-instance/macos-connect-to-backup-share.png)
 
 Note existing backups that were encrypted may need to be recreated as the
 encryption password is associated with host name?
@@ -124,3 +128,5 @@ encryption password is associated with host name?
 - Deleting the old backup server takes the OS disk and NIC with it
 - The NSG for the NIC needs manual cleanup
 - Delete the data disk snapshot
+
+![Delete Original Server](./spot-instance/delete-standard-server.png)
