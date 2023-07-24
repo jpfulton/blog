@@ -225,7 +225,7 @@ sudo apt install samba
 
 ```bash
 sudo addgroup smbgroup
-sudo adduser --system --no-create-home smbuser smbgroup
+sudo adduser --system --no-create-home --ingroup smbgroup smbuser
 ```
 
 #### Create Share Folders and Change Ownership
