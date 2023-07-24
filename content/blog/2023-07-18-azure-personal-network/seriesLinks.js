@@ -38,6 +38,11 @@ const SeriesLinks = () => (
         Resize the Managed Backup Data Disk
       </Link>
     </li>
+    <li>
+      <Link to="/blog/2023-07-24-azure-personal-network-spot-instance/">
+        Convert the Backup Server to a Spot Instance
+      </Link>
+    </li>
   </ol>
 );
 
