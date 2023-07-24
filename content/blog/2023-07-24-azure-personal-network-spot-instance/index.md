@@ -12,31 +12,67 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Table of Contents
 
-## Create and Initialize the Spot VM Instance
+## Create then Initialize the Spot VM Instance
 
 ### Create the Spot Virtual Machine
+
+Spot VMs must be configured to the **Run with Azure Spot discount** option
+at the point of creation as shown in the screenshot below. Once this option
+is selected, the **Eviction type** and **Eviction options** sections become
+available. All other steps associated with the creation of a virtual machine
+are the same as the ones described in the post on the first Samba server.
+
+For this workload, we need an eviction policy that _stops and deallocates_ the
+virtual machine when the Azure region needs the underlying resources. Other
+workload types may elect to _delete_ the virtual machine and its underlying resources
+during an eviction.
+However, we wish to restart the virtual machine when capacity becomes available
+once more. In a later post, we will develop an external orchestration mechanism
+that tests for the return of capacity and restarts the virtual machine following
+an eviction.
 
 ![Create Spot VM Instance](./spot-instance/create-spot-vm.png)
 
 ### Perform Base Image Initialization
 
+Once the virtual machine has been allocated, we need to log in and perform
+some initial configuration steps.
+
 - Update all base packages
-- Perform base local firewall configuration
+- Perform initial local firewall configuration
 - Install MOTD modifications
-- Prepare graceful shutdowns in the event of an eviction (manual steps covered below)
+- Prepare for graceful shutdown in the event of an eviction
+  (manual steps covered below)
+
+As these steps are fairly repetitive, I have taken to scripting them.
 
 A complete script for performing these steps is available
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/init-azure-ubutu-vm.sh).
 
 ### Spot Eviction Readiness
 
-`169.254.169.254`
+As a spot virtual machine running on excess capacity, the virtual machine needs
+to be ready for eviction by Azure to create capacity for premium workloads with
+as little as 30 seconds notice. As a result, we need to consistently query the
+[Scheduled Event API](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events)
+an initiate a graceful shutdown in the event an eviction has been initiated by
+Azure.
 
-[Scheduled Event API documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events)
+The Scheduled Event API is hosted on a non-routable address within the virtual network:
+`169.254.169.254`. We may query this endpoint as often once per second per the documentation.
+However, querying and then processing the results require CPU and memory. In our
+workload, we will query every 10 seconds in the final configuration.
 
 #### The Eviction Query Script
 
-`/usr/local/sbin`
+The core logic of the eviction event polling and graceful shutdown mechanism
+is `bash` script that utilizes `curl` to query the endpoint. The JSON results
+of the query are piped into `grep` to look for instances of the `Preempt` event.
+If a preempt event is discovered, a notice is passed to system users and a
+operating system shutdown is started.
+
+The script requires root permissions to run and should be stored in
+`/usr/local/sbin` as a result.
 
 ```sh
 #!/usr/bin/env bash
