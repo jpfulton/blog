@@ -14,6 +14,57 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Create and Initialize the Spot VM Instance
 
+### Create the Spot Virtual Machine
+
+### Perform Base Initialization
+
+### Spot Eviction Readiness
+
+#### The Eviction Query Script
+
+```sh
+#!/usr/bin/env bash
+
+ENDPOINT_IP="169.254.169.254";
+API_VERSION="2020-07-01";
+
+HEADER="Metadata:true";
+ENDPOINT_URL="http://${ENDPOINT_IP}/metadata/scheduledevents?api-version=${API_VERSION}";
+
+if [ "$(curl -s -H ${HEADER} ${ENDPOINT_URL} | grep -c Preempt)" -ge 1 ]
+    then
+        echo "Azure preempt event found... Shutting down.";
+        wall "Azure preempt event found... Shutting down cleanly prior to eviction.";
+        sleep 5;
+        shutdown now "Shutting down. Virtual machine is being evicted.";
+    else
+        echo "No Azure preempt event found.";
+fi
+```
+
+A current version of this complete script can be found
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/usr/local/sbin/query-for-preempt-event.sh).
+
+#### The Eviction Query Crontab Configuration
+
+```sh
+# /etc/cron.d/preempt-query: crontab entries for the vm preempt event query script
+
+SHELL=/bin/sh
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+* * * * * root ( /usr/local/sbin/query-for-preempt-event.sh ) 2>&1 | logger -t preempt-query
+* * * * * root ( sleep 10 ; /usr/local/sbin/query-for-preempt-event.sh ) 2>&1 | logger -t preempt-query
+* * * * * root ( sleep 20 ; /usr/local/sbin/query-for-preempt-event.sh ) 2>&1 | logger -t preempt-query
+* * * * * root ( sleep 30 ; /usr/local/sbin/query-for-preempt-event.sh ) 2>&1 | logger -t preempt-query
+* * * * * root ( sleep 40 ; /usr/local/sbin/query-for-preempt-event.sh ) 2>&1 | logger -t preempt-query
+* * * * * root ( sleep 50 ; /usr/local/sbin/query-for-preempt-event.sh ) 2>&1 | logger -t preempt-query
+
+```
+
+A current version of this complete file can be found
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/cron.d/preempt-query).
+
 ## Perform Initial Samba Configuration
 
 - Install Samba
@@ -110,7 +161,7 @@ sudo systemctl start smbd
 sudo systemctl status smbd
 ```
 
-## Create a convenient CNAME on the private DNS Zone
+## Create a CNAME Record on the Private DNS Zone
 
 ![Create CNAME Record](./spot-instance/add-cname-to-private-zone.png)
 
