@@ -1,7 +1,7 @@
 ---
 title: "Extend a Personal Network to Azure: Resize a Data Disk"
 date: 2023-07-23
-description: ""
+description: "In this post, we will resize a managed disk to increase the amount of available storage space then use Linux operating system utilities to resize its ext4 partition to utilize the newly allocated space. In the process, we will create a temporary disk snapshot to ensure that no data is lost during the operation."
 keywords:
   [
     "azure",
