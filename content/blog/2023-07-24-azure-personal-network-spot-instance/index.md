@@ -20,7 +20,9 @@ Spot VMs must be configured to the **Run with Azure Spot discount** option
 at the point of creation as shown in the screenshot below. Once this option
 is selected, the **Eviction type** and **Eviction options** sections become
 available. All other steps associated with the creation of a virtual machine
-are the same as the ones described in the post on the first Samba server.
+are the same as the ones described
+in <Link to="/blog/2023-07-20-azure-personal-network-vm-smbd/">the previous post</Link>
+on the original Samba server.
 
 For this workload, we need an eviction policy that _stops and deallocates_ the
 virtual machine when the Azure region needs the underlying resources. Other
@@ -131,16 +133,37 @@ A current version of this complete file can be found
 
 ## Perform Initial Samba Configuration
 
+Following the same steps used
+in <Link to="/blog/2023-07-20-azure-personal-network-vm-smbd/">the previous post</Link>,
+Samba needs to be installed with local users and Samba users:
+
 - Install Samba
 - Create Local Samba User and Group
 - Create Samba Passwords for Use in Shares
-- Copy Configuration from Existing Server
+- Configure `/etc/samba/smb.conf`
+
+To save a little time, I used `scp` to move the `smb.conf` file from the original
+server.
 
 ## Shutdown the Existing Backup Server
 
+With intention of detaching and moving the backup data disk to the new spot
+instance, we need to use the portal to stop the original server. Navigate
+to the old server in the portal and select **Stop** from the main toolbar.
+
 ## Snapshot Backup Data Disk
 
-## Detach the Data Disk from the Existing Backup Server
+For safety, prior to performing any operations on the data disk. Create a snapshot
+by navigating to the disk in the portal and selecting **Create snapshot**. Once
+the disk operations have finished and we have proven everything is working, this
+snapshot can be removed.
+
+## Detach the Data Disk from the Original Backup Server
+
+Within the portal while navigated to the original server, select
+**Settings** > **Disks** and scroll to the **Data disks** section. Scroll
+to the far right of the screen and select the **Detach** button to detach
+the disk from the virtual machine. Select **Save** to perform the operation.
 
 ## Attach the Data Disk to the Spot VM
 
