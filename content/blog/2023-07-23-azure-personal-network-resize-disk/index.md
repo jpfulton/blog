@@ -1,8 +1,18 @@
 ---
-title: "Extend a Personal Network to Azure: Resize Data Disk"
+title: "Extend a Personal Network to Azure: Resize a Data Disk"
 date: 2023-07-23
 description: ""
-keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual machine",
+    "managed disk",
+    "resize disk",
+    "linux",
+    "Ubuntu",
+    "ext4",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
