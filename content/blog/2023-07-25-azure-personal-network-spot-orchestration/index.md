@@ -324,7 +324,15 @@ rm $LOCK_FILE;
 A current version of this monitoring and orchestration script can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/usr/local/sbin/monitor-and-restart-spot-vms.sh).
 
-## Install the Crontab Snippet
+### Install the Crontab Snippet
+
+With the logic of the script in place, the next step is schedule its execution.
+This is accomplished by placing a crontab snippet into the `/etc/cron.d/` directory.
+The configured schedule in this example runs the monitoring script every minute.
+
+To support logging to `syslogd`, both the `stdout` and `stderr` outputs of the
+script are directed to the logger command with a tag of `az-spot-monitor`.
+Outputs from the script will be available in `/var/log/syslog`.
 
 ```sh
 # /etc/cron.d/az-spot-monitor: crontab entries for the az spot vm monitor script
