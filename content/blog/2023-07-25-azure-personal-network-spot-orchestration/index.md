@@ -161,7 +161,64 @@ sudo chmod 0440 /etc/azure/sp.pem
 
 ## Install the Monitoring Script
 
-`/usr/local/sbin`
+The monitoring script listed below is intended to run as root or
+in a sudo context. As such it should be located in `/usr/local/sbin`
+and be owned by the root user and group.
+
+### Install Script Prerequisites
+
+The script should run without problems on a vanilla Ubuntu installation
+with one exception: the Azure CLI needs to be installed.
+
+To perform the installation, you may follow this
+[Microsoft Guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+or following a careful review you may use this
+[script](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/install-az-cli-with-extensions.sh).
+
+### The Monitoring Script
+
+The monitoring script may be run in a sudo context manually for debugging
+purposes. However, it is designed to be scheduled via `cron`. A `crontab`
+snippet file is provide in a section below. Replace the values stored
+in the variables at the top of the script with values configured to your
+installation.
+
+The script is written to respect a lock file so that only one instance may
+be executing at the same time. In most cases, the runtime will be short. However,
+when a spot instance has been found that requires a restart attempt, the script
+may become long running while it waits for the spot virtual machine to enter
+a running state. The lock file contains the currently running process ID and
+is located in `/etc/azure/deallocation-monitor.lock`.
+
+Using service principal credentials, the script logs into the Azure CLI and
+then queries for spot instances that have been deallocated using a
+[JMESPath](https://jmespath.org/) query:
+
+```sh
+[?
+  billingProfile.maxPrice != null &&
+  powerState == 'VM deallocated' &&
+  tags.AttemptRestartAfterEviction &&
+  tags.AttemptRestartAfterEviction == 'true'
+].{Name:name}
+```
+
+Returning a list of resource names, the query has four criteria.
+A non-null value for the `billingProfile.maxPrice` key identifies the
+virtual machine as a spot instance. Secondly, the `powerState` key criteria
+must show the virtual machine as deallocated. Finally, the machine must
+have a tag with the name `AttemptRestartAfterEviction` and a value of `true`.
+
+Once a list of deallocated spot instances with the appropriate control tags
+is found, the script will start each one in the order they were returned
+by the query; awaiting each on to complete its start process prior to moving
+on to the next.
+
+A modification to this script to change the behavior to avoid waiting for
+the long running virtual machine start process would be possible by adding
+the `--no-wait` flag to the `az vm start` command. Logic would need to
+included to follow up on the batch of start commands that were issued
+in that hypothetical implementation.
 
 ```sh
 #!/usr/bin/env bash
@@ -260,7 +317,7 @@ if [ $ARRAY_LENGTH -ge 1 ]
   echo "No deallocated VMs tagged for restart after eviction discovered.";
 fi
 
-## Remove lock file.
+# Remove lock file.
 rm $LOCK_FILE;
 ```
 
