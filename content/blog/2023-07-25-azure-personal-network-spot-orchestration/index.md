@@ -1,8 +1,20 @@
 ---
-title: "Extend a Personal Network to Azure: Spot Instance Orchestration"
+title: "Extend a Personal Network to Azure: Spot Instance Restart Orchestration"
 date: 2023-07-25
 description: "In the last post, we developed a resilient mechanism to gracefully shutdown an interruptible workflow on an Azure Spot Virtual Machine. In this post, we create an external orchestration to restart the spot instances once capacity has been freed within the Azure data center."
-keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual machine",
+    "spot instance",
+    "interruptible workload",
+    "orchestration",
+    "bash",
+    "azure cli",
+    "linux",
+    "Ubuntu",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
@@ -16,7 +28,8 @@ once capacity has been freed within the Azure data center.
 The external orchestration must run outside the spot instances for stability as it
 is alway possible that a spot instance will be deallocated with little warning.
 Options for its location include an on-premise server or a traditional virtual
-machine. I selected an on-premise Ubuntu server as the host for this project.
+machine. I selected an on-premise
+[Ubuntu](https://ubuntu.com/) server as the host for this project.
 
 The orchestration is implemented using the Azure CLI and a series of
 `bash` scripts. It is scheduled for execution using `cron` with output
@@ -38,9 +51,10 @@ instances that should be restarted following eviction.
 
 [Azure Tags](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)
 offer an excellent solution to this problem. They are easy to create
-and modify using both the portal and the Azure CLI. Additionally, they can be
-included in Azure CLI queries in the [JMESPath](https://jmespath.org) syntax
-used by that tool.
+and modify using both the portal and the
+[Azure CLI](https://learn.microsoft.com/en-us/cli/azure/).
+Additionally, they can be included in Azure CLI queries in the
+[JMESPath](https://jmespath.org) syntax used by that tool.
 
 The orchestration script used here uses tags to drive its logic. To be eligible
 for attempted restart following eviction, the script expects a spot instance
@@ -146,8 +160,9 @@ Per the output of the service principal creation script, a `PEM` file
 containing a public / private key pair was generated at
 `/Users/josephpfulton/tmp3wenah5y.pem`. This certificate will be used
 to authenticate the Azure CLI in the monitoring orchestration. It needs
-to be _**securely**_ moved to the orchestration server. Use `scp` to
-transfer the file.
+to be _**securely**_ moved to the orchestration server. Use
+[scp](https://manpages.ubuntu.com/manpages/jammy/en/man1/scp.1.html)
+to transfer the file.
 
 The monitoring script expects the PEM file to have a specific name
 and location: `/etc/azure/sp.pem`. Move and rename the file as needed.
@@ -172,7 +187,7 @@ with one exception: the Azure CLI needs to be installed.
 
 To perform the installation, you may follow this
 [Microsoft Guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
-or following a careful review you may use this
+or **following a careful review** you may use this
 [script](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/install-az-cli-with-extensions.sh).
 
 ### The Monitoring Script
@@ -331,7 +346,7 @@ This is accomplished by placing a crontab snippet into the `/etc/cron.d/` direct
 The configured schedule in this example runs the monitoring script every minute.
 
 To support logging to `syslogd`, both the `stdout` and `stderr` outputs of the
-script are directed to the logger command with a tag of `az-spot-monitor`.
+script are directed to the `logger` command with a tag of `az-spot-monitor`.
 Outputs from the script will be available in `/var/log/syslog`.
 
 ```sh
