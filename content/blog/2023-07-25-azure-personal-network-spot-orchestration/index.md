@@ -174,3 +174,9 @@ PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
 A current version of this crontab snippet can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/cron.d/az-spot-monitor).
+
+## Simulate an Eviction
+
+```bash
+az vm simulate-eviction --resource-group personal-network --name ubuntu-backup-server-spot
+```
