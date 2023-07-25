@@ -1,10 +1,34 @@
 ---
 title: "Extend a Personal Network to Azure: Backup Server Spot Instance"
 date: 2023-07-24
-description: ""
-keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
+description: "Azure Spot Virtual Machines offer deep discounts of up to 90% off pay-as-you-go prices for interruptible workloads. As long as resiliency and fault tolerance can be built into the workload, this model can offer significant cost savings. In the workload described by this post series, the backup system is an excellent candidate for the use of spot instances. This post covers the creation of a spot instance server to replace the existing backup virtual machine."
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual machine",
+    "spot instance",
+    "interruptible workload",
+    "samba",
+    "backup",
+    "bash",
+    "linux",
+    "Ubuntu",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
+
+[Azure Spot Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines/spot)
+offer deep discounts of up to 90% off pay-as-you-go prices for **interruptible**
+workloads. As long as resiliency and fault tolerance can be built into the workload,
+this model can offer significant cost savings. In the workload described by this
+post series, the backup system is an _excellent candidate_ for the use of spot instances.
+This post covers the creation of a spot instance server to replace the existing
+backup virtual machine.
+
+This post will cover the creation of a spot virtual machine, preparing it
+for graceful shutdown upon eviction and configuring it to replace an existing
+[Samba](https://www.samba.org) server within the project.
 
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
@@ -13,6 +37,9 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 ## Table of Contents
 
 ## Create then Initialize the Spot VM Instance
+
+A new virtual machine needs to be created to utilize a spot instance for
+the backup server. Once created, it needs to be initialized and configured.
 
 ### Create the Spot Virtual Machine
 
