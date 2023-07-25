@@ -329,8 +329,10 @@ Click on the **Location** field and then update the `smb` URL.
 
 ## Clean up by Deleting the Original Server and Snapshot
 
-- Deleting the old backup server takes the OS disk and NIC with it
-- The NSG for the NIC needs manual cleanup
-- Delete the data disk snapshot
+Finally, we just need to perform some clean up to be economical with
+our cloud spend. Delete the old backup virtual machine. This operation will
+take its OS disk and network interface with it. The network security
+group associated with the NIC needs to be deleted manually. The disk
+snapshot may also be removed if everything is working as expected.
 
 ![Delete Original Server](./spot-instance/delete-standard-server.png)
