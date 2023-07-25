@@ -157,6 +157,9 @@ fi
 rm $LOCK_FILE;
 ```
 
+A current version of this monitoring and orchestration script can be found
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/usr/local/sbin/monitor-and-restart-spot-vms.sh).
+
 ## Install the Crontab Snippet
 
 ```sh
@@ -168,3 +171,6 @@ PATH=/usr/sbin:/usr/bin:/sbin:/bin
 * * * * * root ( /usr/local/sbin/monitor-and-restart-spot-vms.sh ) 2>&1 | logger -t az-spot-monitor
 
 ```
+
+A current version of this crontab snippet can be found
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/cron.d/az-spot-monitor).
