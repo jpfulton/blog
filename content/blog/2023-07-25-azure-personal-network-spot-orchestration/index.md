@@ -13,6 +13,15 @@ workflow on an
 In this post, we create an external orchestration to restart the spot instances
 once capacity has been freed within the Azure data center.
 
+The external orchestration must run outside the spot instances for stability as it
+is alway possible that a spot instance will be deallocated with little warning.
+Options for its location include an on-premise server or a traditional virtual
+machine. I selected an on-premise Ubuntu server as the host for this project.
+
+The orchestration is implemented using the Azure CLI and a series of
+`bash` scripts. It is scheduled for execution using `cron` with output
+directed to `syslogd`.
+
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 <SeriesLinks />
@@ -20,6 +29,45 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 ## Table of Contents
 
 ## Tag the Virtual Machine(s)
+
+It may not be desireable for a spot instance to restarted following deallocation
+in all cases. For example, a spot instance may have been purposefully stopped
+and deallocated for administrative reasons or its workload may have simply come
+to an end. As a result, we need an easily configurable mechanism to mark spot
+instances that should be restarted following eviction.
+
+[Azure Tags](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)
+offer an excellent solution to this problem. They are easy to create
+and modify using both the portal and the Azure CLI. Additionally, they can be
+included in Azure CLI queries in the [JMESPath](https://jmespath.org) syntax
+used by that tool.
+
+The orchestration script used here uses tags to drive its logic. To be eligible
+for attempted restart following eviction, the script expects a spot instance
+to have a tag of `AttemptRestartAfterEviction` with a value of `true` to be
+eligible for the orchestration.
+
+The screen shot below shows the backup server spot instance with the tag applied.
+
+![Virtual Machine Tags](vm-tags.png)
+
+The Azure CLI can also be used to
+[work with tags](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources-cli).
+
+```bash {outputLines: 2-12}
+az tag list --resource-id /subscriptions/4913be3f-a345-4652-9bba-767418dd25e3/resourcegroups/personal-network/providers/Microsoft.Compute/virtualMachines/ubuntu-backup-server-spot
+{
+  "id": "/subscriptions/4913be3f-a345-4652-9bba-767418dd25e3/resourceGroups/personal-network/providers/Microsoft.Compute/virtualMachines/ubuntu-backup-server-spot/providers/Microsoft.Resources/tags/default",
+  "name": "default",
+  "properties": {
+    "tags": {
+      "AttemptRestartAfterEviction": "true"
+    }
+  },
+  "resourceGroup": "personal-network",
+  "type": "Microsoft.Resources/tags"
+}
+```
 
 ## Create a Service Principal
 
