@@ -43,6 +43,11 @@ const SeriesLinks = () => (
         Convert the Backup Server to a Spot Instance
       </Link>
     </li>
+    <li>
+      <Link to="/blog/2023-07-25-azure-personal-network-spot-orchestration/">
+        Orchestrate Spot Instance Reallocation
+      </Link>
+    </li>
   </ol>
 );
 
