@@ -71,6 +71,30 @@ az tag list --resource-id /subscriptions/4913be3f-a345-4652-9bba-767418dd25e3/re
 
 ## Create a Service Principal
 
+The orchestration needs to run without user intervention or access to a browser
+which is the usual behavior of the `az login` command. Additionally, the default
+login mechanism is designed for users and your user account is likely to have
+permissions and roles that are far greater in scope than would be desired
+for use in an automated script. As a result, we need a different mechanism
+to log into the Azure CLI inside the orchestration.
+
+[Azure Service Principals](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli#4-sign-in-using-a-service-principal)
+are the solution to this problem.
+
+> An Azure service principal is an identity created for use with applications,
+> hosted services, and automated tools to access Azure resources. This access is
+> restricted by the roles assigned to the service principal, giving you control
+> over which resources can be accessed and at which level.
+
+In this step, we will use the script below to create a service principal
+with `contributor` access to the resource group containing our spot instances.
+The script will generate a _self-signed_ certificate for use in authentication
+with the Azure CLI within the orchestration.
+
+Replace the empty variable values with the subscription ID, resource group
+name and select a name for the service principal to be created prior
+to execution.
+
 ```sh
 #!/usr/bin/env bash
 
@@ -85,6 +109,14 @@ az ad sp create-for-rbac
   --create-cert;
 ```
 
+The service principal creation script can be found
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/create-azure-rbac-sp-for-resource-group.sh).
+
+The output of the script will be printed to the console. We will need
+several values from it to configure the orchestration script in a later
+step: `appId` and `tenant`. The certificate file we need was generated
+and placed at the path listed in the `fileWithCertAndPrivateKey` value.
+
 ```json
 {
   "appId": "a77793d9-d99f-4309-a629-150db0977169",
@@ -95,8 +127,18 @@ az ad sp create-for-rbac
 }
 ```
 
-The service principal creation script can be found
-[here](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/create-azure-rbac-sp-for-resource-group.sh).
+The results of this operation can also be found in the Azure Portal.
+Navigate to **Azure Active Directory** from the home screen then select
+**App registrations** from the **Manage** menu. Should you lose the output
+of the script that was run above, the values needed for the next steps
+are available on these screens with the exception of the certificate file.
+
+![Azure AD App Registrations](./aad-app-registrations.png)
+
+Select the app registration matching the SP name you selected for the script
+to get its details.
+
+![Azure AD App Registration Overview](./aad-app-registration-overview.png)
 
 ## Move and Protect the Service Principal PEM
 
