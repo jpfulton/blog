@@ -177,6 +177,19 @@ A current version of this crontab snippet can be found
 
 ## Simulate an Eviction
 
+With the external reallocation orchestration in place, we should now be able to
+simulate an eviction with the command below and expect both a graceful shutdown
+of the workload as well as the orchestration to bring the spot instance back up
+once it is deallocated.
+
 ```bash
 az vm simulate-eviction --resource-group personal-network --name ubuntu-backup-server-spot
+```
+
+From the orchestration server, we can watch the progress of this process by
+observing `/var/log/syslog` and filtering for tags matching the orchestration
+script using the following command:
+
+```bash
+sudo tail -f /var/log/syslog | grep az-spot-monitor
 ```
