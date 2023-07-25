@@ -140,7 +140,24 @@ to get its details.
 
 ![Azure AD App Registration Overview](./aad-app-registration-overview.png)
 
-## Move and Protect the Service Principal PEM
+## Move and Protect the Service Principal Certificate
+
+Per the output of the service principal creation script, a `PEM` file
+containing a public / private key pair was generated at
+`/Users/josephpfulton/tmp3wenah5y.pem`. This certificate will be used
+to authenticate the Azure CLI in the monitoring orchestration. It needs
+to be _**securely**_ moved to the orchestration server. Use `scp` to
+transfer the file.
+
+The monitoring script expects the PEM file to have a specific name
+and location: `/etc/azure/sp.pem`. Move and rename the file as needed.
+Once in place, change its ownership to the root user and group then
+restrict is file permissions. Delete the original local file.
+
+```bash
+sudo chown root:root /etc/azure/sp.pem
+sudo chmod 0440 /etc/azure/sp.pem
+```
 
 ## Install the Monitoring Script
 
