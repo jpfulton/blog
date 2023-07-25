@@ -23,7 +23,7 @@ or the features of Premium managed disk models. However, it is easy to run
 out of space. It is also important to recall that
 [managed disks](https://azure.microsoft.com/en-us/products/storage/disks)
 can **only**
-be _increased_ in size. Size decreases are disallowed to avoid data loss. So
+be _**increased**_ in size. Size decreases are disallowed to avoid data loss. So
 it is important to start small.
 
 In this post, we will resize a managed disk to increase the amount of available
