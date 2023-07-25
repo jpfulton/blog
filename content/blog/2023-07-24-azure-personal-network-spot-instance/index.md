@@ -167,7 +167,17 @@ the disk from the virtual machine. Select **Save** to perform the operation.
 
 ## Attach the Data Disk to the Spot VM
 
-Can be performed while server is running.
+The next steps can be performed while the new spot server is running.
+
+Navigate to the new spot virtual machine in the portal and select
+**Settings** > **Disks**. Scroll to the **Data disks** section and select
+**Attach existing disks**. Select the existing data disk from the dropdown
+menu and the click **Save** from the toolbar. The disk will be presented
+to the virtual machine live.
+
+Log into the server via `ssh`. Run a `ls` command to find the new
+disk device in the operating system. Recall that it has a single
+primary partition formatted with `ext4` from when created it.
 
 ```bash {8-9}{numberLines: true}{outputLines: 2-9}
 ls -la /dev/sd*
@@ -180,6 +190,10 @@ brw-rw---- 1 root disk 8, 17 Jul 24 18:27 /dev/sdb1
 brw-rw---- 1 root disk 8, 32 Jul 24 19:18 /dev/sdc
 brw-rw---- 1 root disk 8, 33 Jul 24 19:18 /dev/sdc1
 ```
+
+In this case, the device is `/dev/sdc` and the partition is `/dev/sdc1`.
+Run `lsblk` to verify the size of the partition and that it does not
+yet have a mount point.
 
 ```bash {13-14}{numberLines: true}{outputLines: 2-14}
 lsblk
@@ -198,10 +212,18 @@ sdc       8:32   0     1T  0 disk
 └─sdc1    8:33   0  1024G  0 part
 ```
 
+Create a backup directory on the file system as a mountpoint
+and mount the partition.
+
 ```bash
 sudo mkdir /backup
 sudo mount -t ext4 -o rw /dev/sdc1 /backup
 ```
+
+List the files, permissions and user/group ownership on the newly
+mounted device. Note that the group ownership is incorrect on the
+newly mounted filesystem. This is due to group IDs being different
+between the new and old system.
 
 ```bash {5-6}{numberLines: true}{outputLines: 2-7}
 ls -la /backup/
@@ -213,14 +235,16 @@ drwxr-xr-x  3 smbuser aad_admins  4096 Jul 18 04:45 linuxbackups
 drwx------  2 root    root       16384 Jul 18 03:38 lost+found
 ```
 
-Change group ownership recursively.
+To correct this problem, change group ownership recursively with the
+following commands:
 
 ```bash
 sudo chown -R smbuser:smbgroup /backup/applebackups
 sudo chown -R smbuser:smbgroup /backup/linuxbackups
 ```
 
-Modify `/etc/fstab`.
+Now that things are working as expected with the newly mounted filesystem,
+we can modify `/etc/fstab` to ensure the filesystem will mount on boot.
 
 ```sh {5}{numberLines: true}
 # CLOUD_IMG: This file was created/modified by the Cloud Image build process
@@ -230,11 +254,13 @@ UUID=B6C3-B75F  /boot/efi       vfat    umask=0077      0 1
 /dev/sdc1 /backup ext4 rw 0 0
 ```
 
-Reboot with `sudo shutdown -r`.
-
-Validate filesystem upon reboot.
+Reboot with `sudo shutdown -r` to prove everything is working and then
+validate the filesystem after logging in following the reboot.
 
 ## Update the Local Firewall
+
+Next update the firewall rules to allow Samba traffic with the following
+commands:
 
 ```bash
 sudo ufw allow samba
@@ -243,6 +269,9 @@ sudo ufw status numbered
 
 ## Start the Samba Service
 
+At this point, we are ready to start the Samba service and connect
+with a client to prove everything is working as expected.
+
 ```bash
 sudo systemctl start smbd
 sudo systemctl status smbd
@@ -250,16 +279,53 @@ sudo systemctl status smbd
 
 ## Create a CNAME Record on the Private DNS Zone
 
+My host names are getting long and this exercise of changing out
+a key server reminded me that there are more convenient methods to
+setting up name resolution now that private DNS zone has been established
+on the network. While servers auto-register themselves with the DNS zone,
+it is also possible to create manual entries. As a result, I created
+a CNAME record to point to the new server's A record in the private zone.
+In the future, I will configure all backup clients to use
+`backup.private.jpatrickfulton.com` rather than the FQDN of the backup
+server, giving me the freedom to switch out the implementation server
+without revisiting client configurations again.
+
 ![Create CNAME Record](./spot-instance/add-cname-to-private-zone.png)
 
-## Reconfigure Apple Clients
+## Configure the Backup Clients
+
+Now that the server has been exchanged for a spot instance and a new
+internal DNS name is in place, the local network backup clients require
+reconfiguration.
+
+### Reconfigure macOS Clients
+
+From a Finder window, select **Go** > **Connect to server** to open
+a dialog to allow macOS to select the new server and set up authentication.
+
+![macOs Connect to Server](./spot-instance/macos-connect-to-server.png)
+
+Enter credentials and mount the `applebackups` share.
 
 ![macOS Connect to Share](./spot-instance/macos-connect-to-backup-share.png)
 
-Note existing backups that were encrypted may need to be recreated as the
-encryption password is associated with host name?
+Please note that if existing backups were encrypted with a password, they
+may need to be recreated as the password is matched to the server hostname.
 
-## Reconfigure Linux Clients
+### Reconfigure Linux Clients
+
+The Linux clients are much more forgiving. From Ubuntu Desktop,
+select **Activities** and search for **Backups**.
+
+![Ubuntu Backup Utility](./spot-instance/ubuntu-backups.png)
+
+Select **Preferences** from the menu.
+
+![Ubuntu Backup Preferences](./spot-instance/ubuntu-backsups-preferences.png)
+
+Click on the **Location** field and then update the `smb` URL.
+
+![Ubuntu Backup Location](./spot-instance/ubuntu-backups-network-location.png)
 
 ## Clean up by Deleting the Original Server and Snapshot
 
