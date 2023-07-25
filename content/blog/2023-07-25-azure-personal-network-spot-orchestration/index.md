@@ -1,10 +1,17 @@
 ---
 title: "Extend a Personal Network to Azure: Spot Instance Orchestration"
 date: 2023-07-25
-description: ""
+description: "In the last post, we developed a resilient mechanism to gracefully shutdown an interruptible workflow on an Azure Spot Virtual Machine. In this post, we create an external orchestration to restart the spot instances once capacity has been freed within the Azure data center."
 keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
+
+In the <Link to="/blog/2023-07-24-azure-personal-network-spot-instance/">last post</Link>,
+we developed a resilient mechanism to gracefully shutdown an interruptible
+workflow on an
+[Azure Spot Virtual Machine](https://azure.microsoft.com/en-us/products/virtual-machines/spot).
+In this post, we create an external orchestration to restart the spot instances
+once capacity has been freed within the Azure data center.
 
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
