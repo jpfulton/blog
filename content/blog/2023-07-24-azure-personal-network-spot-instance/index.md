@@ -158,6 +158,21 @@ PATH=/usr/sbin:/usr/bin:/sbin:/bin
 A current version of this complete file can be found
 [here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/cron.d/preempt-query).
 
+#### Simulate an Eviction
+
+To prove our work, the next step is simulate an eviction using the following command
+from outside the virtual machine. At this point, the spot instance will receive the
+`Preempt` event from Azure through the query script and initiate a graceful shutdown.
+If you are logged into the server via `ssh` at the time, you will see a wall message
+in your terminal prior to the system shutting down.
+
+```bash
+az vm simulate-eviction --resource-group personal-network --name ubuntu-backup-server-spot
+```
+
+Once the system shuts down, we will need to return to the Azure portal to start back
+up as we do not yet have an external reallocation orchestration in place yet.
+
 ## Perform Initial Samba Configuration
 
 Following the same steps used
