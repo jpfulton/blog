@@ -14,17 +14,52 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Create a Virtual Machine
 
+Firstly, we need to create a virtual machine attached to our existing
+virtual network and in the resource group to host the OpenVPN tunnel.
+From the Azure portal, navigate to the resource group and select
+**Create** from the toolbar. Search for **virtual machine** in the Marketplace
+and select **Create**.
+
+On the create virtual machine screen, provide a name for the server, select
+`Ubuntu Server 22.04 LTS` as the image and select `Standard_B2s` as the
+size. Supply an initial username and then select **Next: Disks**.
+
 ![Create Virtual Machine](./openvpn-server/create-vm.png)
+
+On the disks step, change the `OS Disk Type` to
+`Standard HDD (locally-redundant storage)`. Move on the networking step.
 
 ![Create Virtual Machine Step 2](./openvpn-server/create-vm-2.png)
 
+On the networking step, select the virtual network resource and ensure
+a new public IP address is created for the NIC. Move on to the management
+step.
+
 ![Create Virtual Machine Step 3](./openvpn-server/create-vm-3.png)
+
+From the management step, select the `Login with Azure AD` checkbox
+and then select **Review + create** to validate and complete the deployment.
+The PEM file will be downloaded at the start of the process.
 
 ![Create Virtual Machine Step 4](./openvpn-server/create-vm-4.png)
 
 ## Configure the Virtual Machine
 
+### Login via SSH using the PEM File
+
+Move the PEM file downloaded during the deployment to your `~/.ssh` folder
+and use it to log into the newly created server. The username must match
+the one you selected during the virtual machine creation process and the private
+IP may be found on the **Networking** tab on the newly created virtual machine
+in the portal.
+
+```bash
+ssh -i ~/.ssh/ubuntu-vpn-server_key.pem username@10.10.0.5
+```
+
 ### Update all Packages
+
+Update the packages from the base image using the following commands.
 
 ```bash
 sudo apt update
@@ -34,7 +69,13 @@ sudo apt upgrade
 
 ### Set up Local Firewall
 
-[doc on disabling ipv6 rules](https://tecadmin.net/setup-ufw-for-firewall-on-ubuntu-and-debian/#:~:text=Enable%2FDisable%20IPv6,yes”%20or%20“no”.&text=After%20making%20changes%20disable%20and%20enable%20the%20firewall%20to%20apply%20changes.)
+Next, we need to set up the local firewall. Neither the on-premise network
+nor the virtual network use IPv6. As a result, we should disable IPv6 on
+the firewall using the following this
+[guide](https://tecadmin.net/setup-ufw-for-firewall-on-ubuntu-and-debian/).
+
+Set up a rule to allow ssh and enable the firewall with the following
+commands.
 
 ```bash {outputLines: 2-3, 5-6, 8-12}
 sudo ufw allow ssh
@@ -51,18 +92,22 @@ Status: active
 [ 1] 22/tcp                     ALLOW IN    Anywhere
 ```
 
-Note that the Azure NSG will prevent access to SSH from the public IP.
-This is useful for quickly enabling external access if needed in a pinch.
+Note that the Azure NSG will prevent access to ssh from the public IP.
+This is particularly useful for quickly enabling external access by modifying the
+NSG in a pinch.
 
-### Set up OpenVPN Server
+### Install the OpenVPN and Easy-RSA Packages
 
-[documentation](https://ubuntu.com/server/docs/service-openvpn)
+Use the package manager to install the `openvpn` and `easy-rsa` packages.
+The `easy-rsa` package will be used for generating keys for the tunnel.
 
 ```bash
 sudo apt install openvpn easy-rsa
 ```
 
 ### Generate Certificates and Keys
+
+[documentation](https://ubuntu.com/server/docs/service-openvpn)
 
 ```bash
 sudo -s
