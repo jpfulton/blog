@@ -12,7 +12,17 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Table of Contents
 
-## Replace Azure Network Gateway with a Linux OpenVPN Server
+## Create a Virtual Machine
+
+![Create Virtual Machine](./openvpn-server/create-vm.png)
+
+![Create Virtual Machine Step 2](./openvpn-server/create-vm-2.png)
+
+![Create Virtual Machine Step 3](./openvpn-server/create-vm-3.png)
+
+![Create Virtual Machine Step 4](./openvpn-server/create-vm-4.png)
+
+## Configure the Virtual Machine
 
 ### Update all Packages
 
@@ -147,6 +157,8 @@ sudo ufw disable && sudo ufw enable
 ```
 
 #### Configure the Server Public IP Network Security Group
+
+![Configure Network Security Group](./openvpn-server/configure-nsg.png)
 
 ### Configure the Client
 
