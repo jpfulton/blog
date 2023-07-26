@@ -355,21 +355,115 @@ rule as shown below.
 
 ### Configure the Client
 
+With the server configuration running and in place, we need to create
+a client configuration file. The client configuration needs to match
+the features of the server configuration and then must be _**securely**_
+transferred to the client device.
+
 ### Create the Client Configuration File
 
-`/etc/openvpn/ca.crt`
+To create the client configuration file, we will need access to the
+following files as created in earlier steps. The contents of each file
+needs to be copied into the various sections of the client
+configuration template.
 
-`/etc/openvpn/ta.key`
+```sh
+/etc/openvpn/ca.crt # Certificate authority public key
+/etc/openvpn/ta.key # TLS Authentication Static Secret
+/etc/openvpn/easy-rsa/pki/issued/home-client.crt # Client public key
+/etc/openvpn/easy-rsa/pki/private/home-client.key # Client private key
+```
 
-`/etc/openvpn/easy-rsa/pki/issued/home-client.crt`
+The template below has been created to match the server configuration
+from above. The creation of the client configuration should be performed
+on the server to avoid the need to move the pre-shared secrets and keys.
 
-`/etc/openvpn/easy-rsa/pki/private/home-client.key`
+```sh:title=client.ovpn
+client
 
-### Copy the Client Configuration File to Local
+remote <SERVER DNS OR IP HERE> 1194
+remote-cert-tls server
+
+dev tun
+proto udp
+resolv-retry infinite
+nobind
+
+persist-key
+persist-tun
+
+auth SHA256
+cipher AES-256-GCM
+tls-timeout 30
+tls-version-min 1.2
+key-direction 1
+
+verb 3
+
+# Downgrade privileges after initialization (non-Windows only)
+user nobody
+group nogroup
+
+<ca>
+-----BEGIN CERTIFICATE-----
+<PASTE SERVER CA CERTIFICATE HERE>
+-----END CERTIFICATE-----
+</ca>
+
+<tls-auth>
+-----BEGIN OpenVPN Static key V1-----
+<PASTE TA KEY HERE>
+-----END OpenVPN Static key V1-----
+</tls-auth>
+
+<cert>
+-----BEGIN CERTIFICATE-----
+<PASTE CLIENT CERTIFICATE HERE>
+-----END CERTIFICATE-----
+</cert>
+
+<key>
+-----BEGIN PRIVATE KEY-----
+<PASTE CLIENT KEY HERE>
+-----END PRIVATE KEY-----
+</key>
+```
+
+A current version of this client configuration template is available
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/openvpn/client.ovpn).
+
+### Copy the Client Configuration File to a Local Machine
+
+The next step in this process is to _**securely**_ copy the OpenVPN client
+configuration from the server where it was created to a local machine. Use
+[scp](https://manpages.ubuntu.com/manpages/jammy/en/man1/scp.1.html) to move
+the file. The configuration file includes a private key and a shared static
+key for use in the TLS authentication process.
+
+When following this step, it is an excellent idea to ensure that your
+macOS hard drive is encrypted via
+[FileVault](https://support.apple.com/guide/mac-help/encrypt-mac-data-with-filevault-mh11785/)
+and that your iCloud account is end-to-end encrypted via
+[Advanced Data Protection](https://support.apple.com/en-us/HT202303).
 
 ```bash
 scp -i ~/.ssh/ubuntu-vpn-server_key.pem jpfulton@ubuntu-vpn-server.private.jpatrickfulton.com:/home/jpfulton/azure-personal-network.ovpn .
 ```
+
+### Install the Configuration and Test a Client
+
+With the client configuration downloaded to a local machine, one of several
+OpenVPN clients can be configured and then tested.
+[Ubuntu Desktop](https://ubuntu.com/download/desktop) includes an OpenVPN client.
+Additionally,
+[Tunnelblick](https://tunnelblick.net)
+may be used on macOS and
+[OpenVPN Connect](https://openvpn.net/client/client-connect-vpn-for-windows/) may be
+used on Windows.
+
+In the <Link to="/blog/2023-07-21-azure-personal-network-vpn-firewalla/">next post</Link>,
+I will discuss setting up the client configuration on a
+[Firewalla](https://firewalla.com) device.
 
 ## Tear Down the Azure Virtual Network Gateway
 
