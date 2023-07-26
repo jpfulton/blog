@@ -26,7 +26,7 @@ In this post, we create an external orchestration to restart the spot instances
 once capacity has been freed within the Azure data center.
 
 The external orchestration must run outside the spot instances for stability as it
-is alway possible that a spot instance will be deallocated with little warning.
+is always possible that a spot instance will be deallocated with little warning.
 Options for its location include an on-premise server or a traditional virtual
 machine. I selected an on-premise
 [Ubuntu](https://ubuntu.com/) server as the host for this project.
