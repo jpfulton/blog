@@ -145,7 +145,7 @@ The results of this operation can also be found in the Azure Portal.
 Navigate to **Azure Active Directory** from the home screen then select
 **App registrations** from the **Manage** menu. Should you lose the output
 of the script that was run above, the values needed for the next steps
-are available on these screens with the exception of the certificate file.
+are available on these screens (with the exception of the certificate file).
 
 ![Azure AD App Registrations](./aad-app-registrations.png)
 
@@ -167,7 +167,7 @@ to transfer the file.
 The monitoring script expects the PEM file to have a specific name
 and location: `/etc/azure/sp.pem`. Move and rename the file as needed.
 Once in place, change its ownership to the root user and group then
-restrict is file permissions. Delete the original local file.
+restrict its file permissions. Delete the original local file.
 
 ```bash
 sudo chown root:root /etc/azure/sp.pem
@@ -194,7 +194,7 @@ or **following a careful review** you may use this
 
 The monitoring script may be run in a sudo context manually for debugging
 purposes. However, it is designed to be scheduled via `cron`. A `crontab`
-snippet file is provide in a section below. Replace the values stored
+snippet file is provided in a section below. Replace the values stored
 in the variables at the top of the script with values configured to your
 installation.
 
@@ -226,11 +226,11 @@ have a tag with the name `AttemptRestartAfterEviction` and a value of `true`.
 
 Once a list of deallocated spot instances with the appropriate control tags
 is found, the script will start each one in the order they were returned
-by the query; awaiting each on to complete its start process prior to moving
+by the query, awaiting each one to complete its start process prior to moving
 on to the next.
 
-A modification to this script to change the behavior to avoid waiting for
-the long running virtual machine start process would be possible by adding
+Although not yet implemented here, this script could be modified to avoid waiting for
+the long running virtual machine start process by adding
 the `--no-wait` flag to the `az vm start` command. Logic would need to
 included to follow up on the batch of start commands that were issued
 in that hypothetical implementation.
@@ -341,7 +341,7 @@ A current version of this monitoring and orchestration script can be found
 
 ### Install the Crontab Snippet
 
-With the logic of the script in place, the next step is schedule its execution.
+With the logic of the script in place, the next step is to schedule its execution.
 This is accomplished by placing a crontab snippet into the `/etc/cron.d/` directory.
 The configured schedule in this example runs the monitoring script every minute.
 
