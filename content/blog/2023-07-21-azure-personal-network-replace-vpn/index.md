@@ -107,36 +107,82 @@ sudo apt install openvpn easy-rsa
 
 ### Generate Certificates and Keys
 
-[documentation](https://ubuntu.com/server/docs/service-openvpn)
+The first step is to copy the `easy-rsa` scripts to the `/etc/openvpn`
+folder and create a certificate authority folder.
+
+```bash
+sudo make-cadir /etc/openvpn/easy-rsa
+```
+
+Enter an interactive shell as root for the following steps with
+this command.
 
 ```bash
 sudo -s
+```
+
+Navigate to the `/etc/openvpn/easy-rsa` folder. The following commands
+initialize the public key infrastructure and generates a certificate
+authority that will be used to sign subsequent public / private key pairs.
+
+```bash
 cd /etc/openvpn/easy-rsa
 ./easyrsa init-pki
 ./easyrsa build-ca
-./easyrsa gen-req ubuntu-vpn-server nopass
-./easyrsa gen-dh
-./easyrsa sign-req server ubuntu-vpn-server
-cp pki/dh.pem pki/ca.crt pki/issued/ubuntu-vpn-server.crt pki/private/ubuntu-vpn-server.key /etc/openvpn/
+```
 
+Next, we need to create a set of
+[Diffie Hellman parameters](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange)
+to be used by the server.
+
+```bash
+./easyrsa gen-dh
+```
+
+Finally, we generate a certificate for the the server and sign it
+with the certificate authority.
+
+```bash
+./easyrsa gen-req ubuntu-vpn-server nopass
+./easyrsa sign-req server ubuntu-vpn-server
+```
+
+Copy the outputs of the previous command to the `/etc/openvpn` folder
+where they will be used in the OpenVPN server configuration file.
+
+```bash
+cp pki/dh.pem pki/ca.crt pki/issued/ubuntu-vpn-server.crt pki/private/ubuntu-vpn-server.key /etc/openvpn/
+```
+
+With the server certificates and Diffie Hellman parameters ready for the
+server configuration, we need to create a certificate for the client. Ideally,
+each OpenVPN client will use a separate certificate to allow them to be
+identified by the server and also revoked if needed. The outputs from
+these commands will be used in separate step when creating the client
+configuration file.
+
+```bash
 ./easyrsa gen-req home-client nopass
 ./easyrsa sign-req client home-client
+```
+
+Exit the interactive shell.
+
+```bash
 exit
 ```
+
+The last secret needed for the OpenVPN configuration is a
+TLS authorization key. This key will be used in
+[TLS authentication](https://openvpn.net/community-resources/hardening-openvpn-security/)
+where it will participate in the creation of an
+[HMAC](https://en.wikipedia.org/wiki/HMAC) signature for all SSL/TLS
+handshake packets to mitigate DoS attacks against the server.
+That secret is generated with the following commands.
 
 ```bash
 cd /etc/openvpn
 sudo openvpn --genkey secret ta.key
-```
-
-Edit `/etc/sysctl.conf`` and uncomment the following line to enable IP forwarding.
-
-`#net.ipv4.ip_forward=1`
-
-Then reload sysctl.
-
-```bash
-sudo sysctl -p /etc/sysctl.conf
 ```
 
 ### Configure the Server
