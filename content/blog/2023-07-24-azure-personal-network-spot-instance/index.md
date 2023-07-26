@@ -84,11 +84,11 @@ As a spot virtual machine running on excess capacity, the virtual machine needs
 to be ready for eviction by Azure to create capacity for premium workloads with
 as little as 30 seconds notice. As a result, we need to consistently query the
 [Scheduled Event API](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events)
-an initiate a graceful shutdown in the event an eviction has been initiated by
+and initiate a graceful shutdown in the event an eviction has been initiated by
 Azure.
 
 The Scheduled Event API is hosted on a non-routable address within the virtual network:
-`169.254.169.254`. We may query this endpoint as often once per second per the documentation.
+`169.254.169.254`. We may query this endpoint as often as once per second per the documentation.
 However, querying and then processing the results require CPU and memory. In our
 workload, we will query every 10 seconds in the final configuration.
 
@@ -97,7 +97,7 @@ workload, we will query every 10 seconds in the final configuration.
 The core logic of the eviction event polling and graceful shutdown mechanism
 is a `bash` script that utilizes `curl` to query the endpoint. The JSON results
 of the query are piped into `grep` to look for instances of the `Preempt` event.
-If a preempt event is discovered, a notice is passed to system users and a
+If a preempt event is discovered, a notice is passed to system users and an
 operating system shutdown is started.
 
 The script requires root permissions to run and should be stored in
@@ -128,7 +128,7 @@ A current version of this complete script can be found
 
 #### The Eviction Query Crontab Configuration
 
-With the logic of the script in place, the next step is schedule its execution.
+With the logic of the script in place, the next step is to schedule its execution.
 This is accomplished by placing a `crontab` snippet into the `/etc/cron.d/` directory.
 
 Cron does not allow for scheduling below the minute level. In order to achieve execution
@@ -160,7 +160,7 @@ A current version of this complete file can be found
 
 #### Simulate an Eviction
 
-To prove our work, the next step is simulate an eviction using the following command
+To prove our work, the next step is to simulate an eviction using the following command
 from outside the virtual machine. At this point, the spot instance will receive the
 `Preempt` event from Azure through the query script and initiate a graceful shutdown.
 If you are logged into the server via `ssh` at the time, you will see a wall message
@@ -195,7 +195,7 @@ to the old server in the portal and select **Stop** from the main toolbar.
 
 ## Snapshot Backup Data Disk
 
-For safety, prior to performing any operations on the data disk. Create a snapshot
+For safety, prior to performing any operations on the data disk, create a snapshot
 by navigating to the disk in the portal and selecting **Create snapshot**. Once
 the disk operations have finished and we have proven everything is working, this
 snapshot can be removed.
@@ -219,7 +219,7 @@ to the virtual machine live.
 
 Log into the server via `ssh`. Run a `ls` command to find the new
 disk device in the operating system. Recall that it has a single
-primary partition formatted with `ext4` from when created it.
+primary partition formatted with `ext4` from when it was originally created.
 
 ```bash {8-9}{numberLines: true}{outputLines: 2-9}
 ls -la /dev/sd*
@@ -388,7 +388,7 @@ Click on the **Location** field and then update the `smb` URL.
 
 ## Clean up by Deleting the Original Server and Snapshot
 
-Finally, we just need to perform some clean up to be economical with
+Finally, we just need to perform some cleanup to be economical with
 our cloud spend. Delete the old backup virtual machine. This operation will
 take its OS disk and network interface with it. The network security
 group associated with the NIC needs to be deleted manually. The disk

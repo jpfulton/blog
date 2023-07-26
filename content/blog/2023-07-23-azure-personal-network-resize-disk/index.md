@@ -83,7 +83,7 @@ to the disk resource by clicking on its name.
 
 ## Create a Snapshot
 
-To ensure safety and avoid any potential data loss during this operation. We
+To ensure safety and avoid any potential data loss during this operation, we
 will take a snapshot of the managed disk prior to taking any action. From the
 disk overview in the portal, select **Create snapshot** from the toolbar to
 start the process. Provide a name for the snapshot and then select **Review + create**.
@@ -159,7 +159,7 @@ Device     Boot Start        End    Sectors  Size Id Type
 ## Resize the Partition
 
 Now that we have identified the disk device and increased the capacity
-of the managed disk. The partition needs to be resized to utilize the
+of the managed disk, the partition needs to be resized to utilize the
 new space.
 
 ### Shutdown Samba
@@ -262,7 +262,7 @@ The filesystem on /dev/sda1 is now 268435200 (4k) blocks long.
 ### Remount the Partition
 
 After resizing the partition, we can mount it back to the `/backup`
-mount point. Following the mount, run a `ls` command to validate the
+mount point. Following the mount, run an `ls` command to validate the
 contents of the filesystem. Finally, a `df` command run will show
 the updated capacity of the filesystem.
 
@@ -310,7 +310,7 @@ for any errors.
 
 ## Remove the Disk Snapshot
 
-If everything is working as expected, the snapshot that was taken early can be
+If everything is working as expected, the snapshot that was taken earlier can be
 deleted by selecting **Delete** on the toolbar when viewing it in the Azure portal.
 
 ![Snapshot Screenshot](./resize-disk/disk-snapshot.png)

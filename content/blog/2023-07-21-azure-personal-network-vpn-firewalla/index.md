@@ -26,7 +26,7 @@ and powerful. The hardware specification itself is noteworthy:
 - Intel Quad Core CPU
 
 The internal software is based on
-[Ubuntu Linux](https://ubuntu.com) and is easy managed via a
+[Ubuntu Linux](https://ubuntu.com) and is easy managed via an
 [iOS app](https://apps.apple.com/us/app/firewalla/id1180904053?platform=iphone)
 or an
 [iPad app](https://apps.apple.com/us/app/firewalla/id1180904053?platform=ipad).
@@ -101,7 +101,7 @@ Select **Save** to commit the changes to the device.
 
 ![Create VPN Connection Step 4](./firewalla/create-vpn-connection-4.png)
 
-## Configuration the VPN Connection
+## Configure the VPN Connection
 
 From the VPN client screen, select **Apply To** to select groups of devices
 to apply the connection to. This should be a limited set. For example,
