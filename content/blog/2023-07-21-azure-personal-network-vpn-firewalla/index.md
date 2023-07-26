@@ -2,7 +2,16 @@
 title: "Extend a Personal Network to Azure: Firewalla Configuration"
 date: 2023-07-21
 description: "In this post, we will configure a Firewalla to use its VPN client feature to connect a home network to a Azure virtual network using an OpenVPN tunnel provided by the server that was created in the last post."
-keywords: ["azure", "IaaS", "virtual networking", "vpn", "openvpn", "Firewalla"]
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual networking",
+    "vpn",
+    "vpn client",
+    "openvpn",
+    "Firewalla",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
@@ -67,3 +76,44 @@ The file needs to be temporarily transferred to a device running the
 Firewalla app. Use this
 [guide](https://support.apple.com/guide/mac-help/airdrop-mac-send-files-devices-mh35868/)
 for details on how to establish the transfer.
+
+## Configure the Firewalla VPN Client
+
+From the Firewalla home screen, select **VPN Client**.
+
+![Firewall App Home Screen](./firewalla/homescreen.png)
+
+Select **Create VPN Client** > **3rd-Party VPN**.
+
+![Create VPN Connection](./firewalla/create-vpn-connection.png)
+
+Select **OpenVPN** as the VPN Protocol. Provide a name for the profile under
+the Configuration section and then select **Import Profile**.
+
+![Create VPN Connection Step 2](./firewalla/create-vpn-connection-2.png)
+
+A file browser will be opened allowing you to navigate to the configuration
+file that was AirDropped in an earlier step.
+
+![Create VPN Connection Step 3](./firewalla/create-vpn-connection-3.png)
+
+Select **Save** to commit the changes to the device.
+
+![Create VPN Connection Step 4](./firewalla/create-vpn-connection-4.png)
+
+## Configuration the VPN Connection
+
+From the VPN client screen, select **Apply To** to select groups of devices
+to apply the connection to. This should be a limited set. For example,
+there is no reason for IoT home devices to have access to the Azure
+virtual network. Similarly, gaming devices have no need for access either.
+
+![VPN Client Screen](./firewalla/add-vpn-client.png)
+
+Click on the profile name of the VPN connection to set the final settings.
+Make sure the `Internet` setting is set to `Direct` to ensure that only
+private network traffic is routed through the VPN. Additionally, set
+`Force DNS over VPN` to `true` to enable the private DNS zone to be served
+to the selected devices.
+
+![VPN Client Configuration](./firewalla/vpn-client-config.png)
