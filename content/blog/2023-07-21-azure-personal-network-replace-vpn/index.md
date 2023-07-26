@@ -187,7 +187,59 @@ sudo openvpn --genkey secret ta.key
 
 ### Configure the Server
 
+- `HMAC` packet signature validation using a pre-shared key and `SHA256` hashing
+- `AES-256-GCM` data channel cipher
+- Disallows reuse of client certificates
+- Drops to unprivileged execution context following initialization
+
 #### Create the OpenVPN Server Configuration File
+
+Create a server configuration file based on this example in
+`/etc/openvpn` folder. Line 1 needs to be configured to represent the
+subnet on which VPN clients will receive their IP addresses. Line 29 requires
+configuration to match the address space of the Azure virtual network.
+
+```sh:title=/etc/openvpn/homeserver.conf {1,29}{numberLines: true}
+server 10.10.10.0 255.255.255.0
+topology subnet
+
+proto udp
+port 1194
+dev tun
+
+auth SHA256
+cipher AES-256-GCM
+
+ca ca.crt
+cert server.crt
+key server.key  # This file should be kept secret
+dh dh.pem
+tls-auth ta.key 0 # This file should be kept secret
+
+;duplicate-cn # Uncomment to allow multiple clients using the same cert for debugging
+keepalive 10 120
+max-clients 5
+explicit-exit-notify 1
+
+persist-key
+persist-tun
+
+user nobody
+group nogroup
+
+# Push a route to the virtual network address space
+push "route 10.10.0.0 255.255.0.0"
+
+# Push the internal Azure virtual network DNS server
+push "route 168.63.129.16 255.255.255.255"
+push "dhcp-option DNS 168.63.129.16"
+
+status /var/log/openvpn/openvpn-status.log
+verb 3
+```
+
+A current version of this configuration file is available
+[here](https://github.com/jpfulton/example-linux-configs/blob/main/etc/openvpn/server.conf).
 
 #### Start the OpenVPN Service
 
