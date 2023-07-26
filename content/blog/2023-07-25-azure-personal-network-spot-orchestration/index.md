@@ -43,7 +43,7 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Tag the Virtual Machine(s)
 
-It may not be desireable for a spot instance to restarted following deallocation
+It may not be desirable for a spot instance to be restarted following deallocation
 in all cases. For example, a spot instance may have been purposefully stopped
 and deallocated for administrative reasons or its workload may have simply come
 to an end. As a result, we need an easily configurable mechanism to mark spot
