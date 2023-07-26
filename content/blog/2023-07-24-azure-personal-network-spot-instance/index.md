@@ -254,7 +254,7 @@ sdc       8:32   0     1T  0 disk
 └─sdc1    8:33   0  1024G  0 part
 ```
 
-Create a backup directory on the file system as a mountpoint
+Create a backup directory on the file system as a mount point
 and mount the partition.
 
 ```bash
