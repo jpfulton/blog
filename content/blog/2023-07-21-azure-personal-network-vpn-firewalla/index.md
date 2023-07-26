@@ -35,6 +35,12 @@ to connect a home network to an Azure virtual network using an OpenVPN tunnel
 provided by the server that was created in
 the <Link to="/blog/2023-07-21-azure-personal-network-replace-vpn/">last post</Link>.
 
+When following this guide, it is an excellent idea to ensure that your
+macOS hard drive is encrypted via
+[FileVault](https://support.apple.com/guide/mac-help/encrypt-mac-data-with-filevault-mh11785/)
+and that your iCloud account is end-to-end encrypted via
+[Advanced Data Protection](https://support.apple.com/en-us/HT202303).
+
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 <SeriesLinks />
@@ -43,6 +49,21 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Copy the Client Configuration to a Local Mac
 
-## Airdrop the Configuration to an iPhone
+The first step in this process is to _**securely**_ copy the OpenVPN client
+configuration from the server where it was created to a local Mac. Use
+[scp](https://manpages.ubuntu.com/manpages/jammy/en/man1/scp.1.html) to move
+the file. The configuration file includes a private key.
 
-[Airdrop guide](https://support.apple.com/guide/mac-help/airdrop-mac-send-files-devices-mh35868/)
+```bash
+scp vpn.private.jpatrickfulton.com:~/azure-personal-network.ovpn .
+```
+
+## Airdrop the Configuration to an iPhone or iPad
+
+[AirDrop](https://en.wikipedia.org/wiki/AirDrop) provides a
+[TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+secured mechanism to transfer the file to an iOS or iPadOS device.
+The file needs to be temporarily transferred to a device running the
+Firewalla app. Use this
+[guide](https://support.apple.com/guide/mac-help/airdrop-mac-send-files-devices-mh35868/)
+for details on how to establish the transfer.
