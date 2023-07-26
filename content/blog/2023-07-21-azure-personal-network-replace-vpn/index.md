@@ -187,10 +187,18 @@ sudo openvpn --genkey secret ta.key
 
 ### Configure the Server
 
+In an effort to replace the Azure Virtual Network Gateway with a solution
+of similar cryptographic strength and features, I endeavored to use many
+equivalent features of OpenVPN in this implementation.
+
 - `HMAC` packet signature validation using a pre-shared key and `SHA256` hashing
 - `AES-256-GCM` data channel cipher
-- Disallows reuse of client certificates
-- Drops to unprivileged execution context following initialization
+- Disallow reuse of client certificates
+- Drop to unprivileged execution context following initialization
+
+The primary difference between this OpenVPN configuration and the configuration
+used by the Azure Virtual Network Gateway is that this configuration operates
+on `UDP` rather than `TCP`.
 
 #### Create the OpenVPN Server Configuration File
 
@@ -243,10 +251,18 @@ A current version of this configuration file is available
 
 #### Start the OpenVPN Service
 
+Once the server configuration is in place, the OpenVPN service may be
+started. Note the syntax of the start parameter. `systemctl` supports
+multiple `openvpn` daemon configurations that may be started and stopped
+independently using the syntax `openvpn@configuration-name`.
+
 ```bash
 sudo systemctl start openvpn@homeserver
 sudo systemctl status openvpn@homeserver
 ```
+
+The `systemd` journal can be then be checked using the following
+command.
 
 ```bash
 sudo journalctl -u openvpn@homeserver -xe
@@ -254,7 +270,23 @@ sudo journalctl -u openvpn@homeserver -xe
 
 #### Create a DNS Entry for the Server Public IP
 
+Using the Azure portal, we can associate a domain name with the public IP
+address used by the VPN server. These DNS names come in the form of
+`*.region.cloudapp.azure.com`. Following creation of a DNS label for the public
+IP, we can easily create a `CNAME` record to point to it from a custom domain
+and use this in our client configuration file.
+
+To create a DNS label, navigate to the public IP resource and select
+**Settings** > **Configuration** to set the DNS label.
+
 #### Configure the Local Server Firewall
+
+The local firewall needs to be updated to both allow incoming
+traffic on the OpenVPN UDP port and to masquerade traffic coming
+from the tunnel into the virtual network.
+
+Enable incoming traffic to the OpenVPN daemon with the following
+commands.
 
 ```bash {outputLines: 3-8}
 sudo ufw allow proto udp from 0.0.0.0/0 to any port 1194
@@ -266,6 +298,9 @@ Status: active
 [ 1] 22/tcp                     ALLOW IN    Anywhere
 [ 2] 1194/udp                   ALLOW IN    Anywhere
 ```
+
+Instruct the firewall to allow routed traffic from the tunnel
+network device to the main NIC with the following commands.
 
 ```bash {outputLines: 3-9}
 sudo ufw route allow in on tun0 out on eth0
@@ -279,9 +314,14 @@ Status: active
 [ 3] Anywhere on eth0           ALLOW FWD   Anywhere on tun0
 ```
 
-`/etc/ufw/before.rules` Add to top of file
+Finally, network address translation rules need to be added to the
+firewall. `ufw` does not support these rules with its command line
+interface. As a result, we will add `iptables` rules to the
+`/etc/ufw/before.rules` file. Place the following lines at the top of the
+file and configure the source subnet to match the configuration of the OpenVPN
+server.
 
-```sh
+```sh:title=/etc/ufw/before.rules {6}{numberLines: true}
 # NAT table rules
 *nat
 :POSTROUTING ACCEPT [0:0]
@@ -295,11 +335,21 @@ COMMIT
 # End NAT table rules
 ```
 
+Enable and disable the firewall to load the masquerade rules.
+
 ```bash
 sudo ufw disable && sudo ufw enable
 ```
 
-#### Configure the Server Public IP Network Security Group
+#### Configure the Server Network Security Group
+
+In the final server configuration step, the Azure Network Security Group
+associated with the VPN server network interface needs to be adjusted
+to allow incoming traffic on the OpenVPN UDP port as well.
+
+From the portal, navigate to the network security group resource. Select
+**Settings** > **Inbound security rules** > **Add** to create an inbound
+rule as shown below.
 
 ![Configure Network Security Group](./openvpn-server/configure-nsg.png)
 
