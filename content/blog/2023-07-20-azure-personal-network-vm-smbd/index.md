@@ -159,17 +159,36 @@ sdc       8:32   0     8G  0 disk
 sr0      11:0    1   628K  0 rom
 ```
 
-Edit `/etc/fstab` with `sudo vim /etc/fstab`
+### Modify fstab
+
+Run `blkid` to identify the UUID of the new filesystem. Using the UUID
+is the **only** reliable way to ensure a clean mount in between boots on
+a virtual machine.
+
+```bash {2}{numberLines: true}{outputLines: 2-10}
+sudo blkid
+/dev/sda1: UUID="e562be7f-ffa0-46df-b57a-16e0b265aea1" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="b56e4a70-01"
+/dev/sdc1: UUID="44accf23-56c1-486a-af6b-a2146d6a8a63" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="98e21008-01"
+/dev/sdb15: LABEL_FATBOOT="UEFI" LABEL="UEFI" UUID="B6C3-B75F" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="a295d76d-648c-4a4b-a3e0-b6307dd6e209"
+/dev/sdb1: LABEL="cloudimg-rootfs" UUID="1c12acfb-8f0c-440f-b6b7-6c22c1f36e1e" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="ee1583fb-fd94-4b13-98b6-5f25e7fa4580"
+/dev/loop1: TYPE="squashfs"
+/dev/loop2: TYPE="squashfs"
+/dev/loop0: TYPE="squashfs"
+/dev/loop3: TYPE="squashfs"
+/dev/sdb14: PARTUUID="b857fc35-18dc-48df-b3f0-ae83aa33b319"
+```
+
+Edit `/etc/fstab` with `sudo vim /etc/fstab`.
 
 ```sh:title=/etc/fstab {5}{numberLines: true}
 # CLOUD_IMG: This file was created/modified by the Cloud Image build process
 UUID=1c12acfb-8f0c-440f-b6b7-6c22c1f36e1e /  ext4 discard,errors=remount-ro 0 1
 UUID=B6C3-B75F /boot/efi vfat umask=0077 0 1
 /dev/disk/cloud/azure_resource-part1 /mnt auto defaults,nofail,x-systemd.requires=cloud-init.service,_netdev,comment=cloudconfig 0 2
-/dev/sda1 /backup ext4 rw 0 0
+UUID=e562be7f-ffa0-46df-b57a-16e0b265aea1 /backup ext4 rw 0 0
 ```
 
-Restart with `sudo shutdown -r` to prove fstab changes, won't boot if you failed.
+Restart with `sudo shutdown -r` to prove `/etc/fstab` changes, won't boot if you failed.
 
 ### Encrypt the Disks
 
