@@ -12,11 +12,33 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Table of Contents
 
-## Create a Data Disk
+## Create a Managed Data Disk
+
+Before we begin creating a virtual machine, we need a data disk. The virtual
+machine creation process will initialize a disk for the operating system.
+However, it is best to separate the backup data from the OS disk for a number
+of reasons. Firstly, we will need more space than is available on the OS disk.
+Additionally, we may wish to easily move the data disk between machines or use
+the disk sharing features available on Azure Managed Disks.
+
+From the resource group, select **Create** on the toolbar and search for
+**Managed Disk** in the marketplace. Enter a name for the disk and select
+a size. In this example, I am starting with a 512GB disk on a `Standard HDD`
+model with locally redundant storage. Other premium models are available.
+However, we will need neither their features, redundancy nor maximum IOPS
+for this application.
+
+![Create a Data Disk](./data-disk/azure-create-data-disk.png)
+
+On the networking tab, ensure that both public and private access are disabled.
+We will not need them in this application and can elect to enable those features
+in the future as warranted.
+
+![Create a Data Disk Step 2](./data-disk/azure-create-data-disk-2.png)
 
 ## Create a Virtual Machine
 
-### Configure the Virtual Machine
+## Configure the Virtual Machine
 
 ### Access the Virtual Machine via SSH
 
