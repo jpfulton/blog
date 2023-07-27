@@ -234,3 +234,19 @@ Next, find the private key that is included in `profileinfo.txt`. Copy it into t
 `ovpn` configuration file over the line containing `$PRIVATEKEY`.
 
 Save the file and transfer it to the client using a **secure** mechanism.
+
+### Install the Configuration and Test a Client
+
+With the client configuration downloaded to a local machine, one of several
+OpenVPN clients can be configured and then tested.
+[Ubuntu Desktop](https://ubuntu.com/download/desktop) includes an OpenVPN client.
+Additionally,
+[Tunnelblick](https://tunnelblick.net)
+may be used on macOS and
+[OpenVPN Connect](https://openvpn.net/client/client-connect-vpn-for-windows/) may be
+used on Windows.
+
+In a <Link to="/blog/2023-07-21-azure-personal-network-vpn-firewalla/">post</Link>
+later in the series,
+I will discuss setting up the client configuration on a
+[Firewalla](https://firewalla.com) device.
