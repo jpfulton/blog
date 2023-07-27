@@ -1,10 +1,30 @@
 ---
 title: "Extend a Personal Network to Azure: OpenVPN Server"
 date: 2023-07-21
-description: ""
-keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
+description: "In an earlier post, we created an Azure VPN Gateway to provide remote access to our virtual network. While powerful, these resources are both expensive at an SKU that supports multiple platforms and are likely overkill as a solution for small business networks. They may are best suited for enterprise deployments. In this post, we will create a Ubuntu virtual machine that supports similar functionality at a lower price point."
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual machine",
+    "virtual networking",
+    "vpn",
+    "openvpn",
+    "linux",
+    "Ubuntu",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
+
+In an <Link to="/blog/2023-07-19-azure-personal-network-vpn-gateway/">earlier post</Link>,
+we created an
+[Azure VPN Gateway](https://azure.microsoft.com/en-us/products/vpn-gateway)
+to provide remote access to our virtual network. While powerful, these resources
+are both expensive at an SKU that supports multiple platforms and are likely overkill
+as a solution for small business networks. They may are best suited for enterprise
+deployments. In this post, we will create a
+[Ubuntu](https://ubuntu.com)
+virtual machine that supports similar functionality at a lower price point.
 
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
