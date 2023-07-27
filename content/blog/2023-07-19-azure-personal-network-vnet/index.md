@@ -1,7 +1,7 @@
 ---
 title: "Extend a Personal Network to Azure: Virtual Network"
 date: 2023-07-19
-description: "To start out the project, we need to create some foundational Azure resources that are common for infrastructure-as-a-service (IaaS) implementations. In this post, we will create a resource group for the project and then build a virtual network to support the cloud components of what will become a hybrid workflow. As outlined in the overview and objectives post, that started this series, this virtual network will have an address space that is designed to overlap with the on-premise network to which it will be connected."
+description: "To start out the project, we need to create some foundational Azure resources that are common for infrastructure-as-a-service (IaaS) implementations. In this post, we will create a resource group for the project and then build a virtual network to support the cloud components of what will become a hybrid workflow. As outlined in the overview and objectives post that started this series, this virtual network will have an address space that is designed to overlap with the on-premise network to which it will be connected."
 keywords:
   [
     "azure",
@@ -15,14 +15,24 @@ openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
 To start out the project, we need to create some foundational Azure resources
-that are common for infrastructure-as-a-service (IaaS) implementations. In
+that are common for
+[infrastructure-as-a-service](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-iaas)
+(IaaS) implementations. In
 this post, we will create a resource group for the project and then build
 a virtual network to support the cloud components of what will become
 a hybrid workflow. As outlined in
-the <Link to="/blog/2023-07-18-azure-personal-network/">overview and objectives post</Link>,
+the <Link to="/blog/2023-07-18-azure-personal-network/">overview and objectives post</Link>
 that started this series, this virtual network will have an address space
 that is designed to overlap with the on-premise network to which it will
 be connected.
+
+In addition to creating the virtual network, we will create and connect
+other resources to it to support both the on-premise network and the virtual machines
+that will be connected to the cloud network. A private DNS zone will be configured
+and connected to ease name and customize name resolution across the hybrid workflow
+and a network address translation gateway will be created to give hosts on the
+network as secure mechanism for internet access even when they are not given
+public IP addresses of their own.
 
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
