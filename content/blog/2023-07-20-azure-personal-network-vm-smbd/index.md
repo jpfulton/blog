@@ -66,58 +66,6 @@ be downloaded in the process.
 
 ## Configure the Virtual Machine
 
-### Access the Virtual Machine via SSH
-
-#### Use the Downloaded Private Key
-
-#### Use Azure AD Authentication for SSH
-
-[documentation](https://learn.microsoft.com/en-us/azure/active-directory/devices/howto-vm-sign-in-azure-ad-linux#configure-role-assignments-for-the-vm)
-
-```bash {outputLines: 4-37}
-az login
-az extension add --name ssh
-az extension show --name ssh
-{
-  "extensionType": "whl",
-  "metadata": {
-    "author": "Microsoft Corporation",
-    "author_email": "azpycli@microsoft.com",
-    "azext.isPreview": false,
-    "azext.minCliCoreVersion": "2.45.0",
-    "classifiers": [
-      "Development Status :: 4 - Beta",
-      "Intended Audience :: Developers",
-      "Intended Audience :: System Administrators",
-      "Programming Language :: Python",
-      "Programming Language :: Python :: 3",
-      "Programming Language :: Python :: 3.6",
-      "Programming Language :: Python :: 3.7",
-      "Programming Language :: Python :: 3.8",
-      "License :: OSI Approved :: MIT License"
-    ],
-    "description": "SSH into Azure VMs using RBAC and AAD OpenSSH Certificates.  The client generates (or uses existing) OpenSSH keys that are then signed by AAD into OpenSSH certificates for access to Azure VMs with the AAD Extension installed.\n",
-    "filename": "/Users/josephpfulton/.azure/cliextensions/ssh/ssh-2.0.0.dist-info",
-    "home_page": "https://github.com/Azure/azure-cli-extensions/tree/main/src/ssh",
-    "license": "MIT",
-    "metadata_version": "2.0",
-    "name": "ssh",
-    "requires_dist": [
-      "oschmod (==0.3.12)"
-    ],
-    "summary": "SSH into Azure VMs using RBAC and AAD OpenSSH Certificates",
-    "version": "2.0.0"
-  },
-  "name": "ssh",
-  "path": "/Users/josephpfulton/.azure/cliextensions/ssh",
-  "version": "2.0.0"
-}
-```
-
-```bash
-az ssh vm --ip 10.10.0.4
-```
-
 ### Update All Packages
 
 ```bash
