@@ -53,9 +53,23 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 ## Create a VPN Gateway
 
+From the resource group created in
+the <Link to="/blog/2023-07-19-azure-personal-network-vnet/">previous post</Link>,
+select **Create** from the toolbar and search for **VPN Gateway** in the marketplace.
+
+Enter a name for the resource, select `VpnGw1` for the SKU and select the correct
+virtual network. Select **Review + create** to validate and start the deployment.
+
 ![Create VPN Gateway](./vpn-gateway/azure-create-virtual-net-gateway-2.png)
 
 ## Configure the VPN Gateway
+
+Once the resource is created, which may take several minutes, there are a number
+of configuration steps that must be taken to generate certificates, create
+client configuration files and set up the point-to-site feature. These steps
+were taken on an on-premise Ubuntu linux server running `Ubuntu 22.04.2 LTS`.
+Select a location where the generated keys may be kept _**securely**_ and
+revisited as new client certificates are needed.
 
 ### Generate a Root Certificate
 
