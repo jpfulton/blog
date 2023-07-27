@@ -18,7 +18,7 @@ const SeriesLinks = () => (
         </li>
         <li>
           <Link to="/blog/2023-07-19-azure-personal-network-vpn-gateway/">
-            Virtual Network Gateway
+            Azure VPN Gateway
           </Link>
         </li>
         <li>
@@ -28,12 +28,12 @@ const SeriesLinks = () => (
         </li>
         <li>
           <Link to="/blog/2023-07-21-azure-personal-network-replace-vpn/">
-            Replace Azure Network Gateway with an OpenVPN Server
+            Replace an Azure VPN Gateway with an OpenVPN Server
           </Link>
         </li>
         <li>
           <Link to="/blog/2023-07-21-azure-personal-network-vpn-firewalla/">
-            Setup Firewalla OpenVPN Server Connection
+            Setup a Firewalla OpenVPN Server Connection
           </Link>
         </li>
         <li>

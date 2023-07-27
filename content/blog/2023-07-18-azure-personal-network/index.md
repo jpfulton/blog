@@ -35,6 +35,8 @@ import SeriesLinks from "./seriesLinks.js"
 
 ## Table of Contents
 
+## Prerequisites
+
 ## Existing Network Structure
 
 `10.0.0.0/16`
