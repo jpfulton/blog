@@ -1,10 +1,34 @@
 ---
 title: "Extend a Personal Network to Azure: Samba Server"
 date: 2023-07-20
-description: ""
-keywords: ["azure", "IaaS", "virtual machine", "virtual networking", "vpn"]
+description: "At this point in the series, we have created an Azure Virtual Network
+and established remote access to it using an Azure VPN Gateway from a remote
+network. The next step is create a Ubuntu virtual machine connected to that
+network to run Samba and provide shares to support backup clients on the remote
+network. In this post, we will create that server, a managed disk to store the
+data and then configure Samba for use on the hybrid network."
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual machine",
+    "samba",
+    "backup",
+    "time machine",
+    "managed disk",
+    "ext4",
+    "linux",
+    "Ubuntu",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
+
+At this point in the series, we have created an Azure Virtual Network
+and established remote access to it using an Azure VPN Gateway from a remote
+network. The next step is create a Ubuntu virtual machine connected to that
+network to run Samba and provide shares to support backup clients on the remote
+network. In this post, we will create that server, a managed disk to store the
+data and then configure Samba for use on the hybrid network.
 
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
