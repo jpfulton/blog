@@ -66,7 +66,24 @@ be downloaded in the process.
 
 ## Configure the Virtual Machine
 
+With the new virtual machine created and running, we can begin to configure the
+guest operating system.
+
+### Login via SSH
+
+Move the PEM file downloaded during the deployment to your `~/.ssh` folder
+and use it to log into the newly created server. The username must match
+the one you selected during the virtual machine creation process and the private
+IP may be found on the **Networking** tab on the newly created virtual machine
+in the portal.
+
+```bash
+ssh -i ~/.ssh/ubuntu-backup-server_key.pem username@10.10.0.4
+```
+
 ### Update All Packages
+
+Update the packages from the base image using the following commands.
 
 ```bash
 sudo apt update
@@ -76,7 +93,13 @@ sudo apt upgrade
 
 ### Set Up the Local Firewall
 
-Edit `/etc/default/ufw` to turn of IPV6.
+Next, we need to set up the local firewall. Neither the on-premise network
+nor the virtual network use IPv6. As a result, we should disable IPv6 on
+the firewall using the following this
+[guide](https://tecadmin.net/setup-ufw-for-firewall-on-ubuntu-and-debian/).
+
+Set up a rule to allow ssh, a rule to allow Samba traffic and enable the firewall
+with the following commands.
 
 ```bash {outputLines: 4-6, 9-14}
 sudo ufw allow ssh
