@@ -105,15 +105,35 @@ openssl x509 -in caCert.pem -outform der | base64 -w0 > my-root-cert.txt
 
 ### Configure Point-to-site
 
+Navigate to the VPN gateway resource and select
+**Settings** > **Point-to-site configuration**. Choose `IKEv2 and OpenVPN (SSL)`
+from the tunnel type dropdown. Finally, paste the contents of `my-root-cert.txt`
+as outputted from the previous command into the `Root certificates` section.
+Select **Save** from the toolbar.
+
 ![Configure VPN Gateway](./vpn-gateway/azure-config-virtual-net-gateway.png)
 
 ## Create a Client Configuration
 
 ### Download the Client Configuration Template
 
+Once the save operation has completed, the **Download VPN Client** button will
+be enabled. Click it to start the download of the client configuration template
+archive. The contents of this `zip` file are shown below. The file contains
+a template file for an OpenVPN connection that we will need to complete in
+the next sections. Keep this archive _**securely**_ as it contains a
+pre-shared secret even before it is configured with a client certificate and
+private key.
+
 ![VPN Client Zip Contents](./vpn-gateway/zip-contents.png)
 
 ### OpenVPN Client Configuration Template
+
+Copy the `vpnconfig.ovpn` file from the archive to a separate location
+to be edited. A sample of its contents is shown below. Note the sections,
+that need to be completed prior to use: `$CLIENTCERTIFICATE` and `$PRIVATEKEY`.
+Once we generate a client certificate and key, we can paste their contents
+into this file.
 
 ```sh
 client
