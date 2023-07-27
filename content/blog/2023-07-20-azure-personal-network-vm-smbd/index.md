@@ -250,9 +250,20 @@ Restart with `sudo shutdown -r` to prove the `/etc/fstab` changes.
 
 ### Encrypt the Disks
 
-[documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disk-encryption-linux?tabs=azcliazure%2Cenableadecli%2Cefacli%2Cadedatacli)
+While our disks are currently encrypted at rest using platform managed keys,
+to enable full end-to-end encryption, we need to use the `Encrypt at Host`
+Azure feature. If the option to use this feature is disabled in the virtual machine
+creation process, as it was in the screenshot from above, it is necessary to register
+the feature for the subscription prior to using it. In this section, we will use
+the Azure CLI to register the feature and then enable it for the virtual machine
+we just created.
 
-[encrypt at host documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-enable-host-based-encryption-portal?tabs=azure-powershell)
+#### Enable the Encrypt at Host Azure Feature
+
+Following the Azure
+[documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-enable-host-based-encryption-portal?tabs=azure-cli),
+run the following commands to leverage the Azure CLI to enable
+`EncryptionAtHost` for the subscription.
 
 ```bash {outputLines: 3-11}
 az login
@@ -268,7 +279,8 @@ Once the feature 'EncryptionAtHost' is registered, invoking 'az provider registe
 }
 ```
 
-Wait a few minutes or more until the output shows `Registered`.
+Check the status of the registration using the following command.
+Wait a few minutes until the output shows `Registered`.
 
 ```bash {outputLines: 2-9}
 az feature show --name EncryptionAtHost --namespace Microsoft.Compute
@@ -282,17 +294,25 @@ az feature show --name EncryptionAtHost --namespace Microsoft.Compute
 }
 ```
 
-To propagate the change per output of earlier command.
+Propagate the change per output of earlier command.
 
 ```bash
 az provider register -n Microsoft.Compute
 ```
 
-Stop the virtual machine. Then Disks > Additional Settings > Encryption at host: Yes, Save.
+#### Enable Encryption at Host for the Virtual Machine
+
+To enable encryption at host for the virtual machine, it must first
+be stopped. This can be accomplished either from the guest operating system
+with a `sudo shutdown` command or through the Azure portal.
+
+Stop the virtual machine. Then, from the virtual machine resource in the portal,
+select **Disks** > **Additional Settings**. Enable the **Encryption at host** option
+and select **Save**.
 
 ![Configure Encryption at Host](./vm/azure-config-vm-enable-disk-encryption.png)
 
-Start the VM. Log in.
+Restart the virtual machine and log back in via `ssh`.
 
 ### Install Samba
 
