@@ -187,9 +187,16 @@ $PRIVATEKEY
 </key>
 ```
 
-### Generate a Client Certificate
+### Generate a Client Key and Certificate
 
-[create client configs documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-cert-linux)
+This section of the post is adapted from the following Azure
+[guide](https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-cert-linux)
+with modifications to work on the on-premise server and to script much of the process.
+
+Create a script with the following contents in the same directory used to perform
+the server certificate generate from above. Replace the value of the `USERNAME` variable
+to match the name of the client configuration you would like to create. Ideally,
+each VPN client will be assigned its own certificate, name and private key.
 
 ```sh:title=gen-client-key.sh
 #!/usr/bin/env bash
@@ -202,8 +209,28 @@ ipsec pki --pub --in "${USERNAME}Key.pem" | ipsec pki --issue --cacert caCert.pe
 openssl pkcs12 -in "${USERNAME}Cert.pem" -inkey "${USERNAME}Key.pem" -certfile caCert.pem -export -out "${USERNAME}.p12" -password "pass:${PASSWORD}"
 ```
 
+Run the script and then execute the following command to create a plain
+text version of the `p12` binary file. The contents of `profileinfo.txt` will
+contain sections that must be pasted into the client configuration file.
+
 ```bash
 openssl pkcs12 -in "Home.p12" -nodes -out "profileinfo.txt"
 ```
 
 ### Assemble the Client Configuration File
+
+With a plain text version of the certificate and private key generated, we
+can begin to assemble the client configuration file from the downloaded
+template.
+
+Two certificates and one private key will exist in the `profileinfo.txt` file.
+The certificate that is required by the `ovpn` configuration file is the child
+certificate. It can be identified by the line that begins with `subject=CN =` and
+the value you inserted into the script for the `USERNAME` variable. Copy the
+certificate section into the client configuration in place of the line containing
+`$CLIENTCERTIFICATE`.
+
+Next, find the private key that is included in `profileinfo.txt`. Copy it into the
+`ovpn` configuration file over the line containing `$PRIVATEKEY`.
+
+Save the file and transfer it to the client using a **secure** mechanism.
