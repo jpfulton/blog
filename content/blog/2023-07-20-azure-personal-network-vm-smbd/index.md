@@ -38,6 +38,32 @@ in the future as warranted.
 
 ## Create a Virtual Machine
 
+With a new data disk in place, we can begin to create a virtual machine
+to host the Samba service and to which we can attach the disk. From
+the resource group, select **Create** on the tool bar and search
+for **Virtual Machine** in the marketplace.
+
+Enter a name for the server on the first step, select
+`Ubuntu Server 22.04 LTS` as the image and choose `Standard_B2s` as the
+virtual machine size.
+
+![Create a Virtual Machine](./vm/azure-create-vm-2.png)
+
+On the disks tab, change the `OS disk type` to `Standard HHD`. Under the
+`Data disks` section, select **Attach an existing disk** and find the data
+disk create in a previous step. Note that we will enable the `Encryption at host`
+feature for this virtual machine in a later step.
+
+![Create a Virtual Machine Step Two](./vm/azure-create-vm-3.png)
+
+On the networking tab, change the `Public IP` option to `None`. This virtual machine
+will _only_ communicate on a private IP within the virtual network.
+
+![Create a Virtual Machine Step Three](./vm/azure-create-vm-4.png)
+
+Select **Review + create** to validate and start the deployment. An `ssh` key will
+be downloaded in the process.
+
 ## Configure the Virtual Machine
 
 ### Access the Virtual Machine via SSH
@@ -253,6 +279,8 @@ az provider register -n Microsoft.Compute
 ```
 
 Stop the virtual machine. Then Disks > Additional Settings > Encryption at host: Yes, Save.
+
+![Configure Encryption at Host](./vm/azure-config-vm-enable-disk-encryption.png)
 
 Start the VM. Log in.
 
