@@ -2,7 +2,17 @@
 title: "Extend a Personal Network to Azure: VPN Gateway"
 date: 2023-07-19
 description: "The Azure VPN Gateway is a high availability resource designed to provide virtual private networking tunnels to Azure virtual networks. It can be configured to connect an on-premise network to the cloud and also to support point-to-site clients. Among its primary advantages is the ability to manage the resource through the Azure Portal or Azure CLI. In this post, we will create an Azure VPN Gateway to connect an on-premise network to a virtual network in the cloud."
-keywords: ["azure", "IaaS", "virtual network", "openvpn", "vpn gateway"]
+keywords:
+  [
+    "azure",
+    "IaaS",
+    "virtual network",
+    "openvpn",
+    "vpn gateway",
+    "strongswan",
+    "ipsec",
+    "linux",
+  ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
@@ -15,7 +25,25 @@ advantages is the ability to manage the resource through the Azure Portal or
 Azure CLI. In this post, we will create an Azure VPN Gateway to connect an
 on-premise network to a virtual network in the cloud.
 
-[documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
+With support for OpenVPN, IKEv2 and/or SSTP, the Azure VPN Gateway is implemented
+through two or more Azure-managed virtual machines that are placed on a `GatewaySubnet`
+within the virtual network.
+
+Selecting the correct SKU is important while setting up the resource. The monthly
+cost differences are significant between various models of the resource as are
+the capabilities, aggregate bandwidth support and management features. While
+the `Basic` SKU is most economical, it has limited features and cannot support
+the `IKEv2` and `OpenVPN` tunnel types which provide cross-platform support
+in a point-to-site configuration. Additionally, resources of the `Basic` SKU
+cannot be resized to other SKUs. They must first be deleted and new resources
+in their place. To provide cross-platform support, this post will use the
+`VpnGw1`.
+
+As this type of Azure resource is best suited for enterprise applications,
+later this post series, we will replace the VPN gateway resource with a
+custom implementation based on a self-managed Ubuntu virtual machine. If you
+wish to skip ahead, that post is
+available <Link to="/blog/2023-07-21-azure-personal-network-replace-vpn/">here</Link>.
 
 import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
