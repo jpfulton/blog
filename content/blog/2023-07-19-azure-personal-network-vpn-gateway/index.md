@@ -109,4 +109,19 @@ $PRIVATEKEY
 
 [create client configs documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-vpn-client-cert-linux)
 
+```sh:title=gen-client-key.sh
+#!/usr/bin/env bash
+PASSWORD="password"
+USERNAME="Home"
+
+ipsec pki --gen --outform pem > "${USERNAME}Key.pem"
+ipsec pki --pub --in "${USERNAME}Key.pem" | ipsec pki --issue --cacert caCert.pem --cakey caKey.pem --dn "CN=${USERNAME}" --san "${USERNAME}" --flag clientAuth --outform pem > "${USERNAME}Cert.pem"
+
+openssl pkcs12 -in "${USERNAME}Cert.pem" -inkey "${USERNAME}Key.pem" -certfile caCert.pem -export -out "${USERNAME}.p12" -password "pass:${PASSWORD}"
+```
+
+```bash
+openssl pkcs12 -in "Home.p12" -nodes -out "profileinfo.txt"
+```
+
 ### Assemble the Client Configuration File
