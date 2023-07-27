@@ -24,6 +24,23 @@ import SeriesLinks from "../2023-07-18-azure-personal-network/seriesLinks.js"
 
 [generate certs documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site-linux)
 
+```bash
+sudo apt update
+sudo apt install strongswan
+sudo apt install strongswan-pki
+sudo apt install libstrongswan-extra-plugins
+sudo apt install libtss2-rc0
+```
+
+```bash
+ipsec pki --gen --outform pem > caKey.pem
+ipsec pki --self --in caKey.pem --dn "CN=VPN CA" --ca --outform pem > caCert.pem
+```
+
+```bash
+openssl x509 -in caCert.pem -outform der | base64 -w0 > my-root-cert.txt
+```
+
 ### Configure Point-to-site
 
 ![Configure VPN Gateway](./vpn-gateway/azure-config-virtual-net-gateway.png)
