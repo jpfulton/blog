@@ -467,14 +467,27 @@ I will discuss setting up the client configuration on a
 
 ## Tear Down the Azure Virtual Network Gateway
 
+With a replacement solution in place, the Azure Virtual Network Gateway
+created in
+the <Link to="/blog/2023-07-19-azure-personal-network-vpn-gateway/">earlier post</Link>
+can be taken down and the associated resources removed.
+
 ### Remove the Virtual Network Gateway Resource
+
+Navigate to the Virtual Network Gateway and select **Delete**.
 
 ![Remove Network Gateway](./remove-vpn-gateway/delete-vpn-gateway.png)
 
 ### Remove the Public IP
 
+Find and delete the public IP that was associated with the network
+gateway.
+
 ![Remove Public IP](./remove-vpn-gateway/delete-public-ip.png)
 
 ### Remove the Gateway Subnet from the Virtual Network
+
+Navigate to the virtual network resource and remove the unused
+gateway subnet.
 
 ![Remove Gateway Subnet](./remove-vpn-gateway/delete-gateway-subnet.png)
