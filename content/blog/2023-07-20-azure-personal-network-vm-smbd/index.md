@@ -452,7 +452,15 @@ Once started, use a SMB client to test the configuration.
 
 ## Monitor Disk Usage
 
+Once backup clients are configured to run and use the shares, monitoring
+disk usage will become important. In a later post, we will set up an
+alerting system. In the meantime, we can poll to monitor filesystem
+usage.
+
 ### Monitor from a Command
+
+While logged into a shell, the `df` command allows us to observe disk
+usage.
 
 ```bash {outputLines:2-10}
 df -H
@@ -469,16 +477,29 @@ tmpfs           406M  4.1k  406M   1% /run/user/1000
 
 ### Setup Monitoring and System Status using the MOTD
 
-`/etc/update-motd.d/`
+By default, Ubuntu installations already provide a nice message
+of the day system that displays useful information when an interactive
+shell is opened. This system can be customized by placing scripts
+in the `/etc/update-motd.d/` folder. In this section, we will install several
+packages and create a custom MOTD script to output system statistics
+including disk usage when we log into the server.
+
+First, install the script dependencies using the following commands.
 
 ```bash
 sudo apt install neofetch
 sudo apt install inxi
 ```
 
+Next, create custom MOTD script using vim with following command.
+The numeric prefix to the file will determine the order in which it
+appears within the MOTD script output series.
+
 ```bash
 sudo vim /etc/update-motd.d/01-custom
 ```
+
+Include the following lines in the script and save it.
 
 ```sh:title=/etc/update-motd.d/01-custom
 #!/bin/sh
@@ -492,11 +513,13 @@ echo "System Disk Usage:"
 /usr/bin/inxi -D -p
 ```
 
+Update the file permissions to make it executable.
+
 ```bash
 sudo chmod a+x /etc/update-motd.d/01-custom
 ```
 
-Logout and log back in.
+Logout and log back in to see the new output.
 
 ```txt
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-1041-azure x86_64)
