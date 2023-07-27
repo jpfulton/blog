@@ -120,6 +120,24 @@ Status: active
 
 ### Mount and Format the Data Disk
 
+With the operating system running and the firewall configured, the
+next step is to make use of the data disk. It was created in earlier
+step and is attached to the new machine. However, it does not yet have
+a usable file system.
+
+First, we need to identify the data disk from within the
+guest operating system. To do so we run the following commands.
+
+In a linux virtual machine, the disk will present itself as a device
+under `/dev/sd*`. However, the ordering in which the disk will appear
+is stable _during a single boot of the machine_ **not**
+_between boots of the machine_. As a result, the data disk may appear
+as `/dev/sda` during one boot and then reappear as `/dev/sdc` in a second
+boot of the machine. We can safely operate on the disk using its assigned
+device to format and mount the host filesystem for these operation, but
+we will need another mechanism to ensure it mounts cleanly after a reboot.
+That mechanism is discussed below.
+
 ```bash {2}{numberLines: true}{outputLines: 2-8}
 ls -la /dev/sd*
 brw-rw---- 1 root disk 8,  0 Jul 18 03:06 /dev/sda
@@ -147,19 +165,35 @@ sdc       8:32   0     8G  0 disk
 sr0      11:0    1   628K  0 rom
 ```
 
+The output of the previous commands shows that the data disk
+is presented as `/dev/sda`. Next we need to create a partition for
+the new filesystem using `fdisk`.
+
 ```bash
 sudo fdisk /dev/sda
 ```
 
-`p` to view current partitions
+Enter `p` to view current partitions. Enter `n` then `p` to create a new primary
+partition and accept the defaults to allow the partition to use the maximum amount
+of space. Write the new partition structure to disk when given the option.
 
-`n` then `p` to create a new primary partition, accept defaults
+The next step is to create an `ext4` filesystem on the new partition with the
+following command.
 
-`sudo mkfs.ext4 /dev/sda1`
+```bash
+sudo mkfs.ext4 /dev/sda1
+```
 
-`sudo mkdir /backup`
+The new filesystem is in place. Next, we will create a folder to server
+as its mount point and then attempt a temporary mount to prove it is working.
+If the mount command executes without error, things have worked correctly.
 
-`sudo mount -t ext4 -o rw /dev/sda1 /backup`
+```bash
+sudo mkdir /backup
+sudo mount -t ext4 -o rw /dev/sda1 /backup
+```
+
+Run `lsblk` to validate the mount operation.
 
 ```bash {6-7}{numberLines: true}{outputLines: 2-14}
 lsblk
@@ -180,9 +214,13 @@ sr0      11:0    1   628K  0 rom
 
 ### Modify fstab
 
+Our next objective is to ensure the data disk is mounted on every boot.
+As discussed above, we **cannot** reliably use the device name to accomplish
+this goal.
+
 Run `blkid` to identify the UUID of the new filesystem. Using the UUID
 is the **only** reliable way to ensure a clean mount in between boots on
-a virtual machine.
+a linux virtual machine. Identify the UUID of the new filesystem.
 
 ```bash {2}{numberLines: true}{outputLines: 2-10}
 sudo blkid
@@ -197,7 +235,8 @@ sudo blkid
 /dev/sdb14: PARTUUID="b857fc35-18dc-48df-b3f0-ae83aa33b319"
 ```
 
-Edit `/etc/fstab` with `sudo vim /etc/fstab`.
+Now we can edit `/etc/fstab` with `sudo vim /etc/fstab` to create a new
+entry for the backup filesystem.
 
 ```sh:title=/etc/fstab {5}{numberLines: true}
 # CLOUD_IMG: This file was created/modified by the Cloud Image build process
@@ -207,7 +246,7 @@ UUID=B6C3-B75F /boot/efi vfat umask=0077 0 1
 UUID=e562be7f-ffa0-46df-b57a-16e0b265aea1 /backup ext4 rw 0 0
 ```
 
-Restart with `sudo shutdown -r` to prove `/etc/fstab` changes, won't boot if you failed.
+Restart with `sudo shutdown -r` to prove the `/etc/fstab` changes.
 
 ### Encrypt the Disks
 
