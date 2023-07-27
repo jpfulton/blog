@@ -316,11 +316,19 @@ Restart the virtual machine and log back in via `ssh`.
 
 ### Install Samba
 
+With the disks encrypted, the data disk mounted and the operating system
+updated from the base image, we can begin to install and configure the Samba
+service. To install Samba, run the following command.
+
 ```bash
 sudo apt install samba
 ```
 
 #### Create Dedicated Samba User and Group
+
+For the management of local file and directory permissions in this
+Samba configuration, we will need a local user and group for the Samba
+service to utilize. These can be created with the following commands.
 
 ```bash
 sudo addgroup smbgroup
@@ -328,6 +336,10 @@ sudo adduser --system --no-create-home --ingroup smbgroup smbuser
 ```
 
 #### Create Share Folders and Change Ownership
+
+Next, we need to create some folders on the backup filesystem to host
+data from the shares we will be configuring in later steps. These folders
+need to be owned by the user and group we created in the last step.
 
 ```bash {outputLines: 7-12}
 cd /backup
@@ -346,6 +358,14 @@ drwx------  2 root    root     16384 Jul 18 03:38 lost+found
 
 #### Create Samba Users for Share Access
 
+Samba leverages local system accounts in the configuration we will be creating
+for authentication. However, we do not want those users to log into the
+machine directly nor have dedicated home folders under `/home` in the operating
+system filesystem. To accomplish this goal, we will use the `adduser` command
+and supply both the `--no-create-home` flag and a shell parameter that
+points to `/sbin/nologin`. The commands below create the users we will be
+using and allows us to set a Samba password for each.
+
 ```bash
 sudo adduser --no-create-home --shell /sbin/nologin applebackup
 sudo smbpasswd -a applebackup
@@ -358,15 +378,77 @@ sudo smbpasswd -a linuxbackup
 
 #### Edit /etc/samba/smb.conf to Configure Samba
 
+The Samba service now needs to be configured. Edit the configuration with
+the following command.
+
 ```bash
 sudo vim /etc/samba/smb.conf
 ```
 
-#### Restart the Samba Service
+In
+a <Link to="/blog/2023-06-23-samba-and-timemachine/">previous post</Link>, I discussed
+the settings that are necessary to support macOS Time Machine backups. Again,
+we will need to add those settings to this `smb.conf` as we wish to support
+that platform for one of the two shares that we will create. Add the following,
+lines to the `[global]` section of the server configuration file. A detailed
+discussion of these lines can be found in the post referenced above.
+
+```sh
+### Time Machine Compatibility ###
+min protocol = SMB2
+vfs objects = catia fruit streams_xattr
+fruit:nfs_aces = no
+fruit:metadata = stream
+fruit:model = MacSamba
+fruit:posix_rename = yes
+fruit:veto_appledouble = no
+fruit:wipe_intentionally_left_blank_rfork = yes
+fruit:delete_empty_adfiles = yes
+server min protocol = SMB2
+```
+
+Next, we wish to configure two shares: one for use by Ubuntu backup clients and
+another for use by macOS clients. Add the following lines to bottom of the file
+to configure these shares.
+
+```sh
+[applebackups]
+comment = Apple Backup Shared Folder by Samba Server on Ubuntu
+path = /backup/applebackups
+fruit:time machine = yes
+force user = smbuser
+force group = smbgroup
+read only = no
+browseable = yes
+create mask = 0664
+force create mode = 0664
+directory mask = 0775
+force directory mode = 0775
+valid users = applebackup
+
+[linuxbackups]
+comment = Linux Backup Shared Folder by Samba Server on Ubuntu
+path = /backup/linuxbackups
+force user = smbuser
+force group = smbgroup
+read only = no
+browseable = yes
+create mask = 0664
+force create mode = 0664
+directory mask = 0775
+force directory mode = 0775
+valid users = linuxbackup
+```
+
+#### Start the Samba Service
+
+The Samba service is now configured and may be started with the following command.
 
 ```bash
-sudo systemctl restart samba
+sudo systemctl start samba
 ```
+
+Once started, use a SMB client to test the configuration.
 
 ## Monitor Disk Usage
 
