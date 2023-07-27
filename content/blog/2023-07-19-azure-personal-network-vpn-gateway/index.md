@@ -1,10 +1,19 @@
 ---
 title: "Extend a Personal Network to Azure: VPN Gateway"
 date: 2023-07-19
-description: ""
+description: "The Azure VPN Gateway is a high availability resource designed to provide virtual private networking tunnels to Azure virtual networks. It can be configured to connect an on-premise network to the cloud and also to support point-to-site clients. Among its primary advantages is the ability to manage the resource through the Azure Portal or Azure CLI. In this post, we will create an Azure VPN Gateway to connect an on-premise network to a virtual network in the cloud."
 keywords: ["azure", "IaaS", "virtual network", "openvpn", "vpn gateway"]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
+
+The
+[Azure VPN Gateway](https://azure.microsoft.com/en-us/products/vpn-gateway)
+is a high availability resource designed to provide virtual private networking
+tunnels to Azure virtual networks. It can be configured to connect an on-premise
+network to the cloud and also to support point-to-site clients. Among its primary
+advantages is the ability to manage the resource through the Azure Portal or
+Azure CLI. In this post, we will create an Azure VPN Gateway to connect an
+on-premise network to a virtual network in the cloud.
 
 [documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
 
