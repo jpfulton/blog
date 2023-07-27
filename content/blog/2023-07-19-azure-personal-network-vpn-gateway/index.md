@@ -73,7 +73,12 @@ revisited as new client certificates are needed.
 
 ### Generate a Root Certificate
 
-[generate certs documentation](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site-linux)
+The following steps are adapted from this Azure
+[guide](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site-linux)
+with modification to correct errors and problems encountered on the
+on-premise key management server.
+
+First, install the dependencies for key generation using the following commands.
 
 ```bash
 sudo apt update
@@ -83,10 +88,16 @@ sudo apt install libstrongswan-extra-plugins
 sudo apt install libtss2-rc0
 ```
 
+Next, generate a certificate authority for use with the VPN gateway.
+
 ```bash
 ipsec pki --gen --outform pem > caKey.pem
 ipsec pki --self --in caKey.pem --dn "CN=VPN CA" --ca --outform pem > caCert.pem
 ```
+
+Once the CA has been created, output its public key in `base64` format to
+a text file. We will need the contents of this file when pasting the
+public certificate into the Azure portal in the next step.
 
 ```bash
 openssl x509 -in caCert.pem -outform der | base64 -w0 > my-root-cert.txt
