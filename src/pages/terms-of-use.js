@@ -105,6 +105,7 @@ const Content = () => (
             <a
               href="https://www.termsfeed.com/terms-conditions-generator/"
               target="_blank"
+              rel="noreferrer"
             >
               Terms and Conditions Generator
             </a>
@@ -125,7 +126,7 @@ const Content = () => (
             from{" "}
             <a
               href="https://www.jpatrickfulton.dev"
-              rel="external nofollow noopener"
+              rel="noreferrer"
               target="_blank"
             >
               https://www.jpatrickfulton.dev
