@@ -1,6 +1,6 @@
 ---
 title: "Extend a Personal Network to Azure: Virtual Network"
-date: 2023-07-19
+date: 2023-07-19 01:00:00.000
 description: "To start out the project, we need to create some foundational Azure resources that are common for infrastructure-as-a-service (IaaS) implementations. In this post, we will create a resource group for the project and then build a virtual network to support the cloud components of what will become a hybrid workflow. As outlined in the overview and objectives post that started this series, this virtual network will have an address space that is designed to overlap with the on-premise network to which it will be connected."
 keywords:
   [
