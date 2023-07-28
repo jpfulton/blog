@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import React from "react";
 
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
@@ -198,11 +198,8 @@ const Content = () => (
       </p>
 
       <p>
-        For more information about how we use cookies, please read our
-        <a routerLink="/cookiepolicy" routerLinkActive="active">
-          Cookie Policy
-        </a>
-        .
+        For more information about how we use cookies, please read our{" "}
+        <Link to="/cookie-policy/">Cookie Policy</Link>.
       </p>
 
       <h3>Information from Third Parties</h3>
