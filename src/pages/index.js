@@ -37,6 +37,12 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        ads {
+          msPubCenter {
+            siteId
+            publisherId
+          }
+        }
       }
     }
     openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
@@ -83,14 +89,29 @@ export const pageQuery = graphql`
   }
 `;
 
-export const Head = () => (
-  <>
-    <GoogleStructuredOrgData />
-    <link
-      rel="alternate"
-      title="jpatrickfulton.dev"
-      type="application/rss+xml"
-      href="/rss.xml"
-    />
-  </>
-);
+export const Head = ({ data: { site } }) => {
+  const siteId = site.siteMetadata.ads.msPubCenter.siteId;
+  const publisherId = site.siteMetadata.ads.msPubCenter.publisherId;
+  const msPubCenterScriptSrc = `https://adsdk.microsoft.com/pubcenter/sdk.js?siteId=${siteId}&publisherId=${publisherId}`;
+
+  return (
+    <>
+      <GoogleStructuredOrgData />
+      <link
+        rel="alternate"
+        title="jpatrickfulton.dev"
+        type="application/rss+xml"
+        href="/rss.xml"
+      />
+      <script id="msAdsQueue">
+        window.msAdsQueue = window.msAdsQueue || [];
+      </script>
+      <script
+        id="msAdsSdk"
+        async
+        src={msPubCenterScriptSrc}
+        crossorigin="anonymous"
+      ></script>
+    </>
+  );
+};
