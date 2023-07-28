@@ -1,1 +1,2 @@
-google.com, pub-2306983857488873, DIRECT, f08c47fec0942fa0
+appnexus.com, 14163, RESELLER
+pubcenter.microsoft.com, 252759103, DIRECT

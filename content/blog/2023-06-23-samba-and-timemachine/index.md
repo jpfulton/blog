@@ -35,6 +35,8 @@ Thankfully, one of the supported protocols is a
 share per the support
 [article](https://support.apple.com/en-us/HT202784) on backup disks.
 
+<InArticleAdUnit />
+
 ## Table of Contents
 
 ## Samba Installation and Configuration
@@ -124,6 +126,8 @@ configuration. Add the following lines to the `[global]` section of the `smb.con
 wins support = yes
 dns proxy = yes
 ```
+
+<InArticleAdUnit />
 
 ### Complete Configuration
 

@@ -287,6 +287,22 @@ a:focus {
   margin-bottom: var(--spacing-8);
 }
 
+footer {
+  ol {
+    list-style: none;
+    margin-left: 0;
+
+    li {
+      display: inline;
+      margin-right: 0.25em;
+
+      a {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
 @media (max-width: 42rem) {
   blockquote {
     padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4);

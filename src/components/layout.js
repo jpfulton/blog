@@ -24,8 +24,23 @@ const Layout = ({ location, title, children }) => {
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <header className="global-header">{header}</header>
+
       <main>{children}</main>
-      <footer>© {new Date().getFullYear()} J. Patrick Fulton</footer>
+
+      <footer>
+        <ol>
+          <li>
+            <Link to="/privacy-policy/">Privacy Policy</Link> |
+          </li>
+          <li>
+            <Link to="/cookie-policy/">Cookie Policy</Link> |
+          </li>
+          <li>
+            <Link to="/terms-of-use/">Terms of Use</Link> |
+          </li>
+          <li>© {new Date().getFullYear()} J. Patrick Fulton</li>
+        </ol>
+      </footer>
 
       <CookieConsent
         disableStyles={true}

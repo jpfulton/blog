@@ -24,6 +24,12 @@ const config = {
       twitter: `jpatrickfulton`,
       github: `jpfulton`,
     },
+    ads: {
+      msPubCenter: {
+        siteId: `10320670`,
+        publisherId: `252759103`,
+      },
+    },
   },
   plugins: [
     {

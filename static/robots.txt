@@ -1,5 +1,8 @@
 User-agent: *
 Disallow: /8846484b349642449a66629f496422f8.txt
 Disallow: /rss.xml
+Disallow: /cookie-policy/
+Disallow: /privacy-policy/
+Disallow: /terms-of-use/
 
 Sitemap: https://www.jpatrickfulton.dev/sitemap-index.xml
