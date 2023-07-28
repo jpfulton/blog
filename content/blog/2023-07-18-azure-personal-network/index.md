@@ -47,7 +47,7 @@ It assumes:
 
 The steps needed to cover these prerequisites are covered in sections below.
 
-## Existing Network Structure
+## Existing On-premise Network Structure
 
 `10.0.0.0/16`
 
