@@ -12,7 +12,7 @@ class CookiePolicy extends React.Component {
 
     return (
       <Layout location={location} title={siteTitle}>
-        <Seo title={siteTitle} />
+        <Seo title={"Cookie Policy - " + siteTitle} />
         <Content />
       </Layout>
     );
