@@ -73,13 +73,13 @@ const Content = () => (
 
       <p>
         This Privacy Policy (“Policy”) explains the information collection, use,
-        and sharing practices of jpatrickfulton.com (“we,” “us,” and “our”).
+        and sharing practices of jpatrickfulton.dev (“we,” “us,” and “our”).
       </p>
 
       <p>
         Unless otherwise stated, this Policy describes and governs the
-        information collection, use, and sharing practices of jpatrickfulton.com
-        with respect to your use of our website (https://www.jpatrickfulton.com)
+        information collection, use, and sharing practices of jpatrickfulton.dev
+        with respect to your use of our website (https://www.jpatrickfulton.dev)
         and the services (“Services”) we provide and/or host on our servers.
       </p>
 
@@ -98,7 +98,7 @@ const Content = () => (
       <h2>Our Principles</h2>
 
       <p>
-        jpatrickfulton.com has designed this policy to be consistent with the
+        jpatrickfulton.dev has designed this policy to be consistent with the
         following principles:
       </p>
 
@@ -240,7 +240,7 @@ const Content = () => (
         </li>
         <li>
           Comply with the law and protect the safety, rights, property, or
-          security of jpatrickfulton.com, the Services, our users, and the
+          security of jpatrickfulton.dev, the Services, our users, and the
           general public; and enforce our Terms of Use, including to investigate
           potential violations thereof.
         </li>
@@ -288,7 +288,7 @@ const Content = () => (
         Charter including the Code of Conduct and policies contained and
         incorporated therein, (d) to respond to your requests for customer
         service; and/or (e) to protect the rights, property, or personal safety
-        of jpatrickfulton.com, our agents and affiliates, our users, and the
+        of jpatrickfulton.dev, our agents and affiliates, our users, and the
         public. This includes exchanging information with other companies and
         organizations for fraud protection, and spam/malware prevention, and
         similar purposes.
