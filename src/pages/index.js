@@ -4,6 +4,8 @@ import React from "react";
 import Bio from "../components/bio";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
+import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
+import RssLink from "../components/rssLink";
 import SearchPosts from "../components/searchPosts";
 import Seo from "../components/seo";
 
@@ -37,12 +39,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        ads {
-          msPubCenter {
-            siteId
-            publisherId
-          }
-        }
       }
     }
     openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
@@ -89,29 +85,12 @@ export const pageQuery = graphql`
   }
 `;
 
-export const Head = ({ data: { site } }) => {
-  const siteId = site.siteMetadata.ads.msPubCenter.siteId;
-  const publisherId = site.siteMetadata.ads.msPubCenter.publisherId;
-  const msPubCenterScriptSrc = `https://adsdk.microsoft.com/pubcenter/sdk.js?siteId=${siteId}&publisherId=${publisherId}`;
-
+export const Head = () => {
   return (
     <>
       <GoogleStructuredOrgData />
-      <link
-        rel="alternate"
-        title="jpatrickfulton.dev"
-        type="application/rss+xml"
-        href="/rss.xml"
-      />
-      <script id="msAdsQueue">
-        window.msAdsQueue = window.msAdsQueue || [];
-      </script>
-      <script
-        id="msAdsSdk"
-        async
-        src={msPubCenterScriptSrc}
-        crossorigin="anonymous"
-      ></script>
+      <RssLink />
+      <MsPubCenterHeaderScripts />
     </>
   );
 };
