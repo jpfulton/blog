@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import React from "react";
 
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
@@ -72,8 +72,8 @@ const Content = () => (
       <p>Last updated: 7/28/2023</p>
 
       <p>
-        This is the Cookies Policy (the "Policy") for jpatrickfulton.com,
-        accessible from https://www.jpatrickfulton.com. To make this site
+        This is the Cookies Policy (the "Policy") for jpatrickfulton.dev,
+        accessible from https://www.jpatrickfulton.dev. To make this site
         function properly, we sometimes place small data files called cookies on
         your device. These cookies are downloaded to your computer to improve
         your browsing experience as well as other purposes that are outlined in
@@ -85,7 +85,7 @@ const Content = () => (
         ("user," "visitor," "you," or "your") and this Website administrator or
         operator ("administrator," "operator," "we," "us," or "our"). This
         cookies policy page describes what cookies are, what information they
-        gather, why, and how they're being used by jpatrickfulton.com and any of
+        gather, why, and how they're being used by jpatrickfulton.dev and any of
         its related products and services (the "Services"). We will also share
         how to control and disable these cookies and withdraw consent to collect
         cookies. However, please know that these actions may downgrade some
@@ -95,10 +95,7 @@ const Content = () => (
       <p>
         For further information on how we use, collect and manage your personal
         data and information, see our{" "}
-        <a routerLink="/privacy" routerLinkActive="active">
-          Privacy Policy
-        </a>
-        .
+        <Link to="/privacy-policy/">Privacy Policy</Link>.
       </p>
 
       <h2>What Are Cookies</h2>
@@ -271,7 +268,7 @@ const Content = () => (
         information on Google AdSense, we refer you to see the official Google
         AdSense privacy FAQ: https://support.google.com/adsense/answer/3394713
         We rely on adverts to offset the running costs of this site and generate
-        revenue for further development. We use behavioural advertising cookies
+        revenue for further development. We use behavioral advertising cookies
         to ensure that we provide you with the most relevant adverts where
         possible by anonymously tracking your specific interests and presenting
         similar interests. Several partners advertise on our behalf, and we use
@@ -289,7 +286,7 @@ const Content = () => (
       <h2>Amendments and Modifications</h2>
 
       <p>
-        jpatrickfulton.com reserves the right to modify this Policy and its
+        jpatrickfulton.dev reserves the right to modify this Policy and its
         terms as they relate to this website and services at any time, effective
         and in full force upon posting the updated version on the website.
       </p>
