@@ -59,15 +59,42 @@ import SeriesLinks from "./seriesLinks.js"
 
 ## Get a Jump on Things
 
+While these steps are covered in posts within the series, to accelerate
+the process of following along, you can take the following steps in
+advance to prepare a local workstation and an Azure subscription.
+
 ### Install the Azure CLI
 
-[macOS guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos)
+The Azure CLI is used throughout the series and is a valuable tool
+for interacting with an Azure environment.
 
+On macOS,
+[Homebrew](https://brew.sh)
+can be used with this
+[guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos)
+to install the Azure CLI. On a linux workstation, _**following**_ careful review,
+this
 [script](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/install-az-cli-with-extensions.sh)
+can be used to install the Azure CLI and other
+extensions that will be used along the way. Alternatively, these
+[manual steps](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#option-2-step-by-step-installation-instructions)
+can be applied to get the Azure CLI installed.
 
 ### Prepare an Azure Subscription
 
+The Azure subscription that you use to follow the guides in this series
+may require some features and providers to be enabled. The next sections
+cover listing those providers and features. Missing ones can then be enabled
+as needed.
+
 #### List the Registered Providers
+
+The next command uses the Azure CLI to list registered providers
+for a subscription. The main providers used in this series are
+`Microsoft.Compute` and `Microsoft.Network`. Look for those in the output.
+Should they missing, use this
+[guide](https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register)
+from Microsoft to get the registered.
 
 ```bash {13, 23}{outputLines:2-37}{numberLines: true}
 az provider list --query "sort_by([?registrationState=='Registered'].{Namespace: namespace, Registered: registrationState}, &Namespace)" -o table
@@ -111,12 +138,21 @@ microsoft.support                   Registered
 
 #### List the Enabled Features of Microsoft.Compute
 
+Additionally, the `Microsoft.Compute/EncryptionAtHost` feature of the
+`Microsoft.Compute` provider is needed in this series to enable
+end-to-end managed disk encryption from the virtual machines to the
+Azure storage system. Use the following command to see if it is registered
+for your subscription.
+
 ```bash {4}{outputLines: 2-4}{numberLines: true}
 az feature list --namespace Microsoft.Compute --query "[?properties.state=='Registered'].{Name: name, Registered: properties.state}" -o table
 Name                                Registered
 ----------------------------------  ------------
 Microsoft.Compute/EncryptionAtHost  Registered
 ```
+
+If the feature is missing from the output of the command, use the steps in
+the next section.
 
 #### Enable the Encrypt at Host Azure Feature
 
