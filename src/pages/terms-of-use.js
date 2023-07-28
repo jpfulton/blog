@@ -12,7 +12,7 @@ class TermsOfUse extends React.Component {
 
     return (
       <Layout location={location} title={siteTitle}>
-        <Seo title={siteTitle} />
+        <Seo title={"Terms of Use - " + siteTitle} />
         <Content />
       </Layout>
     );
