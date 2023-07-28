@@ -26,8 +26,10 @@ on bridging a home network with cloud resources, an adaptation of the example
 can easily be applied to small business networks and applications.
 
 Using [Microsoft Azure](https://azure.microsoft.com/en-us) as a cloud provider,
-
-[Firewalla](https://firewalla.com)
+this series will discuss the creation of an infrastructure-as-a-service hybrid
+workflow that connects an on-premise network to a cloud network. Within the cloud
+network, a series of virtual machines will be created to provide backup and network
+services to workstations in the local network.
 
 import SeriesLinks from "./seriesLinks.js"
 
@@ -49,7 +51,9 @@ The steps needed to cover these prerequisites are covered in sections below.
 
 ## Existing On-premise Network Structure
 
-`10.0.0.0/16`
+For reference, the on-premise network is structured in the
+`10.0.0.0/16` address space. It includes several separate subnets
+that are described below.
 
 | Subnet       | Name      | Description               |
 | ------------ | --------- | ------------------------- |
@@ -60,7 +64,9 @@ The steps needed to cover these prerequisites are covered in sections below.
 
 ## Target Cloud Network Structure
 
-`10.10.0.0/16`
+To avoid address space conflicts and routing tricks, the cloud network
+will be created on a complementary address space: `10.10.0.0/16`. Its
+subnet design will follow the table below.
 
 | Subnet        | Name    | Description             |
 | ------------- | ------- | ----------------------- |
