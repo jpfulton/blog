@@ -67,7 +67,7 @@ export const Head = ({ data: { site } }) => {
 const Content = () => (
   <>
     <section>
-      <h1>Cookie Policy</h1>
+      <h2>Cookie Policy</h2>
 
       <p>Last updated: 7/28/2023</p>
 
@@ -98,14 +98,14 @@ const Content = () => (
         <Link to="/privacy-policy/">Privacy Policy</Link>.
       </p>
 
-      <h2>What Are Cookies</h2>
+      <h3>What Are Cookies</h3>
 
       <p>
         Cookies are those small pieces of data stored in text files saved on
         your mobile device or computer when you visit a website. Cookies allow
         the website's server to record and store your actions and preferences,
         such as login information, user history, language settings, font
-        settings, colour settings, and other display preferences, over a
+        settings, color settings, and other display preferences, over a
         particular period. Cookies ensure visitors do not have to continuously
         re-enter their details or information whenever they revisit the site or
         surf between pages.
@@ -116,7 +116,7 @@ const Content = () => (
         sessional cookies or multiple repeat visits through permanent cookies.
       </p>
 
-      <h2>How We Use Cookies</h2>
+      <h3>How We Use Cookies</h3>
 
       <p>
         Cookies are essential for our website to function optimally and enhance
@@ -124,7 +124,7 @@ const Content = () => (
         administrator(s) controls all cookies used on the site and grants third
         parties access for statistics and analytics purposes. Cookies are needed
         to remember to identify visitors and remember their site actions and
-        online behaviours.
+        online behaviors.
       </p>
 
       <p>
@@ -133,7 +133,7 @@ const Content = () => (
         personally.
       </p>
 
-      <h2>How to Control Cookies</h2>
+      <h4>How to Control Cookies</h4>
 
       <p>
         You can control and/or delete cookies on your mobile device or computer
@@ -145,7 +145,7 @@ const Content = () => (
         work optimally.
       </p>
 
-      <h2>Disabling Cookies</h2>
+      <h4>Disabling Cookies</h4>
 
       <p>
         You can disable cookies setting by adjusting the option on your browser
@@ -160,16 +160,16 @@ const Content = () => (
         service.
       </p>
 
-      <h2>The Cookies We Use</h2>
+      <h3>The Cookies We Use</h3>
 
-      <h3>Sessional Cookies</h3>
+      <h4>Sessional Cookies</h4>
 
       <p>
         Sessional cookies are temporary cookies that are operational during your
         visit and expire when you close the browser.
       </p>
 
-      <h3>Permanent Cookies</h3>
+      <h4>Permanent Cookies</h4>
 
       <p>
         Permanent cookies store and retain your site preferences on your mobile
@@ -177,7 +177,7 @@ const Content = () => (
         device or computer.
       </p>
 
-      <h3>Necessary Cookies</h3>
+      <h4>Necessary Cookies</h4>
 
       <p>
         Necessary cookies allow the website to provide a better user experience
@@ -186,7 +186,7 @@ const Content = () => (
         access site content.
       </p>
 
-      <h3>Functionality Cookies</h3>
+      <h4>Functionality Cookies</h4>
 
       <p>
         Functionality cookies allow the website to operate optimally, following
@@ -194,7 +194,7 @@ const Content = () => (
         username and customizations.
       </p>
 
-      <h3>Analytical Cookies</h3>
+      <h4>Analytical Cookies</h4>
 
       <p>
         Analytical cookies allow first-party and affiliated third-party services
@@ -204,7 +204,7 @@ const Content = () => (
         user experience.
       </p>
 
-      <h3>Account Cookies</h3>
+      <h4>Account Cookies</h4>
 
       <p>
         These cookies will help us manage the signup and general administration
@@ -213,7 +213,7 @@ const Content = () => (
         preferences.
       </p>
 
-      <h3>Login Cookies</h3>
+      <h4>Login Cookies</h4>
 
       <p>
         We use login cookies to remember your Login details and prevent you from
@@ -222,7 +222,7 @@ const Content = () => (
         and privacy and prevent access to restricted features.
       </p>
 
-      <h3>Site preferences Cookies</h3>
+      <h4>Site preferences Cookies</h4>
 
       <p>
         To provide you with a beautiful user experience and site interaction, we
@@ -230,14 +230,14 @@ const Content = () => (
         when you use it.
       </p>
 
-      <h3>First-Party Cookies</h3>
+      <h4>First-Party Cookies</h4>
 
       <p>
         First-party cookies are the cookies explained above that are set by the
         website.
       </p>
 
-      <h3>Third-Party Cookies</h3>
+      <h4>Third-Party Cookies</h4>
 
       <p>
         In some cases, the website uses cookies provided by trusted third
@@ -283,7 +283,7 @@ const Content = () => (
         media sites.
       </p>
 
-      <h2>Amendments and Modifications</h2>
+      <h3>Amendments and Modifications</h3>
 
       <p>
         jpatrickfulton.dev reserves the right to modify this Policy and its
@@ -297,7 +297,7 @@ const Content = () => (
         such amendments and modifications.
       </p>
 
-      <h2>Policy Acceptance</h2>
+      <h3>Policy Acceptance</h3>
 
       <p>
         You hereby acknowledge that you have read this Cookies Policy and agree
