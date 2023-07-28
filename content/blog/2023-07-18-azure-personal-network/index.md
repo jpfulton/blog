@@ -37,6 +37,16 @@ import SeriesLinks from "./seriesLinks.js"
 
 ## Prerequisites
 
+The series makes a series of assumptions for a user that is following along.
+It assumes:
+
+- You have already signed up for Azure and have an active subscription
+- You have either a macOS or linux workstation from which you are working
+- You have installed the Azure CLI to your workstation
+- You have a basic working knowledge of the `bash` shell
+
+The steps needed to cover these prerequisites are covered in sections below.
+
 ## Existing Network Structure
 
 `10.0.0.0/16`
