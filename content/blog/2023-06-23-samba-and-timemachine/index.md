@@ -35,6 +35,8 @@ Thankfully, one of the supported protocols is a
 share per the support
 [article](https://support.apple.com/en-us/HT202784) on backup disks.
 
+<InArticleAdUnit />
+
 ## Table of Contents
 
 ## Samba Installation and Configuration
@@ -180,6 +182,38 @@ Run the following commands to start the service and check its status.
 sudo systemctl start smbd
 sudo systemctl status smbd
 ```
+
+### Create Dedicated Samba User and Group
+
+Create a user and group to match the configuration.
+
+```bash
+sudo addgroup smbgroup
+sudo adduser --system --no-create-home smbuser smbgroup
+```
+
+### Create Share Folder and Change Ownership
+
+Create a folder to store the share and match the configuration.
+
+```bash
+cd /mnt
+sudo mkdir samba
+cd samba
+sudo mkdir applebackups
+sudo chown smbuser:smbgroup applebackups
+```
+
+### Start the Service
+
+Run the following commands to start the service and check its status.
+
+```bash
+sudo systemctl start smbd
+sudo systemctl status smbd
+```
+
+<InArticleAdUnit />
 
 ### Complete Configuration
 

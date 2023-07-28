@@ -5,7 +5,9 @@ import Bio from "../components/bio";
 import CustomMDXProvider from "../components/customMDXProvider";
 import GoogleStructuredArticleData from "../components/googleStructureArticleData";
 import Layout from "../components/layout";
+import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import RelatedPosts from "../components/relatedPosts";
+import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 import Tags from "../components/tags";
 
@@ -110,17 +112,15 @@ function BlogPostTemplate({
 
 export default BlogPostTemplate;
 
-export const Head = ({ data: { mdx } }) => (
-  <>
-    <GoogleStructuredArticleData post={mdx} />
-    <link
-      rel="alternate"
-      title="jpatrickfulton.dev"
-      type="application/rss+xml"
-      href="/rss.xml"
-    />
-  </>
-);
+export const Head = ({ data: { mdx } }) => {
+  return (
+    <>
+      <GoogleStructuredArticleData post={mdx} />
+      <RssLink />
+      <MsPubCenterHeaderScripts />
+    </>
+  );
+};
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $keywords: [String]!) {
