@@ -12,7 +12,7 @@ keywords:
     "openvpn",
     "Firewalla",
   ]
-openGraphImage: ../../../src/images/open-graph/azure.png
+openGraphImage: ../../../src/images/open-graph/firewalla.png
 ---
 
 A little over a year ago, I bought a
