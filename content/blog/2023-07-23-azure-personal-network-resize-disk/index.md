@@ -18,7 +18,7 @@ openGraphImage: ../../../src/images/open-graph/azure.png
 
 At the start of the project, we began with a backup server data disk
 of 512GB. We used a Standard HDD model on locally redundant storage (LRS)
-to keep things cost effective as we will not require significant IOPS
+to keep things cost-effective as we will not require significant IOPS
 or the features of Premium managed disk models. However, it is easy to run
 out of space. It is also important to recall that
 [managed disks](https://azure.microsoft.com/en-us/products/storage/disks)
@@ -27,7 +27,8 @@ be _**increased**_ in size. Size decreases are disallowed to avoid data loss. So
 it is important to start small.
 
 In this post, we will resize a managed disk to increase the amount of available
-storage space then use Linux operating system utilities to resize its `ext4` partition
+storage space,
+then use Linux operating system utilities to resize its `ext4` partition
 to utilize the newly allocated space. In the process, we will create a temporary
 disk snapshot to ensure that no data is lost during the operation.
 

@@ -29,7 +29,7 @@ be connected.
 In addition to creating the virtual network, we will create and connect
 other resources to it to support both the on-premise network and the virtual machines
 that will be connected to the cloud network. A private DNS zone will be configured
-and connected to ease and customize name resolution across the hybrid workflow
+and connected to ease and customize name resolution across the hybrid workflow,
 and a network address translation gateway will be created to give hosts on the
 network as secure mechanism for internet access even when they are not given
 public IP addresses of their own.
@@ -106,7 +106,7 @@ on the resource group created above and select **Create**. Search for
 ![Create a Private DNS Zone](./private-dns-zone/azure-create-private-dns-zone.png)
 
 Once you have named the private DNS zone, select **Review + create**. Linking
-the zone to virtual networks is performed in separate a separate step.
+the zone to virtual networks is performed in a separate step.
 
 ![Create a Private DNS Zone 2](./private-dns-zone/azure-create-private-dns-zone-2.png)
 

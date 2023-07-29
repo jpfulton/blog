@@ -130,7 +130,7 @@ private key.
 ### OpenVPN Client Configuration Template
 
 Copy the `vpnconfig.ovpn` file from the archive to a separate location
-to be edited. A sample of its contents is shown below. Note the sections,
+to be edited. A sample of its contents is shown below. Note the sections
 that need to be completed prior to use: `$CLIENTCERTIFICATE` and `$PRIVATEKEY`.
 Once we generate a client certificate and key, we can paste their contents
 into this file.
