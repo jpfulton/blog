@@ -12,7 +12,7 @@ keywords:
     "orchestration",
     "bash",
     "azure cli",
-    "linux",
+    "Linux",
     "Ubuntu",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png

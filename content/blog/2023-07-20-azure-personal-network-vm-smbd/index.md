@@ -17,7 +17,7 @@ keywords:
     "time machine",
     "managed disk",
     "ext4",
-    "linux",
+    "Linux",
     "Ubuntu",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png
@@ -152,7 +152,7 @@ a usable file system.
 First, we need to identify the data disk from within the
 guest operating system. To do so we run the following commands.
 
-In a linux virtual machine, the disk will present itself as a device
+In a Linux virtual machine, the disk will present itself as a device
 under `/dev/sd*`. However, the ordering in which the disk will appear
 is stable _during a single boot of the machine_ **not**
 _between boots of the machine_. As a result, the data disk may appear
@@ -244,7 +244,7 @@ this goal.
 
 Run `blkid` to identify the UUID of the new filesystem. Using the UUID
 is the **only** reliable way to ensure a clean mount in between boots on
-a linux virtual machine. Identify the UUID of the new filesystem.
+a Linux virtual machine. Identify the UUID of the new filesystem.
 
 ```bash {2}{numberLines: true}{outputLines: 2-10}
 sudo blkid

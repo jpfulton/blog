@@ -10,7 +10,7 @@ keywords:
     "virtual networking",
     "vpn",
     "openvpn",
-    "linux",
+    "Linux",
     "Ubuntu",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png

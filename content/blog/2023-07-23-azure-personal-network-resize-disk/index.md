@@ -9,7 +9,7 @@ keywords:
     "virtual machine",
     "managed disk",
     "resize partition",
-    "linux",
+    "Linux",
     "Ubuntu",
     "ext4",
   ]

@@ -12,7 +12,7 @@ keywords:
     "samba",
     "backup",
     "bash",
-    "linux",
+    "Linux",
     "Ubuntu",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png

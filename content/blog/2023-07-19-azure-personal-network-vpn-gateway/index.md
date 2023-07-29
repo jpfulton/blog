@@ -11,7 +11,7 @@ keywords:
     "vpn gateway",
     "strongswan",
     "ipsec",
-    "linux",
+    "Linux",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
@@ -67,7 +67,7 @@ virtual network. Select **Review + create** to validate and start the deployment
 Once the resource is created, which may take several minutes, there are a number
 of configuration steps that must be taken to generate certificates, create
 client configuration files and set up the point-to-site feature. These steps
-were taken on an on-premise Ubuntu linux server running `Ubuntu 22.04.2 LTS`.
+were taken on an on-premise Ubuntu Linux server running `Ubuntu 22.04.2 LTS`.
 Select a location where the generated keys may be kept _**securely**_ and
 revisited as new client certificates are needed.
 
