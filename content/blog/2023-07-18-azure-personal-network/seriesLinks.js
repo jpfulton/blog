@@ -7,9 +7,7 @@ const SeriesLinks = () => (
     <div class="series-links">
       <ol>
         <li>
-          <Link to="/blog/2023-07-18-azure-personal-network/">
-            Overview and Objectives
-          </Link>
+          <Link to="/blog/2023-07-18-azure-personal-network/">Overview</Link>
         </li>
         <li>
           <Link to="/blog/2023-07-19-azure-personal-network-vnet/">
@@ -23,17 +21,17 @@ const SeriesLinks = () => (
         </li>
         <li>
           <Link to="/blog/2023-07-20-azure-personal-network-vm-smbd/">
-            Virtual Machine for Samba
+            Samba Server
           </Link>
         </li>
         <li>
           <Link to="/blog/2023-07-21-azure-personal-network-replace-vpn/">
-            Replace an Azure VPN Gateway with an OpenVPN Server
+            Replace the Azure VPN Gateway with an OpenVPN Server
           </Link>
         </li>
         <li>
           <Link to="/blog/2023-07-21-azure-personal-network-vpn-firewalla/">
-            Setup a Firewalla OpenVPN Server Connection
+            Setup a Firewalla OpenVPN Client Connection
           </Link>
         </li>
         <li>
@@ -48,7 +46,7 @@ const SeriesLinks = () => (
         </li>
         <li>
           <Link to="/blog/2023-07-25-azure-personal-network-spot-orchestration/">
-            Orchestrate Spot Instance Reallocation
+            Spot Instance Restart Orchestration
           </Link>
         </li>
       </ol>
