@@ -10,26 +10,31 @@ keywords:
     "virtual network",
     "vpn",
     "hybrid workflow",
+    "azure cli",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---
 
-In a world of cloud computing and remote work, hybrid workflows and bridges
+In a world of cloud computing and remote work,
+[hybrid](https://azure.microsoft.com/en-in/resources/cloud-computing-dictionary/what-are-private-public-hybrid-clouds/)
+workflows and bridges
 between on-premise networks and cloud-based virtual networks are becoming
 more common.
 
 This series of posts examines the creation of a hybrid workflow between an
-on-premise network and cloud hosted virtual network connected by virtual
-private networking technology. An emphasis will be placed on managing cloud
+on-premise network and cloud hosted virtual network connected by
+[virtual private networking](https://en.wikipedia.org/wiki/Virtual_private_network)
+technology. An emphasis will be placed on managing cloud
 costs while maintaining performance and security. While the example is based
 on bridging a home network with cloud resources, an adaptation of the example
 can easily be applied to small business networks and applications.
 
 Using [Microsoft Azure](https://azure.microsoft.com/en-us) as a cloud provider,
-this series will discuss the creation of an infrastructure-as-a-service hybrid
-workflow that connects an on-premise network to a cloud network. Within the cloud
-network, a series of virtual machines will be created to provide backup and network
-services to workstations in the local network.
+this series will discuss the creation of an
+[infrastructure-as-a-service](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-azure/azure-iaas/)
+hybrid workflow that connects an on-premise network to a cloud network. Within
+the cloud network, a series of virtual machines will be created to provide backup
+and network services to workstations on the local network.
 
 import SeriesLinks from "./seriesLinks.js"
 
