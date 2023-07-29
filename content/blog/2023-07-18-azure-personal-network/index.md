@@ -48,7 +48,7 @@ The series makes a series of assumptions for a user that is following along.
 It assumes:
 
 - You have already signed up for Azure and have an active subscription
-- You have either a macOS or linux workstation from which you are working
+- You have either a macOS or Linux workstation from which you are working
 - You have installed the Azure CLI to your workstation
 - You have a basic working knowledge of the `bash` shell
 
@@ -93,7 +93,7 @@ On macOS,
 [Homebrew](https://brew.sh)
 can be used with this
 [guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos)
-to install the Azure CLI. On a linux workstation, _**following**_ careful review,
+to install the Azure CLI. On a Linux workstation, _**following**_ careful review,
 this
 [script](https://github.com/jpfulton/example-linux-configs/blob/main/home/jpfulton/install-az-cli-with-extensions.sh)
 can be used to install the Azure CLI and other
@@ -113,9 +113,9 @@ as needed.
 The next command uses the Azure CLI to list registered providers
 for a subscription. The main providers used in this series are
 `Microsoft.Compute` and `Microsoft.Network`. Look for those in the output.
-Should they missing, use this
+Should they be missing, use this
 [guide](https://learn.microsoft.com/en-us/cli/azure/provider?view=azure-cli-latest#az-provider-register)
-from Microsoft to get the registered.
+from Microsoft to get them registered.
 
 ```bash {13, 23}{outputLines:2-37}{numberLines: true}
 az provider list --query "sort_by([?registrationState=='Registered'].{Namespace: namespace, Registered: registrationState}, &Namespace)" -o table
