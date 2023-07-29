@@ -75,7 +75,7 @@ virtual machine size.
 
 On the disks tab, change the `OS disk type` to `Standard HHD`. Under the
 `Data disks` section, select **Attach an existing disk** and find the data
-disk create in a previous step. Note that we will enable the `Encryption at host`
+disk created in a previous step. Note that we will enable the `Encryption at host`
 feature for this virtual machine in a later step.
 
 ![Create a Virtual Machine Step Two](./vm/azure-create-vm-3.png)
@@ -154,11 +154,11 @@ guest operating system. To do so we run the following commands.
 
 In a linux virtual machine, the disk will present itself as a device
 under `/dev/sd*`. However, the ordering in which the disk will appear
-is stable _during a single boot of the machine_ **not**
+is stable _during a single boot of the machine_, **not**
 _between boots of the machine_. As a result, the data disk may appear
 as `/dev/sda` during one boot and then reappear as `/dev/sdc` in a second
 boot of the machine. We can safely operate on the disk using its assigned
-device to format and mount the host filesystem for these operation, but
+device to format and mount the host filesystem for these operations, but
 we will need another mechanism to ensure it mounts cleanly after a reboot.
 That mechanism is discussed below.
 
@@ -318,7 +318,7 @@ az feature show --name EncryptionAtHost --namespace Microsoft.Compute
 }
 ```
 
-Propagate the change per output of earlier command.
+Propagate the change per output of the earlier command.
 
 ```bash
 az provider register -n Microsoft.Compute
@@ -413,7 +413,7 @@ In
 a <Link to="/blog/2023-06-23-samba-and-timemachine/">previous post</Link>, I discussed
 the settings that are necessary to support macOS Time Machine backups. Again,
 we will need to add those settings to this `smb.conf` as we wish to support
-that platform for one of the two shares that we will create. Add the following,
+that platform for one of the two shares that we will create. Add the following
 lines to the `[global]` section of the server configuration file. A detailed
 discussion of these lines can be found in the post referenced above.
 

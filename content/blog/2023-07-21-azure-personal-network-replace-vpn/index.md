@@ -1,7 +1,7 @@
 ---
 title: "Extend a Personal Network to Azure: OpenVPN Server"
 date: 2023-07-21
-description: "In an earlier post, we created an Azure VPN Gateway to provide remote access to our virtual network. While powerful, these resources are both expensive at an SKU that supports multiple platforms and are likely overkill as a solution for small business networks. They may are best suited for enterprise deployments. In this post, we will create a Ubuntu virtual machine that supports similar functionality at a lower price point."
+description: "In an earlier post, we created an Azure VPN Gateway to provide remote access to our virtual network. While powerful, these resources are both expensive at an SKU that supports multiple platforms and are likely overkill as a solution for small business networks. They may best be suited for enterprise deployments. In this post, we will create an Ubuntu virtual machine that supports similar functionality at a lower price point."
 keywords:
   [
     "azure",
@@ -47,7 +47,7 @@ size. Supply an initial username and then select **Next: Disks**.
 ![Create Virtual Machine](./openvpn-server/create-vm.png)
 
 On the disks step, change the `OS Disk Type` to
-`Standard HDD (locally-redundant storage)`. Move on the networking step.
+`Standard HDD (locally-redundant storage)`. Move on to the networking step.
 
 ![Create Virtual Machine Step 2](./openvpn-server/create-vm-2.png)
 
@@ -178,7 +178,8 @@ With the server certificates and Diffie Hellman parameters ready for the
 server configuration, we need to create a certificate for the client. Ideally,
 each OpenVPN client will use a separate certificate to allow them to be
 identified by the server and also revoked if needed. The outputs from
-these commands will be used in separate step when creating the client
+these commands will be used in
+a separate step when creating the client
 configuration file.
 
 ```bash
@@ -384,7 +385,7 @@ transferred to the client device.
 
 To create the client configuration file, we will need access to the
 following files as created in earlier steps. The contents of each file
-needs to be copied into the various sections of the client
+need to be copied into the various sections of the client
 configuration template.
 
 ```sh
