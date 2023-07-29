@@ -1,8 +1,8 @@
 ---
 title: Samba and macOS Time Machine
 date: 2023-06-23
-description: "A guide for setting up Ubuntu linux to support macOS time machine backups using Samba."
-keywords: ["Ubuntu", "linux", "macOS", "samba", "time machine", "backup"]
+description: "A guide for setting up Ubuntu Linux to support macOS time machine backups using Samba."
+keywords: ["Ubuntu", "Linux", "macOS", "samba", "time machine", "backup"]
 openGraphImage: ./time-machine.png
 ---
 
@@ -72,6 +72,31 @@ sudo apt install samba
 
 The Samba configuration exists at `/etc/samba/smb.conf`.
 
+This configuration requires three VFS modules:
+
+- [vfs_catia](https://www.samba.org/samba/docs/current/man-html/vfs_catia.8.html)
+- [vfs_fruit](https://www.samba.org/samba/docs/current/man-html/vfs_fruit.8.html)
+- [vfs_streams_xattr](https://www.samba.org/samba/docs/current/man-html/vfs_streams_xattr.8.html)
+
+`vfs_catia` provides illegal character translation to correctly map Apple paths.
+`vfs_fruit` is the primary module used to enable compatibility with Apple SMB clients
+and `vfs_streams_xattr` enables storing NTFS alternate data streams in the underlying
+file system.
+
+Per the `vfs_fruit`
+[documentation](https://www.samba.org/samba/docs/current/man-html/vfs_fruit.8.html):
+
+> The module should be stacked with vfs_catia if enabling character conversion
+> and must be stacked with vfs_streams_xattr.
+
+Additionally, the optional parameter `fruit:nfs_access` must be set to `no` to
+allow Samba to manage file and directory permissions. Without this option set,
+Samba is **unable** to manage permissions itself using `create mask`,
+`force create mode`, `directory mask`, `force directory mode` or
+`inherit permissions` directives.
+
+To edit the configuration using `vim` execute the following command.
+
 ```shell
 sudo vim /etc/samba/smb.conf
 ```
@@ -80,10 +105,11 @@ The following section needs to be added to the `[global]` section of
 the configuration file. It establishes the file system extensions
 and protocol versions necessary to support macOS.
 
-```sh:title=smb.conf {numberLines: true}
+```sh:title=smb.conf {3-4}{numberLines: true}
 ### Time Machine Compatibility ###
 min protocol = SMB2
-vfs objects = fruit streams_xattr
+vfs objects = catia fruit streams_xattr
+fruit:nfs_aces = no
 fruit:metadata = stream
 fruit:model = MacSamba
 fruit:posix_rename = yes
@@ -96,10 +122,10 @@ server min protocol = SMB2
 Add the following to the end of the file to create a dedicated
 share for time machine backups:
 
-```sh:title=smb.conf {numberLines: true}
+```sh:title=smb.conf {4}{numberLines: true}
 [backupshare]
-comment = Apple Backup Shared Folder by Samba Server on Ubuntu
-path = /mnt/samba/AppleBackups
+comment = Apple Backup Shared Folder
+path = /mnt/samba/applebackups
 fruit:time machine = yes
 force user = smbuser
 force group = smbgroup
@@ -125,6 +151,66 @@ configuration. Add the following lines to the `[global]` section of the `smb.con
 ### WINS Support ###
 wins support = yes
 dns proxy = yes
+```
+
+### Create Dedicated Samba User and Group
+
+Create a user and group to match the configuration.
+
+```bash
+sudo addgroup smbgroup
+sudo adduser --system --no-create-home smbuser smbgroup
+```
+
+### Create Share Folder and Change Ownership
+
+Create a folder to store the share and match the configuration.
+
+```bash
+cd /mnt
+sudo mkdir samba
+cd samba
+sudo mkdir applebackups
+sudo chown smbuser:smbgroup applebackups
+```
+
+### Start the Service
+
+Run the following commands to start the service and check its status.
+
+```bash
+sudo systemctl start smbd
+sudo systemctl status smbd
+```
+
+### Create Dedicated Samba User and Group
+
+Create a user and group to match the configuration.
+
+```bash
+sudo addgroup smbgroup
+sudo adduser --system --no-create-home smbuser smbgroup
+```
+
+### Create Share Folder and Change Ownership
+
+Create a folder to store the share and match the configuration.
+
+```bash
+cd /mnt
+sudo mkdir samba
+cd samba
+sudo mkdir applebackups
+sudo chown smbuser:smbgroup applebackups
+```
+
+### Start the Service
+
+Run the following commands to start the service and check its status.
+
+```bash
+sudo systemctl start smbd
+sudo systemctl status smbd
 ```
 
 <InArticleAdUnit />

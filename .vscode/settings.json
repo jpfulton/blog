@@ -7,5 +7,16 @@
     "source.sortMembers"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "cSpell.words": ["frontmatter", "jpatrickfulton", "passwordless"]
+  "cSpell.words": [
+    "deallocates",
+    "deallocating",
+    "deallocation",
+    "Diffie",
+    "Firewalla",
+    "frontmatter",
+    "interruptible",
+    "jpatrickfulton",
+    "passwordless",
+    "routable"
+  ]
 }

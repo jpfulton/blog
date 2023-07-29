@@ -37,7 +37,7 @@ function BlogPostTemplate({
         keywords={post.frontmatter.keywords}
         openGraphImageSrc={openGraphImageSrc}
       />
-      <article>
+      <article data-clarity-region="article">
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{

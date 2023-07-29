@@ -393,7 +393,11 @@ const Content = () => (
         use this information for site optimization, fraud/security purposes, and
         advertising. For more information about how Microsoft collects and uses
         your data, visit the{" "}
-        <a href="https://privacy.microsoft.com/en-US/privacystatement">
+        <a
+          href="https://privacy.microsoft.com/en-US/privacystatement"
+          rel="noreferrer"
+          target="_blank"
+        >
           Microsoft Privacy Statement
         </a>
         .

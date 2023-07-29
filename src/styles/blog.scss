@@ -125,6 +125,33 @@ h6 {
   }
 }
 
+.series-links-header {
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: var(--fontSize-1);
+  margin-bottom: 1em;
+}
+
+.series-links {
+  & ol,
+  & ul {
+    list-style-position: inside;
+    margin-bottom: var(--spacing-0);
+
+    li {
+      p {
+        display: inline;
+        margin-bottom: var(--spacing-0);
+      }
+
+      ul,
+      ol {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
 @media (max-width: 42rem) {
   .related-posts {
     overflow: scroll;
