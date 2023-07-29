@@ -29,7 +29,7 @@ be connected.
 In addition to creating the virtual network, we will create and connect
 other resources to it to support both the on-premise network and the virtual machines
 that will be connected to the cloud network. A private DNS zone will be configured
-and connected to ease name and customize name resolution across the hybrid workflow
+and connected to ease and customize name resolution across the hybrid workflow
 and a network address translation gateway will be created to give hosts on the
 network as secure mechanism for internet access even when they are not given
 public IP addresses of their own.
@@ -60,18 +60,18 @@ region.
 The first resource needed for this project is a virtual network. A virtual network
 is similar to a traditional network. However, its simulated nature brings isolation
 and allows resources like virtual machines to communicate securely with one
-another in the Azure cloud. In this case, we wish to create a network that is
-address in way that is compatible with our home network to avoid the need to
+another within the Azure cloud. In this case, we wish to create a network that is
+addressed in way that is compatible with our home network to avoid the need to
 perform routing tricks for overlapping address spaces. We will start with a large
-address space and create a single starting subnet.
+address space and create a single default subnet.
 
-From the resource group that was created above, we will select **Create** and
+From the resource group that was created above, select **Create** and
 navigate to the marketplace to search for **virtual network**. Select the
 **Virtual Network** option to begin the creation process.
 
 ![Create a Virtual Network Screenshot](./vnet/azure-create-virtual-network.png)
 
-In the first step, select a name for the network resource. Region will be
+In the first step, select a name for the network resource. The region will be
 pre-populated from the default region for the resource group.
 
 ![Create a Virtual Network Screenshot 2](./vnet/azure-create-virtual-network-2.png)
@@ -84,7 +84,7 @@ NIC.
 
 ![Create a Virtual Network Screenshot 3](./vnet/azure-create-virtual-network-3.png)
 
-Select **Review + create** to validate the resource and begin deployment.
+Select **Review + create** to validate the resource and begin the deployment.
 
 ## Create and Link a Private DNS Zone
 
@@ -92,7 +92,7 @@ An Azure Private DNS Zone provides name resolution and management within a
 virtual network. By default, each virtual machine deployed to a virtual
 network is resolvable within the network under as
 `virtual-machine-name.internal.cloudapp.net`. However, using a private DNS
-zone this can be customized without the need for a custom DNS solution.
+zone, this can be customized without the need for a custom DNS solution.
 
 > The records contained in a private DNS zone aren't resolvable from the Internet.
 > DNS resolution against a private DNS zone works only from virtual networks that
