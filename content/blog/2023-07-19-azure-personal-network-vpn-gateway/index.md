@@ -36,7 +36,7 @@ the `Basic` SKU is most economical, it has limited features and cannot support
 the `IKEv2` and `OpenVPN` tunnel types which provide cross-platform support
 in a point-to-site configuration. Additionally, resources of the `Basic` SKU
 cannot be resized to other SKUs. They must first be deleted and new resources
-in their place. To provide cross-platform support, this post will use the
+created in their place. To provide cross-platform support, this post will use the
 `VpnGw1`.
 
 As this type of Azure resource is best suited for enterprise applications,
@@ -96,7 +96,7 @@ ipsec pki --self --in caKey.pem --dn "CN=VPN CA" --ca --outform pem > caCert.pem
 ```
 
 Once the CA has been created, output its public key in `base64` format to
-a text file. We will need the contents of this file when pasting the
+a text file. We will need the contents of this file when copying the
 public certificate into the Azure portal in the next step.
 
 ```bash
@@ -194,7 +194,8 @@ This section of the post is adapted from the following Azure
 with modifications to work on the on-premise server and to script much of the process.
 
 Create a script with the following contents in the same directory used to perform
-the server certificate generate from above. Replace the value of the `USERNAME` variable
+the server certificate generation from above. Replace the value of the `USERNAME`
+variable
 to match the name of the client configuration you would like to create. Ideally,
 each VPN client will be assigned its own certificate, name and private key.
 
@@ -238,7 +239,7 @@ Save the file and transfer it to the client using a **secure** mechanism.
 ### Install the Configuration and Test a Client
 
 With the client configuration downloaded to a local machine, one of several
-OpenVPN clients can be configured and then tested.
+OpenVPN clients can be configured and then used for testing.
 [Ubuntu Desktop](https://ubuntu.com/download/desktop) includes an OpenVPN client.
 Additionally,
 [Tunnelblick](https://tunnelblick.net)
