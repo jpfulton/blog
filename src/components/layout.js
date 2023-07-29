@@ -49,7 +49,8 @@ const Layout = ({ location, title, children }) => {
         containerClasses="cookie-consent-container"
         contentClasses="cookie-consent-content"
       >
-        This website uses cookies to enhance the user experience.
+        This website uses cookies to enhance the user experience. View our{" "}
+        <Link to="/cookie-policy/">Cookie Policy</Link> for further details.
       </CookieConsent>
     </div>
   );

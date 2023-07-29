@@ -204,7 +204,7 @@ const Content = () => (
           services, take steps to secure the Services, and for technical and
           customer support.
         </li>
-        <li>Fundraise, accept donations, or process transactions.</li>
+        <li>Fund raise, accept donations, or process transactions.</li>
         <li>
           Send you information about your interaction or transactions with us,
           account alerts, or other communications, such as newsletters to which
@@ -364,6 +364,8 @@ const Content = () => (
 
       <h2>Online Analytics</h2>
 
+      <h3>Third Party Analytics</h3>
+
       <p>
         We may use third-party web analytics services (such as Google Analytics)
         on our Services to collect and analyze the information discussed above,
@@ -379,11 +381,29 @@ const Content = () => (
         Opt-out Browser Add-on.
       </p>
 
+      <h3>Microsoft Clarity and Microsoft Advertising</h3>
+
+      <p>
+        We partner with Microsoft Clarity and Microsoft Advertising to capture
+        how you use and interact with our website through behavioral metrics,
+        heat maps, and session replay to improve and market our
+        products/services. Website usage data is captured using first and
+        third-party cookies and other tracking technologies to determine the
+        popularity of products/services and online activity. Additionally, we
+        use this information for site optimization, fraud/security purposes, and
+        advertising. For more information about how Microsoft collects and uses
+        your data, visit the{" "}
+        <a href="https://privacy.microsoft.com/en-US/privacystatement">
+          Microsoft Privacy Statement
+        </a>
+        .
+      </p>
+
       <h2>Your Choices and Data Subject Rights</h2>
 
       <p>
         You have various rights with respect to the collection and use of your
-        information through the Services.  Those choices are as follows:
+        information through the Services. Those choices are as follows:
       </p>
 
       <h3>Email Unsubscribe</h3>
