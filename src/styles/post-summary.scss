@@ -8,12 +8,12 @@
 
   .flex {
     display: flex;
-    align-items: center;
-    margin-top: var(--spacing-1);
-    margin-bottom: var(--spacing-4);
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-1);
     min-width: 100%;
 
     p {
+      margin-top: var(--spacing-1);
       margin-right: 2em;
     }
 
