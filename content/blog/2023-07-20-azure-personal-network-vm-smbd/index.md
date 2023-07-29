@@ -9,7 +9,7 @@ network. In this post, we will create that server, a managed disk to store the
 data and then configure Samba for use on the hybrid network."
 keywords:
   [
-    "azure",
+    "Azure",
     "IaaS",
     "virtual machine",
     "samba",

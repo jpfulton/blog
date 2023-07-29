@@ -4,7 +4,7 @@ date: 2023-07-21
 description: "In this post, we will configure a Firewalla to use its VPN client feature to connect a home network to a Azure virtual network using an OpenVPN tunnel provided by the server that was created in the last post."
 keywords:
   [
-    "azure",
+    "Azure",
     "IaaS",
     "virtual networking",
     "vpn",

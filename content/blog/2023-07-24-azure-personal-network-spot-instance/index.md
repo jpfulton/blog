@@ -4,7 +4,7 @@ date: 2023-07-24
 description: "Azure Spot Virtual Machines offer deep discounts of up to 90% off pay-as-you-go prices for interruptible workloads. As long as resiliency and fault tolerance can be built into the workload, this model can offer significant cost savings. In the workload described by this post series, the backup system is an excellent candidate for the use of spot instances. This post covers the creation of a spot instance server to replace the existing backup virtual machine."
 keywords:
   [
-    "azure",
+    "Azure",
     "IaaS",
     "virtual machine",
     "spot instance",

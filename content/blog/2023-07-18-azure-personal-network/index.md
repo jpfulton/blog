@@ -4,13 +4,13 @@ date: 2023-07-18
 description: "This series of posts examines the creation of a hybrid workflow between an on-premise network and cloud hosted virtual network connected by virtual private networking technology. An emphasis will be placed on managing cloud costs while maintaining performance and security. While the example is based on bridging a home network with cloud resources, an adaptation of the example can easily be applied to small business networks and applications."
 keywords:
   [
-    "azure",
+    "Azure",
     "IaaS",
     "virtual machine",
     "virtual network",
     "vpn",
     "hybrid workflow",
-    "azure cli",
+    "Azure CLI",
   ]
 openGraphImage: ../../../src/images/open-graph/azure.png
 ---

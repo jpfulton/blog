@@ -4,7 +4,7 @@ date: 2023-07-21
 description: "In an earlier post, we created an Azure VPN Gateway to provide remote access to our virtual network. While powerful, these resources are both expensive at an SKU that supports multiple platforms and are likely overkill as a solution for small business networks. They may are best suited for enterprise deployments. In this post, we will create a Ubuntu virtual machine that supports similar functionality at a lower price point."
 keywords:
   [
-    "azure",
+    "Azure",
     "IaaS",
     "virtual machine",
     "virtual networking",

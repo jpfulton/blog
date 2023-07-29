@@ -4,14 +4,14 @@ date: 2023-07-25
 description: "In the last post, we developed a resilient mechanism to gracefully shutdown an interruptible workflow on an Azure Spot Virtual Machine. In this post, we create an external orchestration to restart the spot instances once capacity has been freed within the Azure data center."
 keywords:
   [
-    "azure",
+    "Azure",
     "IaaS",
     "virtual machine",
     "spot instance",
     "interruptible workload",
     "orchestration",
     "bash",
-    "azure cli",
+    "Azure CLI",
     "Linux",
     "Ubuntu",
   ]
