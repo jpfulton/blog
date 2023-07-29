@@ -584,3 +584,17 @@ Partition:
   ID-3: /boot/efi size: 104.4 MiB used: 6 MiB (5.8%) fs: vfat dev: /dev/sdb15
   ID-4: /mnt size: 7.77 GiB used: 28 KiB (0.0%) fs: ext4 dev: /dev/sdc1
 ```
+
+## Wrapping Up
+
+At the end of these steps, we have our first virtual machine within the
+cloud network providing services to the rest of the workflow.
+In a <Link to="/blog/2023-07-23-azure-personal-network-resize-disk/">later post</Link>,
+we will look at mechanisms to expand the size of backup data disk and
+ways to save on cloud cost by identify this backup system as an
+**interruptible** workflow by using
+a <Link to="/blog/2023-07-24-azure-personal-network-spot-instance/">spot instance</Link>
+to host it. In
+the <Link to="/blog/2023-07-21-azure-personal-network-replace-vpn/">next post</Link>
+in the series, we will examine the creation of a customer managed solution to
+replace the Azure VPN Gateway resource to realize additional cloud cost savings.
