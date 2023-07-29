@@ -276,7 +276,7 @@ const config = {
       resolve: `gatsby-plugin-clarity`,
       options: {
         // String value for your clarity project ID
-        clarity_project_id: i6nz5y721c,
+        clarity_project_id: "i6nz5y721c",
         // Boolean value for enabling clarity while developing
         // true will enable clarity tracking code on both development and production environments
         // false will enable clarity tracking code on production environment only
