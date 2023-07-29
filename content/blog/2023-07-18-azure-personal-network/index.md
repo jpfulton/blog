@@ -211,7 +211,7 @@ az feature show --name EncryptionAtHost --namespace Microsoft.Compute
 }
 ```
 
-Propagate the change per output of earlier command.
+Propagate the change per the output of the earlier command.
 
 ```bash
 az provider register -n Microsoft.Compute
