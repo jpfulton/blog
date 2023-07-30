@@ -18,6 +18,9 @@ export const HeaderMenu = () => {
         <div id="headerMenuContainer">
           <ol>
             <li>
+              <Link to="/profile/">Author Profile</Link>
+            </li>
+            <li>
               <Link to="/cookie-policy/">Cookie Policy</Link>
             </li>
             <li>
@@ -25,9 +28,6 @@ export const HeaderMenu = () => {
             </li>
             <li>
               <Link to="/terms-of-use/">Terms of Use</Link>
-            </li>
-            <li>
-              <Link to="/profile/">Author Profile</Link>
             </li>
           </ol>
         </div>
