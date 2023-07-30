@@ -36,10 +36,10 @@ const Layout = ({ location, title, children }) => {
       <footer>
         <ol>
           <li>
-            <Link to="/privacy-policy/">Privacy Policy</Link> |
+            <Link to="/cookie-policy/">Cookie Policy</Link> |
           </li>
           <li>
-            <Link to="/cookie-policy/">Cookie Policy</Link> |
+            <Link to="/privacy-policy/">Privacy Policy</Link> |
           </li>
           <li>
             <Link to="/terms-of-use/">Terms of Use</Link> |
