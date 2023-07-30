@@ -12,12 +12,14 @@ import Seo from "../components/seo";
 class AuthorProfile extends React.Component {
   render() {
     const { data, location } = this.props;
+
     const siteTitle = data.site.siteMetadata.title;
     const author = data.site.siteMetadata.author;
     const linkedinUserName = data.site.siteMetadata.social.linkedin;
     const githubUserName = data.site.siteMetadata.social.github;
 
     const operatingSystems = ["macOS", "Linux", "Windows Server"];
+    const frontendFrameworks = ["Angular", "ASP.NET", "React", "Gatsby"];
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -33,6 +35,11 @@ class AuthorProfile extends React.Component {
             title="Operating Systems"
             tags={operatingSystems}
             tagColor={"green"}
+          />
+          <TagGroup
+            title="Frontend Frameworks"
+            tags={frontendFrameworks}
+            tagColor={"blue"}
           />
         </section>
       </Layout>
