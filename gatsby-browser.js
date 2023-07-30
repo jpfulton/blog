@@ -16,6 +16,8 @@ import "prismjs/plugins/line-numbers/prism-line-numbers.css";
 import "./src/styles/bio.scss";
 import "./src/styles/blog.scss";
 import "./src/styles/cookie-consent.scss";
+import "./src/styles/header-menu.scss";
 import "./src/styles/post-summary.scss";
 import "./src/styles/prism.scss";
+import "./src/styles/profile.scss";
 import "./src/styles/tags.scss";

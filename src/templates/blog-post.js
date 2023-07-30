@@ -112,10 +112,12 @@ function BlogPostTemplate({
 
 export default BlogPostTemplate;
 
-export const Head = ({ data: { mdx } }) => {
+export const Head = ({ pageContext, data: { mdx } }) => {
+  const lastModified = pageContext?.lastMod;
+
   return (
     <>
-      <GoogleStructuredArticleData post={mdx} />
+      <GoogleStructuredArticleData post={mdx} lastModified={lastModified} />
       <RssLink />
       <MsPubCenterHeaderScripts />
     </>

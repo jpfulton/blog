@@ -4,6 +4,7 @@ import React from "react";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
+import { OutboundLink } from "../components/outboundLink";
 import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
@@ -102,13 +103,13 @@ const Content = () => (
             entire agreement between You and the Company regarding the use of
             the Service. This Terms and Conditions agreement has been created
             with the help of the{" "}
-            <a
+            <OutboundLink
               href="https://www.termsfeed.com/terms-conditions-generator/"
               target="_blank"
               rel="noreferrer"
             >
               Terms and Conditions Generator
-            </a>
+            </OutboundLink>
             .
           </p>
         </li>
@@ -124,13 +125,13 @@ const Content = () => (
           <p>
             <strong>Website</strong> refers to jpatrickfulton.dev, accessible
             from{" "}
-            <a
+            <OutboundLink
               href="https://www.jpatrickfulton.dev"
               rel="noreferrer"
               target="_blank"
             >
               https://www.jpatrickfulton.dev
-            </a>
+            </OutboundLink>
           </p>
         </li>
         <li>

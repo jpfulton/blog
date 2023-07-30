@@ -4,6 +4,7 @@ import React from "react";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
+import { OutboundLink } from "../components/outboundLink";
 import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
@@ -393,13 +394,13 @@ const Content = () => (
         use this information for site optimization, fraud/security purposes, and
         advertising. For more information about how Microsoft collects and uses
         your data, visit the{" "}
-        <a
+        <OutboundLink
           href="https://privacy.microsoft.com/en-US/privacystatement"
           rel="noreferrer"
           target="_blank"
         >
           Microsoft Privacy Statement
-        </a>
+        </OutboundLink>
         .
       </p>
 

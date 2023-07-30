@@ -1,0 +1,55 @@
+.profile-pic {
+  border-radius: 100%;
+}
+
+.bolded {
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+
+  .center {
+    width: 100%;
+    margin: auto;
+  }
+
+  .column {
+    margin-left: 1em;
+  }
+
+  .pull-right {
+    margin-left: auto;
+  }
+}
+
+h2 {
+  font-size: var(--fontSize-3);
+  margin-bottom: var(--spacing-4);
+}
+
+.profile-tags-container {
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+
+  .profile-tag {
+    border-radius: 10px;
+    padding: 2px 6px;
+    margin-bottom: 4px;
+    margin-right: 6px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 42rem) {
+  .row {
+    display: block;
+
+    .column {
+      margin: inherit;
+    }
+  }
+}

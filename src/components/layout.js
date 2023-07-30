@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import * as React from "react";
 import CookieConsent from "react-cookie-consent";
+import HeaderMenu from "./headerMenu";
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
@@ -9,15 +10,25 @@ const Layout = ({ location, title, children }) => {
 
   if (isRootPath) {
     header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
+      <>
+        <div>
+          <h1 className="main-heading">
+            <Link to="/">{title}</Link>
+          </h1>
+          <HeaderMenu />
+        </div>
+      </>
     );
   } else {
     header = (
-      <Link className="header-link-home" to="/">
-        ← {title}
-      </Link>
+      <>
+        <div>
+          <Link className="header-link-home" to="/">
+            ← {title}
+          </Link>
+          <HeaderMenu />
+        </div>
+      </>
     );
   }
 
@@ -30,10 +41,10 @@ const Layout = ({ location, title, children }) => {
       <footer>
         <ol>
           <li>
-            <Link to="/privacy-policy/">Privacy Policy</Link> |
+            <Link to="/cookie-policy/">Cookie Policy</Link> |
           </li>
           <li>
-            <Link to="/cookie-policy/">Cookie Policy</Link> |
+            <Link to="/privacy-policy/">Privacy Policy</Link> |
           </li>
           <li>
             <Link to="/terms-of-use/">Terms of Use</Link> |

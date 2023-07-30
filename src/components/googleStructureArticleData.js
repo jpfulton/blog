@@ -25,7 +25,7 @@ const useSiteMetadata = () => {
   return data;
 };
 
-export const GoogleStructuredArticleData = ({ post }) => {
+export const GoogleStructuredArticleData = ({ post, lastModified }) => {
   const { site, openGraphDefaultImage } = useSiteMetadata();
 
   const date = post.frontmatter.date;
@@ -36,6 +36,7 @@ export const GoogleStructuredArticleData = ({ post }) => {
   const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
+  const profileUrl = `${site.siteMetadata.siteUrl}` + "/profile/";
 
   const articleData = {
     "@context": "https://schema.org",
@@ -46,12 +47,12 @@ export const GoogleStructuredArticleData = ({ post }) => {
       {
         "@type": "Person",
         name: site.siteMetadata.author,
-        url: `https://github.com/${site.siteMetadata.social.github}`,
+        url: `${profileUrl}`,
       },
     ],
     image: imageUrl ?? fallbackImageUrl,
     datePublished: new Date(date).toISOString(),
-    dateModified: new Date(date).toISOString(),
+    dateModified: lastModified ?? new Date(date).toISOString(),
     publisher: {
       "@type": "Organization",
       url: site.siteMetadata.siteUrl,
