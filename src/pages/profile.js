@@ -20,6 +20,25 @@ class AuthorProfile extends React.Component {
 
     const operatingSystems = ["macOS", "Linux", "Windows Server"];
     const frontendFrameworks = ["Angular", "ASP.NET", "React", "Gatsby"];
+    const languages = ["JavaScript", "TypeScript", "C#", "Java", "Bash"];
+
+    const tagGroups = [
+      {
+        title: "Operating Systems",
+        tags: operatingSystems,
+        backgroundColor: "green",
+      },
+      {
+        title: "Frontend Frameworks",
+        tags: frontendFrameworks,
+        backgroundColor: "blue",
+      },
+      {
+        title: "Languages",
+        tags: languages,
+        backgroundColor: "lightBlue",
+      },
+    ];
 
     return (
       <Layout location={location} title={siteTitle}>
@@ -31,16 +50,13 @@ class AuthorProfile extends React.Component {
             githubUserName={githubUserName}
             linkedinUserName={linkedinUserName}
           />
-          <TagGroup
-            title="Operating Systems"
-            tags={operatingSystems}
-            tagColor={"green"}
-          />
-          <TagGroup
-            title="Frontend Frameworks"
-            tags={frontendFrameworks}
-            tagColor={"blue"}
-          />
+          {tagGroups.map((group) => (
+            <TagGroup
+              title={group.title}
+              tags={group.tags}
+              tagColor={group.backgroundColor}
+            />
+          ))}
         </section>
       </Layout>
     );
