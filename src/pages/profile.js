@@ -18,25 +18,86 @@ class AuthorProfile extends React.Component {
     const linkedinUserName = data.site.siteMetadata.social.linkedin;
     const githubUserName = data.site.siteMetadata.social.github;
 
+    const colors = [
+      "#1A237E",
+      "#283593",
+      "#303F9F",
+      "#3949AB",
+      "#3F51B5",
+      "#5C6BC0",
+      "#7986CB",
+      "#9FA8DA",
+      "#C5CAE9",
+      "#E8EAF6",
+    ];
+
     const operatingSystems = ["macOS", "Linux", "Windows Server"];
     const frontendFrameworks = ["Angular", "ASP.NET", "React", "Gatsby"];
-    const languages = ["JavaScript", "TypeScript", "C#", "Java", "Bash"];
+    const languages = [
+      "JavaScript",
+      "TypeScript",
+      "C#",
+      "Java",
+      "Bash",
+      "SQL",
+      "HTML",
+      "CSS",
+      "SASS",
+    ];
+    const librariesAndApis = [
+      "Twilio",
+      "Google Indexing API",
+      "Bing Submission API",
+      "Fern",
+      "Node",
+      "SignalR",
+      "WebAPI",
+      ".NET",
+      ".NET Core",
+      "EF",
+      "EF Core",
+      "Linq",
+    ];
+    const cloudTech = [
+      "Azure",
+      "GCP",
+      "Azure Functions",
+      "Azure Synapse",
+      "Azure App Services",
+      "Azure Service Bus",
+    ];
+    const methodologies = ["Agile", "SCRUM", "Waterfall"];
 
     const tagGroups = [
       {
         title: "Operating Systems",
         tags: operatingSystems,
-        backgroundColor: "green",
+        backgroundColor: colors[4],
       },
       {
         title: "Frontend Frameworks",
         tags: frontendFrameworks,
-        backgroundColor: "blue",
+        backgroundColor: colors[5],
       },
       {
         title: "Languages",
         tags: languages,
-        backgroundColor: "lightBlue",
+        backgroundColor: colors[6],
+      },
+      {
+        title: "Libraries and APIs",
+        tags: librariesAndApis,
+        backgroundColor: colors[4],
+      },
+      {
+        title: "Cloud Technologies",
+        tags: cloudTech,
+        backgroundColor: colors[5],
+      },
+      {
+        title: "Methodologies",
+        tags: methodologies,
+        backgroundColor: colors[6],
       },
     ];
 
