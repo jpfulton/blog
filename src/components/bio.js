@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
 import { OutboundLink } from "./outboundLink";
@@ -43,7 +43,11 @@ const Bio = () => {
       />
       {author && (
         <p>
-          Written by <strong>{author}</strong>.
+          Written by{" "}
+          <strong>
+            <Link to="/profile/">{author}</Link>
+          </strong>
+          .
         </p>
       )}
       {social && (

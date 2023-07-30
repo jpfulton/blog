@@ -3,6 +3,10 @@
   flex-wrap: wrap;
   margin-bottom: var(--spacing-8);
 
+  a {
+    box-shadow: none;
+  }
+
   .bio-social {
     margin-left: auto;
     margin-top: 0.6em;
