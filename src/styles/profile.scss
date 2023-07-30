@@ -19,6 +19,22 @@
   }
 }
 
+.profile-tags-container {
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+
+  .profile-tag {
+    border-radius: 10px;
+    padding: 2px 6px;
+    margin-bottom: 4px;
+    margin-right: 6px;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 42rem) {
   .row {
     display: block;

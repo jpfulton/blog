@@ -17,6 +17,8 @@ class AuthorProfile extends React.Component {
     const linkedinUserName = data.site.siteMetadata.social.linkedin;
     const githubUserName = data.site.siteMetadata.social.github;
 
+    const operatingSystems = ["macOS", "Linux", "Windows Server"];
+
     return (
       <Layout location={location} title={siteTitle}>
         <Seo title={"Author Profile - " + siteTitle} />
@@ -26,6 +28,11 @@ class AuthorProfile extends React.Component {
             author={author}
             githubUserName={githubUserName}
             linkedinUserName={linkedinUserName}
+          />
+          <TagGroup
+            title="Operating Systems"
+            tags={operatingSystems}
+            tagColor={"green"}
           />
         </section>
       </Layout>
@@ -100,6 +107,24 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
             {githubUrl}
           </OutboundLink>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const TagGroup = ({ title, tags, tagColor }) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+      <div class="profile-tags-container">
+        {tags.map((tag) => (
+          <>
+            <span class="profile-tag" style={{ "background-color": tagColor }}>
+              {tag}
+            </span>
+            &nbsp;
+          </>
+        ))}
       </div>
     </div>
   );
