@@ -186,7 +186,7 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
           <span class="bolded">Location:</span> Chicago, IL
         </div>
         <div>
-          <span class="bolded">Current Time:</span> {getChicagoTime()}
+          <span class="bolded">Local Time:</span> {getChicagoTime()}
         </div>
         <div>&nbsp;</div>
         <div>
