@@ -1,3 +1,15 @@
 .profile-pic {
   border-radius: 100%;
 }
+
+.flex {
+  display: flex;
+
+  .column {
+    margin-left: 1em;
+  }
+
+  .pull-right {
+    margin-left: auto;
+  }
+}
