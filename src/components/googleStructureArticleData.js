@@ -25,7 +25,7 @@ const useSiteMetadata = () => {
   return data;
 };
 
-export const GoogleStructuredArticleData = ({ post }) => {
+export const GoogleStructuredArticleData = ({ post, lastModified }) => {
   const { site, openGraphDefaultImage } = useSiteMetadata();
 
   const date = post.frontmatter.date;
@@ -52,7 +52,7 @@ export const GoogleStructuredArticleData = ({ post }) => {
     ],
     image: imageUrl ?? fallbackImageUrl,
     datePublished: new Date(date).toISOString(),
-    dateModified: new Date(date).toISOString(),
+    dateModified: lastModified ?? new Date(date).toISOString(),
     publisher: {
       "@type": "Organization",
       url: site.siteMetadata.siteUrl,
