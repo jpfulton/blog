@@ -12,6 +12,7 @@
 
       #headerMenuIcon {
         display: inline-block;
+        cursor: pointer;
       }
 
       #headerMenuContainer {
@@ -20,9 +21,10 @@
         right: 0;
         z-index: 100;
         background-color: white;
-        border: 1px solid black;
+        border: 1px solid gray;
         border-radius: 4px;
         box-shadow: 10px 5px 5px whitesmoke;
+        font-family: var(--font-heading);
 
         ol {
           list-style: none;
@@ -30,7 +32,7 @@
 
           li {
             width: 100%;
-            padding: 4px 8px;
+            padding: 4px 1em;
             border-radius: 4px;
             white-space: nowrap;
           }
