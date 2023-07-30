@@ -36,6 +36,7 @@ export const GoogleStructuredArticleData = ({ post }) => {
   const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
+  const profileUrl = `${site.siteMetadata.siteUrl}` + "/profile/";
 
   const articleData = {
     "@context": "https://schema.org",
@@ -46,7 +47,7 @@ export const GoogleStructuredArticleData = ({ post }) => {
       {
         "@type": "Person",
         name: site.siteMetadata.author,
-        url: `https://github.com/${site.siteMetadata.social.github}`,
+        url: `${profileUrl}`,
       },
     ],
     image: imageUrl ?? fallbackImageUrl,
