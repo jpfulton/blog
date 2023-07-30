@@ -183,6 +183,16 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
       <div class="column">
         <h1>{author}</h1>
         <div>
+          <span class="bolded">Location:</span> Chicago, IL
+        </div>
+        <div>
+          <span class="bolded">Current Time:</span> {getChicagoTime()}
+        </div>
+        <div>&nbsp;</div>
+        <div>
+          <span class="bolded">Socials:</span>
+        </div>
+        <div>
           <OutboundLink
             href={linkedinUrl}
             target="_blank"
@@ -237,4 +247,18 @@ const sortFunction = (a, b) => {
 
   // names must be equal
   return 0;
+};
+
+const getChicagoTime = () => {
+  function convertTZ(date, tzString) {
+    return new Date(
+      (typeof date === "string" ? new Date(date) : date).toLocaleString(
+        "en-US",
+        { timeZone: tzString }
+      )
+    );
+  }
+
+  const now = new Date();
+  return convertTZ(now, "America/Chicago").toLocaleString();
 };
