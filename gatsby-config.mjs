@@ -23,6 +23,7 @@ const config = {
     social: {
       twitter: `jpatrickfulton`,
       github: `jpfulton`,
+      linkedin: `jpatrickfulton`,
     },
     ads: {
       msPubCenter: {
