@@ -1,0 +1,48 @@
+.global-header {
+  div {
+    display: flex;
+
+    h1 {
+      display: inline;
+    }
+
+    #headerMenu {
+      position: relative;
+      margin-left: auto;
+
+      #headerMenuIcon {
+        display: inline-block;
+      }
+
+      #headerMenuContainer {
+        display: none;
+        position: absolute;
+        right: 0;
+        z-index: 100;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 4px;
+        box-shadow: 10px 5px 5px whitesmoke;
+
+        ol {
+          list-style: none;
+          margin: 0;
+
+          li {
+            width: 100%;
+            padding: 4px 8px;
+            white-space: nowrap;
+          }
+
+          li:hover {
+            background-color: whitesmoke;
+          }
+        }
+      }
+
+      #headerMenuIcon:hover #headerMenuContainer {
+        display: block;
+      }
+    }
+  }
+}
