@@ -2,8 +2,13 @@
   border-radius: 100%;
 }
 
-.flex {
+.row {
   display: flex;
+
+  .center {
+    width: 100%;
+    margin: auto;
+  }
 
   .column {
     margin-left: 1em;
@@ -11,5 +16,15 @@
 
   .pull-right {
     margin-left: auto;
+  }
+}
+
+@media (max-width: 42rem) {
+  .row {
+    display: block;
+
+    .column {
+      margin: inherit;
+    }
   }
 }

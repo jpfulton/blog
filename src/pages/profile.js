@@ -22,10 +22,10 @@ class AuthorProfile extends React.Component {
         <Seo title={"Author Profile - " + siteTitle} />
 
         <section>
-          <div class="flex">
+          <div class="row">
             <div>
               <StaticImage
-                className="profile-pic"
+                className="profile-pic center"
                 layout="fixed"
                 formats={["auto", "webp", "avif"]}
                 src="../images/profile-pic.png"
@@ -39,22 +39,22 @@ class AuthorProfile extends React.Component {
               <h1>{author}</h1>
               <div>
                 <OutboundLink
-                  href={"https://github.com/" + githubUserName}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="GitHub Profile"
-                >
-                  https://github.com/{githubUserName}
-                </OutboundLink>
-              </div>
-              <div>
-                <OutboundLink
                   href={"https://www.linkedin.com/in/" + linkedinUserName}
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="LinkedIn Profile"
                 >
                   https://www.linkedin.com/in/{linkedinUserName}
+                </OutboundLink>
+              </div>
+              <div>
+                <OutboundLink
+                  href={"https://github.com/" + githubUserName}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="GitHub Profile"
+                >
+                  https://github.com/{githubUserName}
                 </OutboundLink>
               </div>
             </div>
