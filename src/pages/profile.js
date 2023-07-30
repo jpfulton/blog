@@ -58,13 +58,24 @@ class AuthorProfile extends React.Component {
       "EF Core",
       "Linq",
     ];
-    const cloudTech = [
-      "Azure",
-      "GCP",
-      "Azure Functions",
-      "Azure Synapse",
-      "Azure App Services",
-      "Azure Service Bus",
+    const azureTech = [
+      "Functions",
+      "Synapse Analytics",
+      "App Services",
+      "Service Bus",
+      "Virtual Machines",
+      "Virtual Networking",
+      "VPN Gateway",
+      "Storage",
+      "Static Web Apps",
+      "SQL",
+      "Database Migration Service",
+      "Active Directory",
+      "Defender",
+      "Monitor",
+      "KeyVault",
+      "Backup",
+      "DNS",
     ];
     const methodologies = ["Agile", "SCRUM", "Waterfall"];
 
@@ -90,8 +101,8 @@ class AuthorProfile extends React.Component {
         backgroundColor: colors[4],
       },
       {
-        title: "Cloud Technologies",
-        tags: cloudTech,
+        title: "Azure",
+        tags: azureTech,
         backgroundColor: colors[5],
       },
       {
