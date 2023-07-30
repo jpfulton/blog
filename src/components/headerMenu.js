@@ -26,6 +26,9 @@ export const HeaderMenu = () => {
             <li>
               <Link to="/terms-of-use/">Terms of Use</Link>
             </li>
+            <li>
+              <Link to="/profile/">Author Profile</Link>
+            </li>
           </ol>
         </div>
       </div>
