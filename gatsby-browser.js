@@ -19,4 +19,5 @@ import "./src/styles/cookie-consent.scss";
 import "./src/styles/header-menu.scss";
 import "./src/styles/post-summary.scss";
 import "./src/styles/prism.scss";
+import "./src/styles/profile.scss";
 import "./src/styles/tags.scss";
