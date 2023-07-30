@@ -117,7 +117,7 @@ const TagGroup = ({ title, tags, tagColor }) => {
     <div>
       <h2>{title}</h2>
       <div class="profile-tags-container">
-        {tags.map((tag) => (
+        {tags.sort(sortFunction).map((tag) => (
           <>
             <span class="profile-tag" style={{ "background-color": tagColor }}>
               {tag}
@@ -128,4 +128,18 @@ const TagGroup = ({ title, tags, tagColor }) => {
       </div>
     </div>
   );
+};
+
+const sortFunction = (a, b) => {
+  const upperA = a.toUpperCase(); // ignore upper and lowercase
+  const upperB = b.toUpperCase(); // ignore upper and lowercase
+  if (upperA < upperB) {
+    return -1;
+  }
+  if (upperA > upperB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
 };
