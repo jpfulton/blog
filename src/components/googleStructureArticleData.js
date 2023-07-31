@@ -36,7 +36,7 @@ export const GoogleStructuredArticleData = ({ post, lastModified }) => {
   const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
-  const profileUrl = `${site.siteMetadata.siteUrl}` + "/profile/";
+  const profileUrl = `${site.siteMetadata.siteUrl}/profile/`;
 
   const articleData = {
     "@context": "https://schema.org",
