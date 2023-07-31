@@ -1,18 +1,18 @@
-span:has(.codeCopyButtonContainer) {
+span:has(.gatsby-remark-copy-button-container) {
   position: relative;
   top: -10px;
   float: right;
   margin-bottom: -1.6rem;
 }
 
-.codeCopyButtonContainer {
+.gatsby-remark-copy-button-container {
   touch-action: none;
   display: flex;
   justify-content: flex-end;
   pointer-events: none;
 }
 
-.codeCopyButton {
+.gatsby-remark-copy-button {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -30,7 +30,7 @@ span:has(.codeCopyButtonContainer) {
     margin: auto;
   }
 
-  .check-icon {
+  .success-icon {
     display: none;
     margin: auto;
     animation: fadeInFromNone 1s ease-out;
