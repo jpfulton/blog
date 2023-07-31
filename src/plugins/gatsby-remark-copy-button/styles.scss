@@ -35,18 +35,6 @@ span:has(.codeCopyButtonContainer) {
     margin: auto;
     animation: fadeInFromNone 1s ease-out;
   }
-
-  &:after {
-    visibility: hidden;
-    position: absolute;
-    display: none;
-    padding: 5px;
-    content: attr(data-tooltip);
-    color: #fff;
-    font-size: 16px;
-    background-color: #000;
-    white-space: nowrap;
-  }
 }
 
 @keyframes fadeInFromNone {
