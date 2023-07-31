@@ -12,7 +12,7 @@ export function onClientEntry() {
     if (button.getAttribute(lockAttributeName) === "true") return;
 
     const copyIcon = button.querySelector(".copy-icon");
-    const checkIcon = button.querySelector(".check-icon");
+    const successIcon = button.querySelector(".success-icon");
 
     if (button.getAttribute(lockAttributeName) === "false") {
       // set tag local lock variable
@@ -22,10 +22,10 @@ export function onClientEntry() {
         () => {
           // clipboard success operation
           copyIcon.style.display = "none";
-          checkIcon.style.display = "block";
+          successIcon.style.display = "block";
 
           setTimeout(() => {
-            checkIcon.style.display = "none";
+            successIcon.style.display = "none";
             copyIcon.style.display = "block";
 
             // unset tag local lock variable

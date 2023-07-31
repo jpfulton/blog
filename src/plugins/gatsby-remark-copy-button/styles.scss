@@ -28,6 +28,7 @@ span:has(.gatsby-remark-copy-button-container) {
 
   .copy-icon {
     margin: auto;
+    animation: fadeInFromNone 1s ease-out;
   }
 
   .success-icon {
