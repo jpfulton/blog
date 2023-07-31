@@ -1,6 +1,4 @@
 // adapted from
-// https://github.com/robertg042/gatsby-remark-pre-content/blob/master/src/index.js
-// and
 // https://github.com/iamskok/gatsby-remark-code-buttons/blob/master/src/index.js
 
 import queryString from "query-string";
