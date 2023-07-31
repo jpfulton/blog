@@ -1,0 +1,60 @@
+.codeCopyButtonContainer {
+  touch-action: none;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 28px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.codeCopyButton {
+  cursor: pointer;
+  pointer-events: initial;
+
+  &:after {
+    visibility: hidden;
+    position: absolute;
+    display: none;
+    padding: 5px;
+    content: attr(data-tooltip);
+    color: #fff;
+    font-size: 16px;
+    background-color: #000;
+    white-space: nowrap;
+  }
+
+  &[data-tooltip] {
+    &:after {
+      top: 26px;
+      right: 0;
+    }
+
+    &:hover,
+    &:focus {
+      &:after {
+        visibility: visible;
+        display: block;
+        z-index: 200;
+      }
+    }
+  }
+}
+
+.gatsby-code-button-buffer {
+  position: fixed;
+  top: -9999px;
+  opacity: 0;
+}
+
+@keyframes animation {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}

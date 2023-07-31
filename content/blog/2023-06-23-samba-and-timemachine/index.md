@@ -105,7 +105,7 @@ The following section needs to be added to the `[global]` section of
 the configuration file. It establishes the file system extensions
 and protocol versions necessary to support macOS.
 
-```sh:title=smb.conf {3-4}{numberLines: true}
+```sh:title=smb.conf&clipboard=true {3-4}{numberLines: true}
 ### Time Machine Compatibility ###
 min protocol = SMB2
 vfs objects = catia fruit streams_xattr

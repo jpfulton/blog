@@ -8,8 +8,11 @@ import rehypeExternalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
 
+import { createRequire } from "module";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
+const require = createRequire(import.meta.url);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -179,6 +182,7 @@ const config = {
           {
             resolve: `gatsby-remark-autolink-headers`,
           },
+          require.resolve("./src/plugins/gatsby-remark-copy-button"),
           {
             resolve: `gatsby-remark-code-titles`,
           },
