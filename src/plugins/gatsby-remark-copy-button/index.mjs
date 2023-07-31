@@ -1,6 +1,3 @@
-// adapted from
-// https://github.com/iamskok/gatsby-remark-code-buttons/blob/master/src/index.js
-
 import { CONTINUE, visit } from "unist-util-visit";
 import parseOptions from "./parse-options.mjs";
 
