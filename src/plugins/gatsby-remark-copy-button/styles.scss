@@ -1,10 +1,14 @@
+span:has(.codeCopyButtonContainer) {
+  position: relative;
+  top: -10px;
+  float: right;
+  margin-bottom: -1.6rem;
+}
+
 .codeCopyButtonContainer {
   touch-action: none;
   display: flex;
   justify-content: flex-end;
-  position: relative;
-  top: 20px;
-  z-index: 100;
   pointer-events: none;
 }
 
@@ -20,6 +24,7 @@
   min-height: 32px;
   min-width: 32px;
   transform: translateX(1px);
+  z-index: 100;
 
   .copy-icon {
     margin: auto;

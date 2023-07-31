@@ -97,7 +97,7 @@ Samba is **unable** to manage permissions itself using `create mask`,
 
 To edit the configuration using `vim` execute the following command.
 
-```shell
+```shell:clipboard=true
 sudo vim /etc/samba/smb.conf
 ```
 
@@ -122,7 +122,7 @@ server min protocol = SMB2
 Add the following to the end of the file to create a dedicated
 share for time machine backups:
 
-```sh:title=smb.conf {4}{numberLines: true}
+```sh:title=smb.conf&clipboard=true {4}{numberLines: true}
 [backupshare]
 comment = Apple Backup Shared Folder
 path = /mnt/samba/applebackups
@@ -147,7 +147,7 @@ NetBIOS broadcast are not route-able. To allow routed segments (e.g VPN clients)
 discover shares, use a [WINS](https://en.wikipedia.org/wiki/Windows_Internet_Name_Service)
 configuration. Add the following lines to the `[global]` section of the `smb.conf`:
 
-```sh:title=smb.conf {numberLines: true}
+```sh:title=smb.conf&clipboard=true {numberLines: true}
 ### WINS Support ###
 wins support = yes
 dns proxy = yes
@@ -157,7 +157,7 @@ dns proxy = yes
 
 Create a user and group to match the configuration.
 
-```bash
+```bash:clipboard=true
 sudo addgroup smbgroup
 sudo adduser --system --no-create-home smbuser smbgroup
 ```
