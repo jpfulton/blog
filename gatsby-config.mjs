@@ -182,7 +182,16 @@ const config = {
           {
             resolve: `gatsby-remark-autolink-headers`,
           },
-          require.resolve("./src/plugins/gatsby-remark-copy-button"),
+          {
+            resolve: require.resolve("./src/plugins/gatsby-remark-copy-button"),
+            options: {
+              //buttonText: "",
+              //copySvg: "",
+              //successSvg: "",
+              //customButtonContainerClass: "",
+              //customButtonClass: "",
+            },
+          },
           {
             resolve: `gatsby-remark-code-titles`,
           },
