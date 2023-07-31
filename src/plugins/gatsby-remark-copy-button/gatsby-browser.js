@@ -1,6 +1,6 @@
-require("./styles.scss");
+import "./styles.scss";
 
-exports.onClientEntry = () => {
+export function onClientEntry() {
   window.copyToClipboard = (str, button) => {
     const copyIcon = button.querySelector(".copy-icon");
     const checkIcon = button.querySelector(".check-icon");
@@ -15,4 +15,4 @@ exports.onClientEntry = () => {
       }, 2000);
     });
   };
-};
+}
