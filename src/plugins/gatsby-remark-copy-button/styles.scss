@@ -3,14 +3,33 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
-  top: 28px;
+  top: 20px;
   z-index: 100;
   pointer-events: none;
 }
 
 .codeCopyButton {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   pointer-events: initial;
+  border: white solid 1px;
+  background-color: #358ccb;
+  border-radius: 4px;
+  padding: 4px;
+  min-height: 32px;
+  min-width: 32px;
+  transform: translateX(1px);
+
+  .copy-icon {
+    margin: auto;
+  }
+
+  .check-icon {
+    display: none;
+    margin: auto;
+    animation: fadeInFromNone 1s ease-out;
+  }
 
   &:after {
     visibility: hidden;
@@ -23,38 +42,21 @@
     background-color: #000;
     white-space: nowrap;
   }
-
-  &[data-tooltip] {
-    &:after {
-      top: 26px;
-      right: 0;
-    }
-
-    &:hover,
-    &:focus {
-      &:after {
-        visibility: visible;
-        display: block;
-        z-index: 200;
-      }
-    }
-  }
 }
 
-.gatsby-code-button-buffer {
-  position: fixed;
-  top: -9999px;
-  opacity: 0;
-}
-
-@keyframes animation {
-  0%,
-  50% {
-    opacity: 1;
-  }
-
-  50%,
-  100% {
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
     opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
   }
 }

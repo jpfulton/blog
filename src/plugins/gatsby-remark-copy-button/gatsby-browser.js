@@ -1,23 +1,18 @@
 require("./styles.scss");
 
 exports.onClientEntry = () => {
-  window.copyToClipboard = (str) => {
-    const el = document.createElement("textarea");
-    el.className = "gatsby-code-button-buffer";
-    el.innerHTML = str;
-    document.body.appendChild(el);
+  window.copyToClipboard = (str, button) => {
+    const copyIcon = button.querySelector(".copy-icon");
+    const checkIcon = button.querySelector(".check-icon");
 
-    const range = document.createRange();
-    range.selectNode(el);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
+    navigator.clipboard.writeText(str).then(() => {
+      copyIcon.style.display = "none";
+      checkIcon.style.display = "block";
 
-    document.execCommand(`copy`);
-    document.activeElement.blur();
-
-    setTimeout(() => {
-      document.getSelection().removeAllRanges();
-      document.body.removeChild(el);
-    }, 100);
+      setTimeout(() => {
+        checkIcon.style.display = "none";
+        copyIcon.style.display = "block";
+      }, 2000);
+    });
   };
 };

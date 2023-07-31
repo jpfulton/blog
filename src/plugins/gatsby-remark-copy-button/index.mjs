@@ -19,7 +19,8 @@ export default ({ markdownAST }) => {
     if (clipboard === "false") {
       delete actions["clipboard"];
     } else if (clipboard === "true") {
-      const svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z"/></svg>`;
+      const svgIcon = `<svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="#fff" d="M16 1H2v16h2V3h12V1zm-1 4l6 6v12H6V5h9zm-1 7h5.5L14 6.5V12z"/></svg>`;
+      const checkIcon = `<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="#fff" d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`;
 
       let code = parent.children[index].value;
       code = code
@@ -32,13 +33,12 @@ export default ({ markdownAST }) => {
         value: `
             <div
               class="codeCopyButtonContainer"
-              onClick="copyToClipboard(\`${code}\`)"
+              onClick="copyToClipboard(\`${code}\`, this)"
             >
               <div
                 class="codeCopyButton"
-                data-tooltip="Copy"
               >
-                ${svgIcon}
+                ${svgIcon}${checkIcon}
               </div>
             </div>
             `.trim(),
