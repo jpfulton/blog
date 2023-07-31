@@ -45,17 +45,15 @@ export default (
       const buttonNode = {
         type: "html",
         value: `
-            <div
-              class="${containerClass}"
-              onClick="copyToClipboard(\`${code}\`, this)"
-            >
-              <div
+            <div class="${containerClass}">
+              <button
                 class="${buttonClass}"
+                onClick="copyToClipboard(\`${code}\`, this)"
               >
                 ${text}${copyIcon}${successIcon}
-              </div>
+              </button>
             </div>
-            `.trim(),
+        `.trim(),
       };
 
       // insert the buttonNode above this one in the parent's children array
