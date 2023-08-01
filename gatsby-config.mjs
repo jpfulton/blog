@@ -8,11 +8,8 @@ import rehypeExternalLinks from "rehype-external-links";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
 
-// import { createRequire } from "module";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-
-//const require = createRequire(import.meta.url);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
