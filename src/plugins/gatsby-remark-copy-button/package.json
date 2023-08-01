@@ -1,8 +1,0 @@
-{
-  "name": "gatsby-remark-copy-button",
-  "version": "0.1.0",
-  "main": "index.mjs",
-  "dependencies": {
-    "unist-util-visit": "^5.0.0"
-  }
-}
