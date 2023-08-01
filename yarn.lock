@@ -1512,6 +1512,13 @@
     lodash.merge "^4.6.2"
     rss "^1.2.2"
 
+"@jpfulton/gatsby-remark-copy-button@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@jpfulton/gatsby-remark-copy-button/-/gatsby-remark-copy-button-0.0.13.tgz#87005c938b17d4a969d6cf0ceea456266074910b"
+  integrity sha512-3zazwzQek7FE0JiJxgWg5ulO/OAgx67mBndxXy9FrfgrpFY9tPsXzCSrO63rnLtrgpjWlgGx2CdxHkTVkKp+5w==
+  dependencies:
+    unist-util-visit "^5.0.0"
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
