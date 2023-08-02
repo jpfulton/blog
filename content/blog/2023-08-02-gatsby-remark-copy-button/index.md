@@ -45,17 +45,55 @@ found [here](https://github.com/jpfulton/blog).
 
 ### Core Implementation Files
 
+Stored in the `/src/` folder of the plugin repository, the plugin implementation
+logic is composed of four main files:
+
+- `gatsby-browser.mjs`: Gatsby browser file with hooks for adding JS functions
+  within the browser
+- `index.mjs`: Primary plugin logic module
+- `parse-options.mjs`: Internal utilities for parsing option stings
+- `styles.scss`: A SASS file storing default component styles
+
+The JavaScript files are parsed and transformed during the build using
+[Babel](https://babeljs.io). The SCSS file is converted to CSS using
+[node-sass](https://www.npmjs.com/package/node-sass).
+
 ### Dependencies
 
 The only direct runtime dependency for the plugin is on
 [unist-util-visit](https://github.com/syntax-tree/unist-util-visit) which
-allows the user to walk and modify the Markdown AST.
+allows the plugin to walk and modify the Markdown AST.
 
 ### The Remark Plugin Method
 
+A Gatsby Remark plugin module is expected to export a default function
+with the following signature and return value. An abstract syntax tree
+representing the markdown file is passed with a plugin options object.
+The body of the function applies logic to modify the AST and then returns
+the modified tree. The file storing the module is identified in the
+`package.json` file using the `main` property.
+
+```javascript
+export default ({ markdownAST }, pluginOptions) => {
+  // plugin logic
+
+  // return modified markdown abstract syntax tree
+  return markdownAST;
+};
+```
+
 ### Browser JavaScript
 
-### Default Styles
+Using the [Gatsby Browser API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/)
+`onClientEntry` hook, the plugin attaches a function to the `window` object to
+implement copying text to the user's clipboard using the browser
+[Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).
+Additionally, to prevent "rage clicking", a data attribute is added to the button
+while the operation is running to introduce a lock around the clipboard and animation
+operations.
+
+The default CSS styling is also imported into the browser in the `gatbsy-browser.js`
+file.
 
 ## Using the Plugin
 
