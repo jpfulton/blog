@@ -1,7 +1,7 @@
 ---
 title: Add a Code Copy Button to a Gatsby MDX Site
 date: 2023-08-02
-description: "Many documentation sites and technical blogs feature a copy to clipboard button attached to their syntax highlighted code snippets and commands. After a great deal of searching, I was unable to find a Gatsby plugin to create one that was compatible with both modern Gatsby versions and the use of MDX. So, I built one."
+description: "Many documentation sites and technical blogs feature a copy to clipboard button attached to their syntax highlighted code snippets and commands. After a great deal of searching, I was unable to find a Gatsby plugin to create one that was compatible with both modern Gatsby versions and the use of MDX. As a result, I built one."
 keywords:
   [
     "gatsbyjs",
@@ -19,7 +19,7 @@ Many documentation sites and technical blogs feature a copy to clipboard
 button attached to their syntax highlighted code snippets and commands.
 After a great deal of searching, I was unable to find a
 [Gatsby](https://www.gatsbyjs.com/) plugin to create one that was compatible
-with both modern Gatsby versions **and** the use of MDX. So, I built one.
+with both modern Gatsby versions **and** the use of MDX. As a result, I built one.
 
 This post covers that plugin implementation and use in a Gatsby site.
 
