@@ -220,7 +220,7 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
 const TagGroup = ({ title, tags, tagColor }) => {
   return (
     <div>
-      <h2>{title}</h2>
+      <h2 class="profile-h2">{title}</h2>
       <div class="profile-tags-container">
         {tags.sort(sortFunction).map((tag) => (
           <>
