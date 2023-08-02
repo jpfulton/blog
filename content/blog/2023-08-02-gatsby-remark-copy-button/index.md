@@ -23,6 +23,12 @@ with both modern Gatsby versions **and** the use of MDX. As a result, I built on
 
 This post covers that plugin implementation and use in a Gatsby site.
 
+The plugin package may be used with both of the following packages. However,
+it was tested primarily with the MDX plugin.
+
+- [gatsby-transformer-remark](https://www.gatsbyjs.com/plugins/gatsby-transformer-remark/)
+- [gatsby-plugin-mdx](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/)
+
 The **GitHub repository** storing the plugin discussed in this post can be
 found [here](https://github.com/jpfulton/gatsby-remark-copy-button). Its
 corresponding NPM package can be found
@@ -32,6 +38,24 @@ The evolving **GitHub repository** storing this blog and its implementation can 
 found [here](https://github.com/jpfulton/blog).
 
 ## Table of Contents
+
+## The Plugin Implementation
+
+[plugin tutorial](https://www.gatsbyjs.com/tutorial/remark-plugin-tutorial/)
+
+### Core Implementation Files
+
+### Dependencies
+
+The only direct runtime dependency for the plugin is on
+[unist-util-visit](https://github.com/syntax-tree/unist-util-visit) which
+allows the user to walk and modify the Markdown AST.
+
+### The Remark Plugin Method
+
+### Browser JavaScript
+
+### Default Styles
 
 ## Using the Plugin
 
