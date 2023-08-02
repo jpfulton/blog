@@ -1,7 +1,7 @@
 ---
 title: Add a Code Copy Button to a Gatsby MDX Site
 date: 2023-08-02
-description: ""
+description: "Many documentation sites and technical blogs feature a copy to clipboard button attached to their syntax highlighted code snippets and commands. After a great deal of searching, I was unable to find a Gatsby plugin to create one that was compatible with both modern Gatsby versions and the use of MDX. So, I built one."
 keywords:
   [
     "gatsbyjs",
@@ -10,11 +10,23 @@ keywords:
     "plugin",
     "copy button",
     "gatsby-remark-copy-button",
+    "gatsby-plugin-mdx",
   ]
 openGraphImage: ../../../src/images/open-graph/gatsby.png
 ---
 
-[Gatsby](https://www.gatsbyjs.com/)
+Many documentation sites and technical blogs feature a copy to clipboard
+button attached to their syntax highlighted code snippets and commands.
+After a great deal of searching, I was unable to find a
+[Gatsby](https://www.gatsbyjs.com/) plugin to create one that was compatible
+with both modern Gatsby versions **and** the use of MDX. So, I built one.
+
+This post covers that plugin implementation and use in a Gatsby site.
+
+The **GitHub repository** storing the plugin discussed in this post can be
+found [here](https://github.com/jpfulton/gatsby-remark-copy-button). Its
+corresponding NPM package can be found
+[here](https://www.npmjs.com/package/@jpfulton/gatsby-remark-copy-button).
 
 The evolving **GitHub repository** storing this blog and its implementation can be
 found [here](https://github.com/jpfulton/blog).
@@ -25,7 +37,7 @@ found [here](https://github.com/jpfulton/blog).
 
 ### Install the Plugin
 
-```bash
+```bash {clipboardButton: true}
 yarn add @jpfulton/gatsby-remark-copy-button
 ```
 
@@ -60,12 +72,12 @@ plugins: [
 ],
 ```
 
-#### Plugin Options
+### Configure Plugin Options
 
 All plugin options are optional. However, it is strongly suggested that
 you customize them to override styling to fit your site's look, feel and layout.
 
-```js
+```js {clipboardButton: true}
 {
   resolve: `@jpfulton/gatsby-remark-copy-button`,
   options: {
@@ -92,7 +104,7 @@ you customize them to override styling to fit your site's look, feel and layout.
 },
 ```
 
-#### Custom Styling
+### Custom Styling
 
 Custom styling may be applied to the default classes or using the options
 above custom classes may be applied to the injected markup.
@@ -111,7 +123,7 @@ Apply custom styles by adding a style sheet to your `gatsby-browser.js` file.
 import "./src/styles/copy-button.scss";
 ```
 
-#### Structure of the Injected Markup
+### Structure of the Injected Markup
 
 When enabled on code snippet, the following `HTML` will be injected into
 the output of the page after parsing the Markdown AST using the default
@@ -146,7 +158,7 @@ generated `HTML`.
 </div>
 ```
 
-#### Usage in Markdown and MDX Files
+### Usage in Markdown and MDX Files
 
 Once installed, the copy button may _optionally_ be enabled by adding
 to the code snippet declaration within markdown files. When this plugin
