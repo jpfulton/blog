@@ -55,3 +55,12 @@
     }
   }
 }
+
+span:has(.gatsby-remark-copy-button-container) + span .gatsby-highlight {
+  pre[class*="language-"].line-numbers.line-numbers {
+    .line-numbers-rows {
+      top: 8px;
+      height: inherit;
+    }
+  }
+}
