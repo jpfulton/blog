@@ -87,7 +87,7 @@ and deploy job `pull-requests: write` permission allows the job to make comments
 on pull requests that include the URLs of newly deployed preview environments
 which is a useful feature.
 
-```yaml{8,17}{numberLines: true}
+```yaml {8,17}{numberLines: true}{clipboardButton: true}
 build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
