@@ -239,3 +239,9 @@ prismjs options.
 const example = "This content will end up on the user's clipboard";
 ```
 ````
+
+## Project Contributions
+
+Contributions to this package are welcome. To submit a feature request
+or report a bug, please visit the repository
+[contributor guide](https://github.com/jpfulton/gatsby-remark-copy-button/blob/main/CONTRIBUTING.md).
