@@ -103,7 +103,7 @@ operating system shutdown is started.
 The script requires root permissions to run and should be stored in
 `/usr/local/sbin` as a result.
 
-```sh
+```sh {clipboardButton: true}
 #!/usr/bin/env bash
 
 ENDPOINT_IP="169.254.169.254";
@@ -140,7 +140,7 @@ To support logging to `syslogd`, both the `stdout` and `stderr` outputs of the s
 are directed to the `logger` command with a tag of `preempt-script`. Outputs from
 the script will be available in `/var/log/syslog`.
 
-```sh
+```sh {clipboardButton: true}
 # /etc/cron.d/preempt-query: crontab entries for the vm preempt event query script
 
 SHELL=/bin/sh

@@ -1,51 +1,66 @@
 .gatsby-code-title {
-    margin-bottom: -0.6rem;
-    padding: 0.5em 1em;
-    
-    font-family: var(--font-heading);
-    font-weight: bold;
+  margin-bottom: -0.6rem;
+  padding: 0.5em 1em;
 
-    background-color: #358ccb;
-    color: white;
-    z-index: 0;
+  font-family: var(--font-heading);
+  font-weight: bold;
 
-    border: 1px solid lightgray;
+  background-color: #358ccb;
+  color: white;
+  z-index: 0;
 
-    width: calc(100% + 1px); // without this, the title header is one px smaller than code block below
+  border: 1px solid lightgray;
 
-    border-top-left-radius: 0.3em;
-    border-top-right-radius: 0.3em;
+  width: calc(
+    100% + 1px
+  ); // without this, the title header is one px smaller than code block below
+
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
 }
 
 .gatsby-highlight {
+  code {
+    min-width: 100%;
+  }
 
-    pre[class*="language-"].line-numbers.line-numbers { // note use of specificity trick
-        padding: 0;
-        padding-left: 2em;
-        overflow: initial;
+  pre[class*="language-"].line-numbers.line-numbers {
+    // note use of specificity trick
+    padding: 0;
+    padding-left: 2em;
+    overflow: initial;
 
-        code {
-            padding-left: 1em;
-        }
-
-        .line-numbers-rows {
-            top: -1px;
-            border: 1px solid lightgray;
-            background-color: white;
-            padding-left: 0.3em;
-            min-width: 2em;
-            height: calc(100% + 2px);
-            overflow: hidden;
-        }
-
-        .gatsby-highlight-code-line {
-            background-color: #358ccb30;
-            display: block;
-            margin-right: -1em;
-            margin-left: -1em;
-            padding-right: 1em;
-            padding-left: 0.75em;
-            border-left: 0.25em solid #2f9c0a;
-        }
+    code {
+      padding-left: 1em;
     }
+
+    .line-numbers-rows {
+      top: -1px;
+      border: 1px solid lightgray;
+      background-color: white;
+      padding-left: 0.3em;
+      min-width: 2em;
+      height: calc(100% + 2px);
+      overflow: hidden;
+    }
+
+    .gatsby-highlight-code-line {
+      background-color: #358ccb30;
+      display: block;
+      margin-right: -1em;
+      margin-left: -1em;
+      padding-right: 1em;
+      padding-left: 0.75em;
+      border-left: 0.25em solid #2f9c0a;
+    }
+  }
+}
+
+span:has(.gatsby-remark-copy-button-container) + span .gatsby-highlight {
+  pre[class*="language-"].line-numbers.line-numbers {
+    .line-numbers-rows {
+      top: 8px;
+      max-height: calc(100% - 0.4em);
+    }
+  }
 }

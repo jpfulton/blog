@@ -171,7 +171,7 @@ The existence of the node will cause the plugins to process the image and then a
 data to the GraphQL site metadata that may be used in the component JavaScript as
 seen in the next section.
 
-```jsx:title=seo.js {15-21}{numberLines: true}
+```jsx:title=seo.js {15-21}{numberLines: true}{clipboardButton: true}
 const { site, openGraphDefaultImage } = useStaticQuery(
   graphql`
     query {
@@ -214,7 +214,7 @@ to be used my most previewers (e.g. iMessage) and _cannot_ be relative links. Th
 GraphQL to create the fully qualified URL and handles several error conditions that
 might arise from missing data.
 
-```jsx:title=seo.js {3-7,18-25,33-36}{numberLines: true}
+```jsx:title=seo.js {3-7,18-25,33-36}{numberLines: true}{clipboardButton: true}
 function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
   ...
   const imagePath = constructUrl(
@@ -294,7 +294,7 @@ for better compatibility with the
 [MDX plugin](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-mdx)
 in Gatsby v5+. The extension of the file was changed to `.mjs` as a result.
 
-```javascript:title=gatsby-node.mjs {numberLines: true}
+```javascript:title=gatsby-node.mjs {numberLines: true}{clipboardButton: true}
 export const createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
@@ -329,7 +329,7 @@ and [gatsby-plugin-sharp](https://github.com/gatsbyjs/gatsby/tree/master/package
 plugins are used to process the image and add new data to the query result
 about the processed image for use in the template.
 
-```javascript:title=blog-post.js {17-21}{numberLines:true}
+```javascript:title=blog-post.js {17-21}{numberLines:true}{clipboardButton: true}
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $keywords: [String]!) {
     site {
@@ -365,7 +365,7 @@ In a final step, we utilize the new data available from the GraphQL
 dynamic page query to access the relative link to the processed
 open graph image and pass it to the `seo.js` component.
 
-```jsx:title=blog-post.js {10-12,21}{numberLines: true}
+```jsx:title=blog-post.js {10-12,21}{numberLines: true}{clipboardButton: true}
 function BlogPostTemplate({
   location,
   pageContext,

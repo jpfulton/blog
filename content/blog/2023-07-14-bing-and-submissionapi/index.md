@@ -115,7 +115,7 @@ it in a shell script is possible with a series of `echo` commands directed
 to a local working file. Once the temporary working file containing the JSON
 request is created, `curl` can be used to submit the request to the Submission API.
 
-```sh:title=bing-url-submission-api.sh {numberLines: true}
+```sh:title=bing-url-submission-api.sh {numberLines: true}{clipboardButton: true}
 #!/usr/bin/env bash
 
 # Configurable variables used in IndexNow call and URL construction
@@ -238,7 +238,7 @@ runners environment allows the use of this flag.
 > existing environment variables. The security policy may return an error
 > if the user does not have permission to preserve the environment.
 
-```yaml {3,7}{numberLines: true}
+```yaml {3,7}{numberLines: true}{clipboardButton: true}
 - name: Update Bing via Submission API
   env:
     BING_API_KEY: ${{ secrets.BING_API_KEY }}

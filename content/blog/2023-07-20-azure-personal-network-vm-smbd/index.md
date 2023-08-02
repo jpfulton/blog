@@ -417,7 +417,7 @@ that platform for one of the two shares that we will create. Add the following
 lines to the `[global]` section of the server configuration file. A detailed
 discussion of these lines can be found in the post referenced above.
 
-```sh
+```sh {clipboardButton: true}
 ### Time Machine Compatibility ###
 min protocol = SMB2
 vfs objects = catia fruit streams_xattr
@@ -435,7 +435,7 @@ Next, we wish to configure two shares: one for use by Ubuntu backup clients and
 another for use by macOS clients. Add the following lines to bottom of the file
 to configure these shares.
 
-```sh
+```sh {clipboardButton: true}
 [applebackups]
 comment = Apple Backup Shared Folder by Samba Server on Ubuntu
 path = /backup/applebackups
@@ -525,7 +525,7 @@ sudo vim /etc/update-motd.d/01-custom
 
 Include the following lines in the script and save it.
 
-```sh:title=/etc/update-motd.d/01-custom
+```sh:title=/etc/update-motd.d/01-custom {clipboardButton: true}
 #!/bin/sh
 echo
 echo "General System Information:"

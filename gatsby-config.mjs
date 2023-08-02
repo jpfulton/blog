@@ -180,6 +180,28 @@ const config = {
             resolve: `gatsby-remark-autolink-headers`,
           },
           {
+            resolve: `@jpfulton/gatsby-remark-copy-button`,
+            options: {
+              // Provide a text label for the copy button.
+              // Default: null
+              buttonText: null,
+              // Provide a complete SVG tag string to replace the default
+              // copy icon.
+              copySvg: null,
+              // Provide a complete SVG tag string to replace the default
+              // success icon.
+              successSvg: null,
+              // Provide a custom container class for the <div> tag that contains
+              // the copy button to apply custom styling.
+              // Default: "gatsby-remark-copy-button-container"
+              customButtonContainerClass: null,
+              // Provide a custom button class for the copy button to apply
+              // custom styling.
+              // Default: "gatsby-remark-copy-button"
+              customButtonClass: null,
+            },
+          },
+          {
             resolve: `gatsby-remark-code-titles`,
           },
           {

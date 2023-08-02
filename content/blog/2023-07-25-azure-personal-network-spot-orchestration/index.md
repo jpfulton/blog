@@ -109,7 +109,7 @@ Replace the empty variable values with the subscription ID, resource group
 name and select a name for the service principal to be created prior
 to execution.
 
-```sh
+```sh {clipboardButton: true}
 #!/usr/bin/env bash
 
 SUBSCRIPTION_ID="";
@@ -235,7 +235,7 @@ the `--no-wait` flag to the `az vm start` command. Logic would need to
 included to follow up on the batch of start commands that were issued
 in that hypothetical implementation.
 
-```sh
+```sh {clipboardButton: true}
 #!/usr/bin/env bash
 
 RESOURCE_GROUP="personal-network";
@@ -349,7 +349,7 @@ To support logging to `syslogd`, both the `stdout` and `stderr` outputs of the
 script are directed to the `logger` command with a tag of `az-spot-monitor`.
 Outputs from the script will be available in `/var/log/syslog`.
 
-```sh
+```sh {clipboardButton: true}
 # /etc/cron.d/az-spot-monitor: crontab entries for the az spot vm monitor script
 
 SHELL=/bin/sh

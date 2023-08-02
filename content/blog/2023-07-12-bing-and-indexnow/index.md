@@ -154,7 +154,7 @@ it in a shell script is possible with a series of `echo` commands directed
 to a local working file. Once the temporary working file containing the JSON
 request is created, `curl` can be used to submit the request to the IndexNow API.
 
-```sh:title=indexnow.sh {numberLines:true}
+```sh:title=indexnow.sh {numberLines:true}{clipboardButton: true}
 #!/usr/bin/env bash
 
 # Configurable variables used in IndexNow call and URL construction
@@ -250,7 +250,7 @@ executing the script fairly painless.
 > When you need to execute commands or install tools that require more privileges
 > than the current user, you can use sudo without needing to provide a password.
 
-```yaml {5}{numberLines: true}
+```yaml {5}{numberLines: true}{clipboardButton: true}
 - name: Update Bing via IndexNow
   if: github.event_name == 'push'
   working-directory: ".github/scripts"

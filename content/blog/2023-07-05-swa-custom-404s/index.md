@@ -26,7 +26,7 @@ output is rendered to `/404/index.html` in the `public` folder by a production
 site build. It can easily be reused for server-side 404 responses to create
 a clean and consistent user experience.
 
-```javascript:title=404.js {numberLines: true}
+```javascript:title=404.js {numberLines: true}{clipboardButton: true}
 import * as React from "react";
 import { graphql } from "gatsby";
 
@@ -82,7 +82,7 @@ can be used to control a wide variety of settings for the container including:
 In the version of the file below, Azure is configured to use `responseOverrides`
 to serve our custom 404 page output instead of the default Azure 404 page.
 
-```json:title=staticwebapp.config.json {numberLines:true}
+```json:title=staticwebapp.config.json {numberLines:true}{clipboardButton: true}
 {
   "responseOverrides": {
     "404": {

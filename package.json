@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@jpfulton/gatsby-plugin-feed-mdx": "^0.0.4",
+    "@jpfulton/gatsby-remark-copy-button": "^0.0.28",
     "@mdx-js/react": "^2.3.0",
     "babel-plugin-styled-components": "^2.1.4",
     "gatsby": "^5.11.0",

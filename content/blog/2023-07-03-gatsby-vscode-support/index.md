@@ -62,7 +62,7 @@ setting per the VS Code
 > lazily on first access. As a consequence, breakpoints don't work in source code
 > areas that haven't been seen (parsed) by Node.js.
 
-```json:title=launch.json {16,30}{numberLines: true}
+```json:title=launch.json {16,30}{numberLines: true}{clipboardButton: true}
 {
   "version": "0.2.0",
   "configurations": [
@@ -111,7 +111,7 @@ integration with external tools.
 Here I integrated the clean script from `package.json` as a task so that it could
 be used as a prelaunch task in `launch.json` as highlighted above.
 
-```json:title=tasks.json {numberLines: true}
+```json:title=tasks.json {numberLines: true}{clipboardButton: true}
 {
     "version": "2.0.0",
     "tasks": [
@@ -146,7 +146,7 @@ apply specifically to the open workspace.
 Here I have specified `prettier` as the default code formatter and provided
 several editor settings that apply to it.
 
-```json:title=settings.json {numberLines: true}
+```json:title=settings.json {numberLines: true}{clipboardButton: true}
 {
   "editor.tabSize": 4,
   "editor.formatOnSave": true,
@@ -176,7 +176,7 @@ To make things super easy, the `extensions.json` file in the `.vscode` directory
 includes the keys for each extension and integrates with the IDE to make the suggestions
 upon opening the repository.
 
-```json:title=extensions.json {numberLines: true}
+```json:title=extensions.json {numberLines: true}{clipboardButton: true}
 {
     "recommendations": [
         "davidanson.vscode-markdownlint",
@@ -219,7 +219,7 @@ inline HTML tags to allow React components to be included. As a result, I
 created a `.markdownlint.json` file at the root of the project to configure
 the linter extension to ignore that rule.
 
-```json:title=.markdownlint.json {numberLines: true}
+```json:title=.markdownlint.json {numberLines: true}{clipboardButton: true}
 {
   "MD033": false
 }
