@@ -64,7 +64,7 @@ The only direct runtime dependency for the plugin is on
 [unist-util-visit](https://github.com/syntax-tree/unist-util-visit) which
 allows the plugin to walk and modify the Markdown AST.
 
-### The Remark Plugin Method
+### The Remark Plugin Entry Method
 
 A Gatsby Remark plugin module is expected to export a default function
 with the following signature and return value. An abstract syntax tree
@@ -82,6 +82,12 @@ export default ({ markdownAST }, pluginOptions) => {
 };
 ```
 
+Following the handling of plugin options, the entry method uses the
+`visit` function provided by the `unist-util-visit` package to
+inject a block of `HTML` including a copy button into a node **above**
+each `code` node that calls for it using a `{clipboardButton: true}`
+declaration.
+
 ### Browser JavaScript
 
 Using the [Gatsby Browser API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/)
@@ -90,9 +96,9 @@ implement copying text to the user's clipboard using the browser
 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API).
 Additionally, to prevent "rage clicking", a data attribute is added to the button
 while the operation is running to introduce a lock around the clipboard and animation
-operations.
+function.
 
-The default CSS styling is also imported into the browser in the `gatbsy-browser.js`
+The default CSS styling is also imported into the browser in the `gatsby-browser.js`
 file.
 
 ## Using the Plugin
