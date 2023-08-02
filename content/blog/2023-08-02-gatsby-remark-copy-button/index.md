@@ -21,7 +21,8 @@ After a great deal of searching, I was unable to find a
 [Gatsby](https://www.gatsbyjs.com/) plugin to create one that was compatible
 with both modern Gatsby versions **and** the use of MDX. As a result, I built one.
 
-This post covers that plugin implementation and use in a Gatsby site.
+This post covers the **[gatsby-remark-copy-button](https://github.com/jpfulton/gatsby-remark-copy-button)**
+plugin implementation and its use in a Gatsby site.
 
 The plugin package may be used with both of the following packages. However,
 it was tested primarily with the MDX plugin.
@@ -41,9 +42,8 @@ found [here](https://github.com/jpfulton/blog).
 
 ## The Plugin Implementation
 
-[plugin tutorial](https://www.gatsbyjs.com/tutorial/remark-plugin-tutorial/)
-
-### Core Implementation Files
+The plugin was implemented following the guidelines in the
+[Gatsby Remark Plugin Tutorial](https://www.gatsbyjs.com/tutorial/remark-plugin-tutorial/).
 
 Stored in the `/src/` folder of the plugin repository, the plugin implementation
 logic is composed of four main files:
@@ -101,7 +101,7 @@ function.
 The default CSS styling is also imported into the browser in the `gatsby-browser.js`
 file.
 
-## Using the Plugin
+## Using the Plugin Package
 
 ### Install the Plugin
 
