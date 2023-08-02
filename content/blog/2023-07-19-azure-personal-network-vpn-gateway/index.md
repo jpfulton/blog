@@ -199,7 +199,7 @@ variable
 to match the name of the client configuration you would like to create. Ideally,
 each VPN client will be assigned its own certificate, name and private key.
 
-```sh:title=gen-client-key.sh
+```sh:title=gen-client-key.sh {clipboardButton: true}
 #!/usr/bin/env bash
 PASSWORD="password"
 USERNAME="Home"
@@ -214,7 +214,7 @@ Run the script and then execute the following command to create a plain
 text version of the `p12` binary file. The contents of `profileinfo.txt` will
 contain sections that must be pasted into the client configuration file.
 
-```bash
+```bash {clipboardButton: true}
 openssl pkcs12 -in "Home.p12" -nodes -out "profileinfo.txt"
 ```
 

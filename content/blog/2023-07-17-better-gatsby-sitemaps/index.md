@@ -152,7 +152,7 @@ The code below keep track of the latest timestamp on which a blog entry was
 modified then uses that value to set an override to the index page's
 last modification timestamp.
 
-```javascript:title=gatsby-node.mjs {numberLines: true}
+```javascript:title=gatsby-node.mjs {numberLines: true}{clipboardButton: true}
 const simpleGit = require(`simple-git`);
 let latestBlogModification = new Date(1900, 1, 1);
 

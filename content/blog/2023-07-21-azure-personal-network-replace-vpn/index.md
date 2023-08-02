@@ -228,7 +228,7 @@ Create a server configuration file based on this example in
 subnet on which VPN clients will receive their IP addresses. Line 29 requires
 configuration to match the address space of the Azure virtual network.
 
-```sh:title=/etc/openvpn/homeserver.conf {1,29}{numberLines: true}
+```sh:title=/etc/openvpn/homeserver.conf {1,29}{numberLines: true}{clipboardButton: true}
 server 10.10.10.0 255.255.255.0
 topology subnet
 
@@ -342,7 +342,7 @@ interface. As a result, we will add `iptables` rules to the
 file and configure the source subnet to match the configuration of the OpenVPN
 server.
 
-```sh:title=/etc/ufw/before.rules {6}{numberLines: true}
+```sh:title=/etc/ufw/before.rules {6}{numberLines: true}{clipboardButton: true}
 # NAT table rules
 *nat
 :POSTROUTING ACCEPT [0:0]
@@ -399,7 +399,7 @@ The template below has been created to match the server configuration
 from above. The creation of the client configuration should be performed
 on the server to avoid the need to move the pre-shared secrets and keys.
 
-```sh:title=client.ovpn
+```sh:title=client.ovpn {clipboardButton: true}
 client
 
 remote <SERVER DNS OR IP HERE> 1194

@@ -153,7 +153,7 @@ it in a shell script is possible with a series of `echo` commands directed
 to a local working file. Once the temporary working file containing the URLs
 is created, it is passed to the `easyindex-cli` utility.
 
-```sh:title=easyindex.sh {numberLines: true}
+```sh:title=easyindex.sh {numberLines: true}{clipboardButton: true}
 #!/usr/bin/env bash
 
 # Configurable variables used in IndexNow call and URL construction
@@ -300,7 +300,7 @@ runners environment allows the use of this flag.
 > existing environment variables. The security policy may return an error
 > if the user does not have permission to preserve the environment.
 
-```yaml {3,7}{numberLines: true}
+```yaml {3,7}{numberLines: true}{clipboardButton: true}
 - name: Update Google via Indexing API
   env:
     GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
