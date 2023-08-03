@@ -133,6 +133,7 @@ export const createSchemaCustomization = ({ actions }) => {
     type MdxFrontmatter @infer {
       openGraphImage: File @fileByRelativePath
       primaryImage: File @fileByRelativePath
+      embeddedImages: [File] @fileByRelativePath
     }
 
   `);

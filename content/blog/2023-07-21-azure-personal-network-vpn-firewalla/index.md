@@ -13,6 +13,8 @@ keywords:
     "Firewalla",
   ]
 openGraphImage: ../../../src/images/open-graph/firewalla.png
+embeddedImages:
+  - ./firewalla/homescreen.png
 ---
 
 A little over a year ago, I bought a
@@ -82,6 +84,11 @@ for details on how to establish the transfer.
 From the Firewalla home screen, select **VPN Client**.
 
 ![Firewall App Home Screen](./firewalla/homescreen.png)
+
+<EmbeddedImage
+  altText="Firewalla App Home Screen"
+  image={props.data.mdx.frontmatter.embeddedImages[0]}
+  maxWidth="200px" />
 
 Select **Create VPN Client** > **3rd-Party VPN**.
 

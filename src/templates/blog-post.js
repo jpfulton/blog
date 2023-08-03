@@ -150,6 +150,11 @@ export const pageQuery = graphql`
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
           }
         }
+        embeddedImages {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
       fields {
         timeToRead {
