@@ -60,8 +60,8 @@ const Layout = ({ location, title, children }) => {
         containerClasses="cookie-consent-container"
         contentClasses="cookie-consent-content"
       >
-        This website uses cookies to enhance the user experience. View our{" "}
-        <Link to="/cookie-policy/">Cookie Policy</Link> for further details.
+        This website uses cookies to provide analytics and enhance the user
+        experience. <Link to="/cookie-policy/">Learn more...</Link>
       </CookieConsent>
     </div>
   );

@@ -17,6 +17,11 @@
   .cookie-consent-content {
     flex: 1 0 300px;
     margin: 15px;
+
+    a {
+      color: white;
+      font-weight: bold;
+    }
   }
 
   .cookie-consent-button {
