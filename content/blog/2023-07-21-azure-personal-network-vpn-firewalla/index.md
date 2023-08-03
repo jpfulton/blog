@@ -13,6 +13,14 @@ keywords:
     "Firewalla",
   ]
 openGraphImage: ../../../src/images/open-graph/firewalla.png
+embeddedImages:
+  - ./firewalla/homescreen.png
+  - ./firewalla/create-vpn-connection.png
+  - ./firewalla/create-vpn-connection-2.png
+  - ./firewalla/create-vpn-connection-3.png
+  - ./firewalla/create-vpn-connection-4.png
+  - ./firewalla/add-vpn-client.png
+  - ./firewalla/vpn-client-config.png
 ---
 
 A little over a year ago, I bought a
@@ -81,25 +89,40 @@ for details on how to establish the transfer.
 
 From the Firewalla home screen, select **VPN Client**.
 
-![Firewall App Home Screen](./firewalla/homescreen.png)
+<EmbeddedImage
+  altText="Firewalla App Home Screen"
+  image={props.data.mdx.frontmatter.embeddedImages[0]}
+  maxWidth="250px" />
 
 Select **Create VPN Client** > **3rd-Party VPN**.
 
-![Create VPN Connection](./firewalla/create-vpn-connection.png)
+<EmbeddedImage
+  altText="Create VPN Connection"
+  image={props.data.mdx.frontmatter.embeddedImages[1]}
+  maxWidth="250px" />
 
 Select **OpenVPN** as the VPN Protocol. Provide a name for the profile under
 the Configuration section and then select **Import Profile**.
 
-![Create VPN Connection Step 2](./firewalla/create-vpn-connection-2.png)
+<EmbeddedImage
+  altText="Create VPN Connection Step 2"
+  image={props.data.mdx.frontmatter.embeddedImages[2]}
+  maxWidth="250px" />
 
 A file browser will be opened allowing you to navigate to the configuration
 file that was AirDropped in an earlier step.
 
-![Create VPN Connection Step 3](./firewalla/create-vpn-connection-3.png)
+<EmbeddedImage
+  altText="Create VPN Connection Step 3"
+  image={props.data.mdx.frontmatter.embeddedImages[3]}
+  maxWidth="250px" />
 
 Select **Save** to commit the changes to the device.
 
-![Create VPN Connection Step 4](./firewalla/create-vpn-connection-4.png)
+<EmbeddedImage
+  altText="Create VPN Connection Step 4"
+  image={props.data.mdx.frontmatter.embeddedImages[4]}
+  maxWidth="250px" />
 
 ## Configure the VPN Connection
 
@@ -108,7 +131,10 @@ to apply the connection to. This should be a limited set. For example,
 there is no reason for IoT home devices to have access to the Azure
 virtual network. Similarly, gaming devices have no need for access either.
 
-![VPN Client Screen](./firewalla/add-vpn-client.png)
+<EmbeddedImage
+  altText="VPN Client Screen"
+  image={props.data.mdx.frontmatter.embeddedImages[5]}
+  maxWidth="250px" />
 
 Click on the profile name of the VPN connection to set the final settings.
 Make sure the `Internet` setting is set to `Direct` to ensure that only
@@ -116,4 +142,9 @@ private network traffic is routed through the VPN. Additionally, set
 `Force DNS over VPN` to `true` to enable the private DNS zone to be served
 to the selected devices.
 
-![VPN Client Configuration](./firewalla/vpn-client-config.png)
+<EmbeddedImage
+  altText="VPN Client Configuration"
+  image={props.data.mdx.frontmatter.embeddedImages[6]}
+  maxWidth="250px" />
+
+The VPN connection will start automatically upon save.
