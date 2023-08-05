@@ -6,6 +6,9 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/.bin/gatsby",
+      "windows": {
+        "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
+      },
       "args": ["develop"],
       "env": {
         "PARCEL_WORKERS": "0",
@@ -20,6 +23,9 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/.bin/gatsby",
+      "windows": {
+        "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
+      },
       "args": ["build", "--verbose"],
       "env": {
         "PARCEL_WORKERS": "0",
