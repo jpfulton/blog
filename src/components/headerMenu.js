@@ -2,9 +2,25 @@ import { Link } from "gatsby";
 import React from "react";
 
 export const HeaderMenu = () => {
+  let isOpen = false;
+  const menuToggleFunc = () => {
+    const container = document.querySelector("#headerMenuContainer");
+    if (isOpen) {
+      container.style.display = "none";
+      isOpen = false;
+    } else {
+      container.style.display = "block";
+      isOpen = true;
+    }
+  };
+  const headerMenuButton = document.querySelector("#headerMenuIcon");
+  if (headerMenuButton != null)
+    headerMenuButton.addEventListener("keydown", function (headerMenuKey) {
+      if (headerMenuKey.code && headerMenuKey.code == 13) menuToggleFunc();
+    });
   return (
     <div id="headerMenu">
-      <div id="headerMenuIcon">
+      <button id="headerMenuIcon" onClick={menuToggleFunc}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="32px"
@@ -31,7 +47,7 @@ export const HeaderMenu = () => {
             </li>
           </ol>
         </div>
-      </div>
+      </button>
     </div>
   );
 };
