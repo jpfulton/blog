@@ -3,6 +3,7 @@ import React from "react";
 
 export const HeaderMenu = () => {
   let isOpen = false;
+
   const menuToggleFunc = () => {
     const container = document.querySelector("#headerMenuContainer");
     if (isOpen) {
@@ -13,14 +14,19 @@ export const HeaderMenu = () => {
       isOpen = true;
     }
   };
-  const headerMenuButton = document.querySelector("#headerMenuIcon");
-  if (headerMenuButton != null)
-    headerMenuButton.addEventListener("keydown", function (headerMenuKey) {
-      if (headerMenuKey.code && headerMenuKey.code == 13) menuToggleFunc();
-    });
+
+  const onKeyMenuToggle = (keydownEvent) => {
+    // 13 - Enter key code
+    if (keydownEvent.code && keydownEvent.code === 13) menuToggleFunc();
+  };
+
   return (
     <div id="headerMenu">
-      <button id="headerMenuIcon" onClick={menuToggleFunc}>
+      <button
+        id="headerMenuIcon"
+        onClick={menuToggleFunc}
+        onKeyDown={onKeyMenuToggle}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="32px"
