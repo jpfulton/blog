@@ -19,12 +19,16 @@ export const HeaderMenu = () => {
     // 13 - Enter key code
     if (keydownEvent.code && keydownEvent.code === 13) menuToggleFunc();
   };
+  const onLoseFocusMenu = () => {
+    if (isOpen) menuToggleFunc();
+  };
 
   return (
     <div id="headerMenu">
       <button
         id="headerMenuIcon"
         onClick={menuToggleFunc}
+        onBlur={onLoseFocusMenu}
         onKeyDown={onKeyMenuToggle}
       >
         <svg
