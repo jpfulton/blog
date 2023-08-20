@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 
 export const HeaderMenu = () => {
+  // hgh
   let isOpen = false;
 
   const menuToggleFunc = () => {
