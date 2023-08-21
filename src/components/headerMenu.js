@@ -2,7 +2,6 @@ import { Link } from "gatsby";
 import React from "react";
 
 export const HeaderMenu = () => {
-  // hgh
   let isOpen = false;
 
   const menuToggleFunc = () => {
@@ -18,9 +17,16 @@ export const HeaderMenu = () => {
 
   const onKeyMenuToggle = (keydownEvent) => {
     // 13 - Enter key code
-    if (keydownEvent.code && keydownEvent.code === 13) menuToggleFunc();
+    if (keydownEvent.code) {
+      if (keydownEvent.code === 13) menuToggleFunc();
+      // console.log("Key: %d", keydownEvent.code);
+      if (isOpen && keydownEvent.code === 27) menuToggleFunc();
+    }
   };
   const onLoseFocusMenu = () => {
+    const container = document.querySelector("#headerMenu");
+    // console.log("Active element: %d", document.activeElement);
+    if (container.contains(document.activeElement)) return;
     if (isOpen) menuToggleFunc();
   };
 
