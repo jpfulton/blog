@@ -19,23 +19,24 @@ export const HeaderMenu = () => {
     // 13 - Enter key code
     if (keydownEvent.code) {
       if (keydownEvent.code === 13) menuToggleFunc();
-      // console.log("Key: %d", keydownEvent.code);
-      if (isOpen && keydownEvent.code === 27) menuToggleFunc();
+      //   if (isOpen && keydownEvent.code === 27) menuToggleFunc();
     }
   };
-  const onLoseFocusMenu = () => {
+  const onLoseFocusMenu = (event) => {
     const container = document.querySelector("#headerMenu");
-    // console.log("Active element: %d", document.activeElement);
-    if (container.contains(document.activeElement)) return;
-    if (isOpen) menuToggleFunc();
+    if (container.contains(event.relatedTarget)) {
+      return;
+    }
+    if (isOpen) {
+      menuToggleFunc();
+    }
   };
 
   return (
-    <div id="headerMenu">
+    <div id="headerMenu" onBlur={onLoseFocusMenu}>
       <button
         id="headerMenuIcon"
         onClick={menuToggleFunc}
-        onBlur={onLoseFocusMenu}
         onKeyDown={onKeyMenuToggle}
       >
         <svg
