@@ -16,12 +16,13 @@ export const HeaderMenu = () => {
   };
 
   const onKeyMenuToggle = (keydownEvent) => {
-    // 13 - Enter key code
+    const KEY_CODE_ENTER = 13;
     if (keydownEvent.code) {
-      if (keydownEvent.code === 13) menuToggleFunc();
+      if (keydownEvent.code === KEY_CODE_ENTER) menuToggleFunc();
       //   if (isOpen && keydownEvent.code === 27) menuToggleFunc();
     }
   };
+
   const onLoseFocusMenu = (event) => {
     const container = document.querySelector("#headerMenu");
     if (container.contains(event.relatedTarget)) {
