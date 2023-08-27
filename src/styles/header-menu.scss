@@ -9,12 +9,13 @@
     #headerMenu {
       position: relative;
       margin-left: auto;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0px;
 
       #headerMenuIcon {
         border: 0px;
         display: inline-block;
-        cursor: pointer;
-        background-color: transparent;
       }
 
       #headerMenuContainer {
