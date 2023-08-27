@@ -1,19 +1,20 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function Tags({ tags }) {
+  const groupId = uuidv4();
+
   return (
-    <div className="tags-container">
+    <div key={`group-${groupId}`} className="tags-container">
       {tags.map((tag, index) => {
-        const keyValue = "tag" + index;
+        const keyValue = `tag-${groupId}-${index}`;
 
         return (
-          <>
-            <span key={keyValue} className="tag">
-              {tag}
-            </span>
-            &nbsp;
-          </>
+          <React.Fragment key={keyValue}>
+            <span className="tag">{tag}</span>
+            <span>&nbsp;</span>
+          </React.Fragment>
         );
       })}
     </div>

@@ -56,7 +56,8 @@
     "sass": "^1.66.1",
     "styled-components": "^6.0.7",
     "typography": "^0.16.24",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "typography-theme-wordpress-2016": "^0.16.19",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "babel-preset-gatsby": "^3.12.0",
