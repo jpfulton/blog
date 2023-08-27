@@ -167,7 +167,7 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
   const linkedinUrl = "https://www.linkedin.com/in/" + linkedinUserName;
 
   return (
-    <div class="row">
+    <div className="row">
       <div>
         <StaticImage
           className="profile-pic center"
@@ -183,10 +183,10 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
       <div class="column">
         <h1>{author}</h1>
         <div>
-          <span class="bolded">Location:</span> Chicago, IL
+          <span className="bolded">Location:</span> Chicago, IL
         </div>
         <div>
-          <span class="bolded">Local Time:</span> {getChicagoTime()}
+          <span className="bolded">Local Time:</span> {getChicagoTime()}
         </div>
         <div>&nbsp;</div>
         <div>
@@ -220,11 +220,11 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
 const TagGroup = ({ title, tags, tagColor }) => {
   return (
     <div>
-      <h2 class="profile-h2">{title}</h2>
-      <div class="profile-tags-container">
+      <h2 className="profile-h2">{title}</h2>
+      <div className="profile-tags-container">
         {tags.sort(sortFunction).map((tag) => (
           <>
-            <span class="profile-tag" style={{ "background-color": tagColor }}>
+            <span className="profile-tag" style={{ backgroundColor: tagColor }}>
               {tag}
             </span>
             &nbsp;
