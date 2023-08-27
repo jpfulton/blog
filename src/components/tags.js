@@ -3,10 +3,10 @@ import React from "react";
 
 function Tags({ tags }) {
   return (
-    <div class="tags-container">
+    <div className="tags-container">
       {tags.map((tag) => (
         <>
-          <span class="tag">{tag}</span>&nbsp;
+          <span className="tag">{tag}</span>&nbsp;
         </>
       ))}
     </div>

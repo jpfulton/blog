@@ -51,7 +51,7 @@ export const MsPubCenterHeaderScripts = () => {
         id="msAdsSdk"
         async
         src={msPubCenterScriptSrc}
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       ></script>
     </>
   );
