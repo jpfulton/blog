@@ -4,11 +4,18 @@ import React from "react";
 function Tags({ tags }) {
   return (
     <div className="tags-container">
-      {tags.map((tag) => (
-        <>
-          <span className="tag">{tag}</span>&nbsp;
-        </>
-      ))}
+      {tags.map((tag, index) => {
+        const keyValue = "tag" + index;
+
+        return (
+          <>
+            <span key={keyValue} className="tag">
+              {tag}
+            </span>
+            &nbsp;
+          </>
+        );
+      })}
     </div>
   );
 }
