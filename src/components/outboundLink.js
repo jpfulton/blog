@@ -55,7 +55,14 @@ const OutboundLink = React.forwardRef(({ children, ...props }, ref) => {
   };
 
   return (
-    <a ref={ref} {...props} onClick={eventHandler} onKeyDown={eventHandler}>
+    <a
+      ref={ref}
+      {...props}
+      role="link"
+      tabIndex={0}
+      onClick={eventHandler}
+      onKeyDown={eventHandler}
+    >
       {children}
     </a>
   );
