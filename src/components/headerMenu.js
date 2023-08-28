@@ -3,7 +3,7 @@ import React from "react";
 
 export const HeaderMenu = () => {
   let isOpen = false;
-  let linkFromMouseDown = null;
+  let linkFromMouseDown = null; // retain reference to Link component that may have been mouse down target
 
   const menuToggleFunc = (event) => {
     const menuTag = document.querySelector("#headerMenu");
@@ -21,8 +21,12 @@ export const HeaderMenu = () => {
     }
     */
 
-    if (linkFromMouseDown) {
+    if (isOpen && linkFromMouseDown) {
       // console.log("Link component from mouse down: %o", linkFromMouseDown);
+
+      // a menu Link component was the target of a mouse down event
+      // prior to the menu loosing focus, execute its click handler
+      // then close the menu
       linkFromMouseDown.click();
     }
 
@@ -30,7 +34,11 @@ export const HeaderMenu = () => {
       container.style.display = "none";
       isOpen = false;
     } else {
+      // onClick in Safari does not create focus on the clicked
+      // element, therefore, onBlur will not be triggered unless
+      // focus is placed programmatically, do so here
       menuTag.focus();
+
       container.style.display = "block";
       isOpen = true;
     }
@@ -55,6 +63,8 @@ export const HeaderMenu = () => {
     }
   };
 
+  // onMouseDown handlers execute prior to onBlur and onClick
+  // attach this mouse down handler to all menu internal Link components
   const onLinkMouseDown = (event) => {
     // console.log("Mouse down event: %o", event);
     linkFromMouseDown = event.target;
@@ -65,7 +75,7 @@ export const HeaderMenu = () => {
       id="headerMenu"
       onClick={menuToggleFunc}
       onKeyDown={onKeyMenuToggle}
-      onBlur={onLoseFocusMenu}
+      onBlur={onLoseFocusMenu} // onBlur executes before onClick (always)
     >
       <div id="headerMenuIcon">
         <svg
