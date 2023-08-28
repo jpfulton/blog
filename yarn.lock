@@ -2250,14 +2250,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jpfulton/gatsby-remark-copy-button@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@jpfulton/gatsby-remark-copy-button@npm:1.0.1"
+"@jpfulton/gatsby-remark-copy-button@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@jpfulton/gatsby-remark-copy-button@npm:1.0.4"
   dependencies:
     unist-util-visit: ^5.0.0
   peerDependencies:
     gatsby: ^5.0.0-next
-  checksum: 17e8f7ab757d2a459cee9a8d0636bac599106bf1c3c5de426d5bf65c5d0a662e469c8a16214434f7111c04d4b787adc27bba80c8635dde5b1f4fad0cfdee509c
+  checksum: b8b02ea16a86ced19b9d0f6de6f31dcaa997b5fe6e4cfe842605e628b65beb6bdc986792a0aa4e99734459f31c189d20403ab1e5b2866ac8cb714f576fa690f1
   languageName: node
   linkType: hard
 
@@ -13327,7 +13327,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.22.11
     "@jpfulton/gatsby-plugin-feed-mdx": ^0.0.4
-    "@jpfulton/gatsby-remark-copy-button": ^1.0.1
+    "@jpfulton/gatsby-remark-copy-button": ^1.0.4
     "@mdx-js/react": ^2.3.0
     babel-plugin-styled-components: ^2.1.4
     babel-preset-gatsby: ^3.12.0
