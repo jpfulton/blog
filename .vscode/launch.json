@@ -14,9 +14,8 @@
         "PARCEL_WORKERS": "0",
         "GATSBY_CPU_COUNT": "1"
       },
-      "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal",
-      "preLaunchTask": "npm: clean"
+      "preLaunchTask": "Install Dependencies"
     },
     {
       "name": "Gatsby build",
@@ -31,9 +30,8 @@
         "PARCEL_WORKERS": "0",
         "GATSBY_CPU_COUNT": "1"
       },
-      "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal",
-      "preLaunchTask": "npm: clean"
+      "preLaunchTask": "Install Dependencies"
     }
   ]
 }
