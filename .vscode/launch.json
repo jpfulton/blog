@@ -10,10 +10,6 @@
         "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
       },
       "args": ["develop"],
-      "env": {
-        "PARCEL_WORKERS": "0",
-        "GATSBY_CPU_COUNT": "1"
-      },
       "console": "integratedTerminal",
       "preLaunchTask": "Install Dependencies"
     },
@@ -26,10 +22,6 @@
         "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
       },
       "args": ["build", "--verbose"],
-      "env": {
-        "PARCEL_WORKERS": "0",
-        "GATSBY_CPU_COUNT": "1"
-      },
       "console": "integratedTerminal",
       "preLaunchTask": "Install Dependencies"
     }
