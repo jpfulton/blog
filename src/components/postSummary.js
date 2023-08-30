@@ -17,7 +17,7 @@ function PostSummary({
   primaryImage,
 }) {
   return (
-    <article key={slug} class="post-summary">
+    <article key={slug} className="post-summary">
       <h2
         style={{
           marginBottom: rhythm(1 / 4),
@@ -30,7 +30,7 @@ function PostSummary({
       <small>
         {date} - {timeToReadText} ({timeToReadWords} words)
       </small>
-      <div class="flex">
+      <div className="flex">
         <div>
           <p
             dangerouslySetInnerHTML={{
@@ -38,7 +38,7 @@ function PostSummary({
             }}
           />
         </div>
-        <div class="image-container">
+        <div className="image-container">
           <GatsbyImage image={primaryImage} alt="Post Image" />
         </div>
       </div>
@@ -52,7 +52,7 @@ PostSummary.defaultProps = {
   title: "",
   date: "",
   timeToReadText: "",
-  timeToReadWords: "",
+  timeToReadWords: 0,
   description: "",
   excerpt: "",
   keywords: [],
@@ -63,11 +63,11 @@ PostSummary.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   timeToReadText: PropTypes.string.isRequired,
-  timeToReadWords: PropTypes.string.isRequired,
+  timeToReadWords: PropTypes.number.isRequired,
   description: PropTypes.string,
   excerpt: PropTypes.string,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  primaryImageSrc: PropTypes.object.isRequired,
+  primaryImageSrc: PropTypes.object,
 };
 
 export default PostSummary;

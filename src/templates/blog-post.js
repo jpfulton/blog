@@ -78,7 +78,7 @@ function BlogPostTemplate({
 
       <nav>
         <ul
-          class="prev-and-next"
+          className="prev-and-next"
           style={{
             display: `flex`,
             flexWrap: `wrap`,

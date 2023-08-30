@@ -5,12 +5,12 @@ import React from "react";
 
 function PostCard({ title, slug, date, image }) {
   return (
-    <article class="post-card">
-      <div class="post-image-container">
-        <GatsbyImage image={image}></GatsbyImage>
+    <article className="post-card">
+      <div className="post-image-container">
+        <GatsbyImage alt="Article Image" image={image}></GatsbyImage>
       </div>
-      <div class="post-date">{date}</div>
-      <div class="post-title">
+      <div className="post-date">{date}</div>
+      <div className="post-title">
         <Link to={`/blog${slug}`}>{title}</Link>
       </div>
     </article>

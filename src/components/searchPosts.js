@@ -27,8 +27,15 @@ const SearchBar = styled.nav`
     display: flex;
     flex: 100%;
     height: 100%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
     font-size: 16px;
     background-color: transparent;
     border: none;
@@ -56,6 +63,7 @@ const SearchedPosts = ({ results }) =>
 
       return (
         <PostSummary
+          key={slug}
           slug={slug}
           title={title}
           date={date}
@@ -85,6 +93,7 @@ const AllPosts = ({ posts, openGraphDefaultImage }) => (
 
       return (
         <PostSummary
+          key={node.fields.slug}
           slug={node.fields.slug}
           title={title}
           date={node.frontmatter.date}

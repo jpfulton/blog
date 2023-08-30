@@ -9,10 +9,13 @@
     #headerMenu {
       position: relative;
       margin-left: auto;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0px;
 
       #headerMenuIcon {
+        border: 0px;
         display: inline-block;
-        cursor: pointer;
       }
 
       #headerMenuContainer {
@@ -29,6 +32,7 @@
         ol {
           list-style: none;
           margin: 0;
+          text-align: left;
 
           li {
             width: 100%;
@@ -41,10 +45,6 @@
             background-color: whitesmoke;
           }
         }
-      }
-
-      #headerMenuIcon:hover #headerMenuContainer {
-        display: block;
       }
     }
   }

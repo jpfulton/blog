@@ -51,7 +51,7 @@ const Bio = () => {
         </p>
       )}
       {social && (
-        <p class="bio-social">
+        <p className="bio-social">
           <OutboundLink
             href="https://github.com/jpfulton"
             target="_blank"

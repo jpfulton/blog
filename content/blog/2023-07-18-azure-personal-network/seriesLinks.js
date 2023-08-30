@@ -3,8 +3,8 @@ import React from "react";
 
 const SeriesLinks = () => (
   <>
-    <div class="series-links-header">Posts from this Series:</div>
-    <div class="series-links">
+    <div className="series-links-header">Posts from this Series:</div>
+    <div className="series-links">
       <ol>
         <li>
           <Link to="/blog/2023-07-18-azure-personal-network/">Overview</Link>

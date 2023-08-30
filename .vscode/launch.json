@@ -9,14 +9,9 @@
       "windows": {
         "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
       },
-      "args": ["develop"],
-      "env": {
-        "PARCEL_WORKERS": "0",
-        "GATSBY_CPU_COUNT": "1"
-      },
-      "runtimeArgs": ["--nolazy"],
+      "args": ["develop", "--verbose"],
       "console": "integratedTerminal",
-      "preLaunchTask": "npm: clean"
+      "preLaunchTask": "Install Dependencies"
     },
     {
       "name": "Gatsby build",
@@ -27,13 +22,8 @@
         "program": "${workspaceRoot}/node_modules/gatsby/dist/bin/gatsby"
       },
       "args": ["build", "--verbose"],
-      "env": {
-        "PARCEL_WORKERS": "0",
-        "GATSBY_CPU_COUNT": "1"
-      },
-      "runtimeArgs": ["--nolazy"],
       "console": "integratedTerminal",
-      "preLaunchTask": "npm: clean"
+      "preLaunchTask": "Install Dependencies"
     }
   ]
 }

@@ -26,12 +26,12 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
 
   return (
     <nav>
-      <div class="related-posts-title">Related Posts</div>
-      <div class="related-posts">
-        <button class="prev-button" onClick={scrollLeft}>
+      <div className="related-posts-title">Related Posts</div>
+      <div className="related-posts">
+        <button className="prev-button" onClick={scrollLeft}>
           &lt;
         </button>
-        <div class="related-posts-flex">
+        <div className="related-posts-flex">
           {relatedPosts.map((post) => {
             if (post.node.fields.slug === rootSlug) return null;
 
@@ -48,6 +48,7 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
 
             return (
               <PostCard
+                key={slug}
                 title={title}
                 date={date}
                 slug={slug}
@@ -56,7 +57,7 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
             );
           })}
         </div>
-        <button class="next-button" onClick={scrollRight}>
+        <button className="next-button" onClick={scrollRight}>
           &gt;
         </button>
       </div>

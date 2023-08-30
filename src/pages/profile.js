@@ -43,6 +43,7 @@ class AuthorProfile extends React.Component {
       "HTML",
       "CSS",
       "SASS",
+      "Bicep",
     ];
     const librariesAndApis = [
       "Twilio",
@@ -122,13 +123,18 @@ class AuthorProfile extends React.Component {
             githubUserName={githubUserName}
             linkedinUserName={linkedinUserName}
           />
-          {tagGroups.map((group) => (
-            <TagGroup
-              title={group.title}
-              tags={group.tags}
-              tagColor={group.backgroundColor}
-            />
-          ))}
+          {tagGroups.map((group, index) => {
+            const key = group.title.replace(" ", "-").concat(`-${index}`);
+
+            return (
+              <TagGroup
+                key={key}
+                title={group.title}
+                tags={group.tags}
+                tagColor={group.backgroundColor}
+              />
+            );
+          })}
         </section>
       </Layout>
     );
@@ -167,7 +173,7 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
   const linkedinUrl = "https://www.linkedin.com/in/" + linkedinUserName;
 
   return (
-    <div class="row">
+    <div className="row">
       <div>
         <StaticImage
           className="profile-pic center"
@@ -180,17 +186,17 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
           alt="Profile picture"
         />
       </div>
-      <div class="column">
+      <div className="column">
         <h1>{author}</h1>
         <div>
-          <span class="bolded">Location:</span> Chicago, IL
+          <span className="bolded">Location:</span> Chicago, IL
         </div>
         <div>
-          <span class="bolded">Local Time:</span> {getChicagoTime()}
+          <span className="bolded">Local Time:</span> {getChicagoTime()}
         </div>
         <div>&nbsp;</div>
         <div>
-          <span class="bolded">Socials:</span>
+          <span className="bolded">Socials:</span>
         </div>
         <div>
           <OutboundLink
@@ -220,16 +226,23 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
 const TagGroup = ({ title, tags, tagColor }) => {
   return (
     <div>
-      <h2 class="profile-h2">{title}</h2>
-      <div class="profile-tags-container">
-        {tags.sort(sortFunction).map((tag) => (
-          <>
-            <span class="profile-tag" style={{ "background-color": tagColor }}>
-              {tag}
-            </span>
-            &nbsp;
-          </>
-        ))}
+      <h2 className="profile-h2">{title}</h2>
+      <div className="profile-tags-container">
+        {tags.sort(sortFunction).map((tag, index) => {
+          const key = tag.replace(" ", "-").concat(`-${index}`);
+
+          return (
+            <React.Fragment key={key}>
+              <span
+                className="profile-tag"
+                style={{ backgroundColor: tagColor }}
+              >
+                {tag}
+              </span>
+              <span>&nbsp;</span>
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
