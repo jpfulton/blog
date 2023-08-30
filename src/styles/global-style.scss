@@ -304,6 +304,16 @@ footer {
   }
 }
 
+.feed-ad-divider-top {
+  margin-top: var(--spacing-6);
+}
+
+.feed-ad-divider-top,
+.feed-ad-divider-bottom {
+  margin-left: var(--spacing-16);
+  margin-right: var(--spacing-16);
+}
+
 @media (max-width: 42rem) {
   blockquote {
     padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4);

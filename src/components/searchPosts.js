@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useFlexSearch } from "react-use-flexsearch";
 import styled from "styled-components";
 
+import { InFeedAdUnit } from "./msPubCenter";
 import PostSummary from "./postSummary";
 
 const SearchBar = styled.nav`
@@ -50,7 +51,7 @@ const SearchBar = styled.nav`
 
 const SearchedPosts = ({ results }) =>
   results.length > 0 ? (
-    results.map((node) => {
+    results.map((node, index) => {
       const date = node.date;
       const title = node.title || node.slug;
       const description = node.description;
@@ -62,18 +63,20 @@ const SearchedPosts = ({ results }) =>
       const image = node.image;
 
       return (
-        <PostSummary
-          key={slug}
-          slug={slug}
-          title={title}
-          date={date}
-          timeToReadText={timeToReadText}
-          timeToReadWords={timeToReadWords}
-          description={description}
-          excerpt={excerpt}
-          keywords={keywords}
-          primaryImage={image}
-        />
+        <React.Fragment key={slug}>
+          <PostSummary
+            slug={slug}
+            title={title}
+            date={date}
+            timeToReadText={timeToReadText}
+            timeToReadWords={timeToReadWords}
+            description={description}
+            excerpt={excerpt}
+            keywords={keywords}
+            primaryImage={image}
+          />
+          {(index + 1) % 3 === 0 && <InFeedAdUnit />}
+        </React.Fragment>
       );
     })
   ) : (
@@ -84,7 +87,7 @@ const SearchedPosts = ({ results }) =>
 
 const AllPosts = ({ posts, openGraphDefaultImage }) => (
   <section style={{ margin: "20px 0 20px" }}>
-    {posts.map(({ node }) => {
+    {posts.map(({ node }, index) => {
       const title = node.frontmatter.title || node.fields.slug;
       const image =
         node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
@@ -92,18 +95,20 @@ const AllPosts = ({ posts, openGraphDefaultImage }) => (
         openGraphDefaultImage.childImageSharp.gatsbyImageData;
 
       return (
-        <PostSummary
-          key={node.fields.slug}
-          slug={node.fields.slug}
-          title={title}
-          date={node.frontmatter.date}
-          timeToReadText={node.fields.timeToRead.text}
-          timeToReadWords={node.fields.timeToRead.words}
-          description={node.frontmatter.description}
-          excerpt={node.excerpt}
-          keywords={node.frontmatter.keywords}
-          primaryImage={image}
-        />
+        <React.Fragment key={node.fields.slug}>
+          <PostSummary
+            slug={node.fields.slug}
+            title={title}
+            date={node.frontmatter.date}
+            timeToReadText={node.fields.timeToRead.text}
+            timeToReadWords={node.fields.timeToRead.words}
+            description={node.frontmatter.description}
+            excerpt={node.excerpt}
+            keywords={node.frontmatter.keywords}
+            primaryImage={image}
+          />
+          {(index + 1) % 3 === 0 && <InFeedAdUnit />}
+        </React.Fragment>
       );
     })}
   </section>
