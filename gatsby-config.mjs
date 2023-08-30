@@ -312,14 +312,7 @@ const config = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        workboxConfig: {
-          globPatterns: ["**/icons*"],
-        },
-      },
-    },
+    `gatsby-plugin-remove-serviceworker`,
     {
       resolve: `@jpfulton/gatsby-plugin-feed-mdx`,
       options: {
