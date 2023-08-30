@@ -2,7 +2,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 
 export const EmbeddedImage = ({ altText, image, maxWidth }) => {
-  console.log(image);
+  // console.log(image);
 
   const fallbackSrc = image.childImageSharp.gatsbyImageData.images.fallback.src;
 
