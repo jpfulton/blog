@@ -6,7 +6,8 @@
   "author": "J. Patrick Fulton <jpatrick.fulton@gmail.com>",
   "browserslist": [
     "last 2 versions",
-    "not dead and supports es6-module"
+    "not dead",
+    "supports es6-module"
   ],
   "engines": {
     "node": ">=18.16.0"
@@ -70,6 +71,8 @@
     "@babel/plugin-proposal-decorators": "^7.22.10",
     "babel-eslint": "^10.1.0",
     "babel-preset-gatsby": "^3.12.0",
+    "browserslist": "^4.21.10",
+    "browserslist-lint": "^0.3.3",
     "core-js": "^3.32.1",
     "eslint": "^8.48.0",
     "gatsby-cli": "^5.12.0",

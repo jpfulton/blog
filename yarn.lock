@@ -5120,7 +5120,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.18.1, browserslist@npm:^4.21.4, browserslist@npm:^4.21.5, browserslist@npm:^4.21.9, browserslist@npm:^4.6.6":
+"browserslist-lint@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "browserslist-lint@npm:0.3.3"
+  dependencies:
+    browserslist: ^4.21.9
+    picocolors: ^1.0.0
+  bin:
+    browserslist-lint: cli.js
+  checksum: c53a8b1a74b3fccf05b5f247d6aac6e82b2fdf7ad6f3f09c37f64d9c56c6518b96e62e904cfb88de1d33e4364cf806bd6eb92f5aee559950d68b888819264d03
+  languageName: node
+  linkType: hard
+
+"browserslist@npm:^4.0.0, browserslist@npm:^4.14.5, browserslist@npm:^4.18.1, browserslist@npm:^4.21.10, browserslist@npm:^4.21.4, browserslist@npm:^4.21.5, browserslist@npm:^4.21.9, browserslist@npm:^4.6.6":
   version: 4.21.10
   resolution: "browserslist@npm:4.21.10"
   dependencies:
@@ -13528,6 +13540,8 @@ __metadata:
     babel-eslint: ^10.1.0
     babel-plugin-styled-components: ^2.1.4
     babel-preset-gatsby: ^3.12.0
+    browserslist: ^4.21.10
+    browserslist-lint: ^0.3.3
     core-js: ^3.32.1
     eslint: ^8.48.0
     gatsby: ^5.12.3
