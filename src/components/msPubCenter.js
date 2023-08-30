@@ -16,7 +16,7 @@ export const InArticleAdUnit = () => {
   return (
     <>
       <div id={divId}></div>
-      <script>{scriptContents}</script>
+      <script dangerouslySetInnerHTML={{ __html: scriptContents }}></script>
     </>
   );
 };
@@ -38,7 +38,7 @@ export const InFeedAdUnit = () => {
         <hr />
       </div>
       <div id={divId}></div>
-      <script>{scriptContents}</script>
+      <script dangerouslySetInnerHTML={{ __html: scriptContents }}></script>
       <div className="feed-ad-divider-bottom">
         <hr />
       </div>
