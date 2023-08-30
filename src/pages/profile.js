@@ -196,6 +196,18 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
         </div>
         <div>&nbsp;</div>
         <div>
+          <span className="bolded">Contact:</span>
+        </div>
+        <div>
+          <a href="mailto:patrick@jpatrickfulton.com">
+            patrick@jpatrickfulton.com
+          </a>
+        </div>
+        <div>
+          <a href="tel:+13129896512">1 (312) 989-6512</a>
+        </div>
+        <div>&nbsp;</div>
+        <div>
           <span className="bolded">Socials:</span>
         </div>
         <div>
