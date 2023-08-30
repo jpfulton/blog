@@ -43,6 +43,7 @@ class AuthorProfile extends React.Component {
       "HTML",
       "CSS",
       "SASS",
+      "Bicep",
     ];
     const librariesAndApis = [
       "Twilio",
