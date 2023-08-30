@@ -1,12 +1,13 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const InArticleAdUnit = () => {
-  const randomId = Math.floor(Math.random() * 10000);
+  const randomId = uuidv4();
   const divId = `ms-ad-${randomId}`;
   const scriptContents = `window.msAdsQueue.push(() => { 
         window.pubCenterSdk.render({ 
-          adUnitId: "591354238", 
+          adUnitId: "552417268", 
           elementId: "${divId}" 
         }); 
       }); 
@@ -21,22 +22,20 @@ export const InArticleAdUnit = () => {
 };
 
 export const MsPubCenterHeaderScripts = () => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            ads {
-              msPubCenter {
-                siteId
-                publisherId
-              }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          ads {
+            msPubCenter {
+              siteId
+              publisherId
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
 
   const siteId = site.siteMetadata.ads.msPubCenter.siteId;
   const publisherId = site.siteMetadata.ads.msPubCenter.publisherId;
