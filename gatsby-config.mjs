@@ -27,7 +27,7 @@ const config = {
     },
     ads: {
       msPubCenter: {
-        siteId: `10320670`,
+        siteId: `10321170`,
         publisherId: `252759103`,
       },
     },
@@ -299,7 +299,7 @@ const config = {
       resolve: `gatsby-plugin-clarity`,
       options: {
         // String value for your clarity project ID
-        clarity_project_id: "i6nz5y721c",
+        clarity_project_id: "ing53a9v5i",
         // Boolean value for enabling clarity while developing
         // true will enable clarity tracking code on both development and production environments
         // false will enable clarity tracking code on production environment only
