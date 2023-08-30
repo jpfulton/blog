@@ -16,7 +16,32 @@ export const InArticleAdUnit = () => {
   return (
     <>
       <div id={divId}></div>
-      <script>${scriptContents}</script>
+      <script>{scriptContents}</script>
+    </>
+  );
+};
+
+export const InFeedAdUnit = () => {
+  const randomId = uuidv4();
+  const divId = `ms-ad-${randomId}`;
+  const scriptContents = `window.msAdsQueue.push(() => { 
+        window.pubCenterSdk.render({ 
+          adUnitId: "1854037636", 
+          elementId: "${divId}" 
+        }); 
+      }); 
+    `;
+
+  return (
+    <>
+      <div className="feed-ad-divider-top">
+        <hr />
+      </div>
+      <div id={divId}></div>
+      <script>{scriptContents}</script>
+      <div className="feed-ad-divider-bottom">
+        <hr />
+      </div>
     </>
   );
 };
@@ -43,15 +68,8 @@ export const MsPubCenterHeaderScripts = () => {
 
   return (
     <>
-      <script id="msAdsQueue">
-        window.msAdsQueue = window.msAdsQueue || [];
-      </script>
-      <script
-        id="msAdsSdk"
-        async
-        src={msPubCenterScriptSrc}
-        crossOrigin="anonymous"
-      ></script>
+      <script>window.msAdsQueue = window.msAdsQueue || [];</script>
+      <script async src={msPubCenterScriptSrc} crossOrigin="anonymous"></script>
     </>
   );
 };
