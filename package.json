@@ -5,9 +5,7 @@
   "version": "0.1.0",
   "author": "J. Patrick Fulton <jpatrick.fulton@gmail.com>",
   "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "supports es6-module"
+    "defaults and supports es6-module"
   ],
   "engines": {
     "node": ">=18.16.0"
