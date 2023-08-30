@@ -122,13 +122,18 @@ class AuthorProfile extends React.Component {
             githubUserName={githubUserName}
             linkedinUserName={linkedinUserName}
           />
-          {tagGroups.map((group) => (
-            <TagGroup
-              title={group.title}
-              tags={group.tags}
-              tagColor={group.backgroundColor}
-            />
-          ))}
+          {tagGroups.map((group, index) => {
+            const key = group.title.replace(" ", "-").concat(`-${index}`);
+
+            return (
+              <TagGroup
+                key={key}
+                title={group.title}
+                tags={group.tags}
+                tagColor={group.backgroundColor}
+              />
+            );
+          })}
         </section>
       </Layout>
     );
@@ -180,7 +185,7 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
           alt="Profile picture"
         />
       </div>
-      <div class="column">
+      <div className="column">
         <h1>{author}</h1>
         <div>
           <span className="bolded">Location:</span> Chicago, IL
@@ -190,7 +195,7 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
         </div>
         <div>&nbsp;</div>
         <div>
-          <span class="bolded">Socials:</span>
+          <span className="bolded">Socials:</span>
         </div>
         <div>
           <OutboundLink
@@ -222,14 +227,21 @@ const TagGroup = ({ title, tags, tagColor }) => {
     <div>
       <h2 className="profile-h2">{title}</h2>
       <div className="profile-tags-container">
-        {tags.sort(sortFunction).map((tag) => (
-          <>
-            <span className="profile-tag" style={{ backgroundColor: tagColor }}>
-              {tag}
-            </span>
-            &nbsp;
-          </>
-        ))}
+        {tags.sort(sortFunction).map((tag, index) => {
+          const key = tag.replace(" ", "-").concat(`-${index}`);
+
+          return (
+            <React.Fragment key={key}>
+              <span
+                className="profile-tag"
+                style={{ backgroundColor: tagColor }}
+              >
+                {tag}
+              </span>
+              <span>&nbsp;</span>
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
