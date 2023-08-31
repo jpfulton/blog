@@ -1,18 +1,9 @@
 /// <reference path="src/gatsby-types.d.ts" />
 import type { GatsbyNode } from "gatsby";
 
-import readingTime from "reading-time";
-
-// import { createRequire } from "module";
-// const require = createRequire(import.meta.url);
-
-// const path = require(`path`);
-// const { createFilePath } = require(`gatsby-source-filesystem`);
-
 import { createFilePath } from "gatsby-source-filesystem";
 import path from "path";
-
-// const simpleGit = require(`simple-git`);
+import readingTime from "reading-time";
 import { simpleGit } from "simple-git";
 
 let latestBlogModification = new Date(1900, 1, 1);
