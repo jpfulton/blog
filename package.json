@@ -14,7 +14,6 @@
   "dependencies": {
     "@babel/core": "^7.22.11",
     "@graphql-tools/graphql-tag-pluck": "^8.0.2",
-    "@jpfulton/gatsby-plugin-feed-mdx": "^0.0.4",
     "@jpfulton/gatsby-remark-copy-button": "^1.0.4",
     "@mdx-js/react": "^2.3.0",
     "babel-plugin-styled-components": "^2.1.4",

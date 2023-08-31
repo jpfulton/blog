@@ -34,8 +34,9 @@ const OutboundLink = React.forwardRef(({ children, ...props }, ref) => {
       window.gtag(`event`, `click`, {
         event_category: `outbound`,
         event_label: props.href,
-        transport_type: redirect ? `beacon` : ``,
         event_callback: function () {
+          console.info(`Outbound click event logged to: ${props.href}`);
+
           if (redirect) {
             document.location = props.href;
           } else {

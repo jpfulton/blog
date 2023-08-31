@@ -93,7 +93,7 @@ const config = {
                 gatsbyImageData(layout: FIXED, width: 150)
               }
             }
-            allMdx {
+            allMdx(sort: { frontmatter: { date: ASC } }) {
               nodes {
                 id
                 fields { 
@@ -277,13 +277,13 @@ const config = {
         // This config will be shared across all trackingIds
         gtagConfig: {
           //optimize_id: "OPT_CONTAINER_ID",
-          anonymize_ip: true,
+          //anonymize_ip: true,
           cookie_expires: 0,
         },
         // This object is used for configuration specific to this plugin
         pluginConfig: {
           // Puts tracking script in the head instead of the body
-          head: false,
+          head: true,
           // Setting this parameter is also optional
           respectDNT: true,
           // Avoids sending pageview hits from custom paths
@@ -313,66 +313,6 @@ const config = {
       },
     },
     `gatsby-plugin-remove-serviceworker`,
-    {
-      resolve: `@jpfulton/gatsby-plugin-feed-mdx`,
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                siteUrl
-                site_url: siteUrl
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map((edge) => {
-                return Object.assign({}, edge.node.frontmatter, {
-                  description:
-                    edge.node.frontmatter.description ?? edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url:
-                    site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
-                  guid:
-                    site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
-                });
-              });
-            },
-            query: `
-              {
-                allMdx(
-                  sort: { frontmatter: {date: DESC} },
-                ) {
-                  edges {
-                    node {
-                      excerpt
-                      fields { slug }
-                      frontmatter {
-                        title
-                        date
-                        description
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: "/rss.xml",
-            title: "jpatrickfulton.dev",
-            // optional configuration to insert feed reference in pages:
-            // if `string` is used, it will be used to create RegExp and then test if pathname of
-            // current page satisfied this regular expression;
-            // if not provided or `undefined`, all pages will have feed reference inserted
-            match: "^/blog/",
-          },
-        ],
-      },
-    },
   ],
 };
 

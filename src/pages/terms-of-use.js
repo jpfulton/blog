@@ -5,7 +5,6 @@ import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
-import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
 class TermsOfUse extends React.Component {
@@ -38,7 +37,6 @@ export const Head = () => {
   return (
     <>
       <GoogleStructuredOrgData />
-      <RssLink />
       <MsPubCenterHeaderScripts />
     </>
   );
@@ -337,7 +335,12 @@ const Content = () => (
         contact us:
       </p>
       <ul>
-        <li>By email: patrick@jpatrickfulton.com</li>
+        <li>
+          By email:{" "}
+          <a href="mailto:patrick@jpatrickfulton.com">
+            patrick@jpatrickfulton.com
+          </a>
+        </li>
       </ul>
     </section>
   </>

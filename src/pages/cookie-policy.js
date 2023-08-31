@@ -4,7 +4,6 @@ import React from "react";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
-import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
 class CookiePolicy extends React.Component {
@@ -37,7 +36,6 @@ export const Head = () => {
   return (
     <>
       <GoogleStructuredOrgData />
-      <RssLink />
       <MsPubCenterHeaderScripts />
     </>
   );
@@ -286,6 +284,19 @@ const Content = () => (
         terms and conditions of this Policy, you are not permitted to continue
         to access or use this website and its services.
       </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have any questions about this Cookie Policy, You can contact us:
+      </p>
+      <ul>
+        <li>
+          By email:{" "}
+          <a href="mailto:patrick@jpatrickfulton.com">
+            patrick@jpatrickfulton.com
+          </a>
+        </li>
+      </ul>
     </section>
   </>
 );

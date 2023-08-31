@@ -5,7 +5,6 @@ import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
-import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
 class PrivacyPolicy extends React.Component {
@@ -38,7 +37,6 @@ export const Head = () => {
   return (
     <>
       <GoogleStructuredOrgData />
-      <RssLink />
       <MsPubCenterHeaderScripts />
     </>
   );
@@ -523,6 +521,19 @@ const Content = () => (
         material changes to this Privacy Policy, we will provide you with notice
         as required by law.
       </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have any questions about this Privacy Policy, You can contact us:
+      </p>
+      <ul>
+        <li>
+          By email:{" "}
+          <a href="mailto:patrick@jpatrickfulton.com">
+            patrick@jpatrickfulton.com
+          </a>
+        </li>
+      </ul>
     </section>
   </>
 );
