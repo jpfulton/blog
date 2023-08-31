@@ -277,13 +277,13 @@ const config = {
         // This config will be shared across all trackingIds
         gtagConfig: {
           //optimize_id: "OPT_CONTAINER_ID",
-          anonymize_ip: true,
+          //anonymize_ip: true,
           cookie_expires: 0,
         },
         // This object is used for configuration specific to this plugin
         pluginConfig: {
           // Puts tracking script in the head instead of the body
-          head: false,
+          head: true,
           // Setting this parameter is also optional
           respectDNT: true,
           // Avoids sending pageview hits from custom paths
