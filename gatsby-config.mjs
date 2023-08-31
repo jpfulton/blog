@@ -93,7 +93,7 @@ const config = {
                 gatsbyImageData(layout: FIXED, width: 150)
               }
             }
-            allMdx {
+            allMdx(sort: { frontmatter: { date: ASC } }) {
               nodes {
                 id
                 fields { 
