@@ -335,7 +335,12 @@ const Content = () => (
         contact us:
       </p>
       <ul>
-        <li>By email: patrick@jpatrickfulton.com</li>
+        <li>
+          By email:{" "}
+          <a href="mailto:patrick@jpatrickfulton.com">
+            patrick@jpatrickfulton.com
+          </a>
+        </li>
       </ul>
     </section>
   </>
