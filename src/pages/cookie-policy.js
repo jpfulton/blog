@@ -4,7 +4,6 @@ import React from "react";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
-import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
 class CookiePolicy extends React.Component {
@@ -37,7 +36,6 @@ export const Head = () => {
   return (
     <>
       <GoogleStructuredOrgData />
-      <RssLink />
       <MsPubCenterHeaderScripts />
     </>
   );

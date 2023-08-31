@@ -5,7 +5,6 @@ import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
-import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 
 class TermsOfUse extends React.Component {
@@ -38,7 +37,6 @@ export const Head = () => {
   return (
     <>
       <GoogleStructuredOrgData />
-      <RssLink />
       <MsPubCenterHeaderScripts />
     </>
   );

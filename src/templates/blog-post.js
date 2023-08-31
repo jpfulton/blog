@@ -7,7 +7,6 @@ import GoogleStructuredArticleData from "../components/googleStructureArticleDat
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import RelatedPosts from "../components/relatedPosts";
-import RssLink from "../components/rssLink";
 import Seo from "../components/seo";
 import Tags from "../components/tags";
 
@@ -118,7 +117,6 @@ export const Head = ({ pageContext, data: { mdx } }) => {
   return (
     <>
       <GoogleStructuredArticleData post={mdx} lastModified={lastModified} />
-      <RssLink />
       <MsPubCenterHeaderScripts />
     </>
   );
