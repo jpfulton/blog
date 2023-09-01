@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
 export interface Props {
-  post: Queries.Mdx;
+  post: Queries.BlogPostBySlugQuery["mdx"];
   lastModified: string;
 }
 
@@ -31,7 +31,7 @@ export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
 
   const date = post?.frontmatter?.date;
   const headline = post?.frontmatter?.title;
-  const description = post?.frontmatter?.description ?? post.excerpt;
+  const description = post?.frontmatter?.description ?? post?.excerpt;
 
   const fallbackImageUrl = `${site?.siteMetadata
     ?.siteUrl!}${openGraphDefaultImage?.childImageSharp?.gatsbyImageData?.images

@@ -12,7 +12,7 @@ export const onCreatePage: GatsbyNode["onCreatePage"] = async ({
   page,
   actions,
 }) => {
-  if (page.component.includes("blog-post.js")) {
+  if (page.component.includes("blog-post.tsx")) {
     // looking for mdx blog posts
     const filePath = page.component.split("?__contentFilePath=").pop();
     const fileLog = await simpleGit().log({
@@ -57,7 +57,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`);
+  const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
 
   const result = await graphql<Queries.AllMdxNodesQuery>(`
     query AllMdxNodes {

@@ -1,5 +1,5 @@
-import { Link, graphql } from "gatsby";
-import React from "react";
+import { HeadProps, Link, PageProps, graphql } from "gatsby";
+import React, { PropsWithChildren } from "react";
 
 import Bio from "../components/bio";
 import CustomMDXProvider from "../components/customMDXProvider";
@@ -10,34 +10,45 @@ import RelatedPosts from "../components/relatedPosts";
 import Seo from "../components/seo";
 import Tags from "../components/tags";
 
+import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
 import { rhythm, scale } from "../utils/typography";
 
-function BlogPostTemplate({
+interface BlogPageContext {
+  lastMod: string;
+  slug: string;
+  previous: Queries.MdxEdge["node"] | null;
+  next: Queries.MdxEdge["node"] | null;
+}
+
+export const BlogPostTemplate = ({
   location,
   pageContext,
   data: { openGraphDefaultImage, mdx, site, allMdx },
   children,
-}) {
-  const post = mdx;
+}: PageProps<
+  PropsWithChildren<Queries.BlogPostBySlugQuery>,
+  BlogPageContext
+>) => {
+  const post = mdx!;
   const relatedPosts = allMdx.edges;
 
-  const siteTitle = site.siteMetadata.title;
+  const siteTitle = site?.siteMetadata?.title!;
   const openGraphImageSrc =
-    post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images
-      .fallback.src;
+    post.frontmatter?.openGraphImage?.childImageSharp?.gatsbyImageData?.images
+      ?.fallback?.src;
 
   const { previous, next } = pageContext;
 
   return (
     <Layout location={location} title={siteTitle}>
       <Seo
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-        keywords={post.frontmatter.keywords}
+        title={siteTitle}
+        description={post.frontmatter?.description || post.excerpt!}
+        keywords={post.frontmatter?.keywords as string[]}
         openGraphImageSrc={openGraphImageSrc}
       />
       <article data-clarity-region="article">
-        <h1>{post.frontmatter.title}</h1>
+        <h1>{post.frontmatter?.title}</h1>
         <p
           style={{
             ...scale(-1 / 5),
@@ -46,8 +57,8 @@ function BlogPostTemplate({
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.date} - {post.fields.timeToRead.text} (
-          {post.fields.timeToRead.words} words)
+          {post.frontmatter?.date} - {post.fields?.timeToRead?.text} (
+          {post.fields?.timeToRead?.words} words)
         </p>
 
         <CustomMDXProvider>{children}</CustomMDXProvider>
@@ -66,11 +77,11 @@ function BlogPostTemplate({
           }}
         />
 
-        <Tags tags={post.frontmatter.keywords}></Tags>
+        <Tags tags={post.frontmatter?.keywords as string[]}></Tags>
       </article>
 
       <RelatedPosts
-        openGraphDefaultImage={openGraphDefaultImage}
+        openGraphDefaultImage={openGraphDefaultImage as FileNode}
         rootSlug={pageContext.slug}
         relatedPosts={relatedPosts}
       ></RelatedPosts>
@@ -88,15 +99,15 @@ function BlogPostTemplate({
         >
           <li>
             {previous && (
-              <Link to={`/blog${previous.fields.slug}`} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link to={`/blog${previous.fields?.slug}`} rel="prev">
+                ← {previous.frontmatter?.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={`/blog${next.fields.slug}`} rel="next">
-                {next.frontmatter.title} →
+              <Link to={`/blog${next.fields?.slug}`} rel="next">
+                {next.frontmatter?.title} →
               </Link>
             )}
           </li>
@@ -107,11 +118,14 @@ function BlogPostTemplate({
       </nav>
     </Layout>
   );
-}
+};
 
 export default BlogPostTemplate;
 
-export const Head = ({ pageContext, data: { mdx } }) => {
+export const Head = ({
+  pageContext,
+  data: { mdx },
+}: HeadProps<Queries.BlogPostBySlugQuery, BlogPageContext>) => {
   const lastModified = pageContext?.lastMod;
 
   return (
