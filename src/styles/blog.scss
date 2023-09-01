@@ -46,6 +46,10 @@ h5,
 h6 {
   a {
     box-shadow: none;
+
+    span {
+      display: none;
+    }
   }
 }
 
