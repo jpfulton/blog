@@ -2,14 +2,12 @@ import { MDXProvider } from "@mdx-js/react";
 import { Link } from "gatsby";
 import React from "react";
 
-import { InArticleAdBlock } from "../components/adBlocks";
 import { EmbeddedImage } from "../components/embeddedImage";
 import { OutboundLink } from "../components/outboundLink";
 import { InArticleAdUnit } from "./msPubCenter";
 
 const shortcodes = {
   EmbeddedImage,
-  InArticleAdBlock,
   InArticleAdUnit,
   Link,
 }; // short cuts to components to be used in mdx templates

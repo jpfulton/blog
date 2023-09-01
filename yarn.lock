@@ -13310,7 +13310,6 @@ __metadata:
     prop-types: ^15.8.1
     query-string: ^8.1.0
     react: ^18.0.0
-    react-adsense: ^0.1.0
     react-cookie-consent: ^8.0.1
     react-dom: ^18.2.0
     react-helmet: ^6.1.0
@@ -14116,16 +14115,6 @@ __metadata:
   bin:
     rc: ./cli.js
   checksum: 2e26e052f8be2abd64e6d1dabfbd7be03f80ec18ccbc49562d31f617d0015fbdbcf0f9eed30346ea6ab789e0fdfe4337f033f8016efdbee0df5354751842080e
-  languageName: node
-  linkType: hard
-
-"react-adsense@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "react-adsense@npm:0.1.0"
-  peerDependencies:
-    prop-types: ">=15.0.0"
-    react: ">=0.13.2 || ^0.14 || ^15.0.0 || ^16.0.0"
-  checksum: 8e7d2fe15ffd8ae82b54682d4defd380f882892c8087610fca46bdc74d5235102a2447bcb3f8e8fe4ac9599b1d244b7dd78f7d66b3c955d2143d71e0a2793b7b
   languageName: node
   linkType: hard
 
