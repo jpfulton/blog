@@ -1,12 +1,27 @@
+/// <reference path="../gatsby-types.d.ts" />
 import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
 
-function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
-  const { site, openGraphDefaultImage } = useStaticQuery(
+export interface Props {
+  description: string;
+  lang: string;
+  keywords: string[];
+  title: string;
+  openGraphImageSrc: string;
+}
+
+const Seo = ({
+  description,
+  lang,
+  keywords,
+  title,
+  openGraphImageSrc,
+}: Props) => {
+  const { site, openGraphDefaultImage } = useStaticQuery<Queries.SeoQuery>(
     graphql`
-      query {
+      query Seo {
         site {
           siteMetadata {
             title
@@ -29,13 +44,19 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription: string =
+    description || site?.siteMetadata?.description!;
 
   const imagePath = constructUrl(
-    site.siteMetadata.siteUrl,
+    site?.siteMetadata?.siteUrl as string,
     openGraphImageSrc ??
-      openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
+      openGraphDefaultImage?.childImageSharp?.gatsbyImageData?.images?.fallback
+        ?.src
   );
+
+  const twitterCreator: string = site!.siteMetadata!.social!.twitter!;
+  const twitterSite: string = site!.siteMetadata!.social!.twitter!;
+  const joinedKeywords: string = keywords.length > 0 ? keywords.join(", ") : "";
 
   return (
     <Helmet
@@ -74,11 +95,11 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.social.twitter,
+          content: twitterCreator,
         },
         {
           name: `twitter:site`,
-          content: site.siteMetadata.social.twitter,
+          content: twitterSite,
         },
         {
           name: `twitter:title`,
@@ -88,23 +109,20 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ]
-        .concat(
-          keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
-            : []
-        )
-        .concat(meta)}
+      ].concat(
+        keywords.length > 0
+          ? {
+              name: `keywords`,
+              content: joinedKeywords,
+            }
+          : []
+      )}
     />
   );
-}
+};
 
 Seo.defaultProps = {
   lang: `en`,
-  meta: [],
   keywords: [],
   description: ``,
 };
@@ -112,13 +130,12 @@ Seo.defaultProps = {
 Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   featuredImgSrc: PropTypes.string,
 };
 
-function constructUrl(baseUrl, path) {
+function constructUrl(baseUrl: string, path: string): string {
   if (baseUrl === "" || path === "") return "";
   return `${baseUrl}${path}`;
 }
