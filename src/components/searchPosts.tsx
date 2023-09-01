@@ -109,8 +109,8 @@ const AllPosts = ({ posts, openGraphDefaultImage }: AllPostsProps) => (
     {posts.map(({ node }, index) => {
       const title = node.frontmatter.title || node.fields.slug;
       const image =
-        node.frontmatter.primaryImage.childImageSharp.gatsbyImageData ||
-        node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData ||
+        node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
+        node.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData ||
         openGraphDefaultImage?.childImageSharp.gatsbyImageData;
 
       return (

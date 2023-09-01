@@ -53,8 +53,9 @@ export const RelatedPosts = ({
             const slug = node.fields.slug;
 
             const image =
-              node.frontmatter.primaryImage.childImageSharp.gatsbyImageData ||
-              node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData ||
+              node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
+              node.frontmatter.openGraphImage?.childImageSharp
+                .gatsbyImageData ||
               openGraphDefaultImage.childImageSharp.gatsbyImageData;
 
             return (
