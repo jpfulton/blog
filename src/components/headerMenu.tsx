@@ -3,14 +3,13 @@ import React, {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
-  SyntheticEvent,
 } from "react";
 
 export const HeaderMenu = () => {
   let isOpen = false;
   let linkFromMouseDown: HTMLAnchorElement | null = null; // retain reference to Link component that may have been mouse down target
 
-  const menuToggleFunc = (event: SyntheticEvent) => {
+  const menuToggleFunc = (/* event: SyntheticEvent */) => {
     const menuTag = document.querySelector("#headerMenu")! as HTMLElement;
     const container = document.querySelector(
       "#headerMenuContainer"
@@ -51,7 +50,7 @@ export const HeaderMenu = () => {
   const onKeyMenuToggle: KeyboardEventHandler<HTMLButtonElement> = (event) => {
     const KEY_CODE_ENTER = "13";
     if (event.code) {
-      if (event.code === KEY_CODE_ENTER) menuToggleFunc(event);
+      if (event.code === KEY_CODE_ENTER) menuToggleFunc(/* event */);
       //   if (isOpen && keydownEvent.code === "27") menuToggleFunc();
     }
   };
@@ -68,7 +67,7 @@ export const HeaderMenu = () => {
     }
 
     if (isOpen) {
-      menuToggleFunc(event);
+      menuToggleFunc(/* event */);
     }
   };
 
