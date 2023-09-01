@@ -1,4 +1,3 @@
-/// <reference path="src/gatsby-types.d.ts" />
 import type { GatsbyNode } from "gatsby";
 
 import { createFilePath } from "gatsby-source-filesystem";
@@ -86,7 +85,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   }
 
   // Create blog posts pages.
-  const posts = result.data?.allMdx?.edges!;
+  const posts = result.data?.allMdx?.edges ?? [];
 
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node;
@@ -134,8 +133,26 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     const { createTypes } = actions;
 
     createTypes(`
+    type Site {
+      siteMetadata: SiteMetadata!
+    }
+
+    type SiteMetadata {
+      title: String!
+      author: String!
+      description: String!
+      siteUrl: String!
+      social: Social!
+    }
+
+    type Social {
+      twitter: String!
+      github: String!
+      linkedin: String!
+    }
+
     type Mdx implements Node {
-      frontmatter: MdxFrontmatter
+      frontmatter: MdxFrontmatter!
     }
 
     type MdxFrontmatter @infer {
