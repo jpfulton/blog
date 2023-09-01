@@ -2,19 +2,22 @@ import { PageProps, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
+import { DeepNonNullable } from "utility-types";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
 import Seo from "../components/seo";
 
-export const AuthorProfile = (props: PageProps<Queries.AuthorProfileQuery>) => {
+export const AuthorProfile = (
+  props: PageProps<DeepNonNullable<Queries.AuthorProfileQuery>>
+) => {
   const { data, location } = props;
 
-  const siteTitle = data.site?.siteMetadata?.title!;
-  const author = data.site?.siteMetadata?.author!;
-  const linkedinUserName = data.site?.siteMetadata?.social?.linkedin!;
-  const githubUserName = data.site?.siteMetadata?.social?.github!;
+  const siteTitle = data.site.siteMetadata.title;
+  const author = data.site.siteMetadata.author;
+  const linkedinUserName = data.site.siteMetadata.social.linkedin;
+  const githubUserName = data.site.siteMetadata.social.github;
 
   const colors = [
     "#1A237E",

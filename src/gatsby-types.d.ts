@@ -2444,7 +2444,7 @@ type SiteMetadata = {
   readonly ads: Maybe<SiteSiteMetadataAds>;
   readonly author: Scalars['String'];
   readonly description: Scalars['String'];
-  readonly image: Maybe<Scalars['String']>;
+  readonly image: Scalars['String'];
   readonly siteUrl: Scalars['String'];
   readonly social: Social;
   readonly title: Scalars['String'];
@@ -2931,12 +2931,12 @@ type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: 
 type GoogleStructuredArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GoogleStructuredArticleQuery = { readonly site: { readonly siteMetadata: { readonly author: string, readonly image: string | null, readonly siteUrl: string, readonly social: { readonly github: string } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+type GoogleStructuredArticleQuery = { readonly site: { readonly siteMetadata: { readonly author: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly github: string } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
 
 type GoogleStructuredOrgDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly image: string | null, readonly siteUrl: string } } | null };
+type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly image: string, readonly siteUrl: string } } | null };
 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 

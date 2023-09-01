@@ -1,15 +1,18 @@
 import { PageProps, graphql } from "gatsby";
 import React from "react";
 
+import { DeepNonNullable } from "utility-types";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
 import Seo from "../components/seo";
 
-export const TermsOfUse = (props: PageProps<Queries.TermsOfUseQuery>) => {
+export const TermsOfUse = (
+  props: PageProps<DeepNonNullable<Queries.TermsOfUseQuery>>
+) => {
   const { data, location } = props;
-  const siteTitle = data.site?.siteMetadata?.title!;
+  const siteTitle = data.site.siteMetadata.title;
 
   return (
     <Layout location={location} title={siteTitle}>
