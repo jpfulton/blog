@@ -7,13 +7,14 @@ import React, { MouseEventHandler, PropsWithChildren } from "react";
 export interface Props {
   href: string;
   target: string | undefined;
+  rel: string | undefined;
   onClick: MouseEventHandler<HTMLAnchorElement> | undefined;
 }
 
 export const OutboundLink = React.forwardRef<
   HTMLAnchorElement,
   Partial<PropsWithChildren<Props>>
->(({ children, href, target, onClick }, ref) => {
+>(({ children, href, target, rel, onClick }, ref) => {
   const eventHandler = (
     e:
       | React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -72,6 +73,7 @@ export const OutboundLink = React.forwardRef<
       ref={ref}
       href={href}
       target={target}
+      rel={rel}
       role="link"
       tabIndex={0}
       onClick={eventHandler}
