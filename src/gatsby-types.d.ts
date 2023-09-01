@@ -2913,6 +2913,16 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
+type GoogleStructuredArticleQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type GoogleStructuredArticleQuery = { readonly site: { readonly siteMetadata: { readonly author: string | null, readonly image: string | null, readonly siteUrl: string | null, readonly social: { readonly github: string | null } | null } | null } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+
+type GoogleStructuredOrgDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly image: string | null, readonly siteUrl: string | null } | null } | null };
+
 type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 

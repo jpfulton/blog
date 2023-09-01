@@ -3,7 +3,7 @@ import React from "react";
 
 import Bio from "../components/bio";
 import CustomMDXProvider from "../components/customMDXProvider";
-import GoogleStructuredArticleData from "../components/googleStructureArticleData";
+import GoogleStructuredArticleData from "../components/googleStructuredArticleData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import RelatedPosts from "../components/relatedPosts";
