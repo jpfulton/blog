@@ -126,7 +126,7 @@ export const Head = ({
   pageContext,
   data: { mdx },
 }: HeadProps<Queries.BlogPostBySlugQuery, BlogPageContext>) => {
-  const lastModified = pageContext?.lastMod;
+  const lastModified = pageContext.lastMod;
 
   return (
     <>

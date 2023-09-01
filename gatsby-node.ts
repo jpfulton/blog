@@ -141,6 +141,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       title: String!
       author: String!
       description: String!
+      image: String!
       siteUrl: String!
       social: Social!
     }

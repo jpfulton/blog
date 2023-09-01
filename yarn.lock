@@ -13482,6 +13482,7 @@ __metadata:
     typescript: ^5.2.2
     typography: ^0.16.24
     typography-theme-wordpress-2016: ^0.16.19
+    utility-types: ^3.10.0
     uuid: ^9.0.0
     webpack: ^5.88.2
   languageName: unknown
