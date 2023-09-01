@@ -3717,6 +3717,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/typography@npm:^0.16.4":
+  version: 0.16.4
+  resolution: "@types/typography@npm:0.16.4"
+  checksum: 92fd3cd242ab1ff4632927c7aa3d71be18162883064cc301330d53a8f13a90970c844062a7bb1503dda25e5e6f93c38d1b620dcc21720ec6ce1f36903faee054
+  languageName: node
+  linkType: hard
+
 "@types/unist@npm:*, @types/unist@npm:^3.0.0":
   version: 3.0.0
   resolution: "@types/unist@npm:3.0.0"
@@ -13286,6 +13293,7 @@ __metadata:
     "@types/react": ^18.2.21
     "@types/react-dom": ^18.2.7
     "@types/react-helmet": ^6.1.6
+    "@types/typography": ^0.16.4
     "@types/uuid": ^9.0.3
     babel-eslint: ^10.1.0
     babel-plugin-styled-components: ^2.1.4

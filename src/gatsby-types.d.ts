@@ -2923,6 +2923,11 @@ type GoogleStructuredOrgDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly image: string | null, readonly siteUrl: string | null } | null } | null };
 
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null } | null } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly localSearchBlog: { readonly index: string, readonly store: Record<string, unknown> } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly fields: { readonly slug: string | null, readonly timeToRead: { readonly minutes: number | null, readonly text: string | null, readonly time: number | null, readonly words: number | null } | null } | null, readonly frontmatter: { readonly date: string | null, readonly title: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } }> } };
+
 type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 

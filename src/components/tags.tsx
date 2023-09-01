@@ -1,8 +1,11 @@
-import PropTypes from "prop-types";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-function Tags({ tags }) {
+export interface Props {
+  tags: string[];
+}
+
+export const Tags = ({ tags }: Props) => {
   const groupId = uuidv4();
 
   return (
@@ -19,14 +22,6 @@ function Tags({ tags }) {
       })}
     </div>
   );
-}
-
-Tags.defaultProps = {
-  tags: [],
-};
-
-Tags.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Tags;

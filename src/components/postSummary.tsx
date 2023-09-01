@@ -1,11 +1,22 @@
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import PropTypes from "prop-types";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import Tags from "../components/tags";
 import { rhythm } from "../utils/typography";
 
-function PostSummary({
+export interface Props {
+  slug: string;
+  title: string;
+  date: string;
+  timeToReadText: string;
+  timeToReadWords: number;
+  description: string | undefined;
+  excerpt: string;
+  keywords: string[];
+  primaryImage: IGatsbyImageData;
+}
+
+export const PostSummary = ({
   slug,
   title,
   date,
@@ -15,7 +26,7 @@ function PostSummary({
   excerpt,
   keywords,
   primaryImage,
-}) {
+}: Props) => {
   return (
     <article key={slug} className="post-summary">
       <h2
@@ -45,29 +56,6 @@ function PostSummary({
       <Tags tags={keywords} />
     </article>
   );
-}
-
-PostSummary.defaultProps = {
-  slug: "",
-  title: "",
-  date: "",
-  timeToReadText: "",
-  timeToReadWords: 0,
-  description: "",
-  excerpt: "",
-  keywords: [],
-};
-
-PostSummary.propTypes = {
-  slug: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  timeToReadText: PropTypes.string.isRequired,
-  timeToReadWords: PropTypes.number.isRequired,
-  description: PropTypes.string,
-  excerpt: PropTypes.string,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  primaryImageSrc: PropTypes.object,
 };
 
 export default PostSummary;

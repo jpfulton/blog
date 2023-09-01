@@ -80,7 +80,7 @@ const config = {
           async: false,
         },
         query: `
-          {
+          query LocalSearch {
             openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
               childImageSharp {
                 gatsbyImageData(layout: FIXED, width: 150)
