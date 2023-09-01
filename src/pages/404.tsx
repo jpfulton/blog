@@ -1,15 +1,15 @@
-/// <reference path="../gatsby-types.d.ts" />
 import { graphql, PageProps } from "gatsby";
 import * as React from "react";
 
+import { DeepNonNullable } from "utility-types";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 
 const NotFoundPage = ({
   data,
   location,
-}: PageProps<Queries.NotFoundPageQuery>) => {
-  const siteTitle = data.site?.siteMetadata?.title!;
+}: PageProps<DeepNonNullable<Queries.NotFoundPageQuery>>) => {
+  const siteTitle = data.site.siteMetadata.title;
 
   return (
     <Layout location={location} title={siteTitle}>

@@ -1,14 +1,17 @@
 import { Link, PageProps, graphql } from "gatsby";
 import React from "react";
 
+import { DeepNonNullable } from "utility-types";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import Seo from "../components/seo";
 
-export const CookiePolicy = (props: PageProps<Queries.CookiePolicyQuery>) => {
+export const CookiePolicy = (
+  props: PageProps<DeepNonNullable<Queries.CookiePolicyQuery>>
+) => {
   const { data, location } = props;
-  const siteTitle = data.site?.siteMetadata?.title!;
+  const siteTitle = data.site.siteMetadata.title;
 
   return (
     <Layout location={location} title={siteTitle}>
