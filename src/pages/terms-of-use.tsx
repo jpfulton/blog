@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { PageProps, graphql } from "gatsby";
 import React from "react";
 
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
@@ -7,24 +7,22 @@ import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
 import Seo from "../components/seo";
 
-class TermsOfUse extends React.Component {
-  render() {
-    const { data, location } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+export const TermsOfUse = (props: PageProps<Queries.TermsOfUseQuery>) => {
+  const { data, location } = props;
+  const siteTitle = data.site?.siteMetadata?.title!;
 
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title={"Terms of Use - " + siteTitle} />
-        <Content />
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title={"Terms of Use - " + siteTitle} />
+      <Content />
+    </Layout>
+  );
+};
 
 export default TermsOfUse;
 
 export const pageQuery = graphql`
-  query {
+  query TermsOfUse {
     site {
       siteMetadata {
         title

@@ -1,4 +1,4 @@
-import { Link, graphql } from "gatsby";
+import { Link, PageProps, graphql } from "gatsby";
 import React from "react";
 
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
@@ -7,24 +7,22 @@ import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
 import Seo from "../components/seo";
 
-class PrivacyPolicy extends React.Component {
-  render() {
-    const { data, location } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+export const PrivacyPolicy = (props: PageProps<Queries.PrivacyPolicyQuery>) => {
+  const { data, location } = props;
+  const siteTitle = data.site?.siteMetadata?.title!;
 
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title={"Privacy Policy - " + siteTitle} />
-        <Content />
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title={"Privacy Policy - " + siteTitle} />
+      <Content />
+    </Layout>
+  );
+};
 
 export default PrivacyPolicy;
 
 export const pageQuery = graphql`
-  query {
+  query PrivacyPolicy {
     site {
       siteMetadata {
         title
