@@ -1,4 +1,3 @@
-/// <reference path="../gatsby-types.d.ts" />
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
