@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { PageProps, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
@@ -8,142 +8,140 @@ import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import { OutboundLink } from "../components/outboundLink";
 import Seo from "../components/seo";
 
-class AuthorProfile extends React.Component {
-  render() {
-    const { data, location } = this.props;
+export const AuthorProfile = (props: PageProps<Queries.AuthorProfileQuery>) => {
+  const { data, location } = props;
 
-    const siteTitle = data.site.siteMetadata.title;
-    const author = data.site.siteMetadata.author;
-    const linkedinUserName = data.site.siteMetadata.social.linkedin;
-    const githubUserName = data.site.siteMetadata.social.github;
+  const siteTitle = data.site?.siteMetadata?.title!;
+  const author = data.site?.siteMetadata?.author!;
+  const linkedinUserName = data.site?.siteMetadata?.social?.linkedin!;
+  const githubUserName = data.site?.siteMetadata?.social?.github!;
 
-    const colors = [
-      "#1A237E",
-      "#283593",
-      "#303F9F",
-      "#3949AB",
-      "#3F51B5",
-      "#5C6BC0",
-      "#7986CB",
-      "#9FA8DA",
-      "#C5CAE9",
-      "#E8EAF6",
-    ];
+  const colors = [
+    "#1A237E",
+    "#283593",
+    "#303F9F",
+    "#3949AB",
+    "#3F51B5",
+    "#5C6BC0",
+    "#7986CB",
+    "#9FA8DA",
+    "#C5CAE9",
+    "#E8EAF6",
+  ];
 
-    const operatingSystems = ["macOS", "Linux", "Windows Server"];
-    const frontendFrameworks = ["Angular", "ASP.NET", "React", "Gatsby"];
-    const languages = [
-      "JavaScript",
-      "TypeScript",
-      "C#",
-      "Java",
-      "Bash",
-      "SQL",
-      "HTML",
-      "CSS",
-      "SASS",
-      "Bicep",
-    ];
-    const librariesAndApis = [
-      "Twilio",
-      "Google Indexing API",
-      "Bing Submission API",
-      "Fern",
-      "Node",
-      "SignalR",
-      "WebAPI",
-      ".NET",
-      ".NET Core",
-      "EF",
-      "EF Core",
-      "Linq",
-    ];
-    const azureTech = [
-      "Functions",
-      "Synapse Analytics",
-      "App Services",
-      "Service Bus",
-      "Virtual Machines",
-      "Virtual Networking",
-      "VPN Gateway",
-      "Storage",
-      "Static Web Apps",
-      "SQL",
-      "Database Migration Service",
-      "Active Directory",
-      "Defender",
-      "Monitor",
-      "KeyVault",
-      "Backup",
-      "DNS",
-    ];
-    const methodologies = ["Agile", "SCRUM", "Waterfall"];
+  const operatingSystems = ["macOS", "Linux", "Windows Server"];
+  const frontendFrameworks = ["Angular", "ASP.NET", "React", "Gatsby"];
+  const languages = [
+    "JavaScript",
+    "TypeScript",
+    "C#",
+    "Java",
+    "Bash",
+    "SQL",
+    "HTML",
+    "CSS",
+    "SASS",
+    "Bicep",
+  ];
+  const librariesAndApis = [
+    "Twilio",
+    "Google Indexing API",
+    "Bing Submission API",
+    "Fern",
+    "Node",
+    "SignalR",
+    "WebAPI",
+    ".NET",
+    ".NET Core",
+    "EF",
+    "EF Core",
+    "Linq",
+  ];
+  const azureTech = [
+    "Functions",
+    "Synapse Analytics",
+    "App Services",
+    "Service Bus",
+    "Virtual Machines",
+    "Virtual Networking",
+    "VPN Gateway",
+    "Storage",
+    "Static Web Apps",
+    "SQL",
+    "Database Migration Service",
+    "Active Directory",
+    "Defender",
+    "Monitor",
+    "KeyVault",
+    "Backup",
+    "DNS",
+  ];
+  const methodologies = ["Agile", "SCRUM", "Waterfall"];
 
-    const tagGroups = [
-      {
-        title: "Operating Systems",
-        tags: operatingSystems,
-        backgroundColor: colors[4],
-      },
-      {
-        title: "Frontend Frameworks",
-        tags: frontendFrameworks,
-        backgroundColor: colors[5],
-      },
-      {
-        title: "Languages",
-        tags: languages,
-        backgroundColor: colors[6],
-      },
-      {
-        title: "Libraries and APIs",
-        tags: librariesAndApis,
-        backgroundColor: colors[4],
-      },
-      {
-        title: "Azure",
-        tags: azureTech,
-        backgroundColor: colors[5],
-      },
-      {
-        title: "Methodologies",
-        tags: methodologies,
-        backgroundColor: colors[6],
-      },
-    ];
+  const tagGroups = [
+    {
+      title: "Operating Systems",
+      tags: operatingSystems,
+      backgroundColor: colors[4],
+    },
+    {
+      title: "Frontend Frameworks",
+      tags: frontendFrameworks,
+      backgroundColor: colors[5],
+    },
+    {
+      title: "Languages",
+      tags: languages,
+      backgroundColor: colors[6],
+    },
+    {
+      title: "Libraries and APIs",
+      tags: librariesAndApis,
+      backgroundColor: colors[4],
+    },
+    {
+      title: "Azure",
+      tags: azureTech,
+      backgroundColor: colors[5],
+    },
+    {
+      title: "Methodologies",
+      tags: methodologies,
+      backgroundColor: colors[6],
+    },
+  ];
 
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title={"Author Profile - " + siteTitle} />
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title={"Author Profile - " + siteTitle} />
 
-        <section>
-          <ImageAndSocials
-            author={author}
-            githubUserName={githubUserName}
-            linkedinUserName={linkedinUserName}
-          />
-          {tagGroups.map((group, index) => {
-            const key = group.title.replace(" ", "-").concat(`-${index}`);
+      <section>
+        <ImageAndSocials
+          author={author}
+          githubUserName={githubUserName}
+          linkedinUserName={linkedinUserName}
+        />
+        {tagGroups.map((group, index) => {
+          const key = group.title.replace(" ", "-").concat(`-${index}`);
 
-            return (
-              <TagGroup
-                key={key}
-                title={group.title}
-                tags={group.tags}
-                tagColor={group.backgroundColor}
-              />
-            );
-          })}
-        </section>
-      </Layout>
-    );
-  }
-}
+          return (
+            <TagGroup
+              key={key}
+              title={group.title}
+              tags={group.tags}
+              tagColor={group.backgroundColor}
+            />
+          );
+        })}
+      </section>
+    </Layout>
+  );
+};
 
 export default AuthorProfile;
 
 export const pageQuery = graphql`
-  query {
+  query AuthorProfile {
     site {
       siteMetadata {
         title
@@ -166,7 +164,17 @@ export const Head = () => {
   );
 };
 
-const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
+interface ImageAndSocialsProps {
+  author: string;
+  githubUserName: string;
+  linkedinUserName: string;
+}
+
+const ImageAndSocials = ({
+  author,
+  githubUserName,
+  linkedinUserName,
+}: ImageAndSocialsProps) => {
   const githubUrl = "https://github.com/" + githubUserName;
   const linkedinUrl = "https://www.linkedin.com/in/" + linkedinUserName;
 
@@ -233,7 +241,13 @@ const ImageAndSocials = ({ author, githubUserName, linkedinUserName }) => {
   );
 };
 
-const TagGroup = ({ title, tags, tagColor }) => {
+interface TagGroupProps {
+  title: string;
+  tags: string[];
+  tagColor: string;
+}
+
+const TagGroup = ({ title, tags, tagColor }: TagGroupProps) => {
   return (
     <div>
       <h2 className="profile-h2">{title}</h2>
@@ -258,7 +272,7 @@ const TagGroup = ({ title, tags, tagColor }) => {
   );
 };
 
-const sortFunction = (a, b) => {
+const sortFunction = (a: string, b: string): number => {
   const upperA = a.toUpperCase(); // ignore upper and lowercase
   const upperB = b.toUpperCase(); // ignore upper and lowercase
   if (upperA < upperB) {
@@ -272,8 +286,8 @@ const sortFunction = (a, b) => {
   return 0;
 };
 
-const getChicagoTime = () => {
-  function convertTZ(date, tzString) {
+const getChicagoTime = (): string => {
+  function convertTZ(date: string | Date, tzString: string): Date {
     return new Date(
       (typeof date === "string" ? new Date(date) : date).toLocaleString(
         "en-US",

@@ -2874,6 +2874,11 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type AuthorProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AuthorProfileQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly author: string | null, readonly social: { readonly github: string | null, readonly linkedin: string | null } | null } | null } | null };
+
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 
