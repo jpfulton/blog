@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import { useFlexSearch } from "react-use-flexsearch";
 
+import { DeepNonNullable } from "utility-types";
 import { InFeedAdUnit } from "./msPubCenter";
 import PostSummary from "./postSummary";
 
@@ -97,30 +98,32 @@ const SearchedPosts = ({ results }: SearchedPostProps) => (
 );
 
 interface AllPostsProps {
-  posts: Queries.IndexPageQuery["allMdx"]["edges"];
-  openGraphDefaultImage: Queries.IndexPageQuery["openGraphDefaultImage"];
+  posts: DeepNonNullable<Queries.IndexPageQuery["allMdx"]["edges"]>;
+  openGraphDefaultImage: DeepNonNullable<
+    Queries.IndexPageQuery["openGraphDefaultImage"]
+  >;
 }
 
 const AllPosts = ({ posts, openGraphDefaultImage }: AllPostsProps) => (
   <section style={{ margin: "20px 0 20px" }}>
     {posts.map(({ node }, index) => {
-      const title = node.frontmatter?.title || node.fields?.slug;
+      const title = node.frontmatter.title || node.fields.slug;
       const image =
-        node.frontmatter?.primaryImage?.childImageSharp?.gatsbyImageData ||
-        node.frontmatter?.openGraphImage?.childImageSharp?.gatsbyImageData ||
-        openGraphDefaultImage?.childImageSharp?.gatsbyImageData!;
+        node.frontmatter.primaryImage.childImageSharp.gatsbyImageData ||
+        node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData ||
+        openGraphDefaultImage?.childImageSharp.gatsbyImageData;
 
       return (
         <React.Fragment key={node.fields?.slug}>
           <PostSummary
-            slug={node.fields?.slug!}
+            slug={node.fields.slug}
             title={title!}
-            date={node.frontmatter?.date!}
-            timeToReadText={node.fields?.timeToRead?.text!}
-            timeToReadWords={node.fields?.timeToRead?.words!}
-            description={node.frontmatter?.description!}
-            excerpt={node.excerpt!}
-            keywords={node.frontmatter?.keywords as string[]}
+            date={node.frontmatter.date}
+            timeToReadText={node.fields.timeToRead.text}
+            timeToReadWords={node.fields.timeToRead.words}
+            description={node.frontmatter.description}
+            excerpt={node.excerpt}
+            keywords={node.frontmatter.keywords as string[]}
             primaryImage={image}
           />
           {(index + 1) % 3 === 0 && <InFeedAdUnit />}
@@ -131,10 +134,12 @@ const AllPosts = ({ posts, openGraphDefaultImage }: AllPostsProps) => (
 );
 
 export interface Props {
-  posts: Queries.IndexPageQuery["allMdx"]["edges"];
+  posts: DeepNonNullable<Queries.IndexPageQuery["allMdx"]["edges"]>;
   localSearchBlog: Queries.IndexPageQuery["localSearchBlog"];
   location: WindowLocation;
-  openGraphDefaultImage: Queries.IndexPageQuery["openGraphDefaultImage"];
+  openGraphDefaultImage: DeepNonNullable<
+    Queries.IndexPageQuery["openGraphDefaultImage"]
+  >;
 }
 
 export const SearchPosts = ({

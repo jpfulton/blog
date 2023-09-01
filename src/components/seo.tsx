@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
+import { DeepNonNullable } from "utility-types";
 
 export interface Props {
   description: string | undefined;
@@ -17,43 +18,39 @@ const Seo = ({
   title,
   openGraphImageSrc,
 }: Partial<Props>) => {
-  const { site, openGraphDefaultImage } = useStaticQuery<Queries.SeoQuery>(
-    graphql`
-      query Seo {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            siteUrl
-            social {
-              twitter
-            }
-          }
-        }
-        openGraphDefaultImage: file(
-          relativePath: { eq: "open-graph/code.png" }
-        ) {
-          childImageSharp {
-            gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+  const { site, openGraphDefaultImage } = useStaticQuery<
+    DeepNonNullable<Queries.SeoQuery>
+  >(graphql`
+    query Seo {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          siteUrl
+          social {
+            twitter
           }
         }
       }
-    `
-  );
+      openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+        childImageSharp {
+          gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+        }
+      }
+    }
+  `);
 
-  const metaDescription: string =
-    description || site?.siteMetadata?.description!;
+  const metaDescription: string = description || site.siteMetadata.description;
 
   const imagePath = constructUrl(
-    site?.siteMetadata?.siteUrl as string,
+    site.siteMetadata.siteUrl,
     openGraphImageSrc ??
-      openGraphDefaultImage?.childImageSharp?.gatsbyImageData?.images?.fallback
-        ?.src!
+      openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
   );
 
-  const twitterCreator: string = site!.siteMetadata!.social!.twitter!;
-  const twitterSite: string = site!.siteMetadata!.social!.twitter!;
+  const twitterCreator: string = site.siteMetadata.social.twitter;
+  const twitterSite: string = site.siteMetadata.social.twitter;
   const joinedKeywords: string =
     keywords && keywords.length > 0 ? keywords.join(", ") : "";
 
