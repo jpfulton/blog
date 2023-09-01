@@ -1,11 +1,12 @@
 import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
 import React from "react";
+import { DeepNonNullable } from "utility-types";
 import PostCard from "./postCard";
 
 export interface Props {
-  openGraphDefaultImage: FileNode;
+  openGraphDefaultImage: DeepNonNullable<FileNode>;
   rootSlug: string;
-  relatedPosts: Queries.BlogPostBySlugQuery["allMdx"]["edges"];
+  relatedPosts: DeepNonNullable<Queries.BlogPostBySlugQuery["allMdx"]["edges"]>;
 }
 
 export const RelatedPosts = ({
@@ -43,20 +44,18 @@ export const RelatedPosts = ({
         </button>
         <div className="related-posts-flex">
           {relatedPosts.map((post) => {
-            const node = post.node!;
+            const node = post.node;
 
-            if (node?.fields?.slug === rootSlug) return null;
+            if (node.fields.slug === rootSlug) return null;
 
-            const title = node.frontmatter?.title!;
-            const date = node.frontmatter?.date!;
-            const slug = node.fields?.slug!;
+            const title = node.frontmatter.title;
+            const date = node.frontmatter.date;
+            const slug = node.fields.slug;
 
             const image =
-              node.frontmatter?.primaryImage?.childImageSharp
-                ?.gatsbyImageData ||
-              node.frontmatter?.openGraphImage?.childImageSharp
-                ?.gatsbyImageData ||
-              openGraphDefaultImage.childImageSharp?.gatsbyImageData!;
+              node.frontmatter.primaryImage.childImageSharp.gatsbyImageData ||
+              node.frontmatter.openGraphImage.childImageSharp.gatsbyImageData ||
+              openGraphDefaultImage.childImageSharp.gatsbyImageData;
 
             return (
               <PostCard

@@ -1,13 +1,16 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { DeepNonNullable } from "utility-types";
 
 export interface Props {
-  post: Queries.BlogPostBySlugQuery["mdx"];
+  post: DeepNonNullable<Queries.BlogPostBySlugQuery["mdx"]>;
   lastModified: string;
 }
 
 export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
-  const data = useStaticQuery<Queries.GoogleStructuredArticleQuery>(graphql`
+  const data = useStaticQuery<
+    DeepNonNullable<Queries.GoogleStructuredArticleQuery>
+  >(graphql`
     query GoogleStructuredArticle {
       site {
         siteMetadata {
@@ -29,19 +32,15 @@ export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
 
   const { site, openGraphDefaultImage } = data;
 
-  const date = post?.frontmatter?.date;
-  const headline = post?.frontmatter?.title;
-  const description = post?.frontmatter?.description ?? post?.excerpt;
+  const date = post?.frontmatter.date;
+  const headline = post?.frontmatter.title;
+  const description = post?.frontmatter.description ?? post?.excerpt;
 
-  const fallbackImageUrl = `${site?.siteMetadata
-    ?.siteUrl!}${openGraphDefaultImage?.childImageSharp?.gatsbyImageData?.images
-    ?.fallback?.src!}`;
-  const imageUrl = `${site?.siteMetadata?.siteUrl!}${post?.frontmatter
-    ?.openGraphImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src}`;
+  const fallbackImageUrl = `${site.siteMetadata.siteUrl}${openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
+  const imageUrl = `${site.siteMetadata.siteUrl}${post?.frontmatter.openGraphImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
-  const logoUrl = `${site?.siteMetadata?.siteUrl!}${site?.siteMetadata
-    ?.image!}`;
-  const profileUrl = `${site?.siteMetadata?.siteUrl!}/profile/`;
+  const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
+  const profileUrl = `${site.siteMetadata.siteUrl}/profile/`;
 
   const articleData = {
     "@context": "https://schema.org",
@@ -51,7 +50,7 @@ export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
     author: [
       {
         "@type": "Person",
-        name: site?.siteMetadata?.author!,
+        name: site.siteMetadata.author,
         url: `${profileUrl}`,
       },
     ],
@@ -60,7 +59,7 @@ export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
     dateModified: lastModified ?? new Date(date!).toISOString(),
     publisher: {
       "@type": "Organization",
-      url: site?.siteMetadata?.siteUrl!,
+      url: site.siteMetadata.siteUrl,
       logo: logoUrl,
     },
   };
