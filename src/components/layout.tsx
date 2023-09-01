@@ -1,10 +1,16 @@
+import { WindowLocation } from "@reach/router";
 import { Link } from "gatsby";
-import * as React from "react";
+import React, { PropsWithChildren } from "react";
 import CookieConsent from "react-cookie-consent";
 import HeaderMenu from "./headerMenu";
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`;
+export interface Props {
+  location: WindowLocation;
+  title: string;
+}
+
+const Layout = ({ location, title, children }: PropsWithChildren<Props>) => {
+  const rootPath = `/`;
   const isRootPath = location.pathname === rootPath;
   let header;
 

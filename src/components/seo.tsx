@@ -1,15 +1,14 @@
 /// <reference path="../gatsby-types.d.ts" />
 import { graphql, useStaticQuery } from "gatsby";
-import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
 
 export interface Props {
-  description: string;
-  lang: string;
-  keywords: string[];
+  description: string | undefined;
+  lang: string | undefined;
+  keywords: string[] | undefined;
   title: string;
-  openGraphImageSrc: string;
+  openGraphImageSrc: string | undefined;
 }
 
 const Seo = ({
@@ -18,7 +17,7 @@ const Seo = ({
   keywords,
   title,
   openGraphImageSrc,
-}: Props) => {
+}: Partial<Props>) => {
   const { site, openGraphDefaultImage } = useStaticQuery<Queries.SeoQuery>(
     graphql`
       query Seo {
@@ -51,12 +50,13 @@ const Seo = ({
     site?.siteMetadata?.siteUrl as string,
     openGraphImageSrc ??
       openGraphDefaultImage?.childImageSharp?.gatsbyImageData?.images?.fallback
-        ?.src
+        ?.src!
   );
 
   const twitterCreator: string = site!.siteMetadata!.social!.twitter!;
   const twitterSite: string = site!.siteMetadata!.social!.twitter!;
-  const joinedKeywords: string = keywords.length > 0 ? keywords.join(", ") : "";
+  const joinedKeywords: string =
+    keywords && keywords.length > 0 ? keywords.join(", ") : "";
 
   return (
     <Helmet
@@ -110,7 +110,7 @@ const Seo = ({
           content: metaDescription,
         },
       ].concat(
-        keywords.length > 0
+        keywords && keywords.length > 0
           ? {
               name: `keywords`,
               content: joinedKeywords,
@@ -119,20 +119,6 @@ const Seo = ({
       )}
     />
   );
-};
-
-Seo.defaultProps = {
-  lang: `en`,
-  keywords: [],
-  description: ``,
-};
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-  featuredImgSrc: PropTypes.string,
 };
 
 function constructUrl(baseUrl: string, path: string): string {
