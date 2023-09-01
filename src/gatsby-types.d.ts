@@ -2874,10 +2874,10 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
-type BioQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BioQueryQuery = { readonly site: { readonly siteMetadata: { readonly author: string | null, readonly social: { readonly twitter: string | null, readonly github: string | null } | null } | null } | null };
+type BioQuery = { readonly site: { readonly siteMetadata: { readonly author: string | null, readonly social: { readonly twitter: string | null, readonly github: string | null } | null } | null } | null };
 
 type BlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];

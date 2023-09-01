@@ -12,7 +12,7 @@ import { OutboundLink } from "./outboundLink";
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
-    query BioQuery {
+    query Bio {
       site {
         siteMetadata {
           author
