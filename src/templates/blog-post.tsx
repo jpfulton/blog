@@ -11,13 +11,14 @@ import Seo from "../components/seo";
 import Tags from "../components/tags";
 
 import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
+import { DeepNonNullable } from "utility-types";
 import { rhythm, scale } from "../utils/typography";
 
 interface BlogPageContext {
   lastMod: string;
   slug: string;
-  previous: Queries.MdxEdge["node"] | null;
-  next: Queries.MdxEdge["node"] | null;
+  previous: DeepNonNullable<Queries.MdxEdge["node"]> | null;
+  next: DeepNonNullable<Queries.MdxEdge["node"]> | null;
 }
 
 export const BlogPostTemplate = ({
@@ -26,16 +27,16 @@ export const BlogPostTemplate = ({
   data: { openGraphDefaultImage, mdx, site, allMdx },
   children,
 }: PageProps<
-  PropsWithChildren<Queries.BlogPostBySlugQuery>,
+  PropsWithChildren<DeepNonNullable<Queries.BlogPostBySlugQuery>>,
   BlogPageContext
 >) => {
-  const post = mdx!;
+  const post = mdx;
   const relatedPosts = allMdx.edges;
 
-  const siteTitle = site?.siteMetadata?.title!;
+  const siteTitle = site.siteMetadata.title;
   const openGraphImageSrc =
-    post.frontmatter?.openGraphImage?.childImageSharp?.gatsbyImageData?.images
-      ?.fallback?.src;
+    post.frontmatter.openGraphImage.childImageSharp.gatsbyImageData.images
+      .fallback.src;
 
   const { previous, next } = pageContext;
 
@@ -43,12 +44,12 @@ export const BlogPostTemplate = ({
     <Layout location={location} title={siteTitle}>
       <Seo
         title={siteTitle}
-        description={post.frontmatter?.description || post.excerpt!}
-        keywords={post.frontmatter?.keywords as string[]}
+        description={post.frontmatter.description || post.excerpt}
+        keywords={post.frontmatter.keywords as string[]}
         openGraphImageSrc={openGraphImageSrc}
       />
       <article data-clarity-region="article">
-        <h1>{post.frontmatter?.title}</h1>
+        <h1>{post.frontmatter.title}</h1>
         <p
           style={{
             ...scale(-1 / 5),
@@ -57,8 +58,8 @@ export const BlogPostTemplate = ({
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter?.date} - {post.fields?.timeToRead?.text} (
-          {post.fields?.timeToRead?.words} words)
+          {post.frontmatter.date} - {post.fields.timeToRead.text} (
+          {post.fields.timeToRead.words} words)
         </p>
 
         <CustomMDXProvider>{children}</CustomMDXProvider>
@@ -77,7 +78,7 @@ export const BlogPostTemplate = ({
           }}
         />
 
-        <Tags tags={post.frontmatter?.keywords as string[]}></Tags>
+        <Tags tags={post.frontmatter.keywords as string[]}></Tags>
       </article>
 
       <RelatedPosts
@@ -99,15 +100,15 @@ export const BlogPostTemplate = ({
         >
           <li>
             {previous && (
-              <Link to={`/blog${previous.fields?.slug}`} rel="prev">
-                ← {previous.frontmatter?.title}
+              <Link to={`/blog${previous.fields.slug}`} rel="prev">
+                ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={`/blog${next.fields?.slug}`} rel="next">
-                {next.frontmatter?.title} →
+              <Link to={`/blog${next.fields.slug}`} rel="next">
+                {next.frontmatter.title} →
               </Link>
             )}
           </li>
