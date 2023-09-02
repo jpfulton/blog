@@ -144,12 +144,22 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       image: String!
       siteUrl: String!
       social: Social!
+      ads: Ads!
     }
 
     type Social {
       twitter: String!
       github: String!
       linkedin: String!
+    }
+
+    type Ads {
+      msPubCenter: MsPubCenter!
+    }
+
+    type MsPubCenter {
+      siteId: String!
+      publisherId: String!
     }
 
     type Mdx implements Node {
