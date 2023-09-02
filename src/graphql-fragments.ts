@@ -30,3 +30,28 @@ export const ogDefaultImageFragment = graphql`
     }
   }
 `;
+
+export const frontmatterFragment = graphql`
+  fragment MdxFrontmatterFragment on MdxFrontmatter {
+    date(formatString: "MMMM DD, YYYY")
+    description
+    keywords
+    title
+  }
+`;
+
+export const frontmatterWithThumbnailsFragment = graphql`
+  fragment MdxFrontmatterWithThumbnailsFragment on MdxFrontmatter {
+    ...MdxFrontmatterFragment
+    openGraphImage {
+      childImageSharp {
+        gatsbyImageData(layout: FIXED, width: 150)
+      }
+    }
+    primaryImage {
+      childImageSharp {
+        gatsbyImageData(layout: FIXED, width: 150)
+      }
+    }
+  }
+`;
