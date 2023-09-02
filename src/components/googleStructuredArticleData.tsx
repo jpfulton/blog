@@ -1,9 +1,17 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { DeepNonNullable } from "utility-types";
 
-const useSiteMetadata = () => {
-  const data = useStaticQuery(graphql`
-    query {
+export interface Props {
+  post: DeepNonNullable<Queries.BlogPostBySlugQuery["mdx"]>;
+  lastModified: string;
+}
+
+export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
+  const data = useStaticQuery<
+    DeepNonNullable<Queries.GoogleStructuredArticleQuery>
+  >(graphql`
+    query GoogleStructuredArticle {
       site {
         siteMetadata {
           author
@@ -22,18 +30,14 @@ const useSiteMetadata = () => {
     }
   `);
 
-  return data;
-};
+  const { site, openGraphDefaultImage } = data;
 
-export const GoogleStructuredArticleData = ({ post, lastModified }) => {
-  const { site, openGraphDefaultImage } = useSiteMetadata();
-
-  const date = post.frontmatter.date;
-  const headline = post.frontmatter.title;
-  const description = post.frontmatter.description ?? post.excerpt;
+  const date = post?.frontmatter.date;
+  const headline = post?.frontmatter.title;
+  const description = post?.frontmatter.description ?? post?.excerpt;
 
   const fallbackImageUrl = `${site.siteMetadata.siteUrl}${openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
-  const imageUrl = `${site.siteMetadata.siteUrl}${post.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData.images.fallback.src}`;
+  const imageUrl = `${site.siteMetadata.siteUrl}${post?.frontmatter.openGraphImage.childImageSharp.gatsbyImageData.images.fallback.src}`;
 
   const logoUrl = `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`;
   const profileUrl = `${site.siteMetadata.siteUrl}/profile/`;
@@ -51,8 +55,8 @@ export const GoogleStructuredArticleData = ({ post, lastModified }) => {
       },
     ],
     image: imageUrl ?? fallbackImageUrl,
-    datePublished: new Date(date).toISOString(),
-    dateModified: lastModified ?? new Date(date).toISOString(),
+    datePublished: new Date(date!).toISOString(),
+    dateModified: lastModified ?? new Date(date!).toISOString(),
     publisher: {
       "@type": "Organization",
       url: site.siteMetadata.siteUrl,

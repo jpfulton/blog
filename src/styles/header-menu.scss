@@ -16,6 +16,10 @@
       #headerMenuIcon {
         border: 0px;
         display: inline-block;
+
+        svg {
+          enable-background: new 0 0 32 32;
+        }
       }
 
       #headerMenuContainer {

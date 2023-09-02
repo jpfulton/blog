@@ -1,6 +1,7 @@
-import { graphql } from "gatsby";
+import { PageProps, graphql } from "gatsby";
 import React from "react";
 
+import { DeepNonNullable } from "utility-types";
 import Bio from "../components/bio";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
@@ -8,33 +9,31 @@ import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import SearchPosts from "../components/searchPosts";
 import Seo from "../components/seo";
 
-class Blog extends React.Component {
-  render() {
-    const { data, location } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
-    const posts = data.allMdx.edges;
-    const localSearchBlog = data.localSearchBlog;
-    const openGraphDefaultImage = data.openGraphDefaultImage;
+const Blog = (props: PageProps<DeepNonNullable<Queries.IndexPageQuery>>) => {
+  const { data, location } = props;
+  const siteTitle = data.site.siteMetadata.title;
+  const posts = data.allMdx.edges;
+  const localSearchBlog = data.localSearchBlog;
+  const openGraphDefaultImage = data.openGraphDefaultImage;
 
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title={siteTitle} />
-        <Bio />
-        <SearchPosts
-          posts={posts}
-          localSearchBlog={localSearchBlog}
-          location={location}
-          openGraphDefaultImage={openGraphDefaultImage}
-        />
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title={siteTitle} />
+      <Bio />
+      <SearchPosts
+        posts={posts}
+        localSearchBlog={localSearchBlog}
+        location={location}
+        openGraphDefaultImage={openGraphDefaultImage}
+      />
+    </Layout>
+  );
+};
 
 export default Blog;
 
 export const pageQuery = graphql`
-  query {
+  query IndexPage {
     site {
       siteMetadata {
         title

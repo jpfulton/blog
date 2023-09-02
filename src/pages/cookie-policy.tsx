@@ -1,29 +1,30 @@
-import { Link, graphql } from "gatsby";
+import { Link, PageProps, graphql } from "gatsby";
 import React from "react";
 
+import { DeepNonNullable } from "utility-types";
 import GoogleStructuredOrgData from "../components/googleStructuredOrgData";
 import Layout from "../components/layout";
 import { MsPubCenterHeaderScripts } from "../components/msPubCenter";
 import Seo from "../components/seo";
 
-class CookiePolicy extends React.Component {
-  render() {
-    const { data, location } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+export const CookiePolicy = (
+  props: PageProps<DeepNonNullable<Queries.CookiePolicyQuery>>
+) => {
+  const { data, location } = props;
+  const siteTitle = data.site.siteMetadata.title;
 
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title={"Cookie Policy - " + siteTitle} />
-        <Content />
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout location={location} title={siteTitle}>
+      <Seo title={"Cookie Policy - " + siteTitle} />
+      <Content />
+    </Layout>
+  );
+};
 
 export default CookiePolicy;
 
 export const pageQuery = graphql`
-  query {
+  query CookiePolicy {
     site {
       siteMetadata {
         title

@@ -1,13 +1,19 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, {
+  FocusEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+} from "react";
 
 export const HeaderMenu = () => {
   let isOpen = false;
-  let linkFromMouseDown = null; // retain reference to Link component that may have been mouse down target
+  let linkFromMouseDown: HTMLAnchorElement | null = null; // retain reference to Link component that may have been mouse down target
 
-  const menuToggleFunc = (event) => {
-    const menuTag = document.querySelector("#headerMenu");
-    const container = document.querySelector("#headerMenuContainer");
+  const menuToggleFunc = (/* event: SyntheticEvent */) => {
+    const menuTag = document.querySelector("#headerMenu")! as HTMLElement;
+    const container = document.querySelector(
+      "#headerMenuContainer"
+    )! as HTMLElement;
 
     /*
     if (event) {
@@ -15,9 +21,6 @@ export const HeaderMenu = () => {
     }
     if (event && event.target) {
       console.log("Target: %o", event.target);
-    }
-    if (event && event.relatedTarget) {
-      console.log("Related Target: %o", event.relatedTarget);
     }
     */
 
@@ -44,30 +47,35 @@ export const HeaderMenu = () => {
     }
   };
 
-  const onKeyMenuToggle = (keydownEvent) => {
-    const KEY_CODE_ENTER = 13;
-    if (keydownEvent.code) {
-      if (keydownEvent.code === KEY_CODE_ENTER) menuToggleFunc(keydownEvent);
-      //   if (isOpen && keydownEvent.code === 27) menuToggleFunc();
+  const onKeyMenuToggle: KeyboardEventHandler<HTMLButtonElement> = (event) => {
+    const KEY_CODE_ENTER = "13";
+    if (event.code) {
+      if (event.code === KEY_CODE_ENTER) menuToggleFunc(/* event */);
+      //   if (isOpen && keydownEvent.code === "27") menuToggleFunc();
     }
   };
 
-  const onLoseFocusMenu = (event) => {
+  const onLoseFocusMenu: FocusEventHandler<HTMLButtonElement> = (event) => {
     const container = document.querySelector("#headerMenu");
 
-    if (container.contains(event.relatedTarget)) {
+    if (
+      container &&
+      event.relatedTarget &&
+      container.contains(event.relatedTarget)
+    ) {
       return;
     }
+
     if (isOpen) {
-      menuToggleFunc(event);
+      menuToggleFunc(/* event */);
     }
   };
 
   // onMouseDown handlers execute prior to onBlur and onClick
   // attach this mouse down handler to all menu internal Link components
-  const onLinkMouseDown = (event) => {
+  const onLinkMouseDown: MouseEventHandler<HTMLAnchorElement> = (event) => {
     // console.log("Mouse down event: %o", event);
-    linkFromMouseDown = event.target;
+    linkFromMouseDown = event.target as HTMLAnchorElement;
   };
 
   return (
@@ -81,7 +89,6 @@ export const HeaderMenu = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="32px"
-          style={{ enableBackground: "new 0 0 32 32" }}
           version="1.1"
           viewBox="0 0 32 32"
           width="32px"

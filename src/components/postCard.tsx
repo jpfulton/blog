@@ -1,9 +1,15 @@
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import PropTypes from "prop-types";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 
-function PostCard({ title, slug, date, image }) {
+export interface Props {
+  title: string;
+  slug: string;
+  date: string;
+  image: IGatsbyImageData;
+}
+
+export const PostCard = ({ title, slug, date, image }: Props) => {
   return (
     <article className="post-card">
       <div className="post-image-container">
@@ -15,15 +21,6 @@ function PostCard({ title, slug, date, image }) {
       </div>
     </article>
   );
-}
-
-PostCard.defaultProps = {};
-
-PostCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  image: PropTypes.object.isRequired,
 };
 
 export default PostCard;

@@ -1,9 +1,14 @@
+/// <reference path="searchPosts.d.ts" />
+
+import { WindowLocation } from "@reach/router";
 import { navigate } from "gatsby";
 import queryString from "query-string";
 import React, { useState } from "react";
-import { useFlexSearch } from "react-use-flexsearch";
 import styled from "styled-components";
 
+import { useFlexSearch } from "react-use-flexsearch";
+
+import { DeepNonNullable } from "utility-types";
 import { InFeedAdUnit } from "./msPubCenter";
 import PostSummary from "./postSummary";
 
@@ -49,62 +54,76 @@ const SearchBar = styled.nav`
   }
 `;
 
-const SearchedPosts = ({ results }) =>
-  results.length > 0 ? (
-    results.map((node, index) => {
-      const date = node.date;
-      const title = node.title || node.slug;
-      const description = node.description;
-      const excerpt = node.excerpt;
-      const slug = node.slug;
-      const timeToReadText = node.timeToReadText;
-      const timeToReadWords = node.timeToReadWords;
-      const keywords = node.keywords;
-      const image = node.image;
+export interface SearchedPostProps {
+  results: any;
+}
 
-      return (
-        <React.Fragment key={slug}>
-          <PostSummary
-            slug={slug}
-            title={title}
-            date={date}
-            timeToReadText={timeToReadText}
-            timeToReadWords={timeToReadWords}
-            description={description}
-            excerpt={excerpt}
-            keywords={keywords}
-            primaryImage={image}
-          />
-          {(index + 1) % 3 === 0 && <InFeedAdUnit />}
-        </React.Fragment>
-      );
-    })
-  ) : (
-    <p style={{ textAlign: "center" }}>
-      Sorry, couldn't find any posts matching this search.
-    </p>
-  );
+const SearchedPosts = ({ results }: SearchedPostProps) => (
+  <section style={{ margin: "20px 0 20px" }}>
+    {results.length > 0 ? (
+      results.map((node: any, index: number) => {
+        const date = node.date;
+        const title = node.title || node.slug;
+        const description = node.description;
+        const excerpt = node.excerpt;
+        const slug = node.slug;
+        const timeToReadText = node.timeToReadText;
+        const timeToReadWords = node.timeToReadWords;
+        const keywords = node.keywords;
+        const image = node.image;
 
-const AllPosts = ({ posts, openGraphDefaultImage }) => (
+        return (
+          <React.Fragment key={slug}>
+            <PostSummary
+              slug={slug}
+              title={title}
+              date={date}
+              timeToReadText={timeToReadText}
+              timeToReadWords={timeToReadWords}
+              description={description}
+              excerpt={excerpt}
+              keywords={keywords}
+              primaryImage={image}
+            />
+            {(index + 1) % 3 === 0 && <InFeedAdUnit />}
+          </React.Fragment>
+        );
+      })
+    ) : (
+      <p style={{ textAlign: "center" }}>
+        Sorry, couldn't find any posts matching this search.
+      </p>
+    )}
+  </section>
+);
+
+interface AllPostsProps {
+  posts: DeepNonNullable<Queries.IndexPageQuery["allMdx"]["edges"]>;
+  openGraphDefaultImage: DeepNonNullable<
+    Queries.IndexPageQuery["openGraphDefaultImage"]
+  >;
+}
+
+const AllPosts = ({ posts, openGraphDefaultImage }: AllPostsProps) => (
   <section style={{ margin: "20px 0 20px" }}>
     {posts.map(({ node }, index) => {
       const title = node.frontmatter.title || node.fields.slug;
       const image =
         node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
         node.frontmatter.openGraphImage?.childImageSharp.gatsbyImageData ||
-        openGraphDefaultImage.childImageSharp.gatsbyImageData;
+        openGraphDefaultImage?.childImageSharp.gatsbyImageData;
 
       return (
-        <React.Fragment key={node.fields.slug}>
+        <React.Fragment key={node.fields?.slug}>
           <PostSummary
             slug={node.fields.slug}
-            title={title}
+            title={title!}
             date={node.frontmatter.date}
             timeToReadText={node.fields.timeToRead.text}
             timeToReadWords={node.fields.timeToRead.words}
             description={node.frontmatter.description}
             excerpt={node.excerpt}
-            keywords={node.frontmatter.keywords}
+            keywords={node.frontmatter.keywords as string[]}
             primaryImage={image}
           />
           {(index + 1) % 3 === 0 && <InFeedAdUnit />}
@@ -114,19 +133,28 @@ const AllPosts = ({ posts, openGraphDefaultImage }) => (
   </section>
 );
 
-const SearchPosts = ({
+export interface Props {
+  posts: DeepNonNullable<Queries.IndexPageQuery["allMdx"]["edges"]>;
+  localSearchBlog: Queries.IndexPageQuery["localSearchBlog"];
+  location: WindowLocation;
+  openGraphDefaultImage: DeepNonNullable<
+    Queries.IndexPageQuery["openGraphDefaultImage"]
+  >;
+}
+
+export const SearchPosts = ({
   posts,
   localSearchBlog,
   location,
   openGraphDefaultImage,
-}) => {
+}: Props) => {
   const { search } = queryString.parse(location.search);
   const [query, setQuery] = useState(search || "");
 
   const results = useFlexSearch(
     query,
-    localSearchBlog.index,
-    localSearchBlog.store
+    localSearchBlog?.index,
+    localSearchBlog?.store
   );
 
   return (
@@ -143,7 +171,7 @@ const SearchPosts = ({
           id="search"
           type="search"
           placeholder="Search all posts"
-          value={query}
+          value={query as string | string[]}
           onChange={(e) => {
             navigate(e.target.value ? `/?search=${e.target.value}` : "/");
             setQuery(e.target.value);

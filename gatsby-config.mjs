@@ -10,7 +10,6 @@ import remarkToc from "remark-toc";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config = {
@@ -32,16 +31,10 @@ const config = {
       },
     },
   },
+  graphqlTypegen: true,
   plugins: [
     {
       resolve: "gatsby-plugin-sass",
-      options: {
-        useResolveUrlLoader: {
-          options: {
-            debug: true,
-          },
-        },
-      },
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
@@ -87,7 +80,7 @@ const config = {
           async: false,
         },
         query: `
-          {
+          query LocalSearch {
             openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
               childImageSharp {
                 gatsbyImageData(layout: FIXED, width: 150)

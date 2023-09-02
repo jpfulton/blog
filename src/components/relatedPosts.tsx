@@ -1,13 +1,24 @@
-import PropTypes from "prop-types";
+import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
 import React from "react";
+import { DeepNonNullable } from "utility-types";
 import PostCard from "./postCard";
 
-function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
+export interface Props {
+  openGraphDefaultImage: DeepNonNullable<FileNode>;
+  rootSlug: string;
+  relatedPosts: DeepNonNullable<Queries.BlogPostBySlugQuery["allMdx"]["edges"]>;
+}
+
+export const RelatedPosts = ({
+  openGraphDefaultImage,
+  rootSlug,
+  relatedPosts,
+}: Props) => {
   if (relatedPosts.length === 0 || relatedPosts.length === 1)
-    return <div class="related-posts"></div>;
+    return <div className="related-posts"></div>;
 
   const scrollRight = () => {
-    const container = document.querySelector(".related-posts-flex");
+    const container = document.querySelector(".related-posts-flex")!;
 
     container.scrollBy({
       left: 200,
@@ -16,7 +27,7 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
   };
 
   const scrollLeft = () => {
-    const container = document.querySelector(".related-posts-flex");
+    const container = document.querySelector(".related-posts-flex")!;
 
     container.scrollBy({
       left: -200,
@@ -33,16 +44,17 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
         </button>
         <div className="related-posts-flex">
           {relatedPosts.map((post) => {
-            if (post.node.fields.slug === rootSlug) return null;
+            const node = post.node;
 
-            const title = post.node.frontmatter.title;
-            const date = post.node.frontmatter.date;
-            const slug = post.node.fields.slug;
+            if (node.fields.slug === rootSlug) return null;
+
+            const title = node.frontmatter.title;
+            const date = node.frontmatter.date;
+            const slug = node.fields.slug;
 
             const image =
-              post.node.frontmatter.primaryImage?.childImageSharp
-                .gatsbyImageData ||
-              post.node.frontmatter.openGraphImage?.childImageSharp
+              node.frontmatter.primaryImage?.childImageSharp.gatsbyImageData ||
+              node.frontmatter.openGraphImage?.childImageSharp
                 .gatsbyImageData ||
               openGraphDefaultImage.childImageSharp.gatsbyImageData;
 
@@ -63,16 +75,6 @@ function RelatedPosts({ openGraphDefaultImage, rootSlug, relatedPosts }) {
       </div>
     </nav>
   );
-}
-
-RelatedPosts.defaultProps = {
-  relatedPosts: [],
-};
-
-RelatedPosts.propTypes = {
-  rootSlug: PropTypes.string.isRequired,
-  relatedPosts: PropTypes.arrayOf(PropTypes.object),
-  openGraphDefaultImage: PropTypes.object.isRequired,
 };
 
 export default RelatedPosts;

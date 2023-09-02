@@ -1,9 +1,15 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
 import React from "react";
+import { DeepNonNullable } from "utility-types";
 
-export const EmbeddedImage = ({ altText, image, maxWidth }) => {
-  // console.log(image);
+export interface Props {
+  altText: string;
+  image: DeepNonNullable<FileNode>;
+  maxWidth: number;
+}
 
+export const EmbeddedImage = ({ altText, image, maxWidth }: Props) => {
   const fallbackSrc = image.childImageSharp.gatsbyImageData.images.fallback.src;
 
   return (
@@ -22,11 +28,10 @@ export const EmbeddedImage = ({ altText, image, maxWidth }) => {
       >
         <GatsbyImage
           alt={altText}
-          image={getImage(image)}
+          image={getImage(image)!}
           style={{
             display: "block",
           }}
-          formats={["auto", "webp", "avif"]}
         />
       </a>
     </span>

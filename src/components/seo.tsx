@@ -1,41 +1,58 @@
 import { graphql, useStaticQuery } from "gatsby";
-import PropTypes from "prop-types";
 import React from "react";
 import { Helmet } from "react-helmet";
+import { DeepNonNullable } from "utility-types";
 
-function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
-  const { site, openGraphDefaultImage } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            siteUrl
-            social {
-              twitter
-            }
-          }
-        }
-        openGraphDefaultImage: file(
-          relativePath: { eq: "open-graph/code.png" }
-        ) {
-          childImageSharp {
-            gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+export interface Props {
+  description: string | undefined;
+  lang: string | undefined;
+  keywords: string[] | undefined;
+  title: string;
+  openGraphImageSrc: string | undefined;
+}
+
+const Seo = ({
+  description,
+  lang,
+  keywords,
+  title,
+  openGraphImageSrc,
+}: Partial<Props>) => {
+  const { site, openGraphDefaultImage } = useStaticQuery<
+    DeepNonNullable<Queries.SeoQuery>
+  >(graphql`
+    query Seo {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          siteUrl
+          social {
+            twitter
           }
         }
       }
-    `
-  );
+      openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+        childImageSharp {
+          gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+        }
+      }
+    }
+  `);
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription: string = description || site.siteMetadata.description;
 
   const imagePath = constructUrl(
     site.siteMetadata.siteUrl,
     openGraphImageSrc ??
       openGraphDefaultImage.childImageSharp.gatsbyImageData.images.fallback.src
   );
+
+  const twitterCreator: string = site.siteMetadata.social.twitter;
+  const twitterSite: string = site.siteMetadata.social.twitter;
+  const joinedKeywords: string =
+    keywords && keywords.length > 0 ? keywords.join(", ") : "";
 
   return (
     <Helmet
@@ -74,11 +91,11 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.social.twitter,
+          content: twitterCreator,
         },
         {
           name: `twitter:site`,
-          content: site.siteMetadata.social.twitter,
+          content: twitterSite,
         },
         {
           name: `twitter:title`,
@@ -88,37 +105,19 @@ function Seo({ description, lang, meta, keywords, title, openGraphImageSrc }) {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ]
-        .concat(
-          keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
-            : []
-        )
-        .concat(meta)}
+      ].concat(
+        keywords && keywords.length > 0
+          ? {
+              name: `keywords`,
+              content: joinedKeywords,
+            }
+          : []
+      )}
     />
   );
-}
-
-Seo.defaultProps = {
-  lang: `en`,
-  meta: [],
-  keywords: [],
-  description: ``,
 };
 
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
-  featuredImgSrc: PropTypes.string,
-};
-
-function constructUrl(baseUrl, path) {
+function constructUrl(baseUrl: string, path: string): string {
   if (baseUrl === "" || path === "") return "";
   return `${baseUrl}${path}`;
 }

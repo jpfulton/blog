@@ -1,9 +1,12 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { DeepNonNullable } from "utility-types";
 
-const useSiteMetadata = () => {
-  const data = useStaticQuery(graphql`
-    query {
+export const GoogleStructuredOrgData = () => {
+  const data = useStaticQuery<
+    DeepNonNullable<Queries.GoogleStructuredOrgDataQuery>
+  >(graphql`
+    query GoogleStructuredOrgData {
       site {
         siteMetadata {
           image
@@ -13,11 +16,7 @@ const useSiteMetadata = () => {
     }
   `);
 
-  return data.site.siteMetadata;
-};
-
-export const GoogleStructuredOrgData = () => {
-  const { image, siteUrl } = useSiteMetadata();
+  const { image, siteUrl } = data.site.siteMetadata;
 
   const logoUrl = `${siteUrl}${image}`;
   const orgData = {

@@ -11,8 +11,8 @@ import * as React from "react";
 import { OutboundLink } from "./outboundLink";
 
 const Bio = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
+  const data = useStaticQuery<Queries.BioQuery>(graphql`
+    query Bio {
       site {
         siteMetadata {
           author
@@ -26,8 +26,8 @@ const Bio = () => {
   `);
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
-  const author = data.site.siteMetadata?.author;
-  const social = data.site.siteMetadata?.social;
+  const author = data.site?.siteMetadata?.author;
+  const social = data.site?.siteMetadata?.social;
 
   return (
     <section className="bio">

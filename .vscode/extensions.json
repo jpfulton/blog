@@ -4,6 +4,8 @@
     "esbenp.prettier-vscode",
     "github.vscode-github-actions",
     "github.vscode-pull-request-github",
-    "zainchen.json"
+    "zainchen.json",
+    "graphql.vscode-graphql",
+    "graphql.vscode-graphql-syntax"
   ]
 }
