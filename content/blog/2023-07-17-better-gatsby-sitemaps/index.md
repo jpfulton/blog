@@ -197,7 +197,7 @@ export const onCreatePage = async ({ page, actions }) => {
 ```
 
 The complete version of this file for this site implementation can be found
-[here](https://github.com/jpfulton/blog/blob/main/gatsby-node.mjs).
+[here](https://github.com/jpfulton/blog/blob/main/gatsby-node.ts).
 
 ## Updating Robots.txt
 
