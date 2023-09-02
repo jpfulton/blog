@@ -34,6 +34,22 @@ type AVIFOptions = {
   readonly speed: InputMaybe<Scalars['Int']>;
 };
 
+type Ads = {
+  readonly msPubCenter: MsPubCenter;
+};
+
+type AdsFieldSelector = {
+  readonly msPubCenter: InputMaybe<MsPubCenterFieldSelector>;
+};
+
+type AdsFilterInput = {
+  readonly msPubCenter: InputMaybe<MsPubCenterFilterInput>;
+};
+
+type AdsSortInput = {
+  readonly msPubCenter: InputMaybe<MsPubCenterSortInput>;
+};
+
 type BlurredOptions = {
   /** Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this */
   readonly toFormat: InputMaybe<ImageFormat>;
@@ -1637,6 +1653,26 @@ type MdxSortInput = {
   readonly tableOfContents: InputMaybe<SortOrderEnum>;
 };
 
+type MsPubCenter = {
+  readonly publisherId: Scalars['String'];
+  readonly siteId: Scalars['String'];
+};
+
+type MsPubCenterFieldSelector = {
+  readonly publisherId: InputMaybe<FieldSelectorEnum>;
+  readonly siteId: InputMaybe<FieldSelectorEnum>;
+};
+
+type MsPubCenterFilterInput = {
+  readonly publisherId: InputMaybe<StringQueryOperatorInput>;
+  readonly siteId: InputMaybe<StringQueryOperatorInput>;
+};
+
+type MsPubCenterSortInput = {
+  readonly publisherId: InputMaybe<SortOrderEnum>;
+  readonly siteId: InputMaybe<SortOrderEnum>;
+};
+
 /** Node Interface */
 type Node = {
   readonly children: ReadonlyArray<Node>;
@@ -2441,7 +2477,7 @@ type SiteGroupConnection_sumArgs = {
 };
 
 type SiteMetadata = {
-  readonly ads: Maybe<SiteSiteMetadataAds>;
+  readonly ads: Ads;
   readonly author: Scalars['String'];
   readonly description: Scalars['String'];
   readonly image: Scalars['String'];
@@ -2451,7 +2487,7 @@ type SiteMetadata = {
 };
 
 type SiteMetadataFieldSelector = {
-  readonly ads: InputMaybe<SiteSiteMetadataAdsFieldSelector>;
+  readonly ads: InputMaybe<AdsFieldSelector>;
   readonly author: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly image: InputMaybe<FieldSelectorEnum>;
@@ -2461,7 +2497,7 @@ type SiteMetadataFieldSelector = {
 };
 
 type SiteMetadataFilterInput = {
-  readonly ads: InputMaybe<SiteSiteMetadataAdsFilterInput>;
+  readonly ads: InputMaybe<AdsFilterInput>;
   readonly author: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly image: InputMaybe<StringQueryOperatorInput>;
@@ -2471,7 +2507,7 @@ type SiteMetadataFilterInput = {
 };
 
 type SiteMetadataSortInput = {
-  readonly ads: InputMaybe<SiteSiteMetadataAdsSortInput>;
+  readonly ads: InputMaybe<AdsSortInput>;
   readonly author: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly image: InputMaybe<SortOrderEnum>;
@@ -2775,42 +2811,6 @@ type SitePluginSortInput = {
 type SiteSiteMetadata = {
   readonly description: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
-};
-
-type SiteSiteMetadataAds = {
-  readonly msPubCenter: Maybe<SiteSiteMetadataAdsMsPubCenter>;
-};
-
-type SiteSiteMetadataAdsFieldSelector = {
-  readonly msPubCenter: InputMaybe<SiteSiteMetadataAdsMsPubCenterFieldSelector>;
-};
-
-type SiteSiteMetadataAdsFilterInput = {
-  readonly msPubCenter: InputMaybe<SiteSiteMetadataAdsMsPubCenterFilterInput>;
-};
-
-type SiteSiteMetadataAdsMsPubCenter = {
-  readonly publisherId: Maybe<Scalars['String']>;
-  readonly siteId: Maybe<Scalars['String']>;
-};
-
-type SiteSiteMetadataAdsMsPubCenterFieldSelector = {
-  readonly publisherId: InputMaybe<FieldSelectorEnum>;
-  readonly siteId: InputMaybe<FieldSelectorEnum>;
-};
-
-type SiteSiteMetadataAdsMsPubCenterFilterInput = {
-  readonly publisherId: InputMaybe<StringQueryOperatorInput>;
-  readonly siteId: InputMaybe<StringQueryOperatorInput>;
-};
-
-type SiteSiteMetadataAdsMsPubCenterSortInput = {
-  readonly publisherId: InputMaybe<SortOrderEnum>;
-  readonly siteId: InputMaybe<SortOrderEnum>;
-};
-
-type SiteSiteMetadataAdsSortInput = {
-  readonly msPubCenter: InputMaybe<SiteSiteMetadataAdsMsPubCenterSortInput>;
 };
 
 type SiteSortInput = {
