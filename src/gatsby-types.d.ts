@@ -2936,7 +2936,7 @@ type GoogleStructuredArticleQuery = { readonly site: { readonly siteMetadata: { 
 type GoogleStructuredOrgDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly image: string, readonly siteUrl: string } } | null };
+type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
