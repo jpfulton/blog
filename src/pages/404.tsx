@@ -27,7 +27,7 @@ export const pageQuery = graphql`
   query NotFoundPage {
     site {
       siteMetadata {
-        title
+        ...SiteMetadataFragment
       }
     }
   }

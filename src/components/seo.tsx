@@ -24,13 +24,7 @@ const Seo = ({
     query Seo {
       site {
         siteMetadata {
-          title
-          description
-          author
-          siteUrl
-          social {
-            twitter
-          }
+          ...SiteMetadataFragment
         }
       }
       openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {

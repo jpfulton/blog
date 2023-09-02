@@ -2882,7 +2882,7 @@ type WebPOptions = {
 type AuthorProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AuthorProfileQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly social: { readonly github: string, readonly linkedin: string } } } | null };
+type AuthorProfileQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2900,7 +2900,7 @@ type BlogPostBySlugQuery = { readonly site: { readonly siteMetadata: { readonly 
 type CookiePolicyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type CookiePolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type CookiePolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -2941,27 +2941,29 @@ type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly localSearchBlog: { readonly index: string, readonly store: Record<string, unknown> } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly fields: { readonly slug: string | null, readonly timeToRead: { readonly minutes: number | null, readonly text: string | null, readonly time: number | null, readonly words: number | null } | null } | null, readonly frontmatter: { readonly date: string | null, readonly title: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } } }> } };
+type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly localSearchBlog: { readonly index: string, readonly store: Record<string, unknown> } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly fields: { readonly slug: string | null, readonly timeToRead: { readonly minutes: number | null, readonly text: string | null, readonly time: number | null, readonly words: number | null } | null } | null, readonly frontmatter: { readonly date: string | null, readonly title: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } } }> } };
 
 type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type NotFoundPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type NotFoundPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type PrivacyPolicyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PrivacyPolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type PrivacyPolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly author: string, readonly siteUrl: string, readonly social: { readonly twitter: string } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+
+type SiteMetadataFragmentFragment = { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } };
 
 type TermsOfUseQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TermsOfUseQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type TermsOfUseQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type AllMdxNodesQueryVariables = Exact<{ [key: string]: never; }>;
 

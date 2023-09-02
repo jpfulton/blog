@@ -36,7 +36,7 @@ export const pageQuery = graphql`
   query IndexPage {
     site {
       siteMetadata {
-        title
+        ...SiteMetadataFragment
       }
     }
     openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
