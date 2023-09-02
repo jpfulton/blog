@@ -83,7 +83,7 @@ const config = {
           query LocalSearch {
             openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
               childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
+                gatsbyImageData(layout: FIXED, height: 580, width: 1200)
               }
             }
             allMdx(sort: { frontmatter: { date: ASC } }) {

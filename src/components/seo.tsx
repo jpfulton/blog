@@ -27,11 +27,7 @@ const Seo = ({
           ...SiteMetadataFragment
         }
       }
-      openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
-        childImageSharp {
-          gatsbyImageData(layout: FIXED, height: 580, width: 1200)
-        }
-      }
+      ...OgDefaultImageFragment
     }
   `);
 

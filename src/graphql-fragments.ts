@@ -20,3 +20,13 @@ export const siteMetadataFragment = graphql`
     }
   }
 `;
+
+export const ogDefaultImageFragment = graphql`
+  fragment OgDefaultImageFragment on Query {
+    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FIXED, height: 580, width: 1200)
+      }
+    }
+  }
+`;

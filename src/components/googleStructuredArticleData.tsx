@@ -14,19 +14,10 @@ export const GoogleStructuredArticleData = ({ post, lastModified }: Props) => {
     query GoogleStructuredArticle {
       site {
         siteMetadata {
-          author
-          image
-          siteUrl
-          social {
-            github
-          }
+          ...SiteMetadataFragment
         }
       }
-      openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
-        childImageSharp {
-          gatsbyImageData(layout: FIXED, height: 580, width: 1200)
-        }
-      }
+      ...OgDefaultImageFragment
     }
   `);
 

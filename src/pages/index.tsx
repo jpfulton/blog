@@ -39,11 +39,7 @@ export const pageQuery = graphql`
         ...SiteMetadataFragment
       }
     }
-    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FIXED, width: 150)
-      }
-    }
+    ...OgDefaultImageFragment
     localSearchBlog {
       index
       store
