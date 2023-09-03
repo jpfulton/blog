@@ -36,14 +36,10 @@ export const pageQuery = graphql`
   query IndexPage {
     site {
       siteMetadata {
-        title
+        ...SiteMetadataFragment
       }
     }
-    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FIXED, width: 150)
-      }
-    }
+    ...OgDefaultImageFragment
     localSearchBlog {
       index
       store
@@ -53,29 +49,10 @@ export const pageQuery = graphql`
         node {
           excerpt
           fields {
-            slug
-            timeToRead {
-              minutes
-              text
-              time
-              words
-            }
+            ...MdxFieldsFragments
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-            keywords
-            openGraphImage {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
-              }
-            }
-            primaryImage {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
-              }
-            }
+            ...MdxFrontmatterWithThumbnailsFragment
           }
         }
       }

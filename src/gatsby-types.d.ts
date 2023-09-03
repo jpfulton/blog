@@ -34,6 +34,22 @@ type AVIFOptions = {
   readonly speed: InputMaybe<Scalars['Int']>;
 };
 
+type Ads = {
+  readonly msPubCenter: MsPubCenter;
+};
+
+type AdsFieldSelector = {
+  readonly msPubCenter: InputMaybe<MsPubCenterFieldSelector>;
+};
+
+type AdsFilterInput = {
+  readonly msPubCenter: InputMaybe<MsPubCenterFilterInput>;
+};
+
+type AdsSortInput = {
+  readonly msPubCenter: InputMaybe<MsPubCenterSortInput>;
+};
+
 type BlurredOptions = {
   /** Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this */
   readonly toFormat: InputMaybe<ImageFormat>;
@@ -1397,7 +1413,7 @@ type Mdx = Node & {
   readonly body: Maybe<Scalars['String']>;
   readonly children: ReadonlyArray<Node>;
   readonly excerpt: Maybe<Scalars['String']>;
-  readonly fields: Maybe<MdxFields>;
+  readonly fields: MdxFields;
   readonly frontmatter: MdxFrontmatter;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
@@ -1473,8 +1489,8 @@ type MdxFieldSelector = {
 };
 
 type MdxFields = {
-  readonly slug: Maybe<Scalars['String']>;
-  readonly timeToRead: Maybe<MdxFieldsTimeToRead>;
+  readonly slug: Scalars['String'];
+  readonly timeToRead: MdxFieldsTimeToRead;
 };
 
 type MdxFieldsFieldSelector = {
@@ -1493,10 +1509,10 @@ type MdxFieldsSortInput = {
 };
 
 type MdxFieldsTimeToRead = {
-  readonly minutes: Maybe<Scalars['Float']>;
-  readonly text: Maybe<Scalars['String']>;
-  readonly time: Maybe<Scalars['Int']>;
-  readonly words: Maybe<Scalars['Int']>;
+  readonly minutes: Scalars['Float'];
+  readonly text: Scalars['String'];
+  readonly time: Scalars['String'];
+  readonly words: Scalars['Int'];
 };
 
 type MdxFieldsTimeToReadFieldSelector = {
@@ -1509,7 +1525,7 @@ type MdxFieldsTimeToReadFieldSelector = {
 type MdxFieldsTimeToReadFilterInput = {
   readonly minutes: InputMaybe<FloatQueryOperatorInput>;
   readonly text: InputMaybe<StringQueryOperatorInput>;
-  readonly time: InputMaybe<IntQueryOperatorInput>;
+  readonly time: InputMaybe<StringQueryOperatorInput>;
   readonly words: InputMaybe<IntQueryOperatorInput>;
 };
 
@@ -1635,6 +1651,26 @@ type MdxSortInput = {
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly tableOfContents: InputMaybe<SortOrderEnum>;
+};
+
+type MsPubCenter = {
+  readonly publisherId: Scalars['String'];
+  readonly siteId: Scalars['String'];
+};
+
+type MsPubCenterFieldSelector = {
+  readonly publisherId: InputMaybe<FieldSelectorEnum>;
+  readonly siteId: InputMaybe<FieldSelectorEnum>;
+};
+
+type MsPubCenterFilterInput = {
+  readonly publisherId: InputMaybe<StringQueryOperatorInput>;
+  readonly siteId: InputMaybe<StringQueryOperatorInput>;
+};
+
+type MsPubCenterSortInput = {
+  readonly publisherId: InputMaybe<SortOrderEnum>;
+  readonly siteId: InputMaybe<SortOrderEnum>;
 };
 
 /** Node Interface */
@@ -2441,7 +2477,7 @@ type SiteGroupConnection_sumArgs = {
 };
 
 type SiteMetadata = {
-  readonly ads: Maybe<SiteSiteMetadataAds>;
+  readonly ads: Ads;
   readonly author: Scalars['String'];
   readonly description: Scalars['String'];
   readonly image: Scalars['String'];
@@ -2451,7 +2487,7 @@ type SiteMetadata = {
 };
 
 type SiteMetadataFieldSelector = {
-  readonly ads: InputMaybe<SiteSiteMetadataAdsFieldSelector>;
+  readonly ads: InputMaybe<AdsFieldSelector>;
   readonly author: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly image: InputMaybe<FieldSelectorEnum>;
@@ -2461,7 +2497,7 @@ type SiteMetadataFieldSelector = {
 };
 
 type SiteMetadataFilterInput = {
-  readonly ads: InputMaybe<SiteSiteMetadataAdsFilterInput>;
+  readonly ads: InputMaybe<AdsFilterInput>;
   readonly author: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly image: InputMaybe<StringQueryOperatorInput>;
@@ -2471,7 +2507,7 @@ type SiteMetadataFilterInput = {
 };
 
 type SiteMetadataSortInput = {
-  readonly ads: InputMaybe<SiteSiteMetadataAdsSortInput>;
+  readonly ads: InputMaybe<AdsSortInput>;
   readonly author: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly image: InputMaybe<SortOrderEnum>;
@@ -2777,42 +2813,6 @@ type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
 };
 
-type SiteSiteMetadataAds = {
-  readonly msPubCenter: Maybe<SiteSiteMetadataAdsMsPubCenter>;
-};
-
-type SiteSiteMetadataAdsFieldSelector = {
-  readonly msPubCenter: InputMaybe<SiteSiteMetadataAdsMsPubCenterFieldSelector>;
-};
-
-type SiteSiteMetadataAdsFilterInput = {
-  readonly msPubCenter: InputMaybe<SiteSiteMetadataAdsMsPubCenterFilterInput>;
-};
-
-type SiteSiteMetadataAdsMsPubCenter = {
-  readonly publisherId: Maybe<Scalars['String']>;
-  readonly siteId: Maybe<Scalars['String']>;
-};
-
-type SiteSiteMetadataAdsMsPubCenterFieldSelector = {
-  readonly publisherId: InputMaybe<FieldSelectorEnum>;
-  readonly siteId: InputMaybe<FieldSelectorEnum>;
-};
-
-type SiteSiteMetadataAdsMsPubCenterFilterInput = {
-  readonly publisherId: InputMaybe<StringQueryOperatorInput>;
-  readonly siteId: InputMaybe<StringQueryOperatorInput>;
-};
-
-type SiteSiteMetadataAdsMsPubCenterSortInput = {
-  readonly publisherId: InputMaybe<SortOrderEnum>;
-  readonly siteId: InputMaybe<SortOrderEnum>;
-};
-
-type SiteSiteMetadataAdsSortInput = {
-  readonly msPubCenter: InputMaybe<SiteSiteMetadataAdsMsPubCenterSortInput>;
-};
-
 type SiteSortInput = {
   readonly buildTime: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
@@ -2882,12 +2882,12 @@ type WebPOptions = {
 type AuthorProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AuthorProfileQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly social: { readonly github: string, readonly linkedin: string } } } | null };
+type AuthorProfileQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BioQuery = { readonly site: { readonly siteMetadata: { readonly author: string, readonly social: { readonly twitter: string, readonly github: string } } } | null };
+type BioQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type BlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -2895,12 +2895,12 @@ type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-type BlogPostBySlugQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly mdx: { readonly id: string, readonly excerpt: string | null, readonly frontmatter: { readonly title: string | null, readonly date: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly embeddedImages: ReadonlyArray<{ readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null> | null }, readonly fields: { readonly timeToRead: { readonly minutes: number | null, readonly text: string | null, readonly time: number | null, readonly words: number | null } | null } | null } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly frontmatter: { readonly title: string | null, readonly date: string | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null }, readonly fields: { readonly slug: string | null } | null } }> } };
+type BlogPostBySlugQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null, readonly mdx: { readonly id: string, readonly excerpt: string | null, readonly frontmatter: { readonly date: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly title: string | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly embeddedImages: ReadonlyArray<{ readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null> | null }, readonly fields: { readonly slug: string, readonly timeToRead: { readonly minutes: number, readonly text: string, readonly time: string, readonly words: number } } } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly frontmatter: { readonly date: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly title: string | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null }, readonly fields: { readonly slug: string, readonly timeToRead: { readonly minutes: number, readonly text: string, readonly time: string, readonly words: number } } } }> }, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
 
 type CookiePolicyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type CookiePolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type CookiePolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -2931,42 +2931,52 @@ type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: 
 type GoogleStructuredArticleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GoogleStructuredArticleQuery = { readonly site: { readonly siteMetadata: { readonly author: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly github: string } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+type GoogleStructuredArticleQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
 
 type GoogleStructuredOrgDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly image: string, readonly siteUrl: string } } | null };
+type GoogleStructuredOrgDataQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly localSearchBlog: { readonly index: string, readonly store: Record<string, unknown> } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly fields: { readonly slug: string | null, readonly timeToRead: { readonly minutes: number | null, readonly text: string | null, readonly time: number | null, readonly words: number | null } | null } | null, readonly frontmatter: { readonly date: string | null, readonly title: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } } }> } };
+type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null, readonly localSearchBlog: { readonly index: string, readonly store: Record<string, unknown> } | null, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly excerpt: string | null, readonly fields: { readonly slug: string, readonly timeToRead: { readonly minutes: number, readonly text: string, readonly time: string, readonly words: number } }, readonly frontmatter: { readonly date: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly title: string | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } } }> }, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+
+type MdxFieldsFragmentsFragment = { readonly slug: string, readonly timeToRead: { readonly minutes: number, readonly text: string, readonly time: string, readonly words: number } };
+
+type MdxFrontmatterFragmentFragment = { readonly date: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly title: string | null };
+
+type MdxFrontmatterWithThumbnailsFragmentFragment = { readonly date: string | null, readonly description: string | null, readonly keywords: ReadonlyArray<string | null> | null, readonly title: string | null, readonly openGraphImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly primaryImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
 
 type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type NotFoundPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type NotFoundPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
+
+type OgDefaultImageFragmentFragment = { readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
 
 type PrivacyPolicyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PrivacyPolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type PrivacyPolicyQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly author: string, readonly siteUrl: string, readonly social: { readonly twitter: string } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+type SeoQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null, readonly openGraphDefaultImage: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null };
+
+type SiteMetadataFragmentFragment = { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } };
 
 type TermsOfUseQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TermsOfUseQuery = { readonly site: { readonly siteMetadata: { readonly title: string } } | null };
+type TermsOfUseQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type AllMdxNodesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AllMdxNodesQuery = { readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly title: string | null, readonly keywords: ReadonlyArray<string | null> | null }, readonly internal: { readonly contentFilePath: string | null } } }> } };
+type AllMdxNodesQuery = { readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null, readonly keywords: ReadonlyArray<string | null> | null }, readonly internal: { readonly contentFilePath: string | null } } }> } };
 
 
 }

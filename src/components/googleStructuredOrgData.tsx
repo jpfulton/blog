@@ -9,8 +9,7 @@ export const GoogleStructuredOrgData = () => {
     query GoogleStructuredOrgData {
       site {
         siteMetadata {
-          image
-          siteUrl
+          ...SiteMetadataFragment
         }
       }
     }

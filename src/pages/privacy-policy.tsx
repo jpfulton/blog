@@ -28,7 +28,7 @@ export const pageQuery = graphql`
   query PrivacyPolicy {
     site {
       siteMetadata {
-        title
+        ...SiteMetadataFragment
       }
     }
   }

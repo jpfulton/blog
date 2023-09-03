@@ -27,7 +27,7 @@ export const pageQuery = graphql`
   query CookiePolicy {
     site {
       siteMetadata {
-        title
+        ...SiteMetadataFragment
       }
     }
   }

@@ -144,6 +144,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       image: String!
       siteUrl: String!
       social: Social!
+      ads: Ads!
     }
 
     type Social {
@@ -152,7 +153,17 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       linkedin: String!
     }
 
+    type Ads {
+      msPubCenter: MsPubCenter!
+    }
+
+    type MsPubCenter {
+      siteId: String!
+      publisherId: String!
+    }
+
     type Mdx implements Node {
+      fields: MdxFields!
       frontmatter: MdxFrontmatter!
     }
 
@@ -160,6 +171,18 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       openGraphImage: File @fileByRelativePath
       primaryImage: File @fileByRelativePath
       embeddedImages: [File] @fileByRelativePath
+    }
+
+    type MdxFields @infer {
+      slug: String!
+      timeToRead: MdxFieldsTimeToRead!
+    }
+
+    type MdxFieldsTimeToRead @infer {
+      minutes: Float!
+      text: String!
+      time: String!
+      words: Int!
     }
 
   `);

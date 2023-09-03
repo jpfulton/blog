@@ -82,7 +82,9 @@ export const BlogPostTemplate = ({
       </article>
 
       <RelatedPosts
-        openGraphDefaultImage={openGraphDefaultImage as FileNode}
+        openGraphDefaultImage={
+          openGraphDefaultImage as DeepNonNullable<FileNode>
+        }
         rootSlug={pageContext.slug}
         relatedPosts={relatedPosts}
       ></RelatedPosts>
@@ -126,7 +128,10 @@ export default BlogPostTemplate;
 export const Head = ({
   pageContext,
   data: { mdx },
-}: HeadProps<Queries.BlogPostBySlugQuery, BlogPageContext>) => {
+}: HeadProps<
+  DeepNonNullable<Queries.BlogPostBySlugQuery>,
+  BlogPageContext
+>) => {
   const lastModified = pageContext.lastMod;
 
   return (
@@ -141,23 +146,15 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $keywords: [String]!) {
     site {
       siteMetadata {
-        title
-        author
+        ...SiteMetadataFragment
       }
     }
-    openGraphDefaultImage: file(relativePath: { eq: "open-graph/code.png" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FIXED, width: 150)
-      }
-    }
+    ...OgDefaultImageFragment
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
       frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-        keywords
+        ...MdxFrontmatterFragment
         openGraphImage {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
@@ -170,12 +167,7 @@ export const pageQuery = graphql`
         }
       }
       fields {
-        timeToRead {
-          minutes
-          text
-          time
-          words
-        }
+        ...MdxFieldsFragments
       }
     }
     allMdx(
@@ -186,21 +178,10 @@ export const pageQuery = graphql`
         node {
           id
           frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            openGraphImage {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
-              }
-            }
-            primaryImage {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
-              }
-            }
+            ...MdxFrontmatterWithThumbnailsFragment
           }
           fields {
-            slug
+            ...MdxFieldsFragments
           }
         }
       }

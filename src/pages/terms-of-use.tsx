@@ -28,7 +28,7 @@ export const pageQuery = graphql`
   query TermsOfUse {
     site {
       siteMetadata {
-        title
+        ...SiteMetadataFragment
       }
     }
   }

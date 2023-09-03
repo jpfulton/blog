@@ -147,12 +147,7 @@ export const pageQuery = graphql`
   query AuthorProfile {
     site {
       siteMetadata {
-        title
-        author
-        social {
-          github
-          linkedin
-        }
+        ...SiteMetadataFragment
       }
     }
   }
