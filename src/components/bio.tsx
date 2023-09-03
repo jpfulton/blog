@@ -15,11 +15,7 @@ const Bio = () => {
     query Bio {
       site {
         siteMetadata {
-          author
-          social {
-            twitter
-            github
-          }
+          ...SiteMetadataFragment
         }
       }
     }

@@ -2887,7 +2887,7 @@ type AuthorProfileQuery = { readonly site: { readonly siteMetadata: { readonly t
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BioQuery = { readonly site: { readonly siteMetadata: { readonly author: string, readonly social: { readonly twitter: string, readonly github: string } } } | null };
+type BioQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: string, readonly description: string, readonly image: string, readonly siteUrl: string, readonly social: { readonly twitter: string, readonly github: string, readonly linkedin: string }, readonly ads: { readonly msPubCenter: { readonly siteId: string, readonly publisherId: string } } } } | null };
 
 type BlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
