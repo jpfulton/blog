@@ -55,3 +55,15 @@ export const frontmatterWithThumbnailsFragment = graphql`
     }
   }
 `;
+
+export const fieldsFragment = graphql`
+  fragment MdxFieldsFragments on MdxFields {
+    slug
+    timeToRead {
+      minutes
+      text
+      time
+      words
+    }
+  }
+`;

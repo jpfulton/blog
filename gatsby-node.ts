@@ -163,6 +163,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     }
 
     type Mdx implements Node {
+      fields: MdxFields!
       frontmatter: MdxFrontmatter!
     }
 
@@ -170,6 +171,18 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       openGraphImage: File @fileByRelativePath
       primaryImage: File @fileByRelativePath
       embeddedImages: [File] @fileByRelativePath
+    }
+
+    type MdxFields @infer {
+      slug: String!
+      timeToRead: MdxFieldsTimeToRead!
+    }
+
+    type MdxFieldsTimeToRead @infer {
+      minutes: Float!
+      text: String!
+      time: String!
+      words: Int!
     }
 
   `);

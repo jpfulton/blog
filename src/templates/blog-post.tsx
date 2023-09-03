@@ -167,12 +167,7 @@ export const pageQuery = graphql`
         }
       }
       fields {
-        timeToRead {
-          minutes
-          text
-          time
-          words
-        }
+        ...MdxFieldsFragments
       }
     }
     allMdx(
@@ -186,7 +181,7 @@ export const pageQuery = graphql`
             ...MdxFrontmatterWithThumbnailsFragment
           }
           fields {
-            slug
+            ...MdxFieldsFragments
           }
         }
       }

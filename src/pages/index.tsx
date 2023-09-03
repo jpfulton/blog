@@ -49,13 +49,7 @@ export const pageQuery = graphql`
         node {
           excerpt
           fields {
-            slug
-            timeToRead {
-              minutes
-              text
-              time
-              words
-            }
+            ...MdxFieldsFragments
           }
           frontmatter {
             ...MdxFrontmatterWithThumbnailsFragment
