@@ -154,10 +154,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-        keywords
+        ...MdxFrontmatterFragment
         openGraphImage {
           childImageSharp {
             gatsbyImageData(layout: FIXED, height: 580, width: 1200)
@@ -186,18 +183,7 @@ export const pageQuery = graphql`
         node {
           id
           frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            openGraphImage {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
-              }
-            }
-            primaryImage {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, width: 150)
-              }
-            }
+            ...MdxFrontmatterWithThumbnailsFragment
           }
           fields {
             slug
