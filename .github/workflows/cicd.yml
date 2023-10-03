@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
@@ -78,10 +78,12 @@ jobs:
 
     permissions:
       contents: read # for actions/checkout to fetch code
-      pull-requests: write # for Azure/static-web-apps-deploy to comment on PRs
+      checks: write
+      pull-requests: write
+      statuses: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
 
@@ -98,6 +100,13 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Danger
+        if: (github.event_name == 'pull_request' && github.event.action != 'closed')
+        uses: jpfulton/danger-js-action@main
+        with:
+          dangerfile: https://raw.githubusercontent.com/jpfulton/jpfulton-devops-config/main/danger-files/dangerfile-node-project.ts
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Site
         run: yarn build --verbose
